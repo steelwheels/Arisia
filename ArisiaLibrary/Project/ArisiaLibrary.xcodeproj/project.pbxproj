@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0507A51528BBAE9F00D694A0 /* ArisiaLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 0507A51328BBAE9F00D694A0 /* ArisiaLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0507A51D28BBAEFD00D694A0 /* ALFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526B69528BBAD8300E232C6 /* ALFrame.swift */; };
+		0507A51D28BBAEFD00D694A0 /* ALFrameCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526B69528BBAD8300E232C6 /* ALFrameCore.swift */; };
 		0507A51F28BBAF2200D694A0 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69928BBADF400E232C6 /* CoconutData.xcframework */; };
 		0507A52028BBAF2200D694A0 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69928BBADF400E232C6 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0507A52128BBAF2200D694A0 /* CoconutDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69A28BBADF400E232C6 /* CoconutDatabase.xcframework */; };
@@ -17,7 +17,7 @@
 		0507A52528BBAF3200D694A0 /* KiwiEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B6A128BBAE0A00E232C6 /* KiwiEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0507A52628BBAF3200D694A0 /* KiwiLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B6A028BBAE0A00E232C6 /* KiwiLibrary.xcframework */; };
 		0507A52728BBAF3200D694A0 /* KiwiLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B6A028BBAE0A00E232C6 /* KiwiLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0526B69628BBAD8300E232C6 /* ALFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526B69528BBAD8300E232C6 /* ALFrame.swift */; };
+		0526B69628BBAD8300E232C6 /* ALFrameCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526B69528BBAD8300E232C6 /* ALFrameCore.swift */; };
 		0526B69B28BBADF500E232C6 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69928BBADF400E232C6 /* CoconutData.xcframework */; };
 		0526B69C28BBADF500E232C6 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69928BBADF400E232C6 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0526B69D28BBADF500E232C6 /* CoconutDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69A28BBADF400E232C6 /* CoconutDatabase.xcframework */; };
@@ -26,6 +26,10 @@
 		0526B6A328BBAE0A00E232C6 /* KiwiLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B6A028BBAE0A00E232C6 /* KiwiLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0526B6A428BBAE0A00E232C6 /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B6A128BBAE0A00E232C6 /* KiwiEngine.xcframework */; };
 		0526B6A528BBAE0A00E232C6 /* KiwiEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B6A128BBAE0A00E232C6 /* KiwiEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		056BB7C028BD7FAE00EFB725 /* AlisiaLibrary.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 056BB7BE28BD7F3300EFB725 /* AlisiaLibrary.d.ts */; };
+		056BB7C228BD7FC000EFB725 /* AlisiaLibrary.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 056BB7BE28BD7F3300EFB725 /* AlisiaLibrary.d.ts */; };
+		058DC56C28BD091600BF9092 /* ALCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058DC56B28BD091600BF9092 /* ALCompiler.swift */; };
+		058DC56D28BD091600BF9092 /* ALCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058DC56B28BD091600BF9092 /* ALCompiler.swift */; };
 		05D8503628BBAC5B00796FB1 /* ArisiaLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 05D8503428BBAC5B00796FB1 /* ArisiaLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -43,6 +47,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0507A51028BBAE9F00D694A0;
 			remoteInfo = AristaLibrary_iOS;
+		};
+		056BB7C328BD803600EFB725 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05D8502828BBAC5B00796FB1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 056BB7B828BD7CDC00EFB725;
+			remoteInfo = Transpile;
+		};
+		056BB7C528BD803A00EFB725 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05D8502828BBAC5B00796FB1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 056BB7B828BD7CDC00EFB725;
+			remoteInfo = Transpile;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -75,17 +93,40 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		056BB7BF28BD7F9C00EFB725 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Library;
+			dstSubfolderSpec = 7;
+			files = (
+				056BB7C028BD7FAE00EFB725 /* AlisiaLibrary.d.ts in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		056BB7C128BD7FB600EFB725 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Library;
+			dstSubfolderSpec = 7;
+			files = (
+				056BB7C228BD7FC000EFB725 /* AlisiaLibrary.d.ts in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0507A51128BBAE9F00D694A0 /* ArisiaLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArisiaLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0507A51328BBAE9F00D694A0 /* ArisiaLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArisiaLibrary.h; sourceTree = "<group>"; };
 		0507A51428BBAE9F00D694A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0526B69528BBAD8300E232C6 /* ALFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALFrame.swift; sourceTree = "<group>"; };
+		0526B69528BBAD8300E232C6 /* ALFrameCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALFrameCore.swift; sourceTree = "<group>"; };
 		0526B69928BBADF400E232C6 /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
 		0526B69A28BBADF400E232C6 /* CoconutDatabase.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutDatabase.xcframework; path = ../../../../Library/Frameworks/CoconutDatabase.xcframework; sourceTree = "<group>"; };
 		0526B6A028BBAE0A00E232C6 /* KiwiLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiLibrary.xcframework; path = ../../../../Library/Frameworks/KiwiLibrary.xcframework; sourceTree = "<group>"; };
 		0526B6A128BBAE0A00E232C6 /* KiwiEngine.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiEngine.xcframework; path = ../../../../Library/Frameworks/KiwiEngine.xcframework; sourceTree = "<group>"; };
+		056BB7BE28BD7F3300EFB725 /* AlisiaLibrary.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AlisiaLibrary.d.ts; sourceTree = "<group>"; };
+		058DC56928BD06C900BF9092 /* Builtin.d.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = Builtin.d.ts; sourceTree = "<group>"; };
+		058DC56B28BD091600BF9092 /* ALCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALCompiler.swift; sourceTree = "<group>"; };
 		05D8503128BBAC5B00796FB1 /* ArisiaLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArisiaLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05D8503428BBAC5B00796FB1 /* ArisiaLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArisiaLibrary.h; sourceTree = "<group>"; };
 		05D8503528BBAC5B00796FB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -129,6 +170,7 @@
 		0526B69228BBACEE00E232C6 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				058DC56A28BD08DC00BF9092 /* Compiler */,
 				0526B69428BBAD5B00E232C6 /* Frame */,
 			);
 			name = Source;
@@ -138,7 +180,7 @@
 		0526B69428BBAD5B00E232C6 /* Frame */ = {
 			isa = PBXGroup;
 			children = (
-				0526B69528BBAD8300E232C6 /* ALFrame.swift */,
+				0526B69528BBAD8300E232C6 /* ALFrameCore.swift */,
 			);
 			path = Frame;
 			sourceTree = "<group>";
@@ -154,10 +196,45 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		058DC56628BD05D200BF9092 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				058DC56728BD061100BF9092 /* Library */,
+			);
+			name = Resource;
+			path = ../Resource;
+			sourceTree = "<group>";
+		};
+		058DC56728BD061100BF9092 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				058DC56828BD066200BF9092 /* types */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		058DC56828BD066200BF9092 /* types */ = {
+			isa = PBXGroup;
+			children = (
+				056BB7BE28BD7F3300EFB725 /* AlisiaLibrary.d.ts */,
+				058DC56928BD06C900BF9092 /* Builtin.d.ts */,
+			);
+			path = types;
+			sourceTree = "<group>";
+		};
+		058DC56A28BD08DC00BF9092 /* Compiler */ = {
+			isa = PBXGroup;
+			children = (
+				058DC56B28BD091600BF9092 /* ALCompiler.swift */,
+			);
+			path = Compiler;
+			sourceTree = "<group>";
+		};
 		05D8502728BBAC5B00796FB1 = {
 			isa = PBXGroup;
 			children = (
 				0526B69228BBACEE00E232C6 /* Source */,
+				058DC56628BD05D200BF9092 /* Resource */,
 				05D8503328BBAC5B00796FB1 /* OSX */,
 				0507A51228BBAE9F00D694A0 /* iOS */,
 				05D8503228BBAC5B00796FB1 /* Products */,
@@ -221,6 +298,20 @@
 			passBuildSettingsInEnvironment = 1;
 			productName = Install;
 		};
+		056BB7B828BD7CDC00EFB725 /* Transpile */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/transpile.mk";
+			buildConfigurationList = 056BB7BB28BD7CDC00EFB725 /* Build configuration list for PBXLegacyTarget "Transpile" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = Transpile;
+			passBuildSettingsInEnvironment = 1;
+			productName = Transpile;
+		};
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
@@ -233,10 +324,12 @@
 				0507A50E28BBAE9F00D694A0 /* Frameworks */,
 				0507A50F28BBAE9F00D694A0 /* Resources */,
 				0507A52328BBAF2200D694A0 /* Embed Frameworks */,
+				056BB7C128BD7FB600EFB725 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				056BB7C428BD803600EFB725 /* PBXTargetDependency */,
 			);
 			name = ArisiaLibrary_iOS;
 			productName = AristaLibrary_iOS;
@@ -252,10 +345,12 @@
 				05D8502E28BBAC5B00796FB1 /* Frameworks */,
 				05D8502F28BBAC5B00796FB1 /* Resources */,
 				0526B69F28BBADF500E232C6 /* Embed Frameworks */,
+				056BB7BF28BD7F9C00EFB725 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				056BB7C628BD803A00EFB725 /* PBXTargetDependency */,
 			);
 			name = ArisiaLibrary_macOS;
 			productName = ArisiaLibrary;
@@ -274,6 +369,9 @@
 						CreatedOnToolsVersion = 12.4;
 					};
 					0507A52828BBAF6000D694A0 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					056BB7B828BD7CDC00EFB725 = {
 						CreatedOnToolsVersion = 12.4;
 					};
 					05D8503028BBAC5B00796FB1 = {
@@ -297,6 +395,7 @@
 			targets = (
 				05D8503028BBAC5B00796FB1 /* ArisiaLibrary_macOS */,
 				0507A51028BBAE9F00D694A0 /* ArisiaLibrary_iOS */,
+				056BB7B828BD7CDC00EFB725 /* Transpile */,
 				0507A52828BBAF6000D694A0 /* Install */,
 			);
 		};
@@ -324,7 +423,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0507A51D28BBAEFD00D694A0 /* ALFrame.swift in Sources */,
+				0507A51D28BBAEFD00D694A0 /* ALFrameCore.swift in Sources */,
+				058DC56D28BD091600BF9092 /* ALCompiler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,7 +432,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0526B69628BBAD8300E232C6 /* ALFrame.swift in Sources */,
+				0526B69628BBAD8300E232C6 /* ALFrameCore.swift in Sources */,
+				058DC56C28BD091600BF9092 /* ALCompiler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +449,16 @@
 			isa = PBXTargetDependency;
 			target = 0507A51028BBAE9F00D694A0 /* ArisiaLibrary_iOS */;
 			targetProxy = 0507A52E28BBAF6D00D694A0 /* PBXContainerItemProxy */;
+		};
+		056BB7C428BD803600EFB725 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 056BB7B828BD7CDC00EFB725 /* Transpile */;
+			targetProxy = 056BB7C328BD803600EFB725 /* PBXContainerItemProxy */;
+		};
+		056BB7C628BD803A00EFB725 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 056BB7B828BD7CDC00EFB725 /* Transpile */;
+			targetProxy = 056BB7C528BD803A00EFB725 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -425,6 +536,33 @@
 			name = Debug;
 		};
 		0507A52B28BBAF6000D694A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		056BB7B928BD7CDC00EFB725 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		056BB7BA28BD7CDC00EFB725 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -625,6 +763,15 @@
 			buildConfigurations = (
 				0507A52A28BBAF6000D694A0 /* Debug */,
 				0507A52B28BBAF6000D694A0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		056BB7BB28BD7CDC00EFB725 /* Build configuration list for PBXLegacyTarget "Transpile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				056BB7B928BD7CDC00EFB725 /* Debug */,
+				056BB7BA28BD7CDC00EFB725 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
