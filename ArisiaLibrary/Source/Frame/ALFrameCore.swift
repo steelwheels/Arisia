@@ -46,8 +46,6 @@ import Foundation
 		}
 		return JSValue(bool: result, in: mContext)
 	}
-
-
 }
 
 
