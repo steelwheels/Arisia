@@ -2,7 +2,7 @@
 
 <div style="text-align: center">
 <img src="./Document/Images/arisia-title.png" alt="Arisia Icon" width="50%" height="50%">
-</div>
+</div>v
 
 ## Introduction
 The *Arisia Programming Environment* is application software development environment for macOS and iOS.
@@ -10,7 +10,7 @@ The *Arisia Programming Environment* is application software development environ
 It targets on *rappid GUI application development*.
 To reduce the amount code to implement the application.
 this environment has following features:
-* Programming based on event driven software architecture. The [ArisiaScript language](#arisiascript-language) support it at the syntax level.
+* Programming based on event driven software architecture. The [ArisiaScript](#arisiascript-language) support it at the syntax level.
 * [ArisiaLibrary](#arisia-library) has many predefined components to implement GUI application which uses database access.
 
 This environment assumes the platform allows the application to execute the JavaScript code in it. 
@@ -20,9 +20,7 @@ Now, the targets platforms are:
 
 ## ArisiaScript language
 The *ArisiaScript* extends the syntax of [TypeScript](https://www.typescriptlang.org) to support [frame](#frame) declaration.
-
-This is the feature of this language:
-* Support event driven programming
+For more details, see [AmberScript specification](./Document/arisia-lang.md).
 
 ### Frame
 The arisia script defines the *frame*. It is the super class of all objects. 
@@ -44,14 +42,9 @@ It is used to implement the following parts of the application:
 * GUI parts
 * Database access modules
 
-# Arisia Compiler
-The [arisia compiler](#ArisiaCompiler) and TypeScript compiler (`tsc`) convert the arisia script into JavaScript. 
-<div style="text-align: center">
-  <img src="./Images/compile-phases.png" width="50%" >
-</div>
+## Arisia Transcriptor
+The arisia transcriptor parse the amber script and generate the JavaScript code.
 
-note: The TypeScript compiler is contained in a [NPM package](https://www.npmjs.com/package/typescript).
-This project *DOES NOT* distribute it.
 
 ## Arisia Library
 The arisia library contains many kind of [components](#component).
