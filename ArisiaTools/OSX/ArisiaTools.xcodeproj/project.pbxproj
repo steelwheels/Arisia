@@ -1,0 +1,610 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05C9C36528C77B8C00E57C5D /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C9C36428C77B8C00E57C5D /* CoconutData.xcframework */; };
+		05C9C36628C77B8C00E57C5D /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05C9C36428C77B8C00E57C5D /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05C9C36A28C77BA300E57C5D /* CoconutDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C9C36928C77BA300E57C5D /* CoconutDatabase.xcframework */; };
+		05C9C36B28C77BA300E57C5D /* CoconutDatabase.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05C9C36928C77BA300E57C5D /* CoconutDatabase.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05C9C36E28C77BB600E57C5D /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C9C36D28C77BB600E57C5D /* KiwiEngine.xcframework */; };
+		05C9C36F28C77BB600E57C5D /* KiwiEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05C9C36D28C77BB600E57C5D /* KiwiEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05C9C37228C77BC700E57C5D /* KiwiLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C9C37128C77BC700E57C5D /* KiwiLibrary.xcframework */; };
+		05C9C37328C77BC700E57C5D /* KiwiLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05C9C37128C77BC700E57C5D /* KiwiLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05C9C39028C788B000E57C5D /* Cobalt.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C9C38F28C788B000E57C5D /* Cobalt.xcframework */; };
+		05C9C39128C788B000E57C5D /* Cobalt.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05C9C38F28C788B000E57C5D /* Cobalt.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05C9C39428C7898500E57C5D /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C9C39328C7898500E57C5D /* config.swift */; };
+		05E6E28228C7771C0073FDD8 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E6E28128C7771C0073FDD8 /* main.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		05C9C38828C7828600E57C5D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05E6E27628C7771C0073FDD8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05C9C34E28C779B500E57C5D;
+			remoteInfo = ArisiaToolsBundle;
+		};
+		05C9C38A28C7829000E57C5D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05E6E27628C7771C0073FDD8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05C9C38228C7827B00E57C5D;
+			remoteInfo = Install_Bundle;
+		};
+		05C9C39C28C791B600E57C5D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05E6E27628C7771C0073FDD8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05E6E27D28C7771C0073FDD8;
+			remoteInfo = asc;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		05C9C36728C77B8C00E57C5D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				05C9C36B28C77BA300E57C5D /* CoconutDatabase.xcframework in Embed Frameworks */,
+				05C9C39128C788B000E57C5D /* Cobalt.xcframework in Embed Frameworks */,
+				05C9C36628C77B8C00E57C5D /* CoconutData.xcframework in Embed Frameworks */,
+				05C9C36F28C77BB600E57C5D /* KiwiEngine.xcframework in Embed Frameworks */,
+				05C9C37328C77BC700E57C5D /* KiwiLibrary.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05E6E27C28C7771C0073FDD8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		05C9C34F28C779B500E57C5D /* ArisiaTools.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArisiaTools.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		05C9C35128C779B500E57C5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05C9C36428C77B8C00E57C5D /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
+		05C9C36928C77BA300E57C5D /* CoconutDatabase.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutDatabase.xcframework; path = ../../../../Library/Frameworks/CoconutDatabase.xcframework; sourceTree = "<group>"; };
+		05C9C36D28C77BB600E57C5D /* KiwiEngine.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiEngine.xcframework; path = ../../../../Library/Frameworks/KiwiEngine.xcframework; sourceTree = "<group>"; };
+		05C9C37128C77BC700E57C5D /* KiwiLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiLibrary.xcframework; path = ../../../../Library/Frameworks/KiwiLibrary.xcframework; sourceTree = "<group>"; };
+		05C9C38F28C788B000E57C5D /* Cobalt.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Cobalt.xcframework; path = ../../../../Library/Frameworks/Cobalt.xcframework; sourceTree = "<group>"; };
+		05C9C39328C7898500E57C5D /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
+		05E6E27E28C7771C0073FDD8 /* asc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = asc; sourceTree = BUILT_PRODUCTS_DIR; };
+		05E6E28128C7771C0073FDD8 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		05C9C34C28C779B500E57C5D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05C9C36A28C77BA300E57C5D /* CoconutDatabase.xcframework in Frameworks */,
+				05C9C39028C788B000E57C5D /* Cobalt.xcframework in Frameworks */,
+				05C9C36528C77B8C00E57C5D /* CoconutData.xcframework in Frameworks */,
+				05C9C36E28C77BB600E57C5D /* KiwiEngine.xcframework in Frameworks */,
+				05C9C37228C77BC700E57C5D /* KiwiLibrary.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05E6E27B28C7771C0073FDD8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05C9C35028C779B500E57C5D /* ArisiaToolsBundle */ = {
+			isa = PBXGroup;
+			children = (
+				05C9C35128C779B500E57C5D /* Info.plist */,
+			);
+			path = ArisiaToolsBundle;
+			sourceTree = "<group>";
+		};
+		05C9C36328C77B8C00E57C5D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				05C9C38F28C788B000E57C5D /* Cobalt.xcframework */,
+				05C9C37128C77BC700E57C5D /* KiwiLibrary.xcframework */,
+				05C9C36D28C77BB600E57C5D /* KiwiEngine.xcframework */,
+				05C9C36928C77BA300E57C5D /* CoconutDatabase.xcframework */,
+				05C9C36428C77B8C00E57C5D /* CoconutData.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		05C9C37C28C77E8B00E57C5D /* asc */ = {
+			isa = PBXGroup;
+			children = (
+				05E6E28128C7771C0073FDD8 /* main.swift */,
+				05C9C39328C7898500E57C5D /* config.swift */,
+			);
+			path = asc;
+			sourceTree = "<group>";
+		};
+		05E6E27528C7771C0073FDD8 = {
+			isa = PBXGroup;
+			children = (
+				05E6E28928C777920073FDD8 /* Source */,
+				05C9C35028C779B500E57C5D /* ArisiaToolsBundle */,
+				05E6E27F28C7771C0073FDD8 /* Products */,
+				05C9C36328C77B8C00E57C5D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		05E6E27F28C7771C0073FDD8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				05E6E27E28C7771C0073FDD8 /* asc */,
+				05C9C34F28C779B500E57C5D /* ArisiaTools.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		05E6E28928C777920073FDD8 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				05C9C37C28C77E8B00E57C5D /* asc */,
+			);
+			name = Source;
+			path = ../Source;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		05C9C38228C7827B00E57C5D /* Install_Bundle */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/install_tool.mk install_bundle";
+			buildConfigurationList = 05C9C38328C7827B00E57C5D /* Build configuration list for PBXLegacyTarget "Install_Bundle" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				05C9C38928C7828600E57C5D /* PBXTargetDependency */,
+			);
+			name = Install_Bundle;
+			passBuildSettingsInEnvironment = 1;
+			productName = Install_Bundle;
+		};
+		05C9C39728C791AE00E57C5D /* Install_Tools */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/install_tool.mk install_tools";
+			buildConfigurationList = 05C9C39828C791AE00E57C5D /* Build configuration list for PBXLegacyTarget "Install_Tools" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				05C9C39D28C791B600E57C5D /* PBXTargetDependency */,
+			);
+			name = Install_Tools;
+			passBuildSettingsInEnvironment = 1;
+			productName = Install_Tools;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		05C9C34E28C779B500E57C5D /* ArisiaToolsBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05C9C35428C779B500E57C5D /* Build configuration list for PBXNativeTarget "ArisiaToolsBundle" */;
+			buildPhases = (
+				05C9C34B28C779B500E57C5D /* Sources */,
+				05C9C34C28C779B500E57C5D /* Frameworks */,
+				05C9C34D28C779B500E57C5D /* Resources */,
+				05C9C36728C77B8C00E57C5D /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ArisiaToolsBundle;
+			productName = ArisiaToolsBundle;
+			productReference = 05C9C34F28C779B500E57C5D /* ArisiaTools.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		05E6E27D28C7771C0073FDD8 /* asc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05E6E28528C7771C0073FDD8 /* Build configuration list for PBXNativeTarget "asc" */;
+			buildPhases = (
+				05E6E27A28C7771C0073FDD8 /* Sources */,
+				05E6E27B28C7771C0073FDD8 /* Frameworks */,
+				05E6E27C28C7771C0073FDD8 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05C9C38B28C7829000E57C5D /* PBXTargetDependency */,
+			);
+			name = asc;
+			productName = ArisiaTools;
+			productReference = 05E6E27E28C7771C0073FDD8 /* asc */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		05E6E27628C7771C0073FDD8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					05C9C34E28C779B500E57C5D = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					05C9C38228C7827B00E57C5D = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					05C9C39728C791AE00E57C5D = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					05E6E27D28C7771C0073FDD8 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = 05E6E27928C7771C0073FDD8 /* Build configuration list for PBXProject "ArisiaTools" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 05E6E27528C7771C0073FDD8;
+			productRefGroup = 05E6E27F28C7771C0073FDD8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				05C9C34E28C779B500E57C5D /* ArisiaToolsBundle */,
+				05C9C38228C7827B00E57C5D /* Install_Bundle */,
+				05E6E27D28C7771C0073FDD8 /* asc */,
+				05C9C39728C791AE00E57C5D /* Install_Tools */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		05C9C34D28C779B500E57C5D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		05C9C34B28C779B500E57C5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05E6E27A28C7771C0073FDD8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05E6E28228C7771C0073FDD8 /* main.swift in Sources */,
+				05C9C39428C7898500E57C5D /* config.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		05C9C38928C7828600E57C5D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05C9C34E28C779B500E57C5D /* ArisiaToolsBundle */;
+			targetProxy = 05C9C38828C7828600E57C5D /* PBXContainerItemProxy */;
+		};
+		05C9C38B28C7829000E57C5D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05C9C38228C7827B00E57C5D /* Install_Bundle */;
+			targetProxy = 05C9C38A28C7829000E57C5D /* PBXContainerItemProxy */;
+		};
+		05C9C39D28C791B600E57C5D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05E6E27D28C7771C0073FDD8 /* asc */;
+			targetProxy = 05C9C39C28C791B600E57C5D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		05C9C35228C779B500E57C5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				INFOPLIST_FILE = ArisiaToolsBundle/Info.plist;
+				INSTALL_PATH = "$(HOME)/ltools/bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.ArisiaToolsBundle;
+				PRODUCT_NAME = ArisiaTools;
+				SKIP_INSTALL = NO;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		05C9C35328C779B500E57C5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				INFOPLIST_FILE = ArisiaToolsBundle/Info.plist;
+				INSTALL_PATH = "$(HOME)/ltools/bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.ArisiaToolsBundle;
+				PRODUCT_NAME = ArisiaTools;
+				SKIP_INSTALL = NO;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		05C9C38428C7827B00E57C5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05C9C38528C7827B00E57C5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		05C9C39928C791AE00E57C5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05C9C39A28C791AE00E57C5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		05E6E28328C7771C0073FDD8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		05E6E28428C7771C0073FDD8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		05E6E28628C7771C0073FDD8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				INSTALL_PATH = "$(HOME)/tools/bin";
+				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		05E6E28728C7771C0073FDD8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				INSTALL_PATH = "$(HOME)/tools/bin";
+				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		05C9C35428C779B500E57C5D /* Build configuration list for PBXNativeTarget "ArisiaToolsBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05C9C35228C779B500E57C5D /* Debug */,
+				05C9C35328C779B500E57C5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05C9C38328C7827B00E57C5D /* Build configuration list for PBXLegacyTarget "Install_Bundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05C9C38428C7827B00E57C5D /* Debug */,
+				05C9C38528C7827B00E57C5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05C9C39828C791AE00E57C5D /* Build configuration list for PBXLegacyTarget "Install_Tools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05C9C39928C791AE00E57C5D /* Debug */,
+				05C9C39A28C791AE00E57C5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05E6E27928C7771C0073FDD8 /* Build configuration list for PBXProject "ArisiaTools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05E6E28328C7771C0073FDD8 /* Debug */,
+				05E6E28428C7771C0073FDD8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05E6E28528C7771C0073FDD8 /* Build configuration list for PBXNativeTarget "asc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05E6E28628C7771C0073FDD8 /* Debug */,
+				05E6E28728C7771C0073FDD8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 05E6E27628C7771C0073FDD8 /* Project object */;
+}
