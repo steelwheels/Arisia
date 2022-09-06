@@ -144,17 +144,13 @@ The expression to point the object (such as `root.a`) is called as path expressi
 * func
 * init
 * listner
+* number
 * root
 * string
 
 ## Syntax
 ````
-root    := "{" frames "}"
-        ;
-frames  := frame
-        |  frame frames
-        ;
-frame   := "{" properties "}"
+root    := "{" properties "}"
         ;
 properties
         := /* Empty */
@@ -226,6 +222,11 @@ dictionary_element
         ;
 frame_value
         := "{" frames "}"
+        ;
+frames  := frame
+        |  frame frames
+        ;
+frame   := "{" properties "}"
         ;
 init_function
         := "init" script

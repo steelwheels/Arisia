@@ -9,36 +9,31 @@ import Foundation
 
 public class ALFrameIR
 {
-	public enum Member {
-		case bool(Bool)
-		case number(NSNumber)
-		case string(String)
-
-		case frame(ALFrameIR)
-		case array(Array<Member>)
-		case dictionary(Dictionary<String, Member>)
-		case initFunction(ALInitFunctionIR)
-		case eventFunction(ALEventFunctionIR)
-		case listnerFunction(ALListnerFunctionIR)
-		case procedureFunction(ALProceduralFunctionIR)
+	public struct Property {
+		var name:	String
+		var value:	ALValueIR
+		public init(name nm: String, value val: ALValueIR){
+			name  = nm
+			value = val
+		}
 	}
 
 	private var mClassName:		String
-	private var mInstanceName:	String
-	private var mMembers:		Dictionary<String, Member>
+	private var mMembers:		Array<Property>
+	private var mDictionary:	Dictionary<String, ALValueIR>
 
-	public init(className cname: String, instanceName iname: String) {
+	public init(className cname: String) {
 		mClassName	= cname
-		mInstanceName	= iname
-		mMembers	= [:]
+		mMembers	= []
+		mDictionary	= [:]
 	}
 
-	public func set(name nm: String, member val: Member){
-		mMembers[nm] = val
+	public func set(property prop: Property){
+		mMembers.append(prop)
+		mDictionary[prop.name] = prop.value
 	}
 
-	public func member(name nm: String) -> Member? {
-		return mMembers[nm]
+	public func value(name nm: String) -> ALValueIR? {
+		return mDictionary[nm]
 	}
-
 }

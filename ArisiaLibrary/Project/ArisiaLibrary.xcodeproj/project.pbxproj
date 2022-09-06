@@ -37,8 +37,12 @@
 		059F5D1628BFA44C006BE786 /* ALParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F5D1428BFA44C006BE786 /* ALParser.swift */; };
 		059F5D1928BFA996006BE786 /* ALFunctionIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F5D1828BFA996006BE786 /* ALFunctionIR.swift */; };
 		059F5D1A28BFA996006BE786 /* ALFunctionIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F5D1828BFA996006BE786 /* ALFunctionIR.swift */; };
-		059F5D1D28BFAA5B006BE786 /* ALTypeIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F5D1C28BFAA5B006BE786 /* ALTypeIR.swift */; };
-		059F5D1E28BFAA5B006BE786 /* ALTypeIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F5D1C28BFAA5B006BE786 /* ALTypeIR.swift */; };
+		059F5D1D28BFAA5B006BE786 /* ALValueIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F5D1C28BFAA5B006BE786 /* ALValueIR.swift */; };
+		059F5D1E28BFAA5B006BE786 /* ALValueIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F5D1C28BFAA5B006BE786 /* ALValueIR.swift */; };
+		05B95F3F28C4D5BA008E3FD0 /* ALReservedWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B95F3E28C4D5BA008E3FD0 /* ALReservedWords.swift */; };
+		05B95F4028C4D5BA008E3FD0 /* ALReservedWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B95F3E28C4D5BA008E3FD0 /* ALReservedWords.swift */; };
+		05C0CF8828C6385200F39E68 /* ALFrameTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C0CF8728C6385200F39E68 /* ALFrameTable.swift */; };
+		05C0CF8928C6385200F39E68 /* ALFrameTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C0CF8728C6385200F39E68 /* ALFrameTable.swift */; };
 		05D4D90A28BDB154002C5E66 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D4D90928BDB154002C5E66 /* main.swift */; };
 		05D4D93128BDB303002C5E66 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69928BBADF400E232C6 /* CoconutData.xcframework */; };
 		05D4D93228BDB303002C5E66 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69928BBADF400E232C6 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -217,7 +221,9 @@
 		058DC56B28BD091600BF9092 /* ALLibraryCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALLibraryCompiler.swift; sourceTree = "<group>"; };
 		059F5D1428BFA44C006BE786 /* ALParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALParser.swift; sourceTree = "<group>"; };
 		059F5D1828BFA996006BE786 /* ALFunctionIR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALFunctionIR.swift; sourceTree = "<group>"; };
-		059F5D1C28BFAA5B006BE786 /* ALTypeIR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALTypeIR.swift; sourceTree = "<group>"; };
+		059F5D1C28BFAA5B006BE786 /* ALValueIR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALValueIR.swift; sourceTree = "<group>"; };
+		05B95F3E28C4D5BA008E3FD0 /* ALReservedWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALReservedWords.swift; sourceTree = "<group>"; };
+		05C0CF8728C6385200F39E68 /* ALFrameTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALFrameTable.swift; sourceTree = "<group>"; };
 		05D4D90728BDB154002C5E66 /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05D4D90928BDB154002C5E66 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		05D4D91B28BDB1E8002C5E66 /* ArisiaLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ArisiaLibrary.xcframework; path = ../../../../Library/Frameworks/ArisiaLibrary.xcframework; sourceTree = "<group>"; };
@@ -337,7 +343,9 @@
 		054D7D6B28BE520E0074FD01 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
+				05C0CF8728C6385200F39E68 /* ALFrameTable.swift */,
 				059F5D1428BFA44C006BE786 /* ALParser.swift */,
+				05B95F3E28C4D5BA008E3FD0 /* ALReservedWords.swift */,
 			);
 			path = Parser;
 			sourceTree = "<group>";
@@ -383,7 +391,7 @@
 			children = (
 				054D7D6C28BE52430074FD01 /* ALIFrameIR.swift */,
 				059F5D1828BFA996006BE786 /* ALFunctionIR.swift */,
-				059F5D1C28BFAA5B006BE786 /* ALTypeIR.swift */,
+				059F5D1C28BFAA5B006BE786 /* ALValueIR.swift */,
 			);
 			path = Language;
 			sourceTree = "<group>";
@@ -655,7 +663,9 @@
 				054D7D6E28BE52430074FD01 /* ALIFrameIR.swift in Sources */,
 				059F5D1628BFA44C006BE786 /* ALParser.swift in Sources */,
 				059F5D1A28BFA996006BE786 /* ALFunctionIR.swift in Sources */,
-				059F5D1E28BFAA5B006BE786 /* ALTypeIR.swift in Sources */,
+				05C0CF8928C6385200F39E68 /* ALFrameTable.swift in Sources */,
+				059F5D1E28BFAA5B006BE786 /* ALValueIR.swift in Sources */,
+				05B95F4028C4D5BA008E3FD0 /* ALReservedWords.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,7 +694,9 @@
 				054D7D6D28BE52430074FD01 /* ALIFrameIR.swift in Sources */,
 				059F5D1528BFA44C006BE786 /* ALParser.swift in Sources */,
 				059F5D1928BFA996006BE786 /* ALFunctionIR.swift in Sources */,
-				059F5D1D28BFAA5B006BE786 /* ALTypeIR.swift in Sources */,
+				05C0CF8828C6385200F39E68 /* ALFrameTable.swift in Sources */,
+				059F5D1D28BFAA5B006BE786 /* ALValueIR.swift in Sources */,
+				05B95F3F28C4D5BA008E3FD0 /* ALReservedWords.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

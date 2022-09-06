@@ -1,6 +1,6 @@
 /**
- * @file	ALTypeIR.swift
- * @brief	Define ALTypeIR enum
+ * @file	ALValueIRswift
+ * @brief	Define ALValueIR enum
  * @par Copyright
  *   Copyright (C) 2022 Steel Wheels Project
  */
@@ -16,6 +16,7 @@ public indirect enum ALTypeIR
 	case frame(String)		// class name
 	case array(ALTypeIR)		// type of element
 	case dictionary(ALTypeIR)	// type of element
+	case enumType(CNEnumType)
 	case initFunction
 	case eventFunction
 	case listnerFunction
@@ -29,7 +30,8 @@ public indirect enum ALTypeIR
 		case .string:			result = "string"
 		case .frame(let name):		result = name
 		case .array(let etype):		result = etype.toName() + "[]"
-		case .dictionary(let etype):	result = "[key: string]:" + etype.toName()
+		case .dictionary(let etype):	result = "[name: string]:" + etype.toName()
+		case .enumType(let etype):	result = etype.typeName
 		case .initFunction:		result = "init"
 		case .eventFunction:		result = "event"
 		case .listnerFunction:		result = "listner"
@@ -37,6 +39,29 @@ public indirect enum ALTypeIR
 		}
 		return result
 	}
+}
+
+public enum ALValueIR
+{
+	case bool(Bool)
+	case number(NSNumber)
+	case string(String)
+	case frame(ALFrameIR)
+	case array(Array<ALValueIR>)
+	case dictionary(Dictionary<String, ALValueIR>)
+	case enumValue(CNEnumType, Int)		// type, raw value
+	case initFunction(ALInitFunctionIR)
+	case eventFunction(ALEventFunctionIR)
+	case listnerFunction(ALListnerFunctionIR)
+	case proceduralFunction(ALProceduralFunctionIR)
+}
+
+/*
+public indirect enum ALTypeIR
+{
+
+
+
 
 	public static func parse(stream strm: CNTokenStream) -> Result<ALTypeIR, NSError> {
 		if let sym = strm.requireSymbol() {
@@ -108,3 +133,5 @@ public indirect enum ALTypeIR
 		return nil
 	}
 }
+*/
+
