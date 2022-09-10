@@ -6,6 +6,7 @@
  */
 
 import KiwiEngine
+import CoconutData
 import Foundation
 
 public class ALFrameAllocator
@@ -28,17 +29,6 @@ public class ALFrameAllocator
 
 	private init(){
 		mAllocators = []
-		mAllocators.append({
-			(_ name: String, _ ctxt: KEContext) -> ALFrameCore? in
-			let result: ALFrameCore?
-			switch name {
-			case "Frame":
-				result = ALFrameCore(context: ctxt)
-			default:
-				result = nil
-			}
-			return result
-		})
 	}
 
 	public func add(allocator alloc: @escaping AllocatorFunc){
@@ -51,6 +41,10 @@ public class ALFrameAllocator
 				return frame
 			}
 		}
-		return nil
+		if name == "Frame" {
+			return ALFrameCore(context: ctxt)
+		} else {
+			return nil
+		}
 	}
 }

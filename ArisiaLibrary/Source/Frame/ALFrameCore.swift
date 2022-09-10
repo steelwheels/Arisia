@@ -13,6 +13,8 @@ import Foundation
 
 @objc public protocol ALFrameCoreProtorol: JSExport
 {
+	var propertyNames: JSValue { get }
+
 	func get(_ name: JSValue) -> JSValue
 	func set(_ name: JSValue, _ val: JSValue) -> JSValue // -> boolean
 }
@@ -26,6 +28,11 @@ import Foundation
 		mPropertyValues	= CNObserverDictionary()
 		mContext	= ctxt
 	}
+
+	public var propertyNames: JSValue { get {
+		return JSValue(object: mPropertyValues.keys, in: mContext)
+
+	}}
 
 	public func get(_ name: JSValue) -> JSValue {
 		if let namestr = name.toString() {

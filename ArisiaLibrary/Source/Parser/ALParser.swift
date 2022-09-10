@@ -33,7 +33,7 @@ public class ALParser
 	 */
 	private func preprocess(source srcs: Array<CNToken>) -> Array<CNToken> {
 		let tokens0 = preprocessNewlines(source: srcs)
-		let tokens1 = preprocessNewlines(source: tokens0)
+		let tokens1 = preprocessReservedWords(source: tokens0)
 		return tokens1
 	}
 
@@ -68,10 +68,14 @@ public class ALParser
 	private func preprocessReservedWords(source srcs: Array<CNToken>) -> Array<CNToken> {
 		var result:  Array<CNToken> = []
 		for src in srcs {
-			if let rid = src.getReservedWord() {
-				let newtoken = CNToken(type: .ReservedWordToken(rid), lineNo: src.lineNo)
-				result.append(newtoken)
-			} else {
+			switch src.type {
+			case .IdentifierToken(let ident):
+				if let rword = ALReservedWord.identifierToReservedWord(identifier: ident) {
+					result.append(CNToken(type: .ReservedWordToken(rword.rawValue), lineNo: src.lineNo))
+				} else {
+					result.append(src)
+				}
+			default:
 				result.append(src)
 			}
 		}
@@ -82,7 +86,6 @@ public class ALParser
 		guard strm.requireSymbol(symbol: "{") else {
 			return .failure(parseError(message: "Initial \"{\" is required", stream: strm))
 		}
-
 		let frame = ALFrameIR(className: clsname)
 		while true {
 			if strm.isEmpty() {
@@ -139,20 +142,18 @@ public class ALParser
 				}
 			default:
 				let _ = strm.unget() // pushback reserved word
-				switch parseType(stream: strm, sourceFile: srcfile, frameTable: ftable){
-				case .success(let type):
-					switch parseValue(valueType: type, stream: strm, sourceFile: srcfile, frameTable: ftable){
-					case .success(let val):
-						return .success(val)
-					case .failure(let err):
-						return .failure(err)
-					}
-				case .failure(let err):
-					return .failure(err)
-				}
 			}
-		} else {
-			return .failure(parseError(message: "Unexpected token", stream: strm))
+		}
+		switch parseType(stream: strm, sourceFile: srcfile, frameTable: ftable){
+		case .success(let type):
+			switch parseValue(valueType: type, stream: strm, sourceFile: srcfile, frameTable: ftable){
+			case .success(let val):
+				return .success(val)
+			case .failure(let err):
+				return .failure(err)
+			}
+		case .failure(let err):
+			return .failure(err)
 		}
 	}
 
@@ -307,8 +308,8 @@ public class ALParser
 	private func parseType(stream strm: CNTokenStream, sourceFile srcfile: URL?, frameTable ftable: ALFrameTable) -> Result<ALTypeIR, NSError> {
 		switch parseElementType(stream: strm, sourceFile: srcfile, frameTable: ftable) {
 		case .success(let type):
-			if strm.requireString(value: "[") {
-				if strm.requireString(value: "]") {
+			if strm.requireSymbol(symbol: "[") {
+				if strm.requireSymbol(symbol: "]") {
 					return .success(.array(type))
 				} else {
 					return .failure(parseError(message: "The symbol \"[\" is not exit for the array type declaration", stream: strm))
@@ -373,16 +374,16 @@ public class ALParser
 	}
 
 	private func parseValue(valueType vtype: ALTypeIR, stream strm: CNTokenStream, sourceFile srcfile: URL?, frameTable ftable: ALFrameTable) -> Result<ALValueIR, NSError> {
-		if let ident = strm.requireIdentifier() {
-			switch ident {
-			case ALListnerFunctionIR.TypeName:
+		if let rword = requireReservedWord(stream: strm) {
+			switch rword {
+			case .Listner:
 				switch parseListnerFunc(stream: strm, sourceFile: srcfile, frameTable: ftable) {
 				case .success(let val):
 					return .success(.listnerFunction(val))
 				case .failure(let err):
 					return .failure(err)
 				}
-			case ALProceduralFunctionIR.TypeName:
+			case .Func:
 				switch parseProceduralFunc(stream: strm, sourceFile: srcfile, frameTable: ftable) {
 				case .success(let val):
 					return .success(.proceduralFunction(val))
@@ -451,11 +452,10 @@ public class ALParser
 		guard strm.requireSymbol(symbol: "[") else {
 			return .failure(parseError(message: "'[' is required for array value", stream: strm))
 		}
-		var docont: Bool = true
 		var is1st:  Bool = true
-		while docont {
+		while true {
 			if strm.requireSymbol(symbol: "]") {
-				docont = false
+				break
 			}
 			if is1st {
 				is1st = false
@@ -513,7 +513,7 @@ public class ALParser
 	private func parseEnumValue(enumType etype: CNEnumType, stream strm: CNTokenStream, sourceFile srcfile: URL?, frameTable ftable: ALFrameTable) -> Result<ALValueIR, NSError> {
 		if let ident = strm.requireIdentifier() {
 			if let val = etype.value(forMember: ident) {
-				return .success(.enumValue(etype, val))
+				return .success(.enumValue(etype, ident, val))
 			} else {
 				return .failure(parseError(message: "identifier \"\(ident)\" is not enum value", stream: strm))
 			}
@@ -556,391 +556,14 @@ public class ALParser
 		}
 		return lineinfo
 	}
+
+	private func dumpTokens(stream strm: CNTokenStream) {
+		var index = 0 ;
+		while let tkn = strm.peek(offset: index) {
+			CNLog(logLevel: .error, message: "tkn\(index): \(tkn.description)")
+			index += 1
+		}
+	}
 }
 
-/*
-
-
-
-
-
-
-
-	private func parseFrame(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALFrameIR, NSError> {
-		guard let ident = strm.getIdentifier() else {
-			return .failure(parseError(message: "Identifier is required", stream: strm))
-		}
-		guard strm.requireSymbol(symbol: ":") else {
-			return .failure(parseError(message: "\":\" is required", stream: strm))
-		}
-		if let clsname = strm.requireIdentifier() {
-			switch parseFrame(className: clsname, instanceName: ident, stream: strm, sourceFile: srcfile) {
-			case .success(let value):
-				return .success(value)
-			case .failure(let err):
-				return .failure(err)
-			}
-		} else {
-			return .failure(parseError(message: "Component class name is required", stream: strm))
-		}
-	}
-
-	private func parseFrame(className cname: String, instanceName iname: String, stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALFrameIR, NSError> {
-		let newframe = ALFrameIR(className: cname, instanceName: iname)
-		guard strm.requireSymbol(symbol: "{") else {
-			return .failure(parseError(message: "\"{\" is required for \"\(iname)\" component", stream: strm))
-		}
-		var finished = false
-		while !finished {
-			if strm.requireSymbol(symbol: "}") {
-				finished = true
-			} else {
-				switch parseMember(stream: strm, sourceFile: srcfile) {
-				case .success(let memb):
-					if newframe.member(name: memb.name) != nil {
-						return .failure(parseError(message: "The member named \"\(memb.name)\" is already defined", stream: strm))
-					} else {
-						newframe.set(name: memb.name, member: memb.value)
-					}
-				case .failure(let err):
-					return .failure(err)
-				}
-			}
-		}
-		return .success(newframe)
-	}
-
-	private func parseMember(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<Member, NSError> {
-		guard let ident = strm.getIdentifier() else {
-			return .failure(parseError(message: "Identifier for frame member is required", stream: strm))
-		}
-		guard strm.requireSymbol(symbol: ":") else {
-			return .failure(parseError(message: "\":\" for frame member is required", stream: strm))
-		}
-		if let member = strm.requireIdentifier() {
-			if let ftype = decodeFunctionType(string: member) {
-				switch ftype {
-				case .initFunction:
-					switch parseInitFunc(stream: strm, sourceFile: srcfile) {
-					case .success(let val):
-						return .success(Member(name: ident, value: .initFunction(val)))
-					case .failure(let err):
-						return .failure(err)
-					}
-				case .eventFunction:
-					switch parseEventFunc(stream: strm, sourceFile: srcfile) {
-					case .success(let val):
-						return .success(Member(name: ident, value: .eventFunction(val)))
-					case .failure(let err):
-						return .failure(err)
-					}
-				case .listnerFunction:
-					switch parseListnerFunc(stream: strm, sourceFile: srcfile) {
-					case .success(let val):
-						return .success(Member(name: ident, value: .listnerFunction(val)))
-					case .failure(let err):
-						return .failure(err)
-					}
-				case .proceduralFunction:
-					switch parseProceduralFunc(stream: strm, sourceFile: srcfile) {
-					case .success(let val):
-						return .success(Member(name: ident, value: .procedureFunction(val)))
-					case .failure(let err):
-						return .failure(err)
-					}
-				default:
-					return .failure(parseError(message: "Unexpected function type", stream: strm))
-				}
-			} else if let etype = CNEnumTable.currentEnumTable().search(byTypeName: member) {
-				switch parseEnumValue(enumType: etype, stream: strm) {
-				case .success(let val):
-					return .success(Member(name: ident, value: .number(val)))
-				case .failure(let err):
-					return .failure(err)
-				}
-			} else {
-				switch parseFrame(className: member, instanceName: ident, stream: strm, sourceFile: srcfile) {
-				case .success(let val):
-					return .success(Member(name: ident, value: .frame(val)))
-				case .failure(let err):
-					return .failure(err)
-				}
-			}
-		} else {
-			switch parseValue(stream: strm, sourceFile: srcfile) {
-			case .success(let val):
-				return .success(Member(name: ident, value: val))
-			case .failure(let err):
-				return .failure(err)
-			}
-		}
-	}
-
-
-
-
-
-	private func parseListnerFunc(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALListnerFunctionIR, NSError> {
-		guard strm.requireSymbol(symbol: "(") else {
-			return .failure(parseError(message: "\"(\" is required to define listner function parameters", stream: strm))
-		}
-		var args: Array<ALFunctionIR.PathArgument> = []
-		var finished = strm.requireSymbol(symbol: ")")
-		while !finished {
-			switch parsePathArgument(stream: strm) {
-			case .success(let arg):
-				args.append(arg)
-				finished = strm.requireSymbol(symbol: ")")
-				if !finished {
-					guard strm.requireSymbol(symbol: ",") else {
-						return .failure(parseError(message: "\",\" is required to list arguments", stream: strm))
-					}
-					finished = strm.requireSymbol(symbol: ")")
-				}
-			case .failure(let err):
-				return .failure(err)
-			}
-		}
-		if let text = strm.getText() {
-			return .success(ALListnerFunctionIR(arguments: args, script: text, source: srcfile))
-		} else {
-			return .failure(parseError(message: "The body of Event function is required", stream: strm))
-		}
-	}
-
-	private func parseProceduralFunc(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALProceduralFunctionIR, NSError> {
-		var args: Array<ALFunctionIR.Argument> = []
-		guard strm.requireSymbol(symbol: "(") else {
-			return .failure(parseError(message: "\"(\" is required to define procedural function parameters", stream: strm))
-		}
-		var finished = strm.requireSymbol(symbol: ")")
-		while !finished {
-			switch parseArgument(stream: strm) {
-			case .success(let arg):
-				args.append(arg)
-				finished = strm.requireSymbol(symbol: ")")
-				if !finished {
-					guard strm.requireSymbol(symbol: ",") else {
-						return .failure(parseError(message: "\",\" is required to list arguments", stream: strm))
-					}
-					finished = strm.requireSymbol(symbol: ")")
-				}
-			case .failure(let err):
-				return .failure(err)
-			}
-		}
-		if let text = strm.getText() {
-			return .success(ALProceduralFunctionIR(arguments: args, script: text, source: srcfile))
-		} else {
-			return .failure(parseError(message: "The body of Event function is required", stream: strm))
-		}
-	}
-	
-
-
-
-
-	private func parseEnumValue(enumType etype: CNEnumType, stream strm: CNTokenStream) -> Result<NSNumber, NSError> {
-		if strm.requireSymbol(symbol: ".") {
-			if let ident = strm.getIdentifier() {
-				if let eobj = etype.allocate(name: ident) {
-					return .success(NSNumber(integerLiteral: eobj.value))
-				} else {
-					return .failure(parseError(message: "Unknown enum value \(ident) for enum type \(etype.typeName)", stream: strm))
-				}
-			} else {
-				return .failure(parseError(message: "No enum value identifier", stream: strm))
-			}
-		} else {
-			return .failure(parseError(message: "\".\" is required after enum type", stream: strm))
-		}
-	}
-
-	private func parseValue(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALFrameIR.Member, NSError> {
-		if let sym = strm.requireSymbol() {
-			switch sym {
-			case "[":
-				let _ = strm.unget() // unget "["
-				switch parseArrayValue(stream: strm, sourceFile: srcfile) {
-				case .success(let val):
-					return .success(.array(val))
-				case .failure(let err):
-					return .failure(err)
-				}
-			case "{":
-				let _ = strm.unget() // unget "{"
-				switch parseDictionaryValue(stream: strm, sourceFile: srcfile) {
-				case .success(let val):
-					return .success(.dictionary(val))
-				case .failure(let err):
-					return .failure(err)
-				}
-			default:
-				return .failure(parseError(message: "Unexpected symbol \"\(sym)\"", stream: strm))
-			}
-		} else if let funcstr = strm.requireIdentifier() {
-			if let functype = decodeFunctionType(string: funcstr) {
-				switch functype {
-				case .initFunction:
-					switch parseInitFunc(stream: strm, sourceFile: srcfile) {
-					case .success(let val):
-						return .success(.initFunction(val))
-					case .failure(let err):
-						return .failure(err)
-					}
-				case .eventFunction:
-					switch parseEventFunc(stream: strm, sourceFile: srcfile) {
-					case .success(let val):
-						return .success(.eventFunction(val))
-					case .failure(let err):
-						return .failure(err)
-					}
-				case .listnerFunction:
-					switch parseListnerFunc(stream: strm, sourceFile: srcfile) {
-					case .success(let val):
-						return .success(.listnerFunction(val))
-					case .failure(let err):
-						return .failure(err)
-					}
-				case .proceduralFunction:
-					switch parseProceduralFunc(stream: strm, sourceFile: srcfile) {
-					case .success(let val):
-						return .success(.procedureFunction(val))
-					case .failure(let err):
-						return .failure(err)
-					}
-				default:
-					return .failure(parseError(message: "Unknown function type: \(funcstr)", stream: strm))
-				}
-
-			} else if let etype = CNEnumTable.currentEnumTable().search(byTypeName: funcstr) {
-				switch parseEnumValue(enumType: etype, stream: strm) {
-				case .success(let val):
-					return .success(.number(val))
-				case .failure(let err):
-					return .failure(err)
-				}
-			} else {
-				return .failure(parseError(message: "Unknown function type: \(funcstr)", stream: strm))
-			}
-		} else {
-			switch parseScalarValue(stream: strm) {
-			case .success(let val):
-				return .success(val)
-			case .failure(let err):
-				return .failure(err)
-			}
-		}
-	}
-
-	private func parseArrayValue(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<Array<ALFrameIR.Member>, NSError> {
-		var result: Array<ALFrameIR.Member> = []
-		guard strm.requireSymbol(symbol: "[") else {
-			return .failure(parseError(message: "\"[\" for frame member is required", stream: strm))
-		}
-		var finished = false
-		var is1st    = true
-		while !finished {
-			if strm.requireSymbol(symbol: "]") {
-				finished = true
-			} else {
-				if is1st {
-					is1st = false
-				} else {
-					if !strm.requireSymbol(symbol: ",") {
-						return .failure(parseError(message: "\",\" is required between array elements", stream: strm))
-					}
-				}
-				switch parseValue(stream: strm, sourceFile: srcfile) {
-				case .success(let val):
-					result.append(val)
-				case .failure(let err):
-					return .failure(err)
-				}
-			}
-		}
-		return .success(result)
-	}
-
-	private func parseDictionaryValue(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<Dictionary<String, ALFrameIR.Member>, NSError> {
-		var result: Dictionary<String, ALFrameIR.Member> = [:]
-		guard strm.requireSymbol(symbol: "{") else {
-			return .failure(parseError(message: "\"{\" for frame member is required", stream: strm))
-		}
-		var finished = false
-		var is1st    = true
-		while !finished {
-			if strm.requireSymbol(symbol: "}") {
-				finished = true
-			} else {
-				if is1st {
-					is1st = false
-				} else {
-					if !strm.requireSymbol(symbol: ",") {
-						return .failure(parseError(message: "\",\" is required between array elements", stream: strm))
-					}
-				}
-				guard let ident = strm.requireIdentifier() else {
-					return .failure(parseError(message: "Identifier as dictionary key is required", stream: strm))
-				}
-				guard strm.requireSymbol(symbol: ":") else {
-					return .failure(parseError(message: "\":\" to divide key and value is required", stream: strm))
-				}
-				switch parseValue(stream: strm, sourceFile: srcfile) {
-				case .success(let val):
-					result[ident] = val
-				case .failure(let err):
-					return .failure(err)
-				}
-			}
-		}
-		return .success(result)
-	}
-
-	private func parseScalarValue(stream strm: CNTokenStream) -> Result<ALFrameIR.Member, NSError> {
-		guard let token = strm.get() else {
-			return .failure(parseError(message: "Unexpected end of script", stream: strm))
-		}
-		switch token.type {
-		case .BoolToken(let val):
-			return .success(.bool(val))
-		case .UIntToken(let val):
-			return .success(.number(NSNumber(value: val)))
-		case .IntToken(let val):
-			return .success(.number(NSNumber(value: val)))
-		case .DoubleToken(let val):
-			return .success(.number(NSNumber(value: val)))
-		case .StringToken(let val):
-			return .success(.string(val))
-		case .TextToken(let val):
-			return .success(.string(val))
-		case .IdentifierToken(let ident):
-			return .failure(parseError(message: "Unexpected identifier: \(ident)", stream: strm))
-		case .SymbolToken(let sym):
-			return .failure(parseError(message: "Unexpected symbol: \(sym)", stream: strm))
-		case .ReservedWordToken(_), .CommentToken(_):
-			return .failure(parseError(message: "Unexpected token: \(token.description)", stream: strm))
-		@unknown default:
-			return .failure(parseError(message: "Unknown token", stream: strm))
-		}
-	}
-
-	private func parseType(stream strm: CNTokenStream) -> Result<ALTypeIR, NSError> {
-		return ALTypeIR.parse(stream: strm)
-	}
-
-	private func decodeFunctionType(string str: String) -> ALTypeIR? {
-		switch str {
-		case ALInitFunctionIR.TypeName:			return .initFunction
-		case ALEventFunctionIR.TypeName:		return .eventFunction
-		case ALListnerFunctionIR.TypeName:		return .listnerFunction
-		case ALProceduralFunctionIR.TypeName:		return .proceduralFunction
-		default:					return nil
-		}
-	}
-
-
-}
-
-*/
 

@@ -63,12 +63,12 @@
 		05D4D93D28BDB393002C5E66 /* ArisiaLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D4D91B28BDB1E8002C5E66 /* ArisiaLibrary.xcframework */; };
 		05D4D93E28BDB393002C5E66 /* ArisiaLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05D4D91B28BDB1E8002C5E66 /* ArisiaLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05D8503628BBAC5B00796FB1 /* ArisiaLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 05D8503428BBAC5B00796FB1 /* ArisiaLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		05F1AC8E28BE343F00D8F1E1 /* Frame.ts in Resources */ = {isa = PBXBuildFile; fileRef = 05F1AC8D28BE343F00D8F1E1 /* Frame.ts */; };
-		05F1AC9228BE348D00D8F1E1 /* Frame.js in Resources */ = {isa = PBXBuildFile; fileRef = 05F1AC9128BE348D00D8F1E1 /* Frame.js */; };
-		05F1AC9628BE351E00D8F1E1 /* Frame.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05F1AC8D28BE343F00D8F1E1 /* Frame.ts */; };
-		05F1AC9728BE351E00D8F1E1 /* Frame.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05F1AC9128BE348D00D8F1E1 /* Frame.js */; };
-		05F1AC9A28BE353400D8F1E1 /* Frame.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05F1AC8D28BE343F00D8F1E1 /* Frame.ts */; };
-		05F1AC9B28BE353400D8F1E1 /* Frame.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05F1AC9128BE348D00D8F1E1 /* Frame.js */; };
+		05F1AC8E28BE343F00D8F1E1 /* Transpiler.ts in Resources */ = {isa = PBXBuildFile; fileRef = 05F1AC8D28BE343F00D8F1E1 /* Transpiler.ts */; };
+		05F1AC9228BE348D00D8F1E1 /* Transpiler.js in Resources */ = {isa = PBXBuildFile; fileRef = 05F1AC9128BE348D00D8F1E1 /* Transpiler.js */; };
+		05F1AC9628BE351E00D8F1E1 /* Transpiler.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05F1AC8D28BE343F00D8F1E1 /* Transpiler.ts */; };
+		05F1AC9728BE351E00D8F1E1 /* Transpiler.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05F1AC9128BE348D00D8F1E1 /* Transpiler.js */; };
+		05F1AC9A28BE353400D8F1E1 /* Transpiler.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05F1AC8D28BE343F00D8F1E1 /* Transpiler.ts */; };
+		05F1AC9B28BE353400D8F1E1 /* Transpiler.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05F1AC9128BE348D00D8F1E1 /* Transpiler.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,8 +195,8 @@
 			dstPath = Library;
 			dstSubfolderSpec = 7;
 			files = (
-				05F1AC9628BE351E00D8F1E1 /* Frame.ts in CopyFiles */,
-				05F1AC9728BE351E00D8F1E1 /* Frame.js in CopyFiles */,
+				05F1AC9628BE351E00D8F1E1 /* Transpiler.ts in CopyFiles */,
+				05F1AC9728BE351E00D8F1E1 /* Transpiler.js in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,8 +206,8 @@
 			dstPath = Library;
 			dstSubfolderSpec = 7;
 			files = (
-				05F1AC9A28BE353400D8F1E1 /* Frame.ts in CopyFiles */,
-				05F1AC9B28BE353400D8F1E1 /* Frame.js in CopyFiles */,
+				05F1AC9A28BE353400D8F1E1 /* Transpiler.ts in CopyFiles */,
+				05F1AC9B28BE353400D8F1E1 /* Transpiler.js in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,8 +244,8 @@
 		05D8503128BBAC5B00796FB1 /* ArisiaLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArisiaLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05D8503428BBAC5B00796FB1 /* ArisiaLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArisiaLibrary.h; sourceTree = "<group>"; };
 		05D8503528BBAC5B00796FB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		05F1AC8D28BE343F00D8F1E1 /* Frame.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Frame.ts; sourceTree = "<group>"; };
-		05F1AC9128BE348D00D8F1E1 /* Frame.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Frame.js; sourceTree = "<group>"; };
+		05F1AC8D28BE343F00D8F1E1 /* Transpiler.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Transpiler.ts; sourceTree = "<group>"; };
+		05F1AC9128BE348D00D8F1E1 /* Transpiler.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Transpiler.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -375,8 +375,8 @@
 			isa = PBXGroup;
 			children = (
 				058DC56828BD066200BF9092 /* types */,
-				05F1AC8D28BE343F00D8F1E1 /* Frame.ts */,
-				05F1AC9128BE348D00D8F1E1 /* Frame.js */,
+				05F1AC8D28BE343F00D8F1E1 /* Transpiler.ts */,
+				05F1AC9128BE348D00D8F1E1 /* Transpiler.js */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -662,8 +662,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05F1AC8E28BE343F00D8F1E1 /* Frame.ts in Resources */,
-				05F1AC9228BE348D00D8F1E1 /* Frame.js in Resources */,
+				05F1AC8E28BE343F00D8F1E1 /* Transpiler.ts in Resources */,
+				05F1AC9228BE348D00D8F1E1 /* Transpiler.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

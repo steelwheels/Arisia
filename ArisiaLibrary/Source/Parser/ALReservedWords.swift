@@ -30,10 +30,27 @@ public enum ALReservedWord: Int {
 		.String
 	]
 
+	public static func identifierToReservedWord(identifier ident: String) -> ALReservedWord? {
+		let result: ALReservedWord?
+		switch ident {
+		case "boolean":	result = .Boolean
+		case "class":	result = .Class
+		case "event":	result = .Event
+		case "func":	result = .Func
+		case "init":	result = .Init
+		case "listner":	result = .Listner
+		case "number":	result = .Number
+		case "root":	result = .Root
+		case "string":	result = .String
+		default:	result = nil
+		}
+		return result
+	}
+
 	public static func toString(reservedWord rword: ALReservedWord) -> String {
 		let result: String
 		switch rword {
-		case .Boolean:		result = "bool"
+		case .Boolean:		result = "boolean"
 		case .Class:		result = "class"
 		case .Event:		result = "event"
 		case .Func:		result = "func"
@@ -45,18 +62,6 @@ public enum ALReservedWord: Int {
 		}
 		return result
 	}
-
-	private static var mTable: Dictionary<String, Int> = [:]
-
-	public static func toTable() -> Dictionary<String, Int> {
-		if mTable.count == 0 {
-			var newtable: Dictionary<String, Int> = [:]
-			for word in ALReservedWord.allWords {
-				newtable[ALReservedWord.toString(reservedWord: word)] = word.rawValue
-			}
-			mTable = newtable
-		}
-		return mTable
-	}
-
 }
+
+

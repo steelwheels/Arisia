@@ -4,19 +4,17 @@
 
 interface FrameCoreIF
 {
+	propertyNames: string[] ;
+
         set(name: string, value: any): boolean ;
 	get(name: string): any | null ;
 }
 
-declare function _allocateFrameCore(classname: string): FrameCoreIF? ;
+declare function _allocateFrameCore(classname: string): FrameCoreIF ;
+
 /**
- * FrameCore.ts
+ * Transpiler.ts
  */
 /// <reference path="KiwiLibrary.d.ts" />
 /// <reference path="Builtin.d.ts" />
-declare class Frame {
-    core: FrameCoreIF;
-    constructor();
-    setNumber(name: string, value: number): void;
-    number(name: string): number | null;
-}
+export declare function _definePropertyIF(frame: FrameCoreIF, usernames: string[]): void;

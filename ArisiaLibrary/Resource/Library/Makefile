@@ -2,7 +2,7 @@
 # Makefile for Library
 #
 
-src_scrs	= Frame.ts
+src_scrs	= Transpiler.ts
 src_decls	= Builtin.d.ts $(src_scrs:.ts=.d.ts)
 
 target_scrs	= $(src_scrs:.ts=.js)
