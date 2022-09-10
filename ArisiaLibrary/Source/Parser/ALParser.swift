@@ -84,7 +84,12 @@ public class ALParser
 		}
 
 		let frame = ALFrameIR(className: clsname)
-		while !strm.isEmpty() {
+		while true {
+			if strm.isEmpty() {
+				return .failure(parseError(message: "Last \"}\" is required", stream: strm))
+			} else if strm.requireSymbol(symbol: "}") {
+				break
+			}
 			switch parseProperty(stream: strm, sourceFile: srcfile, frameTable: ftable) {
 			case .success(let prop):
 				frame.set(property: prop)
@@ -92,11 +97,11 @@ public class ALParser
 				return .failure(err)
 			}
 		}
-
-		guard strm.requireSymbol(symbol: "}") else {
-			return .failure(parseError(message: "Last \"}\" is required", stream: strm))
+		if strm.isEmpty() {
+			return .success(frame)
+		} else {
+			return .failure(parseError(message: "Unexpected declaration after last \"}\"", stream: strm))
 		}
-		return .success(frame)
 	}
 
 	private func parseProperty(stream strm: CNTokenStream, sourceFile srcfile: URL?, frameTable ftable: ALFrameTable) -> Result<ALFrameIR.Property, NSError> {

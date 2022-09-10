@@ -18,6 +18,10 @@
 		0507A52628BBAF3200D694A0 /* KiwiLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B6A028BBAE0A00E232C6 /* KiwiLibrary.xcframework */; };
 		0507A52728BBAF3200D694A0 /* KiwiLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B6A028BBAE0A00E232C6 /* KiwiLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0511F02328BDB8D8005756F8 /* UTCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0511F02228BDB8D8005756F8 /* UTCompiler.swift */; };
+		051B4C2528CA2F6F005FD4C4 /* ALScriptTranspiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051B4C2428CA2F6F005FD4C4 /* ALScriptTranspiler.swift */; };
+		051B4C2628CA2F6F005FD4C4 /* ALScriptTranspiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051B4C2428CA2F6F005FD4C4 /* ALScriptTranspiler.swift */; };
+		051B4C2928CA3025005FD4C4 /* ALLanguageConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051B4C2828CA3025005FD4C4 /* ALLanguageConfig.swift */; };
+		051B4C2A28CA3025005FD4C4 /* ALLanguageConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051B4C2828CA3025005FD4C4 /* ALLanguageConfig.swift */; };
 		0526B69628BBAD8300E232C6 /* ALFrameCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526B69528BBAD8300E232C6 /* ALFrameCore.swift */; };
 		0526B69B28BBADF500E232C6 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69928BBADF400E232C6 /* CoconutData.xcframework */; };
 		0526B69C28BBADF500E232C6 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69928BBADF400E232C6 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -39,10 +43,14 @@
 		059F5D1A28BFA996006BE786 /* ALFunctionIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F5D1828BFA996006BE786 /* ALFunctionIR.swift */; };
 		059F5D1D28BFAA5B006BE786 /* ALValueIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F5D1C28BFAA5B006BE786 /* ALValueIR.swift */; };
 		059F5D1E28BFAA5B006BE786 /* ALValueIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F5D1C28BFAA5B006BE786 /* ALValueIR.swift */; };
+		05A7FE6828C8E25F002C1467 /* ALScriptCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7FE6728C8E25F002C1467 /* ALScriptCompiler.swift */; };
+		05A7FE6928C8E25F002C1467 /* ALScriptCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7FE6728C8E25F002C1467 /* ALScriptCompiler.swift */; };
 		05B95F3F28C4D5BA008E3FD0 /* ALReservedWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B95F3E28C4D5BA008E3FD0 /* ALReservedWords.swift */; };
 		05B95F4028C4D5BA008E3FD0 /* ALReservedWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B95F3E28C4D5BA008E3FD0 /* ALReservedWords.swift */; };
 		05C0CF8828C6385200F39E68 /* ALFrameTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C0CF8728C6385200F39E68 /* ALFrameTable.swift */; };
 		05C0CF8928C6385200F39E68 /* ALFrameTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C0CF8728C6385200F39E68 /* ALFrameTable.swift */; };
+		05CE363628CB78980063888E /* ALFrameAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CE363528CB78980063888E /* ALFrameAllocator.swift */; };
+		05CE363728CB78980063888E /* ALFrameAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CE363528CB78980063888E /* ALFrameAllocator.swift */; };
 		05D4D90A28BDB154002C5E66 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D4D90928BDB154002C5E66 /* main.swift */; };
 		05D4D93128BDB303002C5E66 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69928BBADF400E232C6 /* CoconutData.xcframework */; };
 		05D4D93228BDB303002C5E66 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69928BBADF400E232C6 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -210,6 +218,8 @@
 		0507A51328BBAE9F00D694A0 /* ArisiaLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArisiaLibrary.h; sourceTree = "<group>"; };
 		0507A51428BBAE9F00D694A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0511F02228BDB8D8005756F8 /* UTCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTCompiler.swift; sourceTree = "<group>"; };
+		051B4C2428CA2F6F005FD4C4 /* ALScriptTranspiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALScriptTranspiler.swift; sourceTree = "<group>"; };
+		051B4C2828CA3025005FD4C4 /* ALLanguageConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALLanguageConfig.swift; sourceTree = "<group>"; };
 		0526B69528BBAD8300E232C6 /* ALFrameCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALFrameCore.swift; sourceTree = "<group>"; };
 		0526B69928BBADF400E232C6 /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
 		0526B69A28BBADF400E232C6 /* CoconutDatabase.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutDatabase.xcframework; path = ../../../../Library/Frameworks/CoconutDatabase.xcframework; sourceTree = "<group>"; };
@@ -222,8 +232,10 @@
 		059F5D1428BFA44C006BE786 /* ALParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALParser.swift; sourceTree = "<group>"; };
 		059F5D1828BFA996006BE786 /* ALFunctionIR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALFunctionIR.swift; sourceTree = "<group>"; };
 		059F5D1C28BFAA5B006BE786 /* ALValueIR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALValueIR.swift; sourceTree = "<group>"; };
+		05A7FE6728C8E25F002C1467 /* ALScriptCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALScriptCompiler.swift; sourceTree = "<group>"; };
 		05B95F3E28C4D5BA008E3FD0 /* ALReservedWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALReservedWords.swift; sourceTree = "<group>"; };
 		05C0CF8728C6385200F39E68 /* ALFrameTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALFrameTable.swift; sourceTree = "<group>"; };
+		05CE363528CB78980063888E /* ALFrameAllocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALFrameAllocator.swift; sourceTree = "<group>"; };
 		05D4D90728BDB154002C5E66 /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05D4D90928BDB154002C5E66 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		05D4D91B28BDB1E8002C5E66 /* ArisiaLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ArisiaLibrary.xcframework; path = ../../../../Library/Frameworks/ArisiaLibrary.xcframework; sourceTree = "<group>"; };
@@ -381,7 +393,10 @@
 		058DC56A28BD08DC00BF9092 /* Compiler */ = {
 			isa = PBXGroup;
 			children = (
+				05CE363528CB78980063888E /* ALFrameAllocator.swift */,
 				058DC56B28BD091600BF9092 /* ALLibraryCompiler.swift */,
+				05A7FE6728C8E25F002C1467 /* ALScriptCompiler.swift */,
+				051B4C2428CA2F6F005FD4C4 /* ALScriptTranspiler.swift */,
 			);
 			path = Compiler;
 			sourceTree = "<group>";
@@ -391,6 +406,7 @@
 			children = (
 				054D7D6C28BE52430074FD01 /* ALIFrameIR.swift */,
 				059F5D1828BFA996006BE786 /* ALFunctionIR.swift */,
+				051B4C2828CA3025005FD4C4 /* ALLanguageConfig.swift */,
 				059F5D1C28BFAA5B006BE786 /* ALValueIR.swift */,
 			);
 			path = Language;
@@ -408,8 +424,8 @@
 			isa = PBXGroup;
 			children = (
 				0526B69228BBACEE00E232C6 /* Source */,
-				0511F01928BDB4C3005756F8 /* Test */,
 				058DC56628BD05D200BF9092 /* Resource */,
+				0511F01928BDB4C3005756F8 /* Test */,
 				05D8503328BBAC5B00796FB1 /* OSX */,
 				0507A51228BBAE9F00D694A0 /* iOS */,
 				05D4D92428BDB2A7002C5E66 /* UnitTestBundle */,
@@ -663,9 +679,13 @@
 				054D7D6E28BE52430074FD01 /* ALIFrameIR.swift in Sources */,
 				059F5D1628BFA44C006BE786 /* ALParser.swift in Sources */,
 				059F5D1A28BFA996006BE786 /* ALFunctionIR.swift in Sources */,
+				051B4C2628CA2F6F005FD4C4 /* ALScriptTranspiler.swift in Sources */,
 				05C0CF8928C6385200F39E68 /* ALFrameTable.swift in Sources */,
+				051B4C2A28CA3025005FD4C4 /* ALLanguageConfig.swift in Sources */,
 				059F5D1E28BFAA5B006BE786 /* ALValueIR.swift in Sources */,
 				05B95F4028C4D5BA008E3FD0 /* ALReservedWords.swift in Sources */,
+				05CE363728CB78980063888E /* ALFrameAllocator.swift in Sources */,
+				05A7FE6928C8E25F002C1467 /* ALScriptCompiler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,9 +714,13 @@
 				054D7D6D28BE52430074FD01 /* ALIFrameIR.swift in Sources */,
 				059F5D1528BFA44C006BE786 /* ALParser.swift in Sources */,
 				059F5D1928BFA996006BE786 /* ALFunctionIR.swift in Sources */,
+				051B4C2528CA2F6F005FD4C4 /* ALScriptTranspiler.swift in Sources */,
 				05C0CF8828C6385200F39E68 /* ALFrameTable.swift in Sources */,
+				051B4C2928CA3025005FD4C4 /* ALLanguageConfig.swift in Sources */,
 				059F5D1D28BFAA5B006BE786 /* ALValueIR.swift in Sources */,
 				05B95F3F28C4D5BA008E3FD0 /* ALReservedWords.swift in Sources */,
+				05CE363628CB78980063888E /* ALFrameAllocator.swift in Sources */,
+				05A7FE6828C8E25F002C1467 /* ALScriptCompiler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

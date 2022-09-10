@@ -1,6 +1,6 @@
 # install_xc.mk
 
-BUNDLEL_PATH	= $(HOME)/tools/bundles
+BUNDLE_PATH	= $(HOME)/tools/bundles
 BIN_PATH	= $(HOME)/tools/bin
 
 all: dummy

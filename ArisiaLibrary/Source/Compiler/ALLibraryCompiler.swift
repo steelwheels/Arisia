@@ -14,19 +14,23 @@ import Foundation
 public class ALLibraryCompiler: KECompiler
 {
 	public func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
-		defineFrameCore(context: ctxt)
+		defineBuiltinFunctions(context: ctxt)
 		importBuiltinLibrary(context: ctxt, console: cons, config: conf)
 		return true
 	}
 
-	private func defineFrameCore(context ctxt: KEContext) {
-		/* FrameCore(): FrameCoreIF */
-		let frameCoreFunc: @convention(block) () -> JSValue = {
-			() -> JSValue in
-			let newobj = ALFrameCore(context: ctxt)
-			return JSValue(object: newobj, in: ctxt)
+	private func defineBuiltinFunctions(context ctxt: KEContext) {
+		/* _allocateFrame(name: string): FrameCoreIF */
+		let frameCoreFunc: @convention(block) (_ framename: JSValue) -> JSValue = {
+			(_ framename: JSValue) -> JSValue in
+			if let name = framename.toString() {
+				if let frame = ALFrameAllocator.shared.allocateFrame(className: name, context: ctxt) {
+					return JSValue(object: frame, in: ctxt)
+				}
+			}
+			return JSValue(nullIn: ctxt)
 		}
-		ctxt.set(name: "FrameCore", function: frameCoreFunc)
+		ctxt.set(name: "_allocateFrameCore", function: frameCoreFunc)
 	}
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)

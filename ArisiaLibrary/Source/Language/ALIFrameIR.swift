@@ -28,6 +28,14 @@ public class ALFrameIR
 		mDictionary	= [:]
 	}
 
+	public var className: String { get {
+		return mClassName
+	}}
+
+	public var propertyNames: Array<String> { get {
+		return mMembers.map{ $0.name }
+	}}
+
 	public func set(property prop: Property){
 		mMembers.append(prop)
 		mDictionary[prop.name] = prop.value

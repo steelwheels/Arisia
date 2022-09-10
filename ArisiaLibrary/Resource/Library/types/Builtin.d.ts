@@ -8,4 +8,4 @@ interface FrameCoreIF
 	get(name: string): any | null ;
 }
 
-declare function FrameCore(): FrameCoreIF ;
+declare function _allocateFrameCore(classname: string): FrameCoreIF? ;

@@ -11,13 +11,8 @@ import Foundation
 func main(arguments args: Array<String>) {
 	let console = CNFileConsole()
 	let cmdline = CommandLineParser(console: console)
-	if let (config, subargs) = cmdline.parseArguments(arguments: Array(args.dropFirst())) {
-		for script in config.scriptFiles {
-			console.print(string: "script: \(script)\n")
-		}
-		for subarg in subargs {
-			console.print(string: "subarg: \(subarg)\n")
-		}
+	if let (config, _) = cmdline.parseArguments(arguments: Array(args.dropFirst())) {
+		compile(scriptFiles: config.scriptFiles, console: console)
 	}
 }
 
