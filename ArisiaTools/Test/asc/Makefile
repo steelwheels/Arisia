@@ -10,7 +10,9 @@ scripts		= empty-frame.ars \
 		  property-1.ars \
 		  property-2.ars \
 		  property-3.ars \
-		  property-4.ars
+		  property-4.ars \
+		  property-5.ars \
+		  property-6.ars
 
 all:
 	(for scr in $(scripts) ; do \

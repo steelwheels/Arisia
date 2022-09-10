@@ -41,11 +41,23 @@ The `frame-ident` and `enum-ident` is the built-in or user-defined idenfier.
 
 ## Value
 ### Immediate value
-|Name           |Declaration    | Description           |
+|Type           |Declaration    | Description           |
 |---            |---            |---                    |
 |boolean        |`true`         |true or false          |
 |number         |0, 2, -1.3 , 0x1 |Integer or floating point value. Supported base is 10 (decimal) and 16 (hex) |
 |string         |\"STR\"      |The character sequence between \" and \".  |
+
+### Enum value
+The enum value must be declared as identifier.
+The identifier must be a predefined member of the enum type.
+
+For example, the `horizontal` is the member of [Axis](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Enum/Axis.md) enum type.
+
+````
+{
+  axis: Axis horizontal
+}
+````
 
 ### Function value
 #### Init function
@@ -201,8 +213,7 @@ scalar_value
         |  enum_value
         ;
 enum_value
-        := ENUM_TYPE_IDENTIFIER "." ENUM_MEMBER_IDENTIFIER
-        |  '.' ENUM_MEMBER_IDENTIFIER
+        :=  ENUM_MEMBER_IDENTIFIER
         ;
 expression_value
         := ”％{" TEXT "%}"

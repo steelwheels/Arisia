@@ -158,20 +158,23 @@ public class ALScriptTranspiler
 	}
 
 	private func dictionaryToScript(values dict: Dictionary<String, ALValueIR>) -> Result<String, NSError>  {
-		var dstr: String = "["
+		var dstr: String = "{"
 		var is1st = true
-		for (name, val) in dict {
-			switch valueToScript(value: val) {
-			case .success(let valstr):
-				if is1st {
-					is1st = false
-				} else {
-					dstr += ", "
+		let names = dict.keys.sorted()
+		for name in names {
+			if let val = dict[name] {
+				switch valueToScript(value: val) {
+				case .success(let valstr):
+					if is1st {
+						is1st = false
+					} else {
+						dstr += ", "
+					}
+					let elmstr = name + ":" + valstr
+					dstr += elmstr
+				case .failure(let err):
+					return .failure(err)
 				}
-				let elmstr = name + ":" + valstr
-				dstr += elmstr
-			case .failure(let err):
-				return .failure(err)
 			}
 		}
 		dstr += "}"

@@ -312,7 +312,7 @@ public class ALParser
 				if strm.requireSymbol(symbol: "]") {
 					return .success(.array(type))
 				} else {
-					return .failure(parseError(message: "The symbol \"[\" is not exit for the array type declaration", stream: strm))
+					return .failure(parseError(message: "The symbol \"]\" is not exit for the array type declaration", stream: strm))
 				}
 			} else {
 				return .success(type)
@@ -361,11 +361,16 @@ public class ALParser
 	}
 
 	private func hasDictionaryType(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Bool {
-		if let _ = strm.requireIdentifier() {
-			if strm.requireSymbol(symbol: ":") {
-				if let _ = strm.requireIdentifier() {
-					if strm.requireSymbol(symbol: "]") {
-						return true
+		/* Decode as dictionary
+		 * "[" + "name" + ":" + "string" + "]" + ":" + type
+		 */
+		if let _ = strm.requireIdentifier() { // name
+			if strm.requireSymbol(symbol: ":") { // :
+				if let _ = strm.requireReservedWord() { // string
+					if strm.requireSymbol(symbol: "]") { // ]
+						if strm.requireSymbol(symbol: ":") { //
+							return true
+						}
 					}
 				}
 			}
@@ -479,11 +484,10 @@ public class ALParser
 		guard strm.requireSymbol(symbol: "{") else {
 			return .failure(parseError(message: "'{' is required for dictionary value", stream: strm))
 		}
-		var docont: Bool = true
 		var is1st:  Bool = true
-		while docont {
+		while true {
 			if strm.requireSymbol(symbol: "}") {
-				docont = false
+				break
 			}
 			if is1st {
 				is1st = false
