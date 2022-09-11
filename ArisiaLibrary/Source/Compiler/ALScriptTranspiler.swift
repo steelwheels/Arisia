@@ -101,9 +101,9 @@ public class ALScriptTranspiler
 	private func functionBodyName(name nm: String, value val: ALValueIR) -> String? {
 		switch val {
 		case .initFunction(_):
-			return initFunctionBodyName(name: nm)
+			return ALInitFunctionIR.functionBodyName(name: nm)
 		case .listnerFunction(_):
-			return listnerFunctionBodyName(name: nm)
+			return ALListnerFunctionIR.functionBodyName(name: nm)
 		default:
 			return nil
 		}
@@ -205,14 +205,6 @@ public class ALScriptTranspiler
 		}
 		dstr += "}"
 		return .success(dstr)
-	}
-
-	private func initFunctionBodyName(name nm: String) -> String {
-		return "_" + nm + "_ifunc"
-	}
-
-	private func listnerFunctionBodyName(name nm: String) -> String {
-		return "_" + nm + "_lfunc"
 	}
 
 	private func transpileError(message msg: String) -> NSError {

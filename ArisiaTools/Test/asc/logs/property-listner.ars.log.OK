@@ -1,0 +1,19 @@
+let root = _allocateFrameCore("Frame") ;
+_definePropertyIF(root, ["a","b","l0","_l0_lfunc"]) ;
+root.a = 1;
+root.b = 2;
+root._l0_lfunc = function(self, a, b) {
+	return a + b ;
+  };
+root.addObserver("a", func(){
+  let self = root ;
+  let a = root.a ;
+  let b = root.b ;
+  root.l0 = root._l0_lfunc(self, a,b) ;
+}) ;
+root.addObserver("b", func(){
+  let self = root ;
+  let a = root.a ;
+  let b = root.b ;
+  root.l0 = root._l0_lfunc(self, a,b) ;
+}) ;

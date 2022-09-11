@@ -15,6 +15,7 @@ scripts		= empty-frame.ars \
 		  property-enum.ars \
 		  property-init.ars \
 		  property-func.ars \
+		  property-listner.ars \
 		  property-frame.ars
 
 all:

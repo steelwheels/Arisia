@@ -1,0 +1,9 @@
+let root = _allocateFrameCore("Frame") ;
+_definePropertyIF(root, ["f0","a0"]) ;
+root.a0 = 2;
+{
+  let f0 = _allocateFrameCore("Frame") ;
+  _definePropertyIF(f0, ["a1"]) ;
+  f0.a1 = 1;
+  root.f0 = f0 ;
+}

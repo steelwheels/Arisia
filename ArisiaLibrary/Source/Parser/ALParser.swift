@@ -286,28 +286,26 @@ public class ALParser
 
 	private func parsePathExpression(stream strm: CNTokenStream) -> Result<ALPathExpressionIR, NSError> {
 		var elms: Array<String> = []
-		var docont  = true
-		var require = false
-		while docont {
-			if let ident = strm.requireIdentifier() {
-				elms.append(ident)
-				if strm.requireSymbol(symbol: ".") {
-					require = true
-				} else {
-					docont  = false
-				}
-			} else {
-				if require {
-					return .failure(parseError(message: "path is required after `.`", stream: strm))
-				}
-				docont = false
-			}
-		}
-		if elms.count > 0 {
-			return .success(ALPathExpressionIR(elements: elms))
+		if strm.requireReservedWord(reservedWordId: ALReservedWord.Root.rawValue) {
+			elms.append(ALReservedWord.toString(reservedWord: ALReservedWord.Root))
+		} else if let ident = strm.requireIdentifier() {
+			elms.append(ident)
 		} else {
 			return .failure(parseError(message: "No path expression", stream: strm))
 		}
+		/* follower path */
+		while true {
+			if strm.requireSymbol(symbol: ".") {
+				if let ident = strm.requireIdentifier() {
+					elms.append(ident)
+				} else {
+					return .failure(parseError(message: "Identifier required for path expression", stream: strm))
+				}
+			} else {
+				break
+			}
+		}
+		return .success(ALPathExpressionIR(elements: elms))
 	}
 
 	private func parseType(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALTypeIR, NSError> {

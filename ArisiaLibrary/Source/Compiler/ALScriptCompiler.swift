@@ -34,10 +34,23 @@ public class ALScriptCompiler
 	}
 
 	public func compile(sourceScript src: String, sourceFile file: URL) -> Result<CNTextSection, NSError> {
+		let result = CNTextSection()
 		let parser = ALParser()
 		switch parser.parse(source: src, sourceFile: file) {
 		case .success(let frame):
-			return compile(frame: frame)
+			switch compile(frame: frame) {
+			case .success(let csect):
+				result.add(text: csect)
+				switch link(frame: frame) {
+				case .success(let lsect):
+					result.add(text: lsect)
+					return .success(result)
+				case .failure(let err):
+					return .failure(err)
+				}
+			case .failure(let err):
+				return .failure(err)
+			}
 		case .failure(let err):
 			return .failure(err)
 		}
@@ -48,6 +61,10 @@ public class ALScriptCompiler
 		return transpiler.transpile(frame: frm) 
 	}
 
+	public func link(frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
+		let linker = ALScriptLinker(config: mLanguageConfig)
+		return linker.link(frame: frm)
+	}
 
 	private func compileError(message msg: String) -> NSError {
 		return NSError.parseError(message: msg)

@@ -2,15 +2,16 @@
 ## Introduction
 
 ## Compilation pahases
-* parser pass
-* linter pass
-* linker pass
-* optimizer pass
-* transpiler pass
+1. parser pass
+2. transpiler pass
+3. linker pass
+4. evaluation pass
 
-### Transpiler pass
+## 1. Parser pass
+The parser checks the syntax of source code and generate intermediate code.
 
-## Transcript
+## 2. Transpiler pass
+The transpiler generate the JavaScript code to allocate frame object and it's properties.
 
 ### Procedural function
 The procedural function object will be assigned as a property.
@@ -44,3 +45,10 @@ root._init0_ifunc = function(self) {
         console.log("Hello") ;
 } ;
 ````
+
+## 3. Linker pass
+
+## 4. Evaluation pass
+
+# Reference
+* [README](https://github.com/steelwheels/Arisia): Introduction of arisia programming environment

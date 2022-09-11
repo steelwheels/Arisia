@@ -8,10 +8,12 @@
 import Foundation
 
 public struct ALPathExpressionIR {
-	var 	pathElements: Array<String>
+	private var mPathElements: Array<String>
+
+	public var pathElements: Array<String> { get { return mPathElements }}
 
 	public init(elements elms: Array<String>){
-		pathElements = elms
+		mPathElements = elms
 	}
 }
 
@@ -67,11 +69,17 @@ public class ALInitFunctionIR: ALFunctionIR
 	public override func toScript() -> String {
 		return toScript(arguments: ["self"])
 	}
+
+	public static func functionBodyName(name nm: String) -> String {
+		return "_" + nm + "_ifunc"
+	}
 }
 
 public class ALEventFunctionIR: ALFunctionIR
 {
 	private var mArguments: Array<Argument>
+
+	public var arguments: Array<Argument> { get { return mArguments }}
 
 	public init(arguments args: Array<Argument>, script scr: String, source src: URL?) {
 		mArguments = args
@@ -89,6 +97,8 @@ public class ALListnerFunctionIR: ALFunctionIR
 {
 	private var mArguments: Array<PathArgument>
 
+	public var pathArguments: Array<PathArgument> { get { return mArguments }}
+
 	public init(arguments args: Array<PathArgument>, script scr: String, source src: URL?) {
 		mArguments = args
 		super.init(script: scr, source: src)
@@ -99,12 +109,18 @@ public class ALListnerFunctionIR: ALFunctionIR
 		args.append(contentsOf: mArguments.map { $0.name })
 		return toScript(arguments: args)
 	}
+
+	public static func functionBodyName(name nm: String) -> String {
+		return "_" + nm + "_lfunc"
+	}
 }
 
 public class ALProceduralFunctionIR: ALFunctionIR
 {
 	private var mArguments: Array<Argument>
-	
+
+	public var arguments: Array<Argument> { get { return mArguments }}
+
 	public init(arguments args: Array<Argument>, script scr: String, source src: URL?) {
 		mArguments = args
 		super.init(script: scr, source: src)
