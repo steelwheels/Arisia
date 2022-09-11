@@ -16,10 +16,9 @@ public func compile(scriptFiles files: Array<String>, console cons: CNConsole)
 		return
 	}
 	let lang     = ALLanguageConfig()
-	let ftable   = ALFrameTable()
 	let urls     = files.map { URL(fileURLWithPath: $0) }
 	let compiler = ALScriptCompiler(config: lang)
-	switch compiler.compile(sourceFiles: urls, frameTable: ftable) {
+	switch compiler.compile(sourceFiles: urls) {
 	case .success(let txt):
 		let str = txt.toStrings().joined(separator: "\n") + "\n"
 		cons.print(string: str)

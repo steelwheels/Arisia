@@ -1,5 +1,3 @@
 let root = _allocateFrameCore("Frame") ;
-{
-  _definePropertyIF(root, ["s"]) ;
-  root.s = [1, 2, 3, 4];
-}
+_definePropertyIF(root, ["s"]) ;
+root.s = [1, 2, 3, 4];

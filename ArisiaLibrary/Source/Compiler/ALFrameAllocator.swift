@@ -35,6 +35,14 @@ public class ALFrameAllocator
 		mAllocators.append(alloc)
 	}
 
+	public func isFameClassName(name nm: String) -> Bool {
+		if nm == "Frame" {
+			return true
+		} else {
+			return false
+		}
+	}
+
 	public func allocateFrame(className name: String, context ctxt: KEContext) -> ALFrameCore? {
 		for allocator in mAllocators {
 			if let frame = allocator(name, ctxt) {

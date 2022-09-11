@@ -1,7 +1,5 @@
 let root = _allocateFrameCore("Frame") ;
-{
-  _definePropertyIF(root, ["init0","_init0_ifunc"]) ;
-  root._init0_ifunc = function() {
-  		console.log("Hello") ;
-  	};
-}
+_definePropertyIF(root, ["init0","_init0_ifunc"]) ;
+root._init0_ifunc = function(self) {
+		console.log("Hello") ;
+	};

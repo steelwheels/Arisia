@@ -14,7 +14,8 @@ scripts		= empty-frame.ars \
 		  property-dictionary.ars \
 		  property-enum.ars \
 		  property-init.ars \
-		  property-func.ars
+		  property-func.ars \
+		  property-frame.ars
 
 all:
 	(for scr in $(scripts) ; do \

@@ -40,7 +40,7 @@ The init function will be called before activating the frame.
 ````
 This is an output of transcriptor.
 ````
-root.addInitFunc(function(self) {
+root._init0_ifunc = function(self) {
         console.log("Hello") ;
-})
+} ;
 ````

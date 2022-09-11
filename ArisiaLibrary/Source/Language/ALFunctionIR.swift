@@ -65,7 +65,7 @@ public class ALInitFunctionIR: ALFunctionIR
 	}
 
 	public override func toScript() -> String {
-		return toScript(arguments: [])
+		return toScript(arguments: ["self"])
 	}
 }
 

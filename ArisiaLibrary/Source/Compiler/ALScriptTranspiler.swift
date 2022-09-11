@@ -31,7 +31,14 @@ public class ALScriptTranspiler
 					case .frame(let child):
 						switch transpileFrames(identifier: prop, frame: child) {
 						case .success(let txt):
-							result.add(text: txt)
+							let scope = CNTextSection()
+							scope.header = "{" ; scope.footer = "}"
+							scope.add(text: txt)
+							/* assignment to parent */
+							let line = CNTextLine(string: "\(ident).\(prop) = \(prop) ;")
+							scope.add(text: line)
+							/* insert declaration to parent */
+							result.add(text: scope)
 						case .failure(let err):
 							return .failure(err)
 						}
@@ -51,23 +58,23 @@ public class ALScriptTranspiler
 		let line = CNTextLine(string: "let \(inst) = _allocateFrameCore(\"\(frm.className)\") ;")
 		result.add(text: line)
 
-		let scope = CNTextSection()
-		scope.header = "{"
-		scope.footer = "}"
-		result.add(text: scope)
-
 		/* Define getter/setter for all properties*/
-		scope.add(text: definePropertyNames(instanceName: inst, frame: frm))
+		result.add(text: definePropertyNames(instanceName: inst, frame: frm))
 		/* Assign user declared properties */
 		for pname in frm.propertyNames {
 			if let pval = frm.value(name: pname) {
-				switch assignProperty(instanceName: inst, propertyName: pname, value: pval) {
-				case .success(let text):
-					for line in text.split(separator: "\n") {
-						scope.add(text: CNTextLine(string: String(line)))
+				switch pval {
+				case .frame(_):
+					break
+				default:
+					switch assignProperty(instanceName: inst, propertyName: pname, value: pval) {
+					case .success(let text):
+						for line in text.split(separator: "\n") {
+							result.add(text: CNTextLine(string: String(line)))
+						}
+					case .failure(let err):
+						return .failure(err)
 					}
-				case .failure(let err):
-					return .failure(err)
 				}
 			}
 		}

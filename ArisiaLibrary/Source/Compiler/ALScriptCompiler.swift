@@ -16,11 +16,11 @@ public class ALScriptCompiler
 		mLanguageConfig = conf
 	}
 
-	public func compile(sourceFiles srcs: Array<URL>, frameTable ftable: ALFrameTable) -> Result<CNTextSection, NSError> {
+	public func compile(sourceFiles srcs: Array<URL>) -> Result<CNTextSection, NSError> {
 		let result = CNTextSection()
 		for src in srcs {
 			if let scr = src.loadContents() {
-				switch compile(sourceScript: scr as String, sourceFile: src, frameTable: ftable) {
+				switch compile(sourceScript: scr as String, sourceFile: src) {
 				case .success(let newtxt):
 					result.add(text: newtxt)
 				case .failure(let err):
@@ -33,9 +33,9 @@ public class ALScriptCompiler
 		return .success(result)
 	}
 
-	public func compile(sourceScript src: String, sourceFile file: URL, frameTable ftable: ALFrameTable) -> Result<CNTextSection, NSError> {
+	public func compile(sourceScript src: String, sourceFile file: URL) -> Result<CNTextSection, NSError> {
 		let parser = ALParser()
-		switch parser.parse(source: src, sourceFile: file, frameTable: ftable) {
+		switch parser.parse(source: src, sourceFile: file) {
 		case .success(let frame):
 			return compile(frame: frame)
 		case .failure(let err):
