@@ -1,0 +1,7 @@
+let root = _allocateFrameCore("Frame") ;
+{
+  _definePropertyIF(root, ["sum"]) ;
+  root.sum = function(a, b) {
+  		return a + b ;
+  	};
+}

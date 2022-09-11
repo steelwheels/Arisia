@@ -4,7 +4,8 @@
 The ArisiaScript is the extension of TypeScript/JavaScript for event driven programming.
 
 ## Frame
-The frame declaration is started by `{` and ended by `}`.
+The frame is a basic object which supports event driven programming.
+The declaration is started by `{` and ended by `}`.
 It contains multiple (zero or more) property declaration.
 The `,` *is NOT* required between property declarations.
 ````
@@ -70,7 +71,7 @@ Even if you use `return` statement in it's body, the return value will be ignore
 You can define multiple init functions in a frame. In this case, they are called in declaration order.
 ````
 {
- init: Init %{
+ init0: init %{
     The JavaScript code to initialize the frame
   %}
 }
@@ -273,60 +274,6 @@ script  := "%{" TEXT "%}"
 The `ENUM_TYPE_IDENTIFIER` and the `FRAME_IDENTIFIER` are the pre-defined identifier.
 The `TEXT` is the JavaScript code. The arisia parser doest not check it's context.
 
-## Transcript
-
-````
-{
-  button: Button {
-        title: string "hello"
-        is_enabled: boolean listner(isen: root.is_enabled) %{
-                return isen ;
-        %}
-        press: event(pressed: boolean): void %{
-                console.log("pressed !!") ;
-        %}
-  }
-}
-````
-This is the translated JavaScript code.
-
-The `_new_frame` is the built-in function to allocate frame instance. The parameter is the name of flame class.
-First, the *root* frame is allocated.
-````
-let root = _new_rame("root") ;
-````
-
-The component is allocated and added in order.
-````
-let button = _new_frame("Button") ;
-root.set("button", button) ;
-````
-
-The immediate property is applied directory.
-````
-button.set("title", "hello") ;
-````
-
-Assign the function body and function trigger for the listner function.
-````
-button.set("is_enabled@lfunc", function(self) {
-        let isen = root.is_enabled ;
-        self.set("is_enable", isen) ;
-}) ;
-root.setListner("is_enabled", function(){
-        let lfunc  = root.button.value("is_enabled@lfunc") ;
-        let retvai = lfunc() ;
-
-        root.button.is_enabled = root.button.is_enabled_lfunc() ;
-})
-````
-
-````
-self.set("pressed", function(pressed) {
-        console.log("pressed !!") ;
-}) ;
-````
-
 ## Related links
 * [README](https://github.com/steelwheels/Arisia): Introduction of arisia programming environment
-
+* [compiler](./arisia-compiler.md): The compiler to compile the ArisiaScript 

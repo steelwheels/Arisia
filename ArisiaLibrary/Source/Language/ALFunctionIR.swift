@@ -53,8 +53,8 @@ open class ALFunctionIR
 	public func toScript(arguments args: Array<String>) -> String {
 		let argstr = args.joined(separator: ", ")
 		return    "function(\(argstr)) {\n"
-		        + mScript + "\n"
-			+ "}\n"
+		        + mScript
+			+ "}"
 	}
 }
 

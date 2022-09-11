@@ -7,12 +7,14 @@ script_dir	= ./scripts
 logs_dir	= ./logs
 
 scripts		= empty-frame.ars \
-		  property-1.ars \
-		  property-2.ars \
-		  property-3.ars \
-		  property-4.ars \
-		  property-5.ars \
-		  property-6.ars
+		  property-boolean.ars \
+		  property-number.ars \
+		  property-string.ars \
+		  property-array.ars \
+		  property-dictionary.ars \
+		  property-enum.ars \
+		  property-init.ars \
+		  property-func.ars
 
 all:
 	(for scr in $(scripts) ; do \
@@ -21,6 +23,7 @@ all:
 
 check: all
 	(for scr in $(scripts) ; do \
+		echo "* script $${scr}" ; \
 		diff $(logs_dir)/$${scr}.log $(logs_dir)/$${scr}.log.OK ; \
 	 done)
 	

@@ -21,24 +21,6 @@ public indirect enum ALTypeIR
 	case eventFunction
 	case listnerFunction
 	case proceduralFunction
-
-	public func toName() -> String {
-		let result: String
-		switch self {
-		case .bool:			result = "boolean"
-		case .number:			result = "number"
-		case .string:			result = "string"
-		case .frame(let name):		result = name
-		case .array(let etype):		result = etype.toName() + "[]"
-		case .dictionary(let etype):	result = "[name: string]:" + etype.toName()
-		case .enumType(let etype):	result = etype.typeName
-		case .initFunction:		result = "init"
-		case .eventFunction:		result = "event"
-		case .listnerFunction:		result = "listner"
-		case .proceduralFunction:	result = "function"
-		}
-		return result
-	}
 }
 
 public enum ALValueIR
