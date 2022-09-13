@@ -30,7 +30,7 @@ public func compile(scriptFiles files: Array<String>, console cons: CNConsole)
 
 private func printHeader(console cons: CNConsole)
 {
-	let header = "/// <reference path=\"types/KiwiLibrary.d.ts\"/>\n"
-		   + "/// <reference path=\"types/ArisiaLibrary.d.ts\"/>\n"
+	let header = "/// <reference path=\"types/KiwiLibrary.d.ts\" />\n"
+		   + "/// <reference path=\"types/ArisiaLibrary.d.ts\" />\n"
 	cons.print(string: header)
 }

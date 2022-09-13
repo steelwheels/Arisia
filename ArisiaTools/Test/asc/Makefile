@@ -17,6 +17,7 @@ as_scripts	= empty-frame.as \
 		  property-func.as \
 		  property-listner.as \
 		  property-frame.as \
+		  init-0.as \
 		  listner-0.as
 
 ts_scripts	= $(as_scripts:.as=.ts)

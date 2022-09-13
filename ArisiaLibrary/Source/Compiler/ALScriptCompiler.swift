@@ -44,6 +44,13 @@ public class ALScriptCompiler
 				switch link(frame: frame) {
 				case .success(let lsect):
 					result.add(text: lsect)
+					switch construct(frame: frame) {
+					case .success(let csect):
+						result.add(text: csect)
+					case .failure(let err):
+						return .failure(err)
+					}
+
 					return .success(result)
 				case .failure(let err):
 					return .failure(err)
@@ -64,6 +71,11 @@ public class ALScriptCompiler
 	public func link(frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
 		let linker = ALScriptLinker(config: mLanguageConfig)
 		return linker.link(frame: frm)
+	}
+
+	public func construct(frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
+		let constructor = ALScriptConstructor(config: mLanguageConfig)
+		return constructor.construct(frame: frm)
 	}
 
 	private func compileError(message msg: String) -> NSError {
