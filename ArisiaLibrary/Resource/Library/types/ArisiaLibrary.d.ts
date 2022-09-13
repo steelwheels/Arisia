@@ -8,9 +8,11 @@ interface FrameCoreIF
 
         set(name: string, value: any): boolean ;
 	get(name: string): any | null ;
+
+	addObserver(property: string, callback: () => void): void ;
 }
 
-declare function _allocateFrameCore(classname: string): FrameCoreIF ;
+export declare function _allocateFrameCore(classname: string): FrameCoreIF ;
 
 /**
  * Transpiler.ts

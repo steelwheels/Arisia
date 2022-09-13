@@ -17,16 +17,28 @@ import Foundation
 
 	func get(_ name: JSValue) -> JSValue
 	func set(_ name: JSValue, _ val: JSValue) -> JSValue // -> boolean
+
+	func addObjserver(_ property: JSValue, _ cbfunc: JSValue)	// (property: string, cbfunc: ():void)
 }
 
 @objc public class ALFrameCore: NSObject, ALFrameCoreProtorol
 {
+	public typealias ListnerHolder = CNObserverDictionary.ListnerHolder
+
 	private var mPropertyValues:	CNObserverDictionary
+	private var mPropertyListners:	Array<ListnerHolder>
 	private var mContext:		KEContext
 
 	public init(context ctxt: KEContext){
-		mPropertyValues	= CNObserverDictionary()
-		mContext	= ctxt
+		mPropertyValues		= CNObserverDictionary()
+		mPropertyListners	= []
+		mContext		= ctxt
+	}
+
+	deinit {
+		for listner in mPropertyListners {
+			mPropertyValues.removeObserver(listnerHolder: listner)
+		}
 	}
 
 	public var propertyNames: JSValue { get {
@@ -52,5 +64,15 @@ import Foundation
 			result = false
 		}
 		return JSValue(bool: result, in: mContext)
+	}
+
+	public func addObjserver(_ property: JSValue, _ cbfunc: JSValue) {
+		if let propstr = property.toString() {
+			mPropertyListners.append(
+				mPropertyValues.addObserver(forKey: propstr, listnerFunction: {
+					(_ param: Any?) -> Void in cbfunc.call(withArguments: [])
+				})
+			)
+		}
 	}
 }

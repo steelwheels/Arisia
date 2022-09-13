@@ -20,9 +20,17 @@ public func compile(scriptFiles files: Array<String>, console cons: CNConsole)
 	let compiler = ALScriptCompiler(config: lang)
 	switch compiler.compile(sourceFiles: urls) {
 	case .success(let txt):
+		printHeader(console: cons)
 		let str = txt.toStrings().joined(separator: "\n") + "\n"
 		cons.print(string: str)
 	case .failure(let err):
 		cons.error(string: "[Error] " + err.toString())
 	}
+}
+
+private func printHeader(console cons: CNConsole)
+{
+	let header = "/// <reference path=\"types/KiwiLibrary.d.ts\"/>\n"
+		   + "/// <reference path=\"types/ArisiaLibrary.d.ts\"/>\n"
+	cons.print(string: header)
 }

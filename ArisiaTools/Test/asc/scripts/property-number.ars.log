@@ -1,5 +1,0 @@
-let root = _allocateFrameCore("Frame") ;
-{
-  _definePropertyIF(root, ["a"]) ;
-  root.a = 0;
-}

@@ -1,3 +1,0 @@
-let root = _allocateFrameCore("Frame") ;
-_definePropertyIF(root, ["s"]) ;
-root.s = "hello, world";

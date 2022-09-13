@@ -6,7 +6,7 @@ src_scrs	= Transpiler.ts
 src_decls	= Builtin.d.ts $(src_scrs:.ts=.d.ts)
 
 target_scrs	= $(src_scrs:.ts=.js)
-target_decl	= AlisiaLibrary.d.ts
+target_decl	= ArisiaLibrary.d.ts
 
 tsc	= npx tsc
 tsc_opt	= -t ES2017 --lib "es2017" --declaration --declarationDir types \

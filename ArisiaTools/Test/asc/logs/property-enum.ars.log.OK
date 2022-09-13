@@ -1,3 +1,0 @@
-let root = _allocateFrameCore("Frame") ;
-_definePropertyIF(root, ["axis"]) ;
-root.axis = Axis.horizontal;

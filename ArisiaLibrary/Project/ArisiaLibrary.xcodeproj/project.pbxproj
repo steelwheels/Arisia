@@ -33,8 +33,8 @@
 		0526B6A528BBAE0A00E232C6 /* KiwiEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B6A128BBAE0A00E232C6 /* KiwiEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		054D7D6D28BE52430074FD01 /* ALIFrameIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D7D6C28BE52430074FD01 /* ALIFrameIR.swift */; };
 		054D7D6E28BE52430074FD01 /* ALIFrameIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D7D6C28BE52430074FD01 /* ALIFrameIR.swift */; };
-		056BB7C028BD7FAE00EFB725 /* AlisiaLibrary.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 056BB7BE28BD7F3300EFB725 /* AlisiaLibrary.d.ts */; };
-		056BB7C228BD7FC000EFB725 /* AlisiaLibrary.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 056BB7BE28BD7F3300EFB725 /* AlisiaLibrary.d.ts */; };
+		056BB7C028BD7FAE00EFB725 /* ArisiaLibrary.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 056BB7BE28BD7F3300EFB725 /* ArisiaLibrary.d.ts */; };
+		056BB7C228BD7FC000EFB725 /* ArisiaLibrary.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 056BB7BE28BD7F3300EFB725 /* ArisiaLibrary.d.ts */; };
 		058DC56C28BD091600BF9092 /* ALLibraryCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058DC56B28BD091600BF9092 /* ALLibraryCompiler.swift */; };
 		058DC56D28BD091600BF9092 /* ALLibraryCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058DC56B28BD091600BF9092 /* ALLibraryCompiler.swift */; };
 		059D3F9128CDD9C400DE405B /* ALScriptLinker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D3F9028CDD9C400DE405B /* ALScriptLinker.swift */; };
@@ -151,7 +151,7 @@
 			dstPath = Library/types;
 			dstSubfolderSpec = 7;
 			files = (
-				056BB7C028BD7FAE00EFB725 /* AlisiaLibrary.d.ts in CopyFiles */,
+				056BB7C028BD7FAE00EFB725 /* ArisiaLibrary.d.ts in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,7 +161,7 @@
 			dstPath = Library/types;
 			dstSubfolderSpec = 7;
 			files = (
-				056BB7C228BD7FC000EFB725 /* AlisiaLibrary.d.ts in CopyFiles */,
+				056BB7C228BD7FC000EFB725 /* ArisiaLibrary.d.ts in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +226,7 @@
 		0526B6A028BBAE0A00E232C6 /* KiwiLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiLibrary.xcframework; path = ../../../../Library/Frameworks/KiwiLibrary.xcframework; sourceTree = "<group>"; };
 		0526B6A128BBAE0A00E232C6 /* KiwiEngine.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiEngine.xcframework; path = ../../../../Library/Frameworks/KiwiEngine.xcframework; sourceTree = "<group>"; };
 		054D7D6C28BE52430074FD01 /* ALIFrameIR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALIFrameIR.swift; sourceTree = "<group>"; };
-		056BB7BE28BD7F3300EFB725 /* AlisiaLibrary.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AlisiaLibrary.d.ts; sourceTree = "<group>"; };
+		056BB7BE28BD7F3300EFB725 /* ArisiaLibrary.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ArisiaLibrary.d.ts; sourceTree = "<group>"; };
 		058DC56928BD06C900BF9092 /* Builtin.d.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = Builtin.d.ts; sourceTree = "<group>"; };
 		058DC56B28BD091600BF9092 /* ALLibraryCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALLibraryCompiler.swift; sourceTree = "<group>"; };
 		059D3F9028CDD9C400DE405B /* ALScriptLinker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALScriptLinker.swift; sourceTree = "<group>"; };
@@ -383,7 +383,7 @@
 		058DC56828BD066200BF9092 /* types */ = {
 			isa = PBXGroup;
 			children = (
-				056BB7BE28BD7F3300EFB725 /* AlisiaLibrary.d.ts */,
+				056BB7BE28BD7F3300EFB725 /* ArisiaLibrary.d.ts */,
 				058DC56928BD06C900BF9092 /* Builtin.d.ts */,
 			);
 			path = types;
