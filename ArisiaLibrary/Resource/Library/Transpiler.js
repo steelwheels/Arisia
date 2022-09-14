@@ -1,9 +1,10 @@
+"use strict";
 /**
  * Transpiler.ts
  */
 /// <reference path="types/KiwiLibrary.d.ts"/>
 /// <reference path="types/Builtin.d.ts"/>
-export function _definePropertyIF(frame, usernames) {
+function _definePropertyIF(frame, usernames) {
     /* merge default property names and user defined property names */
     let names = frame.propertyNames;
     for (let uname of usernames) {

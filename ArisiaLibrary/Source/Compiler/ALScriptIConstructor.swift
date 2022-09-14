@@ -60,7 +60,7 @@ public class ALScriptConstructor
 				case .initFunction(_):
 					/* Add statement to call the initializer */
 					let pathstr  = paths.peekAll(doReverceOrder: false).joined(separator: ".")
-					let funcname = ALListnerFunctionIR.functionBodyName(name: pname)
+					let funcname = ALInitFunctionIR.functionBodyName(name: pname)
 					let line     = CNTextLine(string: "\(pathstr).\(pname) = \(pathstr).\(funcname)(\(pathstr)) ;")
 					result.add(text: line)
 				default:

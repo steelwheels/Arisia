@@ -5,7 +5,7 @@
 /// <reference path="types/KiwiLibrary.d.ts"/>
 /// <reference path="types/Builtin.d.ts"/>
 
-export function _definePropertyIF(frame: FrameCoreIF, usernames: string[]) {
+function _definePropertyIF(frame: FrameCoreIF, usernames: string[]) {
         /* merge default property names and user defined property names */
         let names = frame.propertyNames ;
         for(let uname of usernames) {

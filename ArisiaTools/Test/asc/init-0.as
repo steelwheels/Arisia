@@ -1,11 +1,11 @@
 {
   f0: Frame {
     init0: init %{
-      console.log("root.f0.init0()") ;
+      console.print("root.f0.init0()\n") ;
     %}
   }
   init0: init %{
-    console.log("root.init0()") ;
+    console.print("root.init0()\n") ;
   %}
 }
 

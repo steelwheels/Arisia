@@ -9,28 +9,23 @@ import ArisiaLibrary
 import CoconutData
 import Foundation
 
-public func compile(scriptFiles files: Array<String>, console cons: CNConsole)
+public func compile(scriptFiles files: Array<String>) -> Result<CNText, NSError>
 {
 	guard files.count > 0 else {
-		cons.error(string: "No source file\n")
-		return
+		return .failure(NSError.fileError(message: "No source file"))
 	}
 	let lang     = ALLanguageConfig()
 	let urls     = files.map { URL(fileURLWithPath: $0) }
 	let compiler = ALScriptCompiler(config: lang)
 	switch compiler.compile(sourceFiles: urls) {
 	case .success(let txt):
-		printHeader(console: cons)
-		let str = txt.toStrings().joined(separator: "\n") + "\n"
-		cons.print(string: str)
+		let result = CNTextSection()
+		result.add(text: CNTextLine(string: "/// <reference path=\"types/KiwiLibrary.d.ts\" />"))
+		result.add(text: CNTextLine(string: "/// <reference path=\"types/ArisiaLibrary.d.ts\" />"))
+		result.add(text: txt)
+		return .success(txt)
 	case .failure(let err):
-		cons.error(string: "[Error] " + err.toString())
+		return .failure(err)
 	}
 }
 
-private func printHeader(console cons: CNConsole)
-{
-	let header = "/// <reference path=\"types/KiwiLibrary.d.ts\" />\n"
-		   + "/// <reference path=\"types/ArisiaLibrary.d.ts\" />\n"
-	cons.print(string: header)
-}

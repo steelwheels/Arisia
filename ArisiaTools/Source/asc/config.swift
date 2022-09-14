@@ -12,11 +12,14 @@ import Foundation
 public class Config
 {
 	private var mScriptFiles: 	Array<String>
+	private var mCompileOnly:	Bool
 
-	public var scriptFiles: Array<String>	{ get { return mScriptFiles		}}
+	public var scriptFiles: Array<String>	{ get { return mScriptFiles	}}
+	public var compileOnly: Bool		{ get { return mCompileOnly 	}}
 
-	public init(scriptFiles files: Array<String>){
-		mScriptFiles = files
+	public init(scriptFiles files: Array<String>, compileOnly conly: Bool){
+		mScriptFiles	= files
+		mCompileOnly	= conly
 	}
 }
 
@@ -25,6 +28,7 @@ public class CommandLineParser
 	private enum OptionId: Int {
 		case Help		= 0
 		case Version		= 1
+		case CompileOnly	= 2
 	}
 
 	private var mConsole:	CNConsole
@@ -40,8 +44,9 @@ public class CommandLineParser
 	private func printHelpMessage() {
 		mConsole.print(string: "usage: asc [options] script-file1 script-file2 ...\n" +
 		"  [options]\n" +
-		"    --help, -h             : Print this message\n" +
-		"    --version              : Print version\n"
+		"    --compile-only, -c : Compile only (Do not execute the script)\n" +
+		"    --help, -h         : Print this message\n" +
+		"    --version          : Print version\n"
 		)
 	}
 
@@ -62,6 +67,7 @@ public class CommandLineParser
 
 	private func parseOptions(arguments args: Array<CBArgument>) -> Config? {
 		var files: Array<String>		= []
+		var compileonly: Bool			= false
 		let stream   = CNArrayStream(source: args)
 		while let arg = stream.get() {
 			if let opt = arg as? CBOptionArgument {
@@ -73,6 +79,8 @@ public class CommandLineParser
 					case .Version:
 						printVersionMessage()
 						return nil
+					case .CompileOnly:
+						compileonly = true
 					}
 				} else {
 					mConsole.error(string: "[Error] Unknown command line option id")
@@ -84,7 +92,7 @@ public class CommandLineParser
 				return nil
 			}
 		}
-		return Config(scriptFiles: files)
+		return Config(scriptFiles: files, compileOnly: compileonly)
 	}
 
 	private func parserConfig() -> CBParserConfig {
@@ -97,6 +105,10 @@ public class CommandLineParser
 				     shortName: nil, longName: "version",
 				     parameterNum: 0, parameterType: .voidType,
 				     helpInfo: "Print version information"),
+			CBOptionType(optionId: OptionId.CompileOnly.rawValue,
+				     shortName: "c", longName: "compile-only",
+				     parameterNum: 0, parameterType: .voidType,
+				     helpInfo: "Output the compiled code, not execute it"),
 		]
 		let config = CBParserConfig(hasSubCommand: false)
 		config.setDefaultOptions(optionTypes: opttypes)

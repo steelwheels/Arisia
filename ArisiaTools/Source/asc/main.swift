@@ -12,7 +12,22 @@ func main(arguments args: Array<String>) {
 	let console = CNFileConsole()
 	let cmdline = CommandLineParser(console: console)
 	if let (config, _) = cmdline.parseArguments(arguments: Array(args.dropFirst())) {
-		compile(scriptFiles: config.scriptFiles, console: console)
+		switch compile(scriptFiles: config.scriptFiles) {
+		case .success(let txt):
+			if !config.compileOnly {
+				switch execute(script: txt, console: console) {
+				case .success(_):
+					break // Finished without errors
+				case .failure(let err):
+					console.error(string: "[Error] " + err.toString())
+				}
+			} else {
+				let str = txt.toStrings().joined(separator: "\n")
+				console.print(string: str)
+			}
+		case .failure(let err):
+			console.error(string: "[Error] " + err.toString())
+		}
 	}
 }
 

@@ -20,7 +20,6 @@ as_scripts	= empty-frame.as \
 		  init-0.as \
 		  listner-0.as
 
-ts_scripts	= $(as_scripts:.as=.ts)
 decl_scripts	= $(as_scripts:.as=.d.ts)
 js_scripts	= $(as_scripts:.as=.js)
 
@@ -30,13 +29,13 @@ tsc_opt	= -t ES2017 --lib "es2017" --declaration \
 	  --typeRoots $(CURDIR)/types \
 	  --alwaysStrict --strict --strictNullChecks --pretty
 
-%.js: %.ts
-	$(tsc) $(tsc_opt) $<
+#%.js: %.ts
+#	$(tsc) $(tsc_opt) $<
 
-%.ts: %.as
-	$(asc) $< > $@
+%.js: %.as
+	$(asc) -c $< > $@
 
-all: decls $(ts_scripts) $(js_scripts)
+all: decls $(js_scripts)
 
 clean:
 	rm -f $(js_scripts) $(ts_scripts) 

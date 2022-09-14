@@ -1,6 +1,6 @@
 {
 	init0: init %{
-		console.log("Hello") ;
+		console.print("Hello\n") ;
 	%}
 }
 

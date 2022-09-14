@@ -15,8 +15,8 @@ import Foundation
 {
 	var propertyNames: JSValue { get }
 
-	func get(_ name: JSValue) -> JSValue
-	func set(_ name: JSValue, _ val: JSValue) -> JSValue // -> boolean
+	func value(_ name: JSValue) -> JSValue
+	func setValue(_ name: JSValue, _ val: JSValue) -> JSValue // -> boolean
 
 	func addObjserver(_ property: JSValue, _ cbfunc: JSValue)	// (property: string, cbfunc: ():void)
 }
@@ -46,7 +46,7 @@ import Foundation
 
 	}}
 
-	public func get(_ name: JSValue) -> JSValue {
+	public func value(_ name: JSValue) -> JSValue {
 		if let namestr = name.toString() {
 			if let val = mPropertyValues.value(forKey: namestr) as? JSValue {
 				return val
@@ -55,7 +55,7 @@ import Foundation
 		return JSValue(nullIn: mContext)
 	}
 
-	public func set(_ name: JSValue, _ val: JSValue) -> JSValue {
+	public func setValue(_ name: JSValue, _ val: JSValue) -> JSValue {
 		let result: Bool
 		if let namestr = name.toString() {
 			mPropertyValues.setValue(val, forKey: namestr)

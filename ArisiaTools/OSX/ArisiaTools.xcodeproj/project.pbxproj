@@ -10,6 +10,11 @@
 		05A5DB9928CC0280005A6087 /* ArisiaLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A5DB9828CC0280005A6087 /* ArisiaLibrary.xcframework */; };
 		05A5DB9A28CC0280005A6087 /* ArisiaLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05A5DB9828CC0280005A6087 /* ArisiaLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05A5DB9D28CC02E5005A6087 /* compile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A5DB9C28CC02E5005A6087 /* compile.swift */; };
+		05BD8AA428D0C44B00A008C1 /* executor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD8AA328D0C44B00A008C1 /* executor.swift */; };
+		05BD8AAB28D0CC4800A008C1 /* KiwiShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05BD8AAA28D0CC4800A008C1 /* KiwiShell.xcframework */; };
+		05BD8AAC28D0CC4800A008C1 /* KiwiShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05BD8AAA28D0CC4800A008C1 /* KiwiShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05BD8AAF28D0CC8300A008C1 /* CoconutShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05BD8AAE28D0CC8300A008C1 /* CoconutShell.xcframework */; };
+		05BD8AB028D0CC8300A008C1 /* CoconutShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05BD8AAE28D0CC8300A008C1 /* CoconutShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05C9C36528C77B8C00E57C5D /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C9C36428C77B8C00E57C5D /* CoconutData.xcframework */; };
 		05C9C36628C77B8C00E57C5D /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05C9C36428C77B8C00E57C5D /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05C9C36A28C77BA300E57C5D /* CoconutDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C9C36928C77BA300E57C5D /* CoconutDatabase.xcframework */; };
@@ -57,10 +62,12 @@
 			files = (
 				05C9C36B28C77BA300E57C5D /* CoconutDatabase.xcframework in Embed Frameworks */,
 				05C9C39128C788B000E57C5D /* Cobalt.xcframework in Embed Frameworks */,
+				05BD8AB028D0CC8300A008C1 /* CoconutShell.xcframework in Embed Frameworks */,
 				05A5DB9A28CC0280005A6087 /* ArisiaLibrary.xcframework in Embed Frameworks */,
 				05C9C36628C77B8C00E57C5D /* CoconutData.xcframework in Embed Frameworks */,
 				05C9C36F28C77BB600E57C5D /* KiwiEngine.xcframework in Embed Frameworks */,
 				05C9C37328C77BC700E57C5D /* KiwiLibrary.xcframework in Embed Frameworks */,
+				05BD8AAC28D0CC4800A008C1 /* KiwiShell.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,6 +86,9 @@
 /* Begin PBXFileReference section */
 		05A5DB9828CC0280005A6087 /* ArisiaLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ArisiaLibrary.xcframework; path = ../../../../Library/Frameworks/ArisiaLibrary.xcframework; sourceTree = "<group>"; };
 		05A5DB9C28CC02E5005A6087 /* compile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = compile.swift; sourceTree = "<group>"; };
+		05BD8AA328D0C44B00A008C1 /* executor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = executor.swift; sourceTree = "<group>"; };
+		05BD8AAA28D0CC4800A008C1 /* KiwiShell.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiShell.xcframework; path = ../../../../Library/Frameworks/KiwiShell.xcframework; sourceTree = "<group>"; };
+		05BD8AAE28D0CC8300A008C1 /* CoconutShell.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutShell.xcframework; path = ../../../../Library/Frameworks/CoconutShell.xcframework; sourceTree = "<group>"; };
 		05C9C34F28C779B500E57C5D /* ArisiaTools.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArisiaTools.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C9C35128C779B500E57C5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05C9C36428C77B8C00E57C5D /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
@@ -98,10 +108,12 @@
 			files = (
 				05C9C36A28C77BA300E57C5D /* CoconutDatabase.xcframework in Frameworks */,
 				05C9C39028C788B000E57C5D /* Cobalt.xcframework in Frameworks */,
+				05BD8AAF28D0CC8300A008C1 /* CoconutShell.xcframework in Frameworks */,
 				05A5DB9928CC0280005A6087 /* ArisiaLibrary.xcframework in Frameworks */,
 				05C9C36528C77B8C00E57C5D /* CoconutData.xcframework in Frameworks */,
 				05C9C36E28C77BB600E57C5D /* KiwiEngine.xcframework in Frameworks */,
 				05C9C37228C77BC700E57C5D /* KiwiLibrary.xcframework in Frameworks */,
+				05BD8AAB28D0CC4800A008C1 /* KiwiShell.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +138,8 @@
 		05C9C36328C77B8C00E57C5D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05BD8AAE28D0CC8300A008C1 /* CoconutShell.xcframework */,
+				05BD8AAA28D0CC4800A008C1 /* KiwiShell.xcframework */,
 				05A5DB9828CC0280005A6087 /* ArisiaLibrary.xcframework */,
 				05C9C38F28C788B000E57C5D /* Cobalt.xcframework */,
 				05C9C37128C77BC700E57C5D /* KiwiLibrary.xcframework */,
@@ -142,6 +156,7 @@
 				05E6E28128C7771C0073FDD8 /* main.swift */,
 				05C9C39328C7898500E57C5D /* config.swift */,
 				05A5DB9C28CC02E5005A6087 /* compile.swift */,
+				05BD8AA328D0C44B00A008C1 /* executor.swift */,
 			);
 			path = asc;
 			sourceTree = "<group>";
@@ -312,6 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05BD8AA428D0C44B00A008C1 /* executor.swift in Sources */,
 				05E6E28228C7771C0073FDD8 /* main.swift in Sources */,
 				05C9C39428C7898500E57C5D /* config.swift in Sources */,
 				05A5DB9D28CC02E5005A6087 /* compile.swift in Sources */,
