@@ -22,7 +22,7 @@ func main(arguments args: Array<String>) {
 					console.error(string: "[Error] " + err.toString())
 				}
 			} else {
-				let str = txt.toStrings().joined(separator: "\n")
+				let str = txt.toStrings().joined(separator: "\n") + "\n"
 				console.print(string: str)
 			}
 		case .failure(let err):

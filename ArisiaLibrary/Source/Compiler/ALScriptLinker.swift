@@ -95,7 +95,7 @@ public class ALScriptLinker
 			let curpath  = pstack.peekAll(doReverceOrder: false).joined(separator: ".")
 			let funcname = ALListnerFunctionIR.functionBodyName(name: lname)
 			let funcdecl = CNTextSection()
-			funcdecl.header = "\(owner.pathString).addObserver(\"\(owner.propertyName)\", func(){"
+			funcdecl.header = "\(owner.pathString).addObserver(\"\(owner.propertyName)\", function(){"
 			funcdecl.footer = "}) ;"
 			let line0 = CNTextLine(string: "let self = \(curpath) ;")
 			funcdecl.add(text: line0)

@@ -18,7 +18,7 @@ import Foundation
 	func value(_ name: JSValue) -> JSValue
 	func setValue(_ name: JSValue, _ val: JSValue) -> JSValue // -> boolean
 
-	func addObjserver(_ property: JSValue, _ cbfunc: JSValue)	// (property: string, cbfunc: ():void)
+	func addObserver(_ property: JSValue, _ cbfunc: JSValue)	// (property: string, cbfunc: ():void)
 }
 
 @objc public class ALFrameCore: NSObject, ALFrameCoreProtorol
@@ -66,7 +66,7 @@ import Foundation
 		return JSValue(bool: result, in: mContext)
 	}
 
-	public func addObjserver(_ property: JSValue, _ cbfunc: JSValue) {
+	public func addObserver(_ property: JSValue, _ cbfunc: JSValue) {
 		if let propstr = property.toString() {
 			mPropertyListners.append(
 				mPropertyValues.addObserver(forKey: propstr, listnerFunction: {
