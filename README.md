@@ -10,7 +10,7 @@ The *Arisia Programming Environment* is application software development environ
 It targets on *rappid GUI application development*.
 To reduce the amount code to implement the application.
 this environment has following features:
-* Programming based on event driven software architecture. The [ArisiaScript](#arisiascript-language) support it at the syntax level.
+* Programming based on event driven software architecture. The [ArisiaScript](#arisiascript-language) support it.
 * [ArisiaLibrary](#arisia-library) has many predefined components to implement GUI application which uses database access.
 
 This environment assumes the platform allows the application to execute the JavaScript code in it. 
@@ -20,7 +20,7 @@ Now, the targets platforms are:
 
 ## ArisiaScript language
 The *ArisiaScript* extends the syntax of [TypeScript](https://www.typescriptlang.org) to support [frame](#frame) declaration.
-For more details, see [AmberScript specification](./Document/arisia-lang.md).
+For more details, see [ArisiaScript language specification](./Document/arisia-lang.md).
 
 ### Frame
 The arisia script defines the *frame*. It is the super class of all objects. 
@@ -57,5 +57,6 @@ The arisia library contains many kind of [components](#component).
 
 # Related links
 * [Steel Wheels Project](https://github.com/steelwheels)
+* [ArisiaTools](https://github.com/steelwheels/Arisia/tree/main/ArisiaTools): Command line tools for development 
 * [Arisia](https://en.wikipedia.org/wiki/Lensman_series): The name of 
 
