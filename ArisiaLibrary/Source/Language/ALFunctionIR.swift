@@ -20,9 +20,9 @@ public struct ALPathExpressionIR {
 open class ALFunctionIR
 {
 	public struct Argument {
-		public var type:	ALTypeIR
+		public var type:	ALType
 		public var name:	String
-		public init(type typ: ALTypeIR, name nm: String){
+		public init(type typ: ALType, name nm: String){
 			type = typ
 			name = nm
 		}

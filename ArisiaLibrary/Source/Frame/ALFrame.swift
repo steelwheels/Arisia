@@ -11,7 +11,7 @@ import KiwiLibrary
 import JavaScriptCore
 import Foundation
 
-@objc public protocol ALFrameCoreProtorol: JSExport
+@objc public protocol ALFrameProtorol: JSExport
 {
 	var propertyNames: JSValue { get }
 
@@ -21,15 +21,17 @@ import Foundation
 	func addObserver(_ property: JSValue, _ cbfunc: JSValue)	// (property: string, cbfunc: ():void)
 }
 
-@objc public class ALFrameCore: NSObject, ALFrameCoreProtorol
+@objc public class ALFrame: NSObject, ALFrameProtorol
 {
 	public typealias ListnerHolder = CNObserverDictionary.ListnerHolder
 
+	private var mFrameName:		String
 	private var mPropertyValues:	CNObserverDictionary
 	private var mPropertyListners:	Array<ListnerHolder>
 	private var mContext:		KEContext
 
-	public init(context ctxt: KEContext){
+	public init(frameName cname: String, context ctxt: KEContext){
+		mFrameName		= cname
 		mPropertyValues		= CNObserverDictionary()
 		mPropertyListners	= []
 		mContext		= ctxt
@@ -40,6 +42,10 @@ import Foundation
 			mPropertyValues.removeObserver(listnerHolder: listner)
 		}
 	}
+
+	public var frameName: String { get {
+		return mFrameName
+	}}
 
 	public var propertyNames: JSValue { get {
 		return JSValue(object: mPropertyValues.keys, in: mContext)

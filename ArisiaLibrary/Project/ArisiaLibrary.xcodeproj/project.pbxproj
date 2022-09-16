@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0507A51528BBAE9F00D694A0 /* ArisiaLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 0507A51328BBAE9F00D694A0 /* ArisiaLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0507A51D28BBAEFD00D694A0 /* ALFrameCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526B69528BBAD8300E232C6 /* ALFrameCore.swift */; };
+		0507A51D28BBAEFD00D694A0 /* ALFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526B69528BBAD8300E232C6 /* ALFrame.swift */; };
 		0507A51F28BBAF2200D694A0 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69928BBADF400E232C6 /* CoconutData.xcframework */; };
 		0507A52028BBAF2200D694A0 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69928BBADF400E232C6 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0507A52128BBAF2200D694A0 /* CoconutDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69A28BBADF400E232C6 /* CoconutDatabase.xcframework */; };
@@ -22,7 +22,7 @@
 		051B4C2628CA2F6F005FD4C4 /* ALScriptTranspiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051B4C2428CA2F6F005FD4C4 /* ALScriptTranspiler.swift */; };
 		051B4C2928CA3025005FD4C4 /* ALLanguageConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051B4C2828CA3025005FD4C4 /* ALLanguageConfig.swift */; };
 		051B4C2A28CA3025005FD4C4 /* ALLanguageConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051B4C2828CA3025005FD4C4 /* ALLanguageConfig.swift */; };
-		0526B69628BBAD8300E232C6 /* ALFrameCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526B69528BBAD8300E232C6 /* ALFrameCore.swift */; };
+		0526B69628BBAD8300E232C6 /* ALFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526B69528BBAD8300E232C6 /* ALFrame.swift */; };
 		0526B69B28BBADF500E232C6 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69928BBADF400E232C6 /* CoconutData.xcframework */; };
 		0526B69C28BBADF500E232C6 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69928BBADF400E232C6 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0526B69D28BBADF500E232C6 /* CoconutDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69A28BBADF400E232C6 /* CoconutDatabase.xcframework */; };
@@ -33,6 +33,8 @@
 		0526B6A528BBAE0A00E232C6 /* KiwiEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B6A128BBAE0A00E232C6 /* KiwiEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		054D7D6D28BE52430074FD01 /* ALIFrameIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D7D6C28BE52430074FD01 /* ALIFrameIR.swift */; };
 		054D7D6E28BE52430074FD01 /* ALIFrameIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D7D6C28BE52430074FD01 /* ALIFrameIR.swift */; };
+		0559BEA928D3721200816F13 /* ALTypeDeclGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0559BEA828D3721200816F13 /* ALTypeDeclGenerator.swift */; };
+		0559BEAA28D3721200816F13 /* ALTypeDeclGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0559BEA828D3721200816F13 /* ALTypeDeclGenerator.swift */; };
 		056BB7C028BD7FAE00EFB725 /* ArisiaLibrary.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 056BB7BE28BD7F3300EFB725 /* ArisiaLibrary.d.ts */; };
 		056BB7C228BD7FC000EFB725 /* ArisiaLibrary.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 056BB7BE28BD7F3300EFB725 /* ArisiaLibrary.d.ts */; };
 		058DC56C28BD091600BF9092 /* ALLibraryCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058DC56B28BD091600BF9092 /* ALLibraryCompiler.swift */; };
@@ -222,12 +224,13 @@
 		0511F02228BDB8D8005756F8 /* UTCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTCompiler.swift; sourceTree = "<group>"; };
 		051B4C2428CA2F6F005FD4C4 /* ALScriptTranspiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALScriptTranspiler.swift; sourceTree = "<group>"; };
 		051B4C2828CA3025005FD4C4 /* ALLanguageConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALLanguageConfig.swift; sourceTree = "<group>"; };
-		0526B69528BBAD8300E232C6 /* ALFrameCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALFrameCore.swift; sourceTree = "<group>"; };
+		0526B69528BBAD8300E232C6 /* ALFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALFrame.swift; sourceTree = "<group>"; };
 		0526B69928BBADF400E232C6 /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
 		0526B69A28BBADF400E232C6 /* CoconutDatabase.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutDatabase.xcframework; path = ../../../../Library/Frameworks/CoconutDatabase.xcframework; sourceTree = "<group>"; };
 		0526B6A028BBAE0A00E232C6 /* KiwiLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiLibrary.xcframework; path = ../../../../Library/Frameworks/KiwiLibrary.xcframework; sourceTree = "<group>"; };
 		0526B6A128BBAE0A00E232C6 /* KiwiEngine.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiEngine.xcframework; path = ../../../../Library/Frameworks/KiwiEngine.xcframework; sourceTree = "<group>"; };
 		054D7D6C28BE52430074FD01 /* ALIFrameIR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALIFrameIR.swift; sourceTree = "<group>"; };
+		0559BEA828D3721200816F13 /* ALTypeDeclGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALTypeDeclGenerator.swift; sourceTree = "<group>"; };
 		056BB7BE28BD7F3300EFB725 /* ArisiaLibrary.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ArisiaLibrary.d.ts; sourceTree = "<group>"; };
 		058DC56928BD06C900BF9092 /* Builtin.d.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = Builtin.d.ts; sourceTree = "<group>"; };
 		058DC56B28BD091600BF9092 /* ALLibraryCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALLibraryCompiler.swift; sourceTree = "<group>"; };
@@ -338,7 +341,7 @@
 		0526B69428BBAD5B00E232C6 /* Frame */ = {
 			isa = PBXGroup;
 			children = (
-				0526B69528BBAD8300E232C6 /* ALFrameCore.swift */,
+				0526B69528BBAD8300E232C6 /* ALFrame.swift */,
 			);
 			path = Frame;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				05BD8A9C28D0A44E00A008C1 /* ALScriptIConstructor.swift */,
 				059D3F9028CDD9C400DE405B /* ALScriptLinker.swift */,
 				051B4C2428CA2F6F005FD4C4 /* ALScriptTranspiler.swift */,
+				0559BEA828D3721200816F13 /* ALTypeDeclGenerator.swift */,
 			);
 			path = Compiler;
 			sourceTree = "<group>";
@@ -678,10 +682,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0507A51D28BBAEFD00D694A0 /* ALFrameCore.swift in Sources */,
+				0507A51D28BBAEFD00D694A0 /* ALFrame.swift in Sources */,
 				058DC56D28BD091600BF9092 /* ALLibraryCompiler.swift in Sources */,
 				059D3F9228CDD9C400DE405B /* ALScriptLinker.swift in Sources */,
 				054D7D6E28BE52430074FD01 /* ALIFrameIR.swift in Sources */,
+				0559BEAA28D3721200816F13 /* ALTypeDeclGenerator.swift in Sources */,
 				059F5D1628BFA44C006BE786 /* ALParser.swift in Sources */,
 				059F5D1A28BFA996006BE786 /* ALFunctionIR.swift in Sources */,
 				051B4C2628CA2F6F005FD4C4 /* ALScriptTranspiler.swift in Sources */,
@@ -714,10 +719,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0526B69628BBAD8300E232C6 /* ALFrameCore.swift in Sources */,
+				0526B69628BBAD8300E232C6 /* ALFrame.swift in Sources */,
 				058DC56C28BD091600BF9092 /* ALLibraryCompiler.swift in Sources */,
 				059D3F9128CDD9C400DE405B /* ALScriptLinker.swift in Sources */,
 				054D7D6D28BE52430074FD01 /* ALIFrameIR.swift in Sources */,
+				0559BEA928D3721200816F13 /* ALTypeDeclGenerator.swift in Sources */,
 				059F5D1528BFA44C006BE786 /* ALParser.swift in Sources */,
 				059F5D1928BFA996006BE786 /* ALFunctionIR.swift in Sources */,
 				051B4C2528CA2F6F005FD4C4 /* ALScriptTranspiler.swift in Sources */,

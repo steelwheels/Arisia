@@ -92,7 +92,7 @@ public class ALScriptLinker
 	private func linkListnerFunction(listnerName lname: String, pathIndex pidx: Int, pathExpressions pargs: Array<ALListnerFunctionIR.PathArgument>, pathStack pstack: CNStack<String>, rootFrame root: ALFrameIR) -> Result<CNTextSection, NSError> {
 		switch pointedFrame(by: pargs[pidx].pathExpression, rootFrame: root) {
 		case .success(let owner):
-			let curpath  = pstack.peekAll(doReverceOrder: false).joined(separator: ".")
+			let curpath  = pstack.peekAll(doReverseOrder: false).joined(separator: ".")
 			let funcname = ALListnerFunctionIR.functionBodyName(name: lname)
 			let funcdecl = CNTextSection()
 			funcdecl.header = "\(owner.pathString).addObserver(\"\(owner.propertyName)\", function(){"
@@ -122,7 +122,7 @@ public class ALScriptLinker
 			return .success(pexp)
 		case "self":
 			/* make absolute expression */
-			var newelms: Array<String> = pstack.peekAll(doReverceOrder: false)
+			var newelms: Array<String> = pstack.peekAll(doReverseOrder: false)
 			for i in 1..<elements.count {
 				newelms.append(elements[i])
 			}

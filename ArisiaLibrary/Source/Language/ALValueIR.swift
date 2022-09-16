@@ -8,14 +8,14 @@
 import CoconutData
 import Foundation
 
-public indirect enum ALTypeIR
+public indirect enum ALType
 {
 	case bool
 	case number
 	case string
 	case frame(String)		// class name
-	case array(ALTypeIR)		// type of element
-	case dictionary(ALTypeIR)	// type of element
+	case array(ALType)		// type of element
+	case dictionary(ALType)	// type of element
 	case enumType(CNEnumType)
 	case initFunction
 	case eventFunction

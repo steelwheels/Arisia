@@ -59,7 +59,7 @@ public class ALScriptConstructor
 				switch pval {
 				case .initFunction(_):
 					/* Add statement to call the initializer */
-					let pathstr  = paths.peekAll(doReverceOrder: false).joined(separator: ".")
+					let pathstr  = paths.peekAll(doReverseOrder: false).joined(separator: ".")
 					let funcname = ALInitFunctionIR.functionBodyName(name: pname)
 					let line     = CNTextLine(string: "\(pathstr).\(pname) = \(pathstr).\(funcname)(\(pathstr)) ;")
 					result.add(text: line)

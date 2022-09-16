@@ -308,7 +308,7 @@ public class ALParser
 		return .success(ALPathExpressionIR(elements: elms))
 	}
 
-	private func parseType(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALTypeIR, NSError> {
+	private func parseType(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALType, NSError> {
 		switch parseElementType(stream: strm, sourceFile: srcfile) {
 		case .success(let type):
 			if strm.requireSymbol(symbol: "[") {
@@ -325,9 +325,9 @@ public class ALParser
 		}
 	}
 
-	private func parseElementType(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALTypeIR, NSError> {
+	private func parseElementType(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALType, NSError> {
 		if let rword = requireReservedWord(stream: strm) {
-			let result: ALTypeIR
+			let result: ALType
 			switch rword {
 			case .Boolean:	result = .bool
 			case .Number:	result = .number
@@ -382,7 +382,7 @@ public class ALParser
 		return false
 	}
 
-	private func parseValue(valueType vtype: ALTypeIR, stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALValueIR, NSError> {
+	private func parseValue(valueType vtype: ALType, stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALValueIR, NSError> {
 		if let rword = requireReservedWord(stream: strm) {
 			switch rword {
 			case .Listner:
@@ -456,7 +456,7 @@ public class ALParser
 		}
 	}
 
-	private func parseArrayValue(elementType etype: ALTypeIR, stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<Array<ALValueIR>, NSError> {
+	private func parseArrayValue(elementType etype: ALType, stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<Array<ALValueIR>, NSError> {
 		var result: Array<ALValueIR> = []
 		guard strm.requireSymbol(symbol: "[") else {
 			return .failure(parseError(message: "'[' is required for array value", stream: strm))
@@ -483,7 +483,7 @@ public class ALParser
 		return .success(result)
 	}
 
-	private func parseDictionaryValue(elementType etype: ALTypeIR, stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<Dictionary<String, ALValueIR>, NSError> {
+	private func parseDictionaryValue(elementType etype: ALType, stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<Dictionary<String, ALValueIR>, NSError> {
 		var result: Dictionary<String, ALValueIR> = [:]
 		guard strm.requireSymbol(symbol: "{") else {
 			return .failure(parseError(message: "'{' is required for dictionary value", stream: strm))
