@@ -5,6 +5,7 @@
  *   Copyright (C) 2022 Steel Wheels Project
  */
 
+import CoconutData
 import Foundation
 
 public struct ALPathExpressionIR {
@@ -20,9 +21,9 @@ public struct ALPathExpressionIR {
 open class ALFunctionIR
 {
 	public struct Argument {
-		public var type:	ALType
+		public var type:	CNValueType
 		public var name:	String
-		public init(type typ: ALType, name nm: String){
+		public init(type typ: CNValueType, name nm: String){
 			type = typ
 			name = nm
 		}
@@ -96,12 +97,12 @@ public class ALEventFunctionIR: ALFunctionIR
 public class ALListnerFunctionIR: ALFunctionIR
 {
 	private var mArguments:		Array<PathArgument>
-	private var mReturnType:	ALType
+	private var mReturnType:	CNValueType
 
 	public var pathArguments: Array<PathArgument>	{ get { return mArguments }}
-	public var returnType: ALType			{ get { return mReturnType }}
+	public var returnType:    CNValueType		{ get { return mReturnType }}
 
-	public init(arguments args: Array<PathArgument>, returnType rtype: ALType, script scr: String, source src: URL?) {
+	public init(arguments args: Array<PathArgument>, returnType rtype: CNValueType, script scr: String, source src: URL?) {
 		mArguments  = args
 		mReturnType = rtype
 		super.init(script: scr, source: src)
@@ -120,13 +121,13 @@ public class ALListnerFunctionIR: ALFunctionIR
 
 public class ALProceduralFunctionIR: ALFunctionIR
 {
-	private var mArguments: Array<Argument>
-	private var mReturnType:	ALType
+	private var mArguments:		Array<Argument>
+	private var mReturnType:	CNValueType
 
-	public var arguments: Array<Argument>	{ get { return mArguments }}
-	public var returnType: ALType		{ get { return mReturnType }}
+	public var arguments:  Array<Argument>	{ get { return mArguments }}
+	public var returnType: CNValueType	{ get { return mReturnType }}
 
-	public init(arguments args: Array<Argument>, returnType rtype: ALType, script scr: String, source src: URL?) {
+	public init(arguments args: Array<Argument>, returnType rtype: CNValueType, script scr: String, source src: URL?) {
 		mArguments	= args
 		mReturnType	= rtype
 		super.init(script: scr, source: src)

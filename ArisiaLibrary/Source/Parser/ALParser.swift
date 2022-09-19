@@ -198,7 +198,7 @@ public class ALParser
 		}
 	}
 
-	private func parseListnerFunc(stream strm: CNTokenStream, returnType rtype: ALType, sourceFile srcfile: URL?) -> Result<ALListnerFunctionIR, NSError> {
+	private func parseListnerFunc(stream strm: CNTokenStream, returnType rtype: CNValueType, sourceFile srcfile: URL?) -> Result<ALListnerFunctionIR, NSError> {
 		guard strm.requireSymbol(symbol: "(") else {
 			return .failure(parseError(message: "\"(\" is required to define listner function parameters", stream: strm))
 		}
@@ -226,7 +226,7 @@ public class ALParser
 		}
 	}
 
-	private func parseProceduralFunc(stream strm: CNTokenStream, returnType rtype: ALType, sourceFile srcfile: URL?) -> Result<ALProceduralFunctionIR, NSError> {
+	private func parseProceduralFunc(stream strm: CNTokenStream, returnType rtype: CNValueType, sourceFile srcfile: URL?) -> Result<ALProceduralFunctionIR, NSError> {
 		guard strm.requireSymbol(symbol: "(") else {
 			return .failure(parseError(message: "\"(\" is required to define procedural function parameters", stream: strm))
 		}
@@ -308,12 +308,12 @@ public class ALParser
 		return .success(ALPathExpressionIR(elements: elms))
 	}
 
-	private func parseType(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALType, NSError> {
+	private func parseType(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<CNValueType, NSError> {
 		switch parseElementType(stream: strm, sourceFile: srcfile) {
 		case .success(let type):
 			if strm.requireSymbol(symbol: "[") {
 				if strm.requireSymbol(symbol: "]") {
-					return .success(.array(type))
+					return .success(.arrayType(type))
 				} else {
 					return .failure(parseError(message: "The symbol \"]\" is not exit for the array type declaration", stream: strm))
 				}
@@ -325,13 +325,13 @@ public class ALParser
 		}
 	}
 
-	private func parseElementType(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALType, NSError> {
+	private func parseElementType(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<CNValueType, NSError> {
 		if let rword = requireReservedWord(stream: strm) {
-			let result: ALType
+			let result: CNValueType
 			switch rword {
-			case .Boolean:	result = .bool
-			case .Number:	result = .number
-			case .String:	result = .string
+			case .Boolean:	result = .boolType
+			case .Number:	result = .numberType
+			case .String:	result = .stringType
 			case .Class, .Event, .Func, .Init, .Listner, .Root:
 				let str = ALReservedWord.toString(reservedWord: rword)
 				return .failure(parseError(message: "Unexpected token \(str) for type declaration", stream: strm))
@@ -346,7 +346,7 @@ public class ALParser
 			/* Decode as frame */
 			let allocator = ALFrameAllocator.shared
 			if allocator.isFameClassName(name: ident) {
-				return .success(.frame(ident))
+				return .success(.instanceType(ident))
 			}
 		} else if strm.requireSymbol(symbol: "[") {
 			/* Decode as dictionary
@@ -355,7 +355,7 @@ public class ALParser
 			if hasDictionaryType(stream: strm, sourceFile: srcfile) {
 				switch parseType(stream: strm, sourceFile: srcfile){
 				case .success(let elmtype):
-					return .success(.dictionary(elmtype))
+					return .success(.dictionaryType(elmtype))
 				case .failure(let err):
 					return .failure(err)
 				}
@@ -382,7 +382,7 @@ public class ALParser
 		return false
 	}
 
-	private func parseValue(valueType vtype: ALType, stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALValueIR, NSError> {
+	private func parseValue(valueType vtype: CNValueType, stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALValueIR, NSError> {
 		if let rword = requireReservedWord(stream: strm) {
 			switch rword {
 			case .Listner:
@@ -405,39 +405,43 @@ public class ALParser
 			}
 		}
 		switch vtype {
-		case .bool:
+		case .anyType:
+			return .failure(parseError(message: "You can not declare any type", stream: strm))
+		case .boolType:
 			if let val = strm.requireBool() {
 				return .success(.bool(val))
 			} else {
 				return .failure(parseError(message: "Boolean value is required but not given", stream: strm))
 			}
-		case .number:
+		case .numberType:
 			if let val = strm.requireNumber() {
 				return .success(.number(val))
 			} else {
 				return .failure(parseError(message: "Number value is required but not given", stream: strm))
 			}
-		case .string:
+		case .stringType:
 			if let val = strm.requireString() {
 				return .success(.string(val))
 			} else {
 				return .failure(parseError(message: "String value is required but not given", stream: strm))
 			}
-		case .frame(let clsname):
+		case .instanceType(let clsname):
 			switch parseFrame(className: clsname, stream: strm, sourceFile: srcfile) {
 			case .success(let frame):
 				return .success(.frame(frame))
 			case .failure(let err):
 				return .failure(err)
 			}
-		case .array(let elmtype):
+		case .arrayType(let elmtype):
 			switch parseArrayValue(elementType: elmtype, stream: strm, sourceFile: srcfile) {
 			case .success(let elms):
 				return .success(.array(elms))
 			case .failure(let err):
 				return .failure(err)
 			}
-		case .dictionary(let elmtype):
+		case .setType(_):
+			return .failure(parseError(message: "You can not declare set type", stream: strm))
+		case .dictionaryType(let elmtype):
 			switch parseDictionaryValue(elementType: elmtype, stream: strm, sourceFile: srcfile) {
 			case .success(let elms):
 				return .success(.dictionary(elms))
@@ -451,10 +455,15 @@ public class ALParser
 			case .failure(let err):
 				return .failure(err)
 			}
+
+		case .objectType:
+			return .failure(parseError(message: "You can not declare object type", stream: strm))
+		@unknown default:
+			return .failure(parseError(message: "Unsupported type", stream: strm))
 		}
 	}
 
-	private func parseArrayValue(elementType etype: ALType, stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<Array<ALValueIR>, NSError> {
+	private func parseArrayValue(elementType etype: CNValueType, stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<Array<ALValueIR>, NSError> {
 		var result: Array<ALValueIR> = []
 		guard strm.requireSymbol(symbol: "[") else {
 			return .failure(parseError(message: "'[' is required for array value", stream: strm))
@@ -481,7 +490,7 @@ public class ALParser
 		return .success(result)
 	}
 
-	private func parseDictionaryValue(elementType etype: ALType, stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<Dictionary<String, ALValueIR>, NSError> {
+	private func parseDictionaryValue(elementType etype: CNValueType, stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<Dictionary<String, ALValueIR>, NSError> {
 		var result: Dictionary<String, ALValueIR> = [:]
 		guard strm.requireSymbol(symbol: "{") else {
 			return .failure(parseError(message: "'{' is required for dictionary value", stream: strm))

@@ -8,17 +8,6 @@
 import CoconutData
 import Foundation
 
-public indirect enum ALType
-{
-	case bool
-	case number
-	case string
-	case frame(String)		// class name
-	case array(ALType)		// type of element
-	case dictionary(ALType)		// type of element
-	case enumType(CNEnumType)
-}
-
 public enum ALValueIR
 {
 	case bool(Bool)
