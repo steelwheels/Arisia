@@ -198,7 +198,7 @@ public class ALParser
 		}
 	}
 
-	private func parseListnerFunc(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALListnerFunctionIR, NSError> {
+	private func parseListnerFunc(stream strm: CNTokenStream, returnType rtype: ALType, sourceFile srcfile: URL?) -> Result<ALListnerFunctionIR, NSError> {
 		guard strm.requireSymbol(symbol: "(") else {
 			return .failure(parseError(message: "\"(\" is required to define listner function parameters", stream: strm))
 		}
@@ -220,13 +220,13 @@ public class ALParser
 			}
 		}
 		if let text = strm.getText() {
-			return .success(ALListnerFunctionIR(arguments: args, script: text, source: srcfile))
+			return .success(ALListnerFunctionIR(arguments: args, returnType: rtype, script: text, source: srcfile))
 		} else {
 			return .failure(parseError(message: "The body of prcedural function is required", stream: strm))
 		}
 	}
 
-	private func parseProceduralFunc(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALProceduralFunctionIR, NSError> {
+	private func parseProceduralFunc(stream strm: CNTokenStream, returnType rtype: ALType, sourceFile srcfile: URL?) -> Result<ALProceduralFunctionIR, NSError> {
 		guard strm.requireSymbol(symbol: "(") else {
 			return .failure(parseError(message: "\"(\" is required to define procedural function parameters", stream: strm))
 		}
@@ -248,7 +248,7 @@ public class ALParser
 			}
 		}
 		if let text = strm.getText() {
-			return .success(ALProceduralFunctionIR(arguments: args, script: text, source: srcfile))
+			return .success(ALProceduralFunctionIR(arguments: args, returnType: rtype, script: text, source: srcfile))
 		} else {
 			return .failure(parseError(message: "The body of prcedural function is required", stream: strm))
 		}
@@ -386,14 +386,14 @@ public class ALParser
 		if let rword = requireReservedWord(stream: strm) {
 			switch rword {
 			case .Listner:
-				switch parseListnerFunc(stream: strm, sourceFile: srcfile) {
+				switch parseListnerFunc(stream: strm, returnType: vtype, sourceFile: srcfile) {
 				case .success(let val):
 					return .success(.listnerFunction(val))
 				case .failure(let err):
 					return .failure(err)
 				}
 			case .Func:
-				switch parseProceduralFunc(stream: strm, sourceFile: srcfile) {
+				switch parseProceduralFunc(stream: strm, returnType: vtype, sourceFile: srcfile) {
 				case .success(let val):
 					return .success(.proceduralFunction(val))
 				case .failure(let err):
@@ -451,8 +451,6 @@ public class ALParser
 			case .failure(let err):
 				return .failure(err)
 			}
-		case .initFunction, .eventFunction, .listnerFunction, .proceduralFunction:
-			return .failure(parseError(message: "Internal error in parseValue method", stream: strm))
 		}
 	}
 

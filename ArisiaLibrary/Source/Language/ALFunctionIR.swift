@@ -95,12 +95,15 @@ public class ALEventFunctionIR: ALFunctionIR
 
 public class ALListnerFunctionIR: ALFunctionIR
 {
-	private var mArguments: Array<PathArgument>
+	private var mArguments:		Array<PathArgument>
+	private var mReturnType:	ALType
 
-	public var pathArguments: Array<PathArgument> { get { return mArguments }}
+	public var pathArguments: Array<PathArgument>	{ get { return mArguments }}
+	public var returnType: ALType			{ get { return mReturnType }}
 
-	public init(arguments args: Array<PathArgument>, script scr: String, source src: URL?) {
-		mArguments = args
+	public init(arguments args: Array<PathArgument>, returnType rtype: ALType, script scr: String, source src: URL?) {
+		mArguments  = args
+		mReturnType = rtype
 		super.init(script: scr, source: src)
 	}
 
@@ -118,11 +121,14 @@ public class ALListnerFunctionIR: ALFunctionIR
 public class ALProceduralFunctionIR: ALFunctionIR
 {
 	private var mArguments: Array<Argument>
+	private var mReturnType:	ALType
 
-	public var arguments: Array<Argument> { get { return mArguments }}
+	public var arguments: Array<Argument>	{ get { return mArguments }}
+	public var returnType: ALType		{ get { return mReturnType }}
 
-	public init(arguments args: Array<Argument>, script scr: String, source src: URL?) {
-		mArguments = args
+	public init(arguments args: Array<Argument>, returnType rtype: ALType, script scr: String, source src: URL?) {
+		mArguments	= args
+		mReturnType	= rtype
 		super.init(script: scr, source: src)
 	}
 

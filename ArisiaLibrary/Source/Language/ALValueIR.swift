@@ -15,12 +15,8 @@ public indirect enum ALType
 	case string
 	case frame(String)		// class name
 	case array(ALType)		// type of element
-	case dictionary(ALType)	// type of element
+	case dictionary(ALType)		// type of element
 	case enumType(CNEnumType)
-	case initFunction
-	case eventFunction
-	case listnerFunction
-	case proceduralFunction
 }
 
 public enum ALValueIR
