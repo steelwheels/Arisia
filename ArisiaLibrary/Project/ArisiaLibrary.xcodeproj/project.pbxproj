@@ -1081,7 +1081,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.ArisiaLibrary;
 				PRODUCT_NAME = ArisiaLibrary;
 				SKIP_INSTALL = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1107,6 +1107,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.ArisiaLibrary;
 				PRODUCT_NAME = ArisiaLibrary;
 				SKIP_INSTALL = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

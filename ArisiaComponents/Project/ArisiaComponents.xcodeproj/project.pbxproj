@@ -1,0 +1,734 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		051405B128D9E61C00C3E2BD /* CoconutDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AA28D9E61B00C3E2BD /* CoconutDatabase.xcframework */; };
+		051405B228D9E61C00C3E2BD /* CoconutDatabase.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AA28D9E61B00C3E2BD /* CoconutDatabase.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		051405B328D9E61C00C3E2BD /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AB28D9E61B00C3E2BD /* CoconutData.xcframework */; };
+		051405B428D9E61C00C3E2BD /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AB28D9E61B00C3E2BD /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		051405B528D9E61C00C3E2BD /* KiwiLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AC28D9E61B00C3E2BD /* KiwiLibrary.xcframework */; };
+		051405B628D9E61C00C3E2BD /* KiwiLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AC28D9E61B00C3E2BD /* KiwiLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		051405B728D9E61C00C3E2BD /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AD28D9E61B00C3E2BD /* KiwiControls.xcframework */; };
+		051405B828D9E61C00C3E2BD /* KiwiControls.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AD28D9E61B00C3E2BD /* KiwiControls.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		051405B928D9E61C00C3E2BD /* CoconutShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AE28D9E61B00C3E2BD /* CoconutShell.xcframework */; };
+		051405BA28D9E61C00C3E2BD /* CoconutShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AE28D9E61B00C3E2BD /* CoconutShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		051405BB28D9E61C00C3E2BD /* KiwiShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AF28D9E61C00C3E2BD /* KiwiShell.xcframework */; };
+		051405BC28D9E61C00C3E2BD /* KiwiShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AF28D9E61C00C3E2BD /* KiwiShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		051405BD28D9E61C00C3E2BD /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405B028D9E61C00C3E2BD /* KiwiEngine.xcframework */; };
+		051405BE28D9E61C00C3E2BD /* KiwiEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405B028D9E61C00C3E2BD /* KiwiEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		051405C128D9E63200C3E2BD /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AB28D9E61B00C3E2BD /* CoconutData.xcframework */; };
+		051405C228D9E63200C3E2BD /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AB28D9E61B00C3E2BD /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		051405C328D9E63200C3E2BD /* CoconutDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AA28D9E61B00C3E2BD /* CoconutDatabase.xcframework */; };
+		051405C428D9E63200C3E2BD /* CoconutDatabase.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AA28D9E61B00C3E2BD /* CoconutDatabase.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		051405C528D9E63200C3E2BD /* CoconutShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AE28D9E61B00C3E2BD /* CoconutShell.xcframework */; };
+		051405C628D9E63200C3E2BD /* CoconutShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AE28D9E61B00C3E2BD /* CoconutShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		051405C728D9E63200C3E2BD /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AD28D9E61B00C3E2BD /* KiwiControls.xcframework */; };
+		051405C828D9E63200C3E2BD /* KiwiControls.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AD28D9E61B00C3E2BD /* KiwiControls.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		051405C928D9E63200C3E2BD /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405B028D9E61C00C3E2BD /* KiwiEngine.xcframework */; };
+		051405CA28D9E63200C3E2BD /* KiwiEngine.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405B028D9E61C00C3E2BD /* KiwiEngine.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		051405CB28D9E63200C3E2BD /* KiwiLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AC28D9E61B00C3E2BD /* KiwiLibrary.xcframework */; };
+		051405CC28D9E63200C3E2BD /* KiwiLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AC28D9E61B00C3E2BD /* KiwiLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		051405CD28D9E63200C3E2BD /* KiwiShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AF28D9E61C00C3E2BD /* KiwiShell.xcframework */; };
+		051405CE28D9E63200C3E2BD /* KiwiShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AF28D9E61C00C3E2BD /* KiwiShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0563631928D9E73C00F09A3E /* KMComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563631828D9E73C00F09A3E /* KMComponentViewController.swift */; };
+		0563631A28D9E73C00F09A3E /* KMComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563631828D9E73C00F09A3E /* KMComponentViewController.swift */; };
+		0563631C28D9E9B400F09A3E /* ArisiaLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0563631B28D9E9B400F09A3E /* ArisiaLibrary.xcframework */; };
+		0563631D28D9E9B400F09A3E /* ArisiaLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0563631B28D9E9B400F09A3E /* ArisiaLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0563631E28D9E9C800F09A3E /* ArisiaLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0563631B28D9E9B400F09A3E /* ArisiaLibrary.xcframework */; };
+		0563631F28D9E9C800F09A3E /* ArisiaLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0563631B28D9E9B400F09A3E /* ArisiaLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0563632228D9EB1C00F09A3E /* KMLibraryCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632128D9EB1C00F09A3E /* KMLibraryCompiler.swift */; };
+		0563632328D9EB1C00F09A3E /* KMLibraryCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632128D9EB1C00F09A3E /* KMLibraryCompiler.swift */; };
+		0563632528D9EB9000F09A3E /* KMMultiComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632428D9EB9000F09A3E /* KMMultiComponentViewController.swift */; };
+		0563632628D9EB9000F09A3E /* KMMultiComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632428D9EB9000F09A3E /* KMMultiComponentViewController.swift */; };
+		0563632828D9EBF300F09A3E /* KMAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632728D9EBF300F09A3E /* KMAlert.swift */; };
+		0563632928D9EBF300F09A3E /* KMAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632728D9EBF300F09A3E /* KMAlert.swift */; };
+		0563632C28D9EC7D00F09A3E /* KMThreadLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632B28D9EC7D00F09A3E /* KMThreadLauncher.swift */; };
+		0563632D28D9EC7D00F09A3E /* KMThreadLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632B28D9EC7D00F09A3E /* KMThreadLauncher.swift */; };
+		0563632F28D9ECAE00F09A3E /* KMScriptThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632E28D9ECAE00F09A3E /* KMScriptThread.swift */; };
+		0563633028D9ECAE00F09A3E /* KMScriptThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632E28D9ECAE00F09A3E /* KMScriptThread.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0542635728D9DCE6004F05E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0524E41928D9D49400C5DA2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0542633928D9D5C4004F05E2;
+			remoteInfo = ArisiaComponents_iOS;
+		};
+		0542635928D9DCEA004F05E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0524E41928D9D49400C5DA2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0524E42128D9D49400C5DA2D;
+			remoteInfo = ArisiaComponents_macOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		051405BF28D9E61C00C3E2BD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				051405B628D9E61C00C3E2BD /* KiwiLibrary.xcframework in Embed Frameworks */,
+				051405BE28D9E61C00C3E2BD /* KiwiEngine.xcframework in Embed Frameworks */,
+				051405BA28D9E61C00C3E2BD /* CoconutShell.xcframework in Embed Frameworks */,
+				051405B228D9E61C00C3E2BD /* CoconutDatabase.xcframework in Embed Frameworks */,
+				051405B428D9E61C00C3E2BD /* CoconutData.xcframework in Embed Frameworks */,
+				051405BC28D9E61C00C3E2BD /* KiwiShell.xcframework in Embed Frameworks */,
+				0563631D28D9E9B400F09A3E /* ArisiaLibrary.xcframework in Embed Frameworks */,
+				051405B828D9E61C00C3E2BD /* KiwiControls.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		051405CF28D9E63200C3E2BD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				051405CA28D9E63200C3E2BD /* KiwiEngine.xcframework in Embed Frameworks */,
+				051405C628D9E63200C3E2BD /* CoconutShell.xcframework in Embed Frameworks */,
+				051405C428D9E63200C3E2BD /* CoconutDatabase.xcframework in Embed Frameworks */,
+				051405CC28D9E63200C3E2BD /* KiwiLibrary.xcframework in Embed Frameworks */,
+				051405C228D9E63200C3E2BD /* CoconutData.xcframework in Embed Frameworks */,
+				051405C828D9E63200C3E2BD /* KiwiControls.xcframework in Embed Frameworks */,
+				0563631F28D9E9C800F09A3E /* ArisiaLibrary.xcframework in Embed Frameworks */,
+				051405CE28D9E63200C3E2BD /* KiwiShell.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		051405AA28D9E61B00C3E2BD /* CoconutDatabase.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutDatabase.xcframework; path = ../../../../Library/Frameworks/CoconutDatabase.xcframework; sourceTree = "<group>"; };
+		051405AB28D9E61B00C3E2BD /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
+		051405AC28D9E61B00C3E2BD /* KiwiLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiLibrary.xcframework; path = ../../../../Library/Frameworks/KiwiLibrary.xcframework; sourceTree = "<group>"; };
+		051405AD28D9E61B00C3E2BD /* KiwiControls.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiControls.xcframework; path = ../../../../Library/Frameworks/KiwiControls.xcframework; sourceTree = "<group>"; };
+		051405AE28D9E61B00C3E2BD /* CoconutShell.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutShell.xcframework; path = ../../../../Library/Frameworks/CoconutShell.xcframework; sourceTree = "<group>"; };
+		051405AF28D9E61C00C3E2BD /* KiwiShell.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiShell.xcframework; path = ../../../../Library/Frameworks/KiwiShell.xcframework; sourceTree = "<group>"; };
+		051405B028D9E61C00C3E2BD /* KiwiEngine.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiEngine.xcframework; path = ../../../../Library/Frameworks/KiwiEngine.xcframework; sourceTree = "<group>"; };
+		0524E42228D9D49400C5DA2D /* ArisiaComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArisiaComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0524E42628D9D49400C5DA2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0542633A28D9D5C4004F05E2 /* ArisiaComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArisiaComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0542633D28D9D5C4004F05E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0563631828D9E73C00F09A3E /* KMComponentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMComponentViewController.swift; sourceTree = "<group>"; };
+		0563631B28D9E9B400F09A3E /* ArisiaLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ArisiaLibrary.xcframework; path = ../../../../Library/Frameworks/ArisiaLibrary.xcframework; sourceTree = "<group>"; };
+		0563632128D9EB1C00F09A3E /* KMLibraryCompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMLibraryCompiler.swift; sourceTree = "<group>"; };
+		0563632428D9EB9000F09A3E /* KMMultiComponentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMMultiComponentViewController.swift; sourceTree = "<group>"; };
+		0563632728D9EBF300F09A3E /* KMAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMAlert.swift; sourceTree = "<group>"; };
+		0563632B28D9EC7D00F09A3E /* KMThreadLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMThreadLauncher.swift; sourceTree = "<group>"; };
+		0563632E28D9ECAE00F09A3E /* KMScriptThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMScriptThread.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0524E41F28D9D49400C5DA2D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				051405B528D9E61C00C3E2BD /* KiwiLibrary.xcframework in Frameworks */,
+				051405BD28D9E61C00C3E2BD /* KiwiEngine.xcframework in Frameworks */,
+				051405B928D9E61C00C3E2BD /* CoconutShell.xcframework in Frameworks */,
+				051405B128D9E61C00C3E2BD /* CoconutDatabase.xcframework in Frameworks */,
+				051405B328D9E61C00C3E2BD /* CoconutData.xcframework in Frameworks */,
+				051405BB28D9E61C00C3E2BD /* KiwiShell.xcframework in Frameworks */,
+				0563631C28D9E9B400F09A3E /* ArisiaLibrary.xcframework in Frameworks */,
+				051405B728D9E61C00C3E2BD /* KiwiControls.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0542633728D9D5C4004F05E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				051405C928D9E63200C3E2BD /* KiwiEngine.xcframework in Frameworks */,
+				051405C528D9E63200C3E2BD /* CoconutShell.xcframework in Frameworks */,
+				051405C328D9E63200C3E2BD /* CoconutDatabase.xcframework in Frameworks */,
+				051405CB28D9E63200C3E2BD /* KiwiLibrary.xcframework in Frameworks */,
+				051405C128D9E63200C3E2BD /* CoconutData.xcframework in Frameworks */,
+				051405C728D9E63200C3E2BD /* KiwiControls.xcframework in Frameworks */,
+				0563631E28D9E9C800F09A3E /* ArisiaLibrary.xcframework in Frameworks */,
+				051405CD28D9E63200C3E2BD /* KiwiShell.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		051405A928D9E61B00C3E2BD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0563631B28D9E9B400F09A3E /* ArisiaLibrary.xcframework */,
+				051405AB28D9E61B00C3E2BD /* CoconutData.xcframework */,
+				051405AA28D9E61B00C3E2BD /* CoconutDatabase.xcframework */,
+				051405AE28D9E61B00C3E2BD /* CoconutShell.xcframework */,
+				051405AD28D9E61B00C3E2BD /* KiwiControls.xcframework */,
+				051405B028D9E61C00C3E2BD /* KiwiEngine.xcframework */,
+				051405AC28D9E61B00C3E2BD /* KiwiLibrary.xcframework */,
+				051405AF28D9E61C00C3E2BD /* KiwiShell.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0524E41828D9D49400C5DA2D = {
+			isa = PBXGroup;
+			children = (
+				05F763B228D9D4E600CAF37B /* Source */,
+				0524E42428D9D49400C5DA2D /* ArisiaComponents_macOS */,
+				0542633B28D9D5C4004F05E2 /* ArisiaComponents_iOS */,
+				0524E42328D9D49400C5DA2D /* Products */,
+				051405A928D9E61B00C3E2BD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0524E42328D9D49400C5DA2D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0524E42228D9D49400C5DA2D /* ArisiaComponents.framework */,
+				0542633A28D9D5C4004F05E2 /* ArisiaComponents.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0524E42428D9D49400C5DA2D /* ArisiaComponents_macOS */ = {
+			isa = PBXGroup;
+			children = (
+				0524E42628D9D49400C5DA2D /* Info.plist */,
+			);
+			path = ArisiaComponents_macOS;
+			sourceTree = "<group>";
+		};
+		0542633B28D9D5C4004F05E2 /* ArisiaComponents_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				0542633D28D9D5C4004F05E2 /* Info.plist */,
+			);
+			path = ArisiaComponents_iOS;
+			sourceTree = "<group>";
+		};
+		0563631728D9E72500F09A3E /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				0563632728D9EBF300F09A3E /* KMAlert.swift */,
+				0563631828D9E73C00F09A3E /* KMComponentViewController.swift */,
+				0563632428D9EB9000F09A3E /* KMMultiComponentViewController.swift */,
+			);
+			path = Window;
+			sourceTree = "<group>";
+		};
+		0563632028D9EAE200F09A3E /* Compiler */ = {
+			isa = PBXGroup;
+			children = (
+				0563632128D9EB1C00F09A3E /* KMLibraryCompiler.swift */,
+			);
+			path = Compiler;
+			sourceTree = "<group>";
+		};
+		0563632A28D9EC6900F09A3E /* Process */ = {
+			isa = PBXGroup;
+			children = (
+				0563632E28D9ECAE00F09A3E /* KMScriptThread.swift */,
+				0563632B28D9EC7D00F09A3E /* KMThreadLauncher.swift */,
+			);
+			path = Process;
+			sourceTree = "<group>";
+		};
+		05F763B228D9D4E600CAF37B /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				0563632028D9EAE200F09A3E /* Compiler */,
+				0563632A28D9EC6900F09A3E /* Process */,
+				0563631728D9E72500F09A3E /* Window */,
+			);
+			name = Source;
+			path = ../Source;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		0524E41D28D9D49400C5DA2D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0542633528D9D5C4004F05E2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXLegacyTarget section */
+		0542635128D9DCDA004F05E2 /* Install */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/install_xc.mk";
+			buildConfigurationList = 0542635228D9DCDA004F05E2 /* Build configuration list for PBXLegacyTarget "Install" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				0542635A28D9DCEA004F05E2 /* PBXTargetDependency */,
+				0542635828D9DCE6004F05E2 /* PBXTargetDependency */,
+			);
+			name = Install;
+			passBuildSettingsInEnvironment = 1;
+			productName = Install;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		0524E42128D9D49400C5DA2D /* ArisiaComponents_macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0524E42A28D9D49400C5DA2D /* Build configuration list for PBXNativeTarget "ArisiaComponents_macOS" */;
+			buildPhases = (
+				0524E41D28D9D49400C5DA2D /* Headers */,
+				0524E41E28D9D49400C5DA2D /* Sources */,
+				0524E41F28D9D49400C5DA2D /* Frameworks */,
+				0524E42028D9D49400C5DA2D /* Resources */,
+				051405BF28D9E61C00C3E2BD /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ArisiaComponents_macOS;
+			productName = ArisiaComponents;
+			productReference = 0524E42228D9D49400C5DA2D /* ArisiaComponents.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		0542633928D9D5C4004F05E2 /* ArisiaComponents_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0542634128D9D5C4004F05E2 /* Build configuration list for PBXNativeTarget "ArisiaComponents_iOS" */;
+			buildPhases = (
+				0542633528D9D5C4004F05E2 /* Headers */,
+				0542633628D9D5C4004F05E2 /* Sources */,
+				0542633728D9D5C4004F05E2 /* Frameworks */,
+				0542633828D9D5C4004F05E2 /* Resources */,
+				051405CF28D9E63200C3E2BD /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ArisiaComponents_iOS;
+			productName = ArisiaComponents_iOS;
+			productReference = 0542633A28D9D5C4004F05E2 /* ArisiaComponents.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0524E41928D9D49400C5DA2D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					0524E42128D9D49400C5DA2D = {
+						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
+					};
+					0542633928D9D5C4004F05E2 = {
+						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
+					};
+					0542635128D9DCDA004F05E2 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = 0524E41C28D9D49400C5DA2D /* Build configuration list for PBXProject "ArisiaComponents" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0524E41828D9D49400C5DA2D;
+			productRefGroup = 0524E42328D9D49400C5DA2D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0524E42128D9D49400C5DA2D /* ArisiaComponents_macOS */,
+				0542633928D9D5C4004F05E2 /* ArisiaComponents_iOS */,
+				0542635128D9DCDA004F05E2 /* Install */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0524E42028D9D49400C5DA2D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0542633828D9D5C4004F05E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0524E41E28D9D49400C5DA2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0563632C28D9EC7D00F09A3E /* KMThreadLauncher.swift in Sources */,
+				0563632828D9EBF300F09A3E /* KMAlert.swift in Sources */,
+				0563632228D9EB1C00F09A3E /* KMLibraryCompiler.swift in Sources */,
+				0563631928D9E73C00F09A3E /* KMComponentViewController.swift in Sources */,
+				0563632F28D9ECAE00F09A3E /* KMScriptThread.swift in Sources */,
+				0563632528D9EB9000F09A3E /* KMMultiComponentViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0542633628D9D5C4004F05E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0563632D28D9EC7D00F09A3E /* KMThreadLauncher.swift in Sources */,
+				0563632928D9EBF300F09A3E /* KMAlert.swift in Sources */,
+				0563632328D9EB1C00F09A3E /* KMLibraryCompiler.swift in Sources */,
+				0563631A28D9E73C00F09A3E /* KMComponentViewController.swift in Sources */,
+				0563633028D9ECAE00F09A3E /* KMScriptThread.swift in Sources */,
+				0563632628D9EB9000F09A3E /* KMMultiComponentViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0542635828D9DCE6004F05E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0542633928D9D5C4004F05E2 /* ArisiaComponents_iOS */;
+			targetProxy = 0542635728D9DCE6004F05E2 /* PBXContainerItemProxy */;
+		};
+		0542635A28D9DCEA004F05E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0524E42128D9D49400C5DA2D /* ArisiaComponents_macOS */;
+			targetProxy = 0542635928D9DCEA004F05E2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0524E42828D9D49400C5DA2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		0524E42928D9D49400C5DA2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		0524E42B28D9D49400C5DA2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ArisiaComponents_macOS/Info.plist;
+				INSTALL_PATH = "$(HOME)/local/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.ArisiaComponents;
+				PRODUCT_NAME = ArisiaComponents;
+				SKIP_INSTALL = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				"SWIFT_OPTIMIZATION_LEVEL[arch=*]" = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		0524E42C28D9D49400C5DA2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ArisiaComponents_macOS/Info.plist;
+				INSTALL_PATH = "$(HOME)/local/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.ArisiaComponents;
+				PRODUCT_NAME = ArisiaComponents;
+				SKIP_INSTALL = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		0542633F28D9D5C4004F05E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ArisiaComponents_iOS/Info.plist;
+				INSTALL_PATH = "$(HOME)/local/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.ArisiaComponents-iOS";
+				PRODUCT_NAME = ArisiaComponents;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0542634028D9D5C4004F05E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ArisiaComponents_iOS/Info.plist;
+				INSTALL_PATH = "$(HOME)/local/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.ArisiaComponents-iOS";
+				PRODUCT_NAME = ArisiaComponents;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0542635328D9DCDA004F05E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0542635428D9DCDA004F05E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0524E41C28D9D49400C5DA2D /* Build configuration list for PBXProject "ArisiaComponents" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0524E42828D9D49400C5DA2D /* Debug */,
+				0524E42928D9D49400C5DA2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0524E42A28D9D49400C5DA2D /* Build configuration list for PBXNativeTarget "ArisiaComponents_macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0524E42B28D9D49400C5DA2D /* Debug */,
+				0524E42C28D9D49400C5DA2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0542634128D9D5C4004F05E2 /* Build configuration list for PBXNativeTarget "ArisiaComponents_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0542633F28D9D5C4004F05E2 /* Debug */,
+				0542634028D9D5C4004F05E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0542635228D9DCDA004F05E2 /* Build configuration list for PBXLegacyTarget "Install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0542635328D9DCDA004F05E2 /* Debug */,
+				0542635428D9DCDA004F05E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0524E41928D9D49400C5DA2D /* Project object */;
+}

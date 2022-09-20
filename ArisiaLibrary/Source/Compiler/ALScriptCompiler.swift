@@ -33,7 +33,7 @@ public class ALScriptCompiler
 		return .success(result)
 	}
 
-	public func compile(sourceScript src: String, sourceFile file: URL) -> Result<CNTextSection, NSError> {
+	public func compile(sourceScript src: String, sourceFile file: URL?) -> Result<CNTextSection, NSError> {
 		let result = CNTextSection()
 		let parser = ALParser()
 		switch parser.parse(source: src, sourceFile: file) {
