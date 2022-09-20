@@ -55,12 +55,27 @@ public class ALScriptTranspiler
 
 	private func transpileOneFrame(instanceName inst: String, frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
 		let result = CNTextSection()
+
+		result.add(text: CNTextLine(string: "/* allocate function for frame: \(frm.className) */"))
 		let line = CNTextLine(string: "let \(inst) = _allocateFrameCore(\"\(frm.className)\") ;")
 		result.add(text: line)
 
-		/* Define getter/setter for all properties*/
-		result.add(text: definePropertyNames(instanceName: inst, frame: frm))
+		/* Define type for all properties*/
+		let dttxt = definePropertyTypes(instanceName: inst, frame: frm)
+		if !dttxt.isEmpty() {
+			result.add(text: CNTextLine(string: "/* define type for all properties */"))
+			result.add(text: dttxt)
+		}
+
+		/* Define getter/setter for all properties */
+		let gstxt = definePropertyNames(instanceName: inst, frame: frm)
+		if !gstxt.isEmpty() {
+			result.add(text: CNTextLine(string: "/* define getter/setter for all properties */"))
+			result.add(text: gstxt)
+		}
+
 		/* Assign user declared properties */
+		let udtxt = CNTextSection()
 		for pname in frm.propertyNames {
 			if let pval = frm.value(name: pname) {
 				switch pval {
@@ -70,7 +85,7 @@ public class ALScriptTranspiler
 					switch assignProperty(instanceName: inst, propertyName: pname, value: pval) {
 					case .success(let text):
 						for line in text.split(separator: "\n") {
-							result.add(text: CNTextLine(string: String(line)))
+							udtxt.add(text: CNTextLine(string: String(line)))
 						}
 					case .failure(let err):
 						return .failure(err)
@@ -78,8 +93,23 @@ public class ALScriptTranspiler
 				}
 			}
 		}
+		if !udtxt.isEmpty() {
+			result.add(text: CNTextLine(string: "/* assign user declared properties */"))
+			result.add(text: udtxt)
+		}
 
 		return .success(result)
+	}
+
+	private func definePropertyTypes(instanceName inst: String, frame frm: ALFrameIR) -> CNTextSection {
+		let result = CNTextSection()
+		for prop in frm.properties {
+			let pname   = prop.name
+			let typestr = prop.type.encode()
+			let line    = CNTextLine(string: "\(inst).definePropertyType(\"\(pname)\", \"\(typestr)\") ;")
+			result.add(text: line)
+		}
+		return result
 	}
 
 	private func definePropertyNames(instanceName inst: String, frame frm: ALFrameIR) -> CNTextLine {

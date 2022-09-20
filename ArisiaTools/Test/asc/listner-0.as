@@ -12,5 +12,13 @@
       return p0 + p1 ;
     %}
   }
+
+  init0: init %{
+	console.print("l0 = " + root.f2.l0 + "\n") ;
+
+	root.f0.p0 = 3 ;
+	root.f1.p1 = 4 ;
+	console.print("l0 = " + root.f2.l0 + "\n") ;
+  %}
 }
 

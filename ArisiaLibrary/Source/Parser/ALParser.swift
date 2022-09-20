@@ -120,28 +120,28 @@ public class ALParser
 			return .failure(parseError(message: "\":\" is required", stream: strm))
 		}
 		switch parsePropertyValue(stream: strm, sourceFile: srcfile){
-		case .success(let val):
-			let prop = ALFrameIR.Property(name: ident, value: val)
+		case .success(let (type, val)):
+			let prop = ALFrameIR.Property(name: ident, type: type, value: val)
 			return .success(prop)
 		case .failure(let err):
 			return .failure(err)
 		}
 	}
 
-	private func parsePropertyValue(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALValueIR, NSError> {
+	private func parsePropertyValue(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<(CNValueType, ALValueIR), NSError> {
 		if let rword = requireReservedWord(stream: strm) {
 			switch rword {
 			case .Init:
 				switch parseInitFunc(stream: strm, sourceFile: srcfile) {
 				case .success(let val):
-					return .success(.initFunction(val))
+					return .success((.anyType, .initFunction(val)))
 				case .failure(let err):
 					return .failure(err)
 				}
 			case .Event:
 				switch parseEventFunc(stream: strm, sourceFile: srcfile) {
 				case .success(let val):
-					return .success(.eventFunction(val))
+					return .success((.anyType, .eventFunction(val)))
 				case .failure(let err):
 					return .failure(err)
 				}
@@ -153,7 +153,7 @@ public class ALParser
 		case .success(let type):
 			switch parseValue(valueType: type, stream: strm, sourceFile: srcfile){
 			case .success(let val):
-				return .success(val)
+				return .success((type, val))
 			case .failure(let err):
 				return .failure(err)
 			}

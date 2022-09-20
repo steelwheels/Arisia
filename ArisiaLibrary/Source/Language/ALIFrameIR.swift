@@ -5,15 +5,18 @@
  *   Copyright (C) 2022 Steel Wheels Project
  */
 
+import CoconutData
 import Foundation
 
 public class ALFrameIR
 {
 	public struct Property {
 		var name:	String
+		var type:	CNValueType
 		var value:	ALValueIR
-		public init(name nm: String, value val: ALValueIR){
+		public init(name nm: String, type tp: CNValueType, value val: ALValueIR){
 			name  = nm
+			type  = tp
 			value = val
 		}
 	}
@@ -30,6 +33,10 @@ public class ALFrameIR
 
 	public var className: String { get {
 		return mClassName
+	}}
+
+	public var properties: Array<Property> { get {
+		return mMembers
 	}}
 
 	public var propertyNames: Array<String> { get {

@@ -35,11 +35,17 @@ tsc_opt	= -t ES2017 --lib "es2017" --declaration \
 %.js: %.as
 	$(asc) -c $< > $@
 
-all: decls $(js_scripts)
+all: decls $(js_scripts) check
 
 clean:
 	rm -f $(js_scripts) $(ts_scripts) 
 	(cd ./types && rm -f $(decl_scripts))
+
+check: dummy
+	for file in `ls *.js` ; do \
+		echo "file; $${file}" ; \
+		diff $$file expected/$$file ; \
+	done
 
 decls: types/KiwiLibrary.d.ts types/ArisiaLibrary.d.ts
 

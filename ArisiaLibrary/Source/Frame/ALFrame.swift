@@ -16,8 +16,9 @@ import Foundation
 	var propertyNames: JSValue { get }
 
 	func value(_ name: JSValue) -> JSValue
-	func setValue(_ name: JSValue, _ val: JSValue) -> JSValue // -> boolean
+	func setValue(_ name: JSValue, _ val: JSValue) -> JSValue 	// -> boolean
 
+	func definePropertyType(_ property: JSValue, _ type: JSValue)	// (property: sttring, type: string)
 	func addObserver(_ property: JSValue, _ cbfunc: JSValue)	// (property: string, cbfunc: ():void)
 }
 
@@ -26,12 +27,14 @@ import Foundation
 	public typealias ListnerHolder = CNObserverDictionary.ListnerHolder
 
 	private var mFrameName:		String
+	private var mPropertyTypes:	Dictionary<String, CNValueType>	// <property-name, value-type>
 	private var mPropertyValues:	CNObserverDictionary
 	private var mPropertyListners:	Array<ListnerHolder>
 	private var mContext:		KEContext
 
 	public init(frameName cname: String, context ctxt: KEContext){
 		mFrameName		= cname
+		mPropertyTypes		= [:]
 		mPropertyValues		= CNObserverDictionary()
 		mPropertyListners	= []
 		mContext		= ctxt
@@ -72,13 +75,29 @@ import Foundation
 		return JSValue(bool: result, in: mContext)
 	}
 
-	public func addObserver(_ property: JSValue, _ cbfunc: JSValue) {
-		if let propstr = property.toString() {
-			mPropertyListners.append(
-				mPropertyValues.addObserver(forKey: propstr, listnerFunction: {
-					(_ param: Any?) -> Void in cbfunc.call(withArguments: [])
-				})
-			)
+	public func definePropertyType(_ property: JSValue, _ type: JSValue) {
+		guard let pname = property.toString(), let ptypestr = type.toString() else {
+			CNLog(logLevel: .error, message: "Invalid \"property\" or \"type\" parameter for define property method")
+			return
 		}
+		switch CNValueType.decode(code: ptypestr) {
+		case .success(let vtype):
+			mPropertyTypes[pname] = vtype
+		case .failure(let err):
+			CNLog(logLevel: .error, message: err.toString())
+		}
+	}
+
+	public func addObserver(_ property: JSValue, _ cbfunc: JSValue) {
+		guard let propstr = property.toString() else {
+			CNLog(logLevel: .error, message: "Invalid \"property\" parameter for addObserver method")
+			return
+		}
+		/* Add function as a listner */
+		mPropertyListners.append(
+			mPropertyValues.addObserver(forKey: propstr, listnerFunction: {
+				(_ param: Any?) -> Void in cbfunc.call(withArguments: [])
+			})
+		)
 	}
 }

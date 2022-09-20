@@ -78,6 +78,9 @@ public class ALScriptLinker
 				return .failure(err)
 			}
 		}
+		if newpath.count > 0 {
+			result.add(text: CNTextLine(string: "/* add observers for listner function */"))
+		}
 		for i in 0..<newpath.count {
 			switch linkListnerFunction(listnerName: lname, pathIndex: i, pathExpressions: newpath, pathStack: pstack, rootFrame: root) {
 			case .success(let txt):
