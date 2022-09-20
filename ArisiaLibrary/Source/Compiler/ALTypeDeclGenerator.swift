@@ -10,15 +10,15 @@ import Foundation
 
 public class ALTypeDeclGenerator
 {
-	private var mLanguageConfig: ALLanguageConfig
+	private var mConfig: ALConfig
 
-	public init(config conf: ALLanguageConfig){
-		mLanguageConfig = conf
+	public init(config conf: ALConfig){
+		mConfig = conf
 	}
 
 	public func generateTypeDeclaration(frame frm: ALFrame) -> CNTextSection {
 		let result = CNTextSection()
-		result.header = "interface \(frm.frameName) extends \(mLanguageConfig.coreFrameInterface) {"
+		result.header = "interface \(frm.frameName) extends \(mConfig.coreFrameInterface) {"
 		result.footer = "}"
 		return result
 	}

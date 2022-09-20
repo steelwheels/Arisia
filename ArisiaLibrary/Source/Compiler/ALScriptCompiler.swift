@@ -10,10 +10,10 @@ import Foundation
 
 public class ALScriptCompiler
 {
-	private var mLanguageConfig: ALLanguageConfig
+	private var mConfig: ALConfig
 
-	public init(config conf: ALLanguageConfig){
-		mLanguageConfig = conf
+	public init(config conf: ALConfig){
+		mConfig = conf
 	}
 
 	public func compile(rootFrame frame: ALFrameIR) -> Result<CNTextSection, NSError> {
@@ -41,17 +41,17 @@ public class ALScriptCompiler
 	}
 
 	private func transpile(frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
-		let transpiler = ALScriptTranspiler(config: mLanguageConfig)
+		let transpiler = ALScriptTranspiler(config: mConfig)
 		return transpiler.transpile(frame: frm) 
 	}
 
 	private func link(frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
-		let linker = ALScriptLinker(config: mLanguageConfig)
+		let linker = ALScriptLinker(config: mConfig)
 		return linker.link(frame: frm)
 	}
 
 	private func construct(frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
-		let constructor = ALScriptConstructor(config: mLanguageConfig)
+		let constructor = ALScriptConstructor(config: mConfig)
 		return constructor.construct(frame: frm)
 	}
 

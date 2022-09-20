@@ -10,23 +10,23 @@ import Foundation
 
 public class ALScriptConstructor
 {
-	private var mLanguageConfig:	ALLanguageConfig
+	private var mConfig:	ALConfig
 
-	public init(config conf: ALLanguageConfig){
-		mLanguageConfig = conf
+	public init(config conf: ALConfig){
+		mConfig = conf
 	}
 
 	public func construct(frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
 		let result = CNTextSection()
 
-		switch insertListnerCallers(frame: frm, instanceName: mLanguageConfig.rootFrameName, pathStack: CNStack()) {
+		switch insertListnerCallers(frame: frm, instanceName: mConfig.rootFrameName, pathStack: CNStack()) {
 		case .success(let txt):
 			result.add(text: txt)
 		case .failure(let err):
 			return .failure(err)
 		}
 
-		switch insertInitCallers(frame: frm, instanceName: mLanguageConfig.rootFrameName, pathStack: CNStack()) {
+		switch insertInitCallers(frame: frm, instanceName: mConfig.rootFrameName, pathStack: CNStack()) {
 		case .success(let txt):
 			result.add(text: txt)
 		case .failure(let err):

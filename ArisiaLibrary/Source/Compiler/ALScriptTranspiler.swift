@@ -10,14 +10,14 @@ import Foundation
 
 public class ALScriptTranspiler
 {
-	private var mLanguageConfig: ALLanguageConfig
+	private var mConfig: ALConfig
 
-	public init(config conf: ALLanguageConfig){
-		mLanguageConfig = conf
+	public init(config conf: ALConfig){
+		mConfig = conf
 	}
 
 	public func transpile(frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
-		return transpileFrames(identifier: mLanguageConfig.rootFrameName, frame: frm)
+		return transpileFrames(identifier: mConfig.rootFrameName, frame: frm)
 	}
 
 	private func transpileFrames(identifier ident: String, frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {

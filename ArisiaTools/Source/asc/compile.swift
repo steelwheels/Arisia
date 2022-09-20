@@ -27,8 +27,8 @@ public func compile(scriptFiles files: Array<String>) -> Result<CNText, NSError>
 		let parser   = ALParser()
 		switch parser.parse(source: script as String, sourceFile: url) {
 		case .success(let frame):
-			let lang     = ALLanguageConfig()
-			let compiler = ALScriptCompiler(config: lang)
+			let conf     = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
+			let compiler = ALScriptCompiler(config: conf)
 			switch compiler.compile(rootFrame: frame) {
 			case .success(let txt):
 				result.add(text: txt)

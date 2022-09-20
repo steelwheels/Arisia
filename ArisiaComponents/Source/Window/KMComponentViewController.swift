@@ -143,9 +143,37 @@ open class KMComponentViewController: KCSingleViewController
 			return nil
 		}
 
-		/* Compile the Arisia script */
-		
-		
+		/* Parse the Arisia script */
+		let root: ALFrameIR
+		let parser = ALParser()
+		switch parser.parse(source: script, sourceFile: srcfile) {
+		case .success(let frame):
+			root = frame
+		case .failure(let err):
+			console.error(string: err.toString())
+			return nil
+		}
+
+		/* Compile the frame */
+		let jscode : CNTextSection
+		let langconf = ALLanguageConfig()
+		let compiler = ALScriptCompiler(config: langconf)
+		switch compiler.compile(rootFrame: root) {
+		case .success(let txt):
+			jscode = txt
+		case .failure(let err):
+			console.error(string: err.toString())
+			return nil
+		}
+
+		/* dump the frame */
+		if loglevel.isIncluded(in: .detail) {
+			console.print(string: "[Output transpiled code]\n")
+			let txt = jscode.toStrings().joined(separator: "\n")
+			console.print(string: txt + "\n")
+		}
+
+
 		/*
 
 		let ambparser = AMBParser()
@@ -163,12 +191,7 @@ open class KMComponentViewController: KCSingleViewController
 			return nil
 		}
 
-		/* dump the frame */
-		if loglevel.isIncluded(in: .detail) {
-			console.print(string: "[Output of Amber Parser]\n")
-			let txt = frame.toScript().toStrings().joined(separator: "\n")
-			console.print(string: txt + "\n")
-		}
+
 
 		/* Allocate the component */
 		let compiler = AMBFrameCompiler()
@@ -189,7 +212,7 @@ open class KMComponentViewController: KCSingleViewController
 		}*/
 
 		/* Setup root view*/
-		return topcomp as? KCView
+		//return topcomp as? KCView
 	}
 
 	private func compile(viewController vcont: KMComponentViewController, context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
