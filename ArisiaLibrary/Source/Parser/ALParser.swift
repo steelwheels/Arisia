@@ -13,6 +13,10 @@ import Foundation
  */
 public class ALParser
 {
+	public init() {
+		
+	}
+
 	public func parse(source src: String, sourceFile srcfile: URL?) -> Result<ALFrameIR, NSError> {
 		let conf = CNParserConfig(allowIdentiferHasPeriod: false)
 		switch CNStringToToken(string: src, config: conf) {

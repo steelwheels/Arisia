@@ -14,18 +14,32 @@ public func compile(scriptFiles files: Array<String>) -> Result<CNText, NSError>
 	guard files.count > 0 else {
 		return .failure(NSError.fileError(message: "No source file"))
 	}
-	let lang     = ALLanguageConfig()
-	let urls     = files.map { URL(fileURLWithPath: $0) }
-	let compiler = ALScriptCompiler(config: lang)
-	switch compiler.compile(sourceFiles: urls) {
-	case .success(let txt):
-		let result = CNTextSection()
-		result.add(text: CNTextLine(string: "/// <reference path=\"types/KiwiLibrary.d.ts\" />"))
-		result.add(text: CNTextLine(string: "/// <reference path=\"types/ArisiaLibrary.d.ts\" />"))
-		result.add(text: txt)
-		return .success(txt)
-	case .failure(let err):
-		return .failure(err)
+
+	let result   = CNTextSection()
+	result.add(text: CNTextLine(string: "/// <reference path=\"types/KiwiLibrary.d.ts\" />"))
+	result.add(text: CNTextLine(string: "/// <reference path=\"types/ArisiaLibrary.d.ts\" />"))
+
+	for file in files {
+		let url = URL(fileURLWithPath: file)
+		guard let script = url.loadContents() else {
+			return .failure(NSError.fileError(message: "Failed to read \(file)"))
+		}
+		let parser   = ALParser()
+		switch parser.parse(source: script as String, sourceFile: url) {
+		case .success(let frame):
+			let lang     = ALLanguageConfig()
+			let compiler = ALScriptCompiler(config: lang)
+			switch compiler.compile(rootFrame: frame) {
+			case .success(let txt):
+				result.add(text: txt)
+				return .success(txt)
+			case .failure(let err):
+				return .failure(err)
+			}
+		case .failure(let err):
+			return .failure(err)
+		}
 	}
+	return .success(result)
 }
 

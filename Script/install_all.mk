@@ -9,7 +9,7 @@ lib: dummy
 	(cd ArisiaLibrary/Project && make -f $(build_mk))
 
 components: dummy
-	(cd ArisiaComponents/Project && make -f $(build_mk))
+	#(cd ArisiaComponents/Project && make -f $(build_mk))
 
 tools: dummy
 	(cd ArisiaTools/Project && make -f $(tool_mk))
