@@ -9,7 +9,7 @@ import ArisiaLibrary
 import CoconutData
 import Foundation
 
-public func compile(scriptFiles files: Array<String>) -> Result<CNText, NSError>
+public func compile(scriptFiles files: Array<String>, config conf: ALConfig) -> Result<CNText, NSError>
 {
 	guard files.count > 0 else {
 		return .failure(NSError.fileError(message: "No source file"))
@@ -24,7 +24,7 @@ public func compile(scriptFiles files: Array<String>) -> Result<CNText, NSError>
 		guard let script = url.loadContents() else {
 			return .failure(NSError.fileError(message: "Failed to read \(file)"))
 		}
-		let parser   = ALParser()
+		let parser   = ALParser(config: conf)
 		switch parser.parse(source: script as String, sourceFile: url) {
 		case .success(let frame):
 			let conf     = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)

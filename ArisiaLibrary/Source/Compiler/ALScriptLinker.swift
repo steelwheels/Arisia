@@ -29,7 +29,7 @@ public class ALScriptLinker
 
 	public func link(frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
 		let pstack: CNStack<String> = CNStack()
-		return linkFrames(identifier: mConfig.rootFrameName, frame: frm, pathStack: pstack, rootFrame: frm)
+		return linkFrames(identifier: mConfig.rootInstanceName, frame: frm, pathStack: pstack, rootFrame: frm)
 	}
 
 	private func linkFrames(identifier ident: String, frame frm: ALFrameIR, pathStack pstack: CNStack<String>, rootFrame root: ALFrameIR) -> Result<CNTextSection, NSError> {
@@ -121,7 +121,7 @@ public class ALScriptLinker
 			return .failure(linkError(message: "Too short path expression"))
 		}
 		switch elements[0] {
-		case mConfig.rootFrameName:
+		case mConfig.rootInstanceName:
 			return .success(pexp)
 		case "self":
 			/* make absolute expression */
@@ -132,7 +132,7 @@ public class ALScriptLinker
 			return .success(ALPathExpressionIR(elements: newelms))
 		default:
 			return .failure(linkError(message: "Path expression must be started by " +
-			  "\"\(mConfig.rootFrameName)\" or \"self\" but \"\(elements[0])\" is given"))
+			  "\"\(mConfig.rootInstanceName)\" or \"self\" but \"\(elements[0])\" is given"))
 		}
 	}
 
@@ -142,7 +142,7 @@ public class ALScriptLinker
 			return .failure(linkError(message: "Too short path expression"))
 		}
 		var owner: ALFrameIR = root
-		var curpath: String   = mConfig.rootFrameName
+		var curpath: String   = mConfig.rootInstanceName
 		for i in 1..<elements.count - 1 {
 			curpath += "." + elements[i]
 			if let child = owner.value(name: elements[i]) {

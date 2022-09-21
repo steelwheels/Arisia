@@ -13,8 +13,10 @@ import Foundation
  */
 public class ALParser
 {
-	public init() {
-		
+	private var mConfig: ALConfig
+
+	public init(config conf: ALConfig){
+		mConfig = conf
 	}
 
 	public func parse(source src: String, sourceFile srcfile: URL?) -> Result<ALFrameIR, NSError> {
@@ -23,7 +25,7 @@ public class ALParser
 		case .ok(let tokens):
 			let ptokens = preprocess(source: tokens)
 			let stream  = CNTokenStream(source: ptokens)
-			switch parseFrame(className: "Frame", stream: stream, sourceFile: srcfile) {
+			switch parseFrame(className: mConfig.rootClassName, stream: stream, sourceFile: srcfile) {
 			case .success(let frame):
 				if stream.isEmpty() {
 					return .success(frame)

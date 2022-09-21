@@ -19,14 +19,14 @@ public class ALScriptConstructor
 	public func construct(frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
 		let result = CNTextSection()
 
-		switch insertListnerCallers(frame: frm, instanceName: mConfig.rootFrameName, pathStack: CNStack()) {
+		switch insertListnerCallers(frame: frm, instanceName: mConfig.rootInstanceName, pathStack: CNStack()) {
 		case .success(let txt):
 			result.add(text: txt)
 		case .failure(let err):
 			return .failure(err)
 		}
 
-		switch insertInitCallers(frame: frm, instanceName: mConfig.rootFrameName, pathStack: CNStack()) {
+		switch insertInitCallers(frame: frm, instanceName: mConfig.rootInstanceName, pathStack: CNStack()) {
 		case .success(let txt):
 			result.add(text: txt)
 		case .failure(let err):

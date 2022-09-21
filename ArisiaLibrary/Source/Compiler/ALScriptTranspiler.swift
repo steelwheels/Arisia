@@ -17,7 +17,7 @@ public class ALScriptTranspiler
 	}
 
 	public func transpile(frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
-		return transpileFrames(identifier: mConfig.rootFrameName, frame: frm)
+		return transpileFrames(identifier: mConfig.rootInstanceName, frame: frm)
 	}
 
 	private func transpileFrames(identifier ident: String, frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
