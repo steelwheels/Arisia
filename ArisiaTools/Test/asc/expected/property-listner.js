@@ -29,3 +29,5 @@ root.addObserver("b", function(){
 }) ;
 /* call listner methods to initialize it's property value for frame root */
 root.l0 = root._l0_lfunc(root, root.a, root.b) ;
+/* This value will be return value of evaluateScript() */
+root ;

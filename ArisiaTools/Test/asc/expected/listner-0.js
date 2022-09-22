@@ -66,3 +66,5 @@ root.f1.addObserver("p1", function(){
 root.f2.l0 = root.f2._l0_lfunc(root.f2, root.f0.p0, root.f1.p1) ;
 /* execute initializer methods for frame root */
 root.init0 = root._init0_ifunc(root) ;
+/* This value will be return value of evaluateScript() */
+root ;

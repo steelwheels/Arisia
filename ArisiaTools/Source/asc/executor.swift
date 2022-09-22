@@ -21,7 +21,7 @@ public func execute(script scr: CNText, console cons: CNFileConsole) -> Result<I
 	let procmgr  = CNProcessManager()
 	let terminfo = CNTerminalInfo(width: 80, height: 20)
 	let env      = CNEnvironment()
-	let config   = KEConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
+	let config   = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
 
 	/* Prepare libraries */
 	let libcompiler = KLLibraryCompiler()
@@ -33,26 +33,12 @@ public func execute(script scr: CNText, console cons: CNFileConsole) -> Result<I
 		return .failure(NSError.fileError(message: "Arisia library error"))
 	}
 
-	let script = scr.toStrings().joined(separator: "\n")
-	ctxt.evaluateScript(script)
-	return .success(0)
-}
-
-/*
-private func executeScript(resource res: KEResource, processManager procmgr: CNProcessManager, input ifile: CNFile, output ofile: CNFile, error efile: CNFile, script scr: String, arguments args: Array<String>, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, config conf: KEConfig) -> Int32
-{
-	let thread  = KHScriptThread(source: .application(res), processManager: procmgr, input: ifile, output: ofile, error: efile, terminalInfo: terminfo, environment: env, config: conf)
-
-	/* Convert argument */
-	var nargs: Array<CNValue> = []
-	for arg in args {
-		nargs.append(.stringValue(arg))
+	let arsexec = ALScriptExecutor(config: config)
+	if let _ = arsexec.execute(context: ctxt, script: scr, sourceFile: nil) {
+		//cons.print(string: "root: \(obj)")
+		return .success(0)
+	} else {
+		return .failure(NSError.fileError(message: "Runtime error"))
 	}
-	thread.start(argument: .arrayValue(nargs))
-	while !thread.status.isRunning {
-		/* wait until exit */
-	}
-	return thread.terminationStatus
 }
-*/
 

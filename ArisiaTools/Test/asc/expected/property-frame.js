@@ -18,3 +18,5 @@ root.a0 = 2;
   f0.a1 = 1;
   root.f0 = f0 ;
 }
+/* This value will be return value of evaluateScript() */
+root ;

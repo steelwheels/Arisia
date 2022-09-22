@@ -30,7 +30,6 @@ public class ALScriptCompiler
 				case .failure(let err):
 					return .failure(err)
 				}
-
 				return .success(result)
 			case .failure(let err):
 				return .failure(err)

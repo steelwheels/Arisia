@@ -10,3 +10,5 @@ root._init0_ifunc = function(self) {
 	};
 /* execute initializer methods for frame root */
 root.init0 = root._init0_ifunc(root) ;
+/* This value will be return value of evaluateScript() */
+root ;

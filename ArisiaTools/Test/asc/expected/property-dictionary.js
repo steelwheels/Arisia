@@ -6,3 +6,5 @@ root.definePropertyType("s", "dn") ;
 _definePropertyIF(root, ["s"]) ;
 /* assign user declared properties */
 root.s = {a:10, b:20};
+/* This value will be return value of evaluateScript() */
+root ;

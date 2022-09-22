@@ -8,3 +8,5 @@ _definePropertyIF(root, ["sum"]) ;
 root.sum = function(a, b) {
 		return a + b ;
 	};
+/* This value will be return value of evaluateScript() */
+root ;

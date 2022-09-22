@@ -32,6 +32,11 @@ public class ALScriptConstructor
 		case .failure(let err):
 			return .failure(err)
 		}
+
+		/* The value will be return value of evaluateScript() methof */
+		result.add(text: CNTextLine(string: "/* This value will be return value of evaluateScript() */"))
+		result.add(text: CNTextLine(string: "\(mConfig.rootInstanceName) ;"))
+
 		return .success(result)
 	}
 

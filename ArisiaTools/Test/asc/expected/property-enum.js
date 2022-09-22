@@ -6,3 +6,5 @@ root.definePropertyType("axis", "eAxis") ;
 _definePropertyIF(root, ["axis"]) ;
 /* assign user declared properties */
 root.axis = Axis.horizontal;
+/* This value will be return value of evaluateScript() */
+root ;
