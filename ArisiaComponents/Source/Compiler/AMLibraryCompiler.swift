@@ -29,9 +29,9 @@ public class AMLibraryCompiler
 		let allocator = ALFrameAllocator.shared
 
 		/* KMRootView */
-		allocator.add(className: AMRootView.ClassName, allocator: {
+		allocator.add(className: ALConfig.rootViewFrameName, allocator: {
 			(_ ctxt: KEContext) -> ALFrame in
-			return AMRootView(context: ctxt)
+			return AMStackView(context: ctxt)
 		})
 	}
 }

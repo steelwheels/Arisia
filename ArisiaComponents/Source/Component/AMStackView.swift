@@ -1,6 +1,6 @@
 /**
- * @file AMRootView.swift
- * @brief	Define AMRootView class
+ * @file AMStackView.swift
+ * @brief	Define AMStackView class
  * @par Copyright
  *   Copyright (C) 2022 Steel Wheels Project
  */
@@ -16,9 +16,9 @@ import AppKit
 import UIKit
 #endif
 
-public class AMRootView: KCRootView, ALFrame
+public class AMStackView: KCStackView, ALFrame
 {
-	public static let ClassName 	= "RootView"
+	public static let ClassName 	= "StackView"
 
 	private var mContext:		KEContext
 	private var mFrameCore:		ALFrameCore
@@ -27,9 +27,11 @@ public class AMRootView: KCRootView, ALFrame
 
 	public init(context ctxt: KEContext){
 		mContext	= ctxt
-		mFrameCore	= ALFrameCore(frameName: AMRootView.ClassName, context: ctxt)
+		mFrameCore	= ALFrameCore(frameName: AMStackView.ClassName, context: ctxt)
 		let frame	= CGRect(x: 0.0, y: 0.0, width: 188, height: 21)
 		super.init(frame: frame)
+
+		mFrameCore.owner = self
 	}
 
 	public required init?(coder: NSCoder) {

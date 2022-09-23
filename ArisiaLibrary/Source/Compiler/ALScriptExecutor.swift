@@ -21,10 +21,15 @@ public class ALScriptExecutor
 		ctxt.resetErrorCount()
 		let retval = ctxt.evaluateScript(script: scr.toStrings().joined(separator: "\n"), sourceFile: file)
 		if ctxt.errorCount == 0 && retval.isObject {
-			if let rootobj = retval.toObject() as? ALFrame {
-				return rootobj
+			if let rootobj = retval.toObject() as? ALFrameCore {
+				if let core = rootobj.owner as? ALFrame {
+					return core
+				}
 			}
 		}
+		let place: String
+		if let u = file { place = "at " + u.path } else { place = "" }
+		CNLog(logLevel: .error, message: "Invalid root frame: \(retval) \(place)", atFunction: #function, inFile: #file)
 		return nil
 	}
 }

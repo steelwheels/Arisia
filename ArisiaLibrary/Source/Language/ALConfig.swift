@@ -11,8 +11,8 @@ import Foundation
 
 public class ALConfig: KEConfig
 {
-	static let frameClassName	= "Frame"
-	static let rootViewClassName	= "RootView"
+	public static let rootViewFrameName	= "RootView"
+	public static let defaultFrameName	= "Frame"
 
 	private var mApplicationType:		KEApplicationType
 
@@ -27,16 +27,16 @@ public class ALConfig: KEConfig
 		super.init(applicationType: atype, doStrict: strict, logLevel: log)
 	}
 
-	public var rootClassName: String { get {
+	public var rootFrameName: String { get {
 		let result: String
 		switch mApplicationType {
 		case .terminal:
-			result = ALConfig.frameClassName
+			result = ALConfig.defaultFrameName
 		case .window:
-			result = ALConfig.rootViewClassName
+			result = ALConfig.rootViewFrameName
 		@unknown default:
 			CNLog(logLevel: .error, message: "Unknown case", atFunction: #function, inFile: #file)
-			result = ALConfig.frameClassName
+			result = ALConfig.defaultFrameName
 		}
 		return result
 	}}

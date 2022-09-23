@@ -25,7 +25,7 @@ public class ALParser
 		case .ok(let tokens):
 			let ptokens = preprocess(source: tokens)
 			let stream  = CNTokenStream(source: ptokens)
-			switch parseFrame(className: mConfig.rootClassName, stream: stream, sourceFile: srcfile) {
+			switch parseFrame(className: mConfig.rootFrameName, stream: stream, sourceFile: srcfile) {
 			case .success(let frame):
 				if stream.isEmpty() {
 					return .success(frame)

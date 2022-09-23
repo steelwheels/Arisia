@@ -25,7 +25,7 @@ public class ALLibraryCompiler: KECompiler
 			(_ clsname: JSValue) -> JSValue in
 			if let name = clsname.toString() {
 				if let frame = ALFrameAllocator.shared.allocateFrame(className: name, context: ctxt) {
-					return JSValue(object: frame, in: ctxt)
+					return JSValue(object: frame.core, in: ctxt)
 				} else {
 					cons.error(string: "Can not allocate frame, because unknown frame name \"\(name)\" is given to _allocateFrameCore.")
 				}

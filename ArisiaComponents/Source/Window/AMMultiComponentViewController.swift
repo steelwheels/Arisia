@@ -1,8 +1,8 @@
 /**
- * @file	KMMultiComponentViewController.swift
- * @brief	Define KMMultiComponentViewController class
+ * @file	AMMultiComponentViewController.swift
+ * @brief	Define AMMultiComponentViewController class
  * @par Copyright
- *   Copyright (C) 2020 Steel Wheels Project
+ *   Copyright (C) 2020-2022 Steel Wheels Project
  */
 
 import KiwiControls
@@ -10,14 +10,9 @@ import KiwiEngine
 import CoconutData
 import Foundation
 
-open class KMMultiComponentViewController: KCMultiViewController
+open class AMMultiComponentViewController: KCMultiViewController
 {
 	public typealias ViewSwitchCallback = KCMultiViewController.ViewSwitchCallback
-
-	private enum Context {
-		case	context(KEContext)
-		case	none
-	}
 
 	private var mEnvironment:			CNEnvironment
 	private var mResource: KEResource?		= nil

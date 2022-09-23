@@ -222,7 +222,7 @@ open class AMComponentViewController: KCSingleViewController
 		button.buttonPressedCallback = {
 			() -> Void in
 			let cons  = super.globalConsole
-			if let parent = self.parentController as? KMMultiComponentViewController {
+			if let parent = self.parentController as? AMMultiComponentViewController {
 				if parent.popViewController(returnValue: CNValue.null) {
 					cons.error(string: "Force to return previous view\n")
 				} else {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050158A128DDB52B00BE2C8D /* sample.jspkg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0501588E28DDB3C900BE2C8D /* sample.jspkg */; };
+		050158A428DDB53700BE2C8D /* sample.jspkg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0501588E28DDB3C900BE2C8D /* sample.jspkg */; };
 		051405B128D9E61C00C3E2BD /* CoconutDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AA28D9E61B00C3E2BD /* CoconutDatabase.xcframework */; };
 		051405B228D9E61C00C3E2BD /* CoconutDatabase.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AA28D9E61B00C3E2BD /* CoconutDatabase.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		051405B328D9E61C00C3E2BD /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AB28D9E61B00C3E2BD /* CoconutData.xcframework */; };
@@ -35,8 +37,8 @@
 		051405CC28D9E63200C3E2BD /* KiwiLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AC28D9E61B00C3E2BD /* KiwiLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		051405CD28D9E63200C3E2BD /* KiwiShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AF28D9E61C00C3E2BD /* KiwiShell.xcframework */; };
 		051405CE28D9E63200C3E2BD /* KiwiShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AF28D9E61C00C3E2BD /* KiwiShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		055FE1ED28DD76380007B215 /* AMRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FE1EC28DD76380007B215 /* AMRootView.swift */; };
-		055FE1EE28DD76380007B215 /* AMRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FE1EC28DD76380007B215 /* AMRootView.swift */; };
+		055FE1ED28DD76380007B215 /* AMStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FE1EC28DD76380007B215 /* AMStackView.swift */; };
+		055FE1EE28DD76380007B215 /* AMStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FE1EC28DD76380007B215 /* AMStackView.swift */; };
 		0563631928D9E73C00F09A3E /* AMComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563631828D9E73C00F09A3E /* AMComponentViewController.swift */; };
 		0563631A28D9E73C00F09A3E /* AMComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563631828D9E73C00F09A3E /* AMComponentViewController.swift */; };
 		0563631C28D9E9B400F09A3E /* ArisiaLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0563631B28D9E9B400F09A3E /* ArisiaLibrary.xcframework */; };
@@ -45,8 +47,8 @@
 		0563631F28D9E9C800F09A3E /* ArisiaLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0563631B28D9E9B400F09A3E /* ArisiaLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0563632228D9EB1C00F09A3E /* AMLibraryCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632128D9EB1C00F09A3E /* AMLibraryCompiler.swift */; };
 		0563632328D9EB1C00F09A3E /* AMLibraryCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632128D9EB1C00F09A3E /* AMLibraryCompiler.swift */; };
-		0563632528D9EB9000F09A3E /* KMMultiComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632428D9EB9000F09A3E /* KMMultiComponentViewController.swift */; };
-		0563632628D9EB9000F09A3E /* KMMultiComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632428D9EB9000F09A3E /* KMMultiComponentViewController.swift */; };
+		0563632528D9EB9000F09A3E /* AMMultiComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632428D9EB9000F09A3E /* AMMultiComponentViewController.swift */; };
+		0563632628D9EB9000F09A3E /* AMMultiComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632428D9EB9000F09A3E /* AMMultiComponentViewController.swift */; };
 		0563632828D9EBF300F09A3E /* AMAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632728D9EBF300F09A3E /* AMAlert.swift */; };
 		0563632928D9EBF300F09A3E /* AMAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632728D9EBF300F09A3E /* AMAlert.swift */; };
 		0563632C28D9EC7D00F09A3E /* KMThreadLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632B28D9EC7D00F09A3E /* KMThreadLauncher.swift */; };
@@ -63,6 +65,24 @@
 		05CAC89128DD8E9B001C9EF1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05CAC88F28DD8E9B001C9EF1 /* Main.storyboard */; };
 		05CAC89328DD8EA5001C9EF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05CAC89228DD8EA5001C9EF1 /* Assets.xcassets */; };
 		05CAC89628DD8EA5001C9EF1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05CAC89428DD8EA5001C9EF1 /* LaunchScreen.storyboard */; };
+		05CAC8A328DD9526001C9EF1 /* ArisiaLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0563631B28D9E9B400F09A3E /* ArisiaLibrary.xcframework */; };
+		05CAC8A728DD9526001C9EF1 /* ArisiaComponents.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CAC8A428DD9526001C9EF1 /* ArisiaComponents.xcframework */; };
+		05CAC8AA28DD9540001C9EF1 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AB28D9E61B00C3E2BD /* CoconutData.xcframework */; };
+		05CAC8AB28DD9540001C9EF1 /* CoconutDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AA28D9E61B00C3E2BD /* CoconutDatabase.xcframework */; };
+		05CAC8AC28DD9540001C9EF1 /* CoconutShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AE28D9E61B00C3E2BD /* CoconutShell.xcframework */; };
+		05CAC8AD28DD9540001C9EF1 /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AD28D9E61B00C3E2BD /* KiwiControls.xcframework */; };
+		05CAC8AE28DD9540001C9EF1 /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405B028D9E61C00C3E2BD /* KiwiEngine.xcframework */; };
+		05CAC8AF28DD9540001C9EF1 /* KiwiLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AC28D9E61B00C3E2BD /* KiwiLibrary.xcframework */; };
+		05CAC8B028DD9540001C9EF1 /* KiwiShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AF28D9E61C00C3E2BD /* KiwiShell.xcframework */; };
+		05CAC8B328DD9553001C9EF1 /* ArisiaComponents.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CAC8A428DD9526001C9EF1 /* ArisiaComponents.xcframework */; };
+		05CAC8B428DD9553001C9EF1 /* ArisiaLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0563631B28D9E9B400F09A3E /* ArisiaLibrary.xcframework */; };
+		05CAC8B728DD9566001C9EF1 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AB28D9E61B00C3E2BD /* CoconutData.xcframework */; };
+		05CAC8B828DD9566001C9EF1 /* CoconutDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AA28D9E61B00C3E2BD /* CoconutDatabase.xcframework */; };
+		05CAC8B928DD9566001C9EF1 /* CoconutShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AE28D9E61B00C3E2BD /* CoconutShell.xcframework */; };
+		05CAC8BA28DD9566001C9EF1 /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AD28D9E61B00C3E2BD /* KiwiControls.xcframework */; };
+		05CAC8BB28DD9566001C9EF1 /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405B028D9E61C00C3E2BD /* KiwiEngine.xcframework */; };
+		05CAC8BC28DD9566001C9EF1 /* KiwiLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AC28D9E61B00C3E2BD /* KiwiLibrary.xcframework */; };
+		05CAC8BD28DD9566001C9EF1 /* KiwiShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AF28D9E61C00C3E2BD /* KiwiShell.xcframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +117,35 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		0501588C28DDB32000BE2C8D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0501589328DDB3DC00BE2C8D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				050158A128DDB52B00BE2C8D /* sample.jspkg in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0501589728DDB3EB00BE2C8D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				050158A428DDB53700BE2C8D /* sample.jspkg in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		051405BF28D9E61C00C3E2BD /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -136,6 +185,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0501588E28DDB3C900BE2C8D /* sample.jspkg */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = sample.jspkg; sourceTree = "<group>"; };
 		051405AA28D9E61B00C3E2BD /* CoconutDatabase.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutDatabase.xcframework; path = ../../../../Library/Frameworks/CoconutDatabase.xcframework; sourceTree = "<group>"; };
 		051405AB28D9E61B00C3E2BD /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
 		051405AC28D9E61B00C3E2BD /* KiwiLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiLibrary.xcframework; path = ../../../../Library/Frameworks/KiwiLibrary.xcframework; sourceTree = "<group>"; };
@@ -147,11 +197,11 @@
 		0524E42628D9D49400C5DA2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0542633A28D9D5C4004F05E2 /* ArisiaComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArisiaComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0542633D28D9D5C4004F05E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		055FE1EC28DD76380007B215 /* AMRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMRootView.swift; sourceTree = "<group>"; };
+		055FE1EC28DD76380007B215 /* AMStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMStackView.swift; sourceTree = "<group>"; };
 		0563631828D9E73C00F09A3E /* AMComponentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMComponentViewController.swift; sourceTree = "<group>"; };
 		0563631B28D9E9B400F09A3E /* ArisiaLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ArisiaLibrary.xcframework; path = ../../../../Library/Frameworks/ArisiaLibrary.xcframework; sourceTree = "<group>"; };
 		0563632128D9EB1C00F09A3E /* AMLibraryCompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMLibraryCompiler.swift; sourceTree = "<group>"; };
-		0563632428D9EB9000F09A3E /* KMMultiComponentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMMultiComponentViewController.swift; sourceTree = "<group>"; };
+		0563632428D9EB9000F09A3E /* AMMultiComponentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMMultiComponentViewController.swift; sourceTree = "<group>"; };
 		0563632728D9EBF300F09A3E /* AMAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMAlert.swift; sourceTree = "<group>"; };
 		0563632B28D9EC7D00F09A3E /* KMThreadLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMThreadLauncher.swift; sourceTree = "<group>"; };
 		0563632E28D9ECAE00F09A3E /* KMScriptThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMScriptThread.swift; sourceTree = "<group>"; };
@@ -170,6 +220,7 @@
 		05CAC89228DD8EA5001C9EF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05CAC89528DD8EA5001C9EF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05CAC89728DD8EA5001C9EF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05CAC8A428DD9526001C9EF1 /* ArisiaComponents.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ArisiaComponents.xcframework; path = ../../../../Library/Frameworks/ArisiaComponents.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +258,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05CAC8AA28DD9540001C9EF1 /* CoconutData.xcframework in Frameworks */,
+				05CAC8AB28DD9540001C9EF1 /* CoconutDatabase.xcframework in Frameworks */,
+				05CAC8AC28DD9540001C9EF1 /* CoconutShell.xcframework in Frameworks */,
+				05CAC8AD28DD9540001C9EF1 /* KiwiControls.xcframework in Frameworks */,
+				05CAC8AE28DD9540001C9EF1 /* KiwiEngine.xcframework in Frameworks */,
+				05CAC8AF28DD9540001C9EF1 /* KiwiLibrary.xcframework in Frameworks */,
+				05CAC8B028DD9540001C9EF1 /* KiwiShell.xcframework in Frameworks */,
+				05CAC8A728DD9526001C9EF1 /* ArisiaComponents.xcframework in Frameworks */,
+				05CAC8A328DD9526001C9EF1 /* ArisiaLibrary.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,15 +274,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05CAC8B728DD9566001C9EF1 /* CoconutData.xcframework in Frameworks */,
+				05CAC8B828DD9566001C9EF1 /* CoconutDatabase.xcframework in Frameworks */,
+				05CAC8B928DD9566001C9EF1 /* CoconutShell.xcframework in Frameworks */,
+				05CAC8BA28DD9566001C9EF1 /* KiwiControls.xcframework in Frameworks */,
+				05CAC8BB28DD9566001C9EF1 /* KiwiEngine.xcframework in Frameworks */,
+				05CAC8BC28DD9566001C9EF1 /* KiwiLibrary.xcframework in Frameworks */,
+				05CAC8BD28DD9566001C9EF1 /* KiwiShell.xcframework in Frameworks */,
+				05CAC8B328DD9553001C9EF1 /* ArisiaComponents.xcframework in Frameworks */,
+				05CAC8B428DD9553001C9EF1 /* ArisiaLibrary.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0501588D28DDB3B100BE2C8D /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				0501588E28DDB3C900BE2C8D /* sample.jspkg */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		051405A928D9E61B00C3E2BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05CAC8A428DD9526001C9EF1 /* ArisiaComponents.xcframework */,
 				0563631B28D9E9B400F09A3E /* ArisiaLibrary.xcframework */,
 				051405AB28D9E61B00C3E2BD /* CoconutData.xcframework */,
 				051405AA28D9E61B00C3E2BD /* CoconutDatabase.xcframework */,
@@ -279,7 +357,7 @@
 		055FE1EB28DD751F0007B215 /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				055FE1EC28DD76380007B215 /* AMRootView.swift */,
+				055FE1EC28DD76380007B215 /* AMStackView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -289,7 +367,7 @@
 			children = (
 				0563632728D9EBF300F09A3E /* AMAlert.swift */,
 				0563631828D9E73C00F09A3E /* AMComponentViewController.swift */,
-				0563632428D9EB9000F09A3E /* KMMultiComponentViewController.swift */,
+				0563632428D9EB9000F09A3E /* AMMultiComponentViewController.swift */,
 			);
 			path = Window;
 			sourceTree = "<group>";
@@ -325,6 +403,7 @@
 		05CAC87828DD8C81001C9EF1 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				0501588D28DDB3B100BE2C8D /* Resource */,
 				05CAC87E28DD8D6E001C9EF1 /* iOS */,
 				05CAC87928DD8C9A001C9EF1 /* OSX */,
 			);
@@ -422,6 +501,7 @@
 				0524E41F28D9D49400C5DA2D /* Frameworks */,
 				0524E42028D9D49400C5DA2D /* Resources */,
 				051405BF28D9E61C00C3E2BD /* Embed Frameworks */,
+				0501588C28DDB32000BE2C8D /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -458,6 +538,7 @@
 				05CAC86328DD8C6B001C9EF1 /* Sources */,
 				05CAC86428DD8C6B001C9EF1 /* Frameworks */,
 				05CAC86528DD8C6B001C9EF1 /* Resources */,
+				0501589328DDB3DC00BE2C8D /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -476,6 +557,7 @@
 				05CAC88328DD8E9B001C9EF1 /* Sources */,
 				05CAC88428DD8E9B001C9EF1 /* Frameworks */,
 				05CAC88528DD8E9B001C9EF1 /* Resources */,
+				0501589728DDB3EB00BE2C8D /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -578,13 +660,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				055FE1ED28DD76380007B215 /* AMRootView.swift in Sources */,
+				055FE1ED28DD76380007B215 /* AMStackView.swift in Sources */,
 				0563632C28D9EC7D00F09A3E /* KMThreadLauncher.swift in Sources */,
 				0563632828D9EBF300F09A3E /* AMAlert.swift in Sources */,
 				0563632228D9EB1C00F09A3E /* AMLibraryCompiler.swift in Sources */,
 				0563631928D9E73C00F09A3E /* AMComponentViewController.swift in Sources */,
 				0563632F28D9ECAE00F09A3E /* KMScriptThread.swift in Sources */,
-				0563632528D9EB9000F09A3E /* KMMultiComponentViewController.swift in Sources */,
+				0563632528D9EB9000F09A3E /* AMMultiComponentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,13 +674,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				055FE1EE28DD76380007B215 /* AMRootView.swift in Sources */,
+				055FE1EE28DD76380007B215 /* AMStackView.swift in Sources */,
 				0563632D28D9EC7D00F09A3E /* KMThreadLauncher.swift in Sources */,
 				0563632928D9EBF300F09A3E /* AMAlert.swift in Sources */,
 				0563632328D9EB1C00F09A3E /* AMLibraryCompiler.swift in Sources */,
 				0563631A28D9E73C00F09A3E /* AMComponentViewController.swift in Sources */,
 				0563633028D9ECAE00F09A3E /* KMScriptThread.swift in Sources */,
-				0563632628D9EB9000F09A3E /* KMMultiComponentViewController.swift in Sources */,
+				0563632628D9EB9000F09A3E /* AMMultiComponentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -816,7 +898,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.ArisiaComponents;
 				PRODUCT_NAME = ArisiaComponents;
 				SKIP_INSTALL = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				"SWIFT_OPTIMIZATION_LEVEL[arch=*]" = "-O";
 				SWIFT_VERSION = 5.0;
 			};
@@ -870,7 +952,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				SUPPORTS_MACCATALYST = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -899,6 +981,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -938,6 +1021,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = UnitTest_macOS/UnitTest.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
@@ -949,6 +1033,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UnitTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -959,6 +1044,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = UnitTest_macOS/UnitTest.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
@@ -970,6 +1056,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.UnitTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -979,6 +1066,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				INFOPLIST_FILE = UnitTest_iOS/Info.plist;
@@ -989,6 +1077,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.UnitTest-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1000,6 +1089,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				INFOPLIST_FILE = UnitTest_iOS/Info.plist;
@@ -1010,6 +1100,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "github.com.steelwheels.UnitTest-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

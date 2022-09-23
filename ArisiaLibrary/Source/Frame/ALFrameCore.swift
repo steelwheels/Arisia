@@ -33,12 +33,15 @@ import Foundation
 	private var mPropertyListners:	Array<ListnerHolder>
 	private var mContext:		KEContext
 
+	public var owner: 		AnyObject?
+
 	public init(frameName cname: String, context ctxt: KEContext){
 		mFrameName		= cname
 		mPropertyTypes		= [:]
 		mPropertyValues		= CNObserverDictionary()
 		mPropertyListners	= []
 		mContext		= ctxt
+		owner			= nil
 	}
 
 	deinit {

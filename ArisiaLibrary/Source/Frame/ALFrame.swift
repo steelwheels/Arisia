@@ -59,5 +59,8 @@ public extension ALFrame
 
 	public init(frameName cname: String, context ctxt: KEContext){
 		mFrameCore = ALFrameCore(frameName: cname, context: ctxt)
+		super.init()
+
+		mFrameCore.owner = self
 	}
 }
