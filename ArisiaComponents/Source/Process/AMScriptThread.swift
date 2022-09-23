@@ -12,7 +12,7 @@ import KiwiLibrary
 import CoconutData
 import Foundation
 
-public class KMScriptThread: KHScriptThread
+public class AMScriptThread: KHScriptThread
 {
 	private var mViewController: AMComponentViewController
 

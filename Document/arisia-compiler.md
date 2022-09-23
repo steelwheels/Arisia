@@ -48,7 +48,7 @@ root._init0_ifunc = function(self) {
 
 ## 3. Linker pass
 
-## 4. Evaluation pass
+## 4. Setup pass
 
 # Reference
 * [README](https://github.com/steelwheels/Arisia): Introduction of arisia programming environment

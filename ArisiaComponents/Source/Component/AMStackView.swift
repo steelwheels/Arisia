@@ -9,6 +9,7 @@ import ArisiaLibrary
 import KiwiControls
 import KiwiEngine
 import CoconutData
+import JavaScriptCore
 import Foundation
 #if os(OSX)
 import AppKit
@@ -20,6 +21,10 @@ public class AMStackView: KCStackView, ALFrame
 {
 	public static let ClassName 	= "StackView"
 
+	public static let AxisItem		= "axis"		// Type: CNAxis
+	public static let AlignmentItem		= "alignment"		// Type: CNAlignment
+	public static let DistributionItem	= "distribution"	// Type: CNDistribution
+
 	private var mContext:		KEContext
 	private var mFrameCore:		ALFrameCore
 
@@ -30,129 +35,88 @@ public class AMStackView: KCStackView, ALFrame
 		mFrameCore	= ALFrameCore(frameName: AMStackView.ClassName, context: ctxt)
 		let frame	= CGRect(x: 0.0, y: 0.0, width: 188, height: 21)
 		super.init(frame: frame)
-
 		mFrameCore.owner = self
 	}
 
 	public required init?(coder: NSCoder) {
 		fatalError("Not supported")
 	}
-}
 
-/*
+	public func setup() {
 
-public class KMButton: KCButton, AMBComponent
-{
-	private static let PressedItem		= "pressed"
-	private static let IsEnabledItem	= "isEnabled"
-	private static let TitleItem		= "title"
-
-	private var mReactObject:	AMBReactObject?
-
-	public var reactObject: AMBReactObject	{ get {
-		if let robj = mReactObject {
-			return robj
-		} else {
-			fatalError("No react object")
-		}
-	}}
-
-
-
-
-
-	public var children: Array<AMBComponent> { get { return [] }}
-	public func addChild(component comp: AMBComponent) {
-		CNLog(logLevel: .error, message: "Can not add child components to Button component")
-	}
-
-	public func setup(reactObject robj: AMBReactObject, console cons: CNConsole) -> NSError? {
-		mReactObject	= robj
-
-		/* Add callbacks */
-		self.buttonPressedCallback = {
-			() -> Void in
-			if let evtval = robj.immediateValue(forProperty: KMButton.PressedItem) {
-				CNExecuteInUserThread(level: .event, execute: {
-					evtval.call(withArguments: [robj])	// insert self
-				})
-			}
-		}
-
-		/* isEnabled property */
-		addScriptedProperty(object: robj, forProperty: KMButton.IsEnabledItem)
-		if let val = robj.boolValue(forProperty: KMButton.IsEnabledItem) {
-			self.isEnabled = val
-		} else if let _ = robj.immediateValue(forProperty: KMButton.IsEnabledItem) {
-			/* Not boolean value: Keep it*/
-			self.isEnabled = false
-		} else {
-			robj.setBoolValue(value: self.isEnabled, forProperty: KMButton.IsEnabledItem)
-		}
-		robj.addObserver(forProperty: KMButton.IsEnabledItem, callback: {
-			(_ param: Any) -> Void in
-			if let val = robj.boolValue(forProperty: KMButton.IsEnabledItem) {
-				CNExecuteInMainThread(doSync: false, execute: {
-					self.isEnabled = val
-				})
+		/* Axis */
+		definePropertyType(propertyName: AMStackView.AxisItem, enumTypeName: "Axis")
+		if let num = numberValue(name: AMStackView.AxisItem) {
+			if let newaxis = CNAxis(rawValue: num.intValue) {
+				self.axis = newaxis
 			} else {
-				let ival = robj.immediateValue(forProperty: KMButton.IsEnabledItem)
-				CNLog(logLevel: .error, message: "Invalid property: name=\(KMButton.IsEnabledItem), value=\(String(describing: ival))", atFunction: #function, inFile: #file)
+				CNLog(logLevel: .error, message: "Unknown initial value for \(AMStackView.AxisItem)", atFunction: #function, inFile: #file)
+			}
+		} else {
+			let _ = setNumberValue(name: AMStackView.AxisItem, value: NSNumber(value: self.axis.rawValue))
+		}
+		addObserver(propertyName: AMStackView.AxisItem, listnerFunction: {
+			(_ param: JSValue) -> Void in
+			if let num = param.toNumber() {
+				if let newaxis = CNAxis(rawValue: num.intValue) {
+					self.axis = newaxis
+				} else {
+					CNLog(logLevel: .error, message: "Invalid value for axis: \(num.intValue)", atFunction: #function, inFile: #file)
+				}
 			}
 		})
 
-		/* title */
-		addScriptedProperty(object: robj, forProperty: KMButton.TitleItem)
-		if let val = robj.stringValue(forProperty: KMButton.TitleItem) {
-			self.value = stringToValue(string: val)
-		} else {
-			let str = valueToString(value: self.value)
-			robj.setStringValue(value: str, forProperty: KMButton.TitleItem)
-		}
-		robj.addObserver(forProperty: KMButton.TitleItem, callback: {
-			(_ param: Any) -> Void in
-			if let val = robj.stringValue(forProperty: KMButton.TitleItem) {
-				CNExecuteInMainThread(doSync: false, execute: {
-					self.value = .text(val)
-				})
+		/* Alignment */
+		definePropertyType(propertyName: AMStackView.AlignmentItem, enumTypeName: "Alignment")
+		if let num = numberValue(name: AMStackView.AlignmentItem) {
+			if let newalignment = CNAlignment(rawValue: num.intValue) {
+				self.alignment = newalignment
 			} else {
-				let ival = robj.immediateValue(forProperty: KMButton.TitleItem)
-				CNLog(logLevel: .error, message: "Invalid property: name=\(KMButton.TitleItem), value=\(String(describing: ival))", atFunction: #function, inFile: #file)
+				CNLog(logLevel: .error, message: "Unknown initial value for \(AMStackView.AlignmentItem)", atFunction: #function, inFile: #file)
+			}
+		} else {
+			let _ = setNumberValue(name: AMStackView.AlignmentItem, value: NSNumber(value: self.alignment.rawValue))
+		}
+		addObserver(propertyName: AMStackView.AlignmentItem, listnerFunction: {
+			(_ param: JSValue) -> Void in
+			if let num = param.toNumber() {
+				if let newalignment = CNAlignment(rawValue: num.intValue) {
+					self.alignment = newalignment
+				} else {
+					CNLog(logLevel: .error, message: "Invalid value for alignment: \(num.intValue)", atFunction: #function, inFile: #file)
+				}
 			}
 		})
 
-		return nil
-	}
-
-	private func stringToValue(string str: String) -> KCButtonValue {
-		let result: KCButtonValue
-		switch str {
-		case "<-":	result = .symbol(.leftArrow)
-		case "->":	result = .symbol(.rightArrow)
-		default:	result = .text(str)
-		}
-		return result
-	}
-
-	private func valueToString(value val: KCButtonValue) -> String {
-		let result: String
-		switch val {
-		case .text(let txt):		result = txt
-		case .symbol(let sym):
-			switch sym {
-			case .leftArrow:	result = "<-"
-			case .rightArrow:	result = "->"
-			@unknown default:	result = "?"
+		/* Distribution */
+		definePropertyType(propertyName: AMStackView.DistributionItem, enumTypeName: "Distribution")
+		if let num = numberValue(name: AMStackView.DistributionItem) {
+			if let newdistribution = CNDistribution(rawValue: num.intValue) {
+				self.distribution = newdistribution
+			} else {
+				CNLog(logLevel: .error, message: "Unknown initial value for \(AMStackView.DistributionItem)", atFunction: #function, inFile: #file)
 			}
-		@unknown default:
-			result = "?"
+		} else {
+			let _ = setNumberValue(name: AMStackView.DistributionItem, value: NSNumber(value: self.distribution.rawValue))
 		}
-		return result
-	}
+		addObserver(propertyName: AMStackView.DistributionItem, listnerFunction: {
+			(_ param: JSValue) -> Void in
+			if let num = param.toNumber() {
+				if let newdistribution = CNDistribution(rawValue: num.intValue) {
+					self.distribution = newdistribution
+				} else {
+					CNLog(logLevel: .error, message: "Invalid value for distribution: \(num.intValue)", atFunction: #function, inFile: #file)
+				}
+			}
+		})
 
-	public func accept(visitor vst: KMVisitor) {
-		vst.visit(button: self)
+		/* Link with child frames */
+		for pname in self.propertyNames {
+			if let view = self.objectValue(name: pname) as? KCView {
+				self.addArrangedSubView(subView: view)
+			}
+		}
 	}
 }
 
-*/
+

@@ -113,19 +113,23 @@ import Foundation
 		}
 	}
 
+	public func definePropertyType(propertyName pname: String, valueType vtype: CNValueType) {
+		mPropertyTypes[pname] = vtype
+	}
+
 	public func addObserver(_ property: JSValue, _ cbfunc: JSValue) {
 		if let pname = property.toString() {
-			addObserver(propertyName: pname, callbackFunction: cbfunc)
+			addObserver(propertyName: pname,  listnerFunction: {
+				(_ param: Any?) -> Void in cbfunc.call(withArguments: [])
+			})
 		} else {
 			CNLog(logLevel: .error, message: "Invalid \"property\" parameter for addObserver method")
 		}
 	}
 
-	public func addObserver(propertyName pname: String, callbackFunction cbfunc: JSValue) {
+	public func addObserver(propertyName pname: String, listnerFunction lfunc: @escaping CNObserverDictionary.ListenerFunction) {
 		mPropertyListners.append(
-			mPropertyValues.addObserver(forKey: pname, listnerFunction: {
-				(_ param: Any?) -> Void in cbfunc.call(withArguments: [])
-			})
+			mPropertyValues.addObserver(forKey: pname, listnerFunction: lfunc)
 		)
 	}
 }

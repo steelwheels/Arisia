@@ -12,10 +12,14 @@ import JavaScriptCore
 public protocol ALFrame
 {
 	var core: ALFrameCore { get }
+
+	func setup()
 }
 
 public extension ALFrame
 {
+	typealias ListenerFunction = (JSValue) -> Void	// new-value
+
 	var frameName: String { get {
 		if let str = core.frameName.toString() {
 			return str
@@ -34,19 +38,78 @@ public extension ALFrame
 		}
 	}}
 
-	func value(name nm: String) -> CNValue {
+	func value(name nm: String) -> JSValue? {
 		if let val = core.value(name: nm) {
-			return val.toNativeValue()
+			return val
 		} else {
-			return CNValue.null
+			return nil
 		}
 	}
 
-	func setValue(name nm: String, value val: CNValue) -> Bool {
-		let valobj = val.toJSValue(context: core.context)
-		core.setValue(name: nm, value: valobj)
+	func setValue(name nm: String, value val: JSValue) -> Bool {
+		core.setValue(name: nm, value: val)
 		return true
 	}
+
+	func numberValue(name nm: String) -> NSNumber? {
+		if let val = core.value(name: nm) {
+			return val.toNumber()
+		} else {
+			return nil
+		}
+	}
+
+	func setNumberValue(name nm: String, value val: NSNumber) -> Bool {
+		if let valobj = JSValue(object: val, in: core.context) {
+			core.setValue(name: nm, value: valobj)
+			return true
+		} else {
+			return false
+		}
+	}
+
+	func objectValue(name nm: String) -> NSObject? {
+		if let val = core.value(name: nm) {
+			if val.isObject {
+				return val.toObject() as? NSObject
+			}
+		}
+		return nil
+	}
+
+	func setObjectValue(name nm: String, value val: NSObject) -> Bool {
+		if let valobj = JSValue(object: val, in: core.context) {
+			core.setValue(name: nm, value: valobj)
+			return true
+		} else {
+			return false
+		}
+	}
+
+	func definePropertyType(propertyName pname: String, valueType vtype: CNValueType) {
+		core.definePropertyType(propertyName: pname, valueType: vtype)
+	}
+
+	func definePropertyType(propertyName pname: String, enumTypeName ename: String) {
+		let etable = CNEnumTable.currentEnumTable()
+		if let etype = etable.search(byTypeName: ename) {
+			definePropertyType(propertyName: pname, valueType: .enumType(etype))
+		} else {
+			CNLog(logLevel: .error, message: "Enum type name \"\(ename)\" is NOT found.")
+		}
+	}
+
+	func addObserver(propertyName pname: String, listnerFunction lfunc: @escaping ALFrame.ListenerFunction) {
+		core.addObserver(propertyName: pname, listnerFunction: {
+			(_ param: Any?) -> Void in
+			if let val = param as? JSValue {
+				lfunc(val)
+			} else {
+				CNLog(logLevel: .error, message: "Unexpected type", atFunction: #function, inFile: #file)
+			}
+		})
+	}
+
 }
 
 @objc public class ALDefaultFrame: NSObject, ALFrame
@@ -62,5 +125,8 @@ public extension ALFrame
 		super.init()
 
 		mFrameCore.owner = self
+	}
+
+	public func setup() {
 	}
 }

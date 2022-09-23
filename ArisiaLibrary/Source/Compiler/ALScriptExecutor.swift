@@ -23,6 +23,7 @@ public class ALScriptExecutor
 		if ctxt.errorCount == 0 && retval.isObject {
 			if let rootobj = retval.toObject() as? ALFrameCore {
 				if let core = rootobj.owner as? ALFrame {
+					setup(frame: core)
 					return core
 				}
 			}
@@ -31,6 +32,21 @@ public class ALScriptExecutor
 		if let u = file { place = "at " + u.path } else { place = "" }
 		CNLog(logLevel: .error, message: "Invalid root frame: \(retval) \(place)", atFunction: #function, inFile: #file)
 		return nil
+	}
+
+	private func setup(frame frm: ALFrame) {
+		/* visit children */
+		for pname in frm.propertyNames {
+			if let val = frm.value(name: pname) {
+				if val.isObject {
+					if let child = val.toObject() as? ALFrame {
+						setup(frame: child)
+					}
+				}
+			}
+		}
+		/* setup the frame */
+		frm.setup()
 	}
 }
 
