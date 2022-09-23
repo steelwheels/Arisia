@@ -18,7 +18,7 @@ public class ALTypeDeclGenerator
 
 	public func generateTypeDeclaration(frame frm: ALFrame) -> CNTextSection {
 		let result = CNTextSection()
-		result.header = "interface \(frm.frameName) extends \(mConfig.coreFrameInterface) {"
+		result.header = "interface \(frm.frameName) extends \(mConfig.frameInterfaceForScript) {"
 		result.footer = "}"
 		return result
 	}

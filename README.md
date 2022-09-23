@@ -55,6 +55,9 @@ The arisia library contains many kind of [components](#component).
 
 ## Arisia Runtime
 
+# References
+* [Implementation](./Document/arisia-implementation.md): The implementation of this software
+
 # Related links
 * [Steel Wheels Project](https://github.com/steelwheels)
 * [ArisiaTools](https://github.com/steelwheels/Arisia/tree/main/ArisiaTools): Command line tools for development 

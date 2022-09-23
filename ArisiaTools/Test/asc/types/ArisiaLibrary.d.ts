@@ -2,8 +2,9 @@
  * Builtin.d.ts: Type declaration of ArisiaLibrary
  */
 
-interface FrameCoreIF
+interface FrameIF
 {
+	frameName: string ;
 	propertyNames: string[] ;
 
         set(name: string, value: any): boolean ;
@@ -13,11 +14,11 @@ interface FrameCoreIF
 	addObserver(property: string, callback: () => void): void ;
 }
 
-export declare function _allocateFrameCore(classname: string): FrameCoreIF ;
+declare function _allocateFrameCore(classname: string): FrameIF ;
 
 /**
  * Transpiler.ts
  */
 /// <reference path="KiwiLibrary.d.ts" />
 /// <reference path="Builtin.d.ts" />
-export declare function _definePropertyIF(frame: FrameCoreIF, usernames: string[]): void;
+declare function _definePropertyIF(frame: FrameIF, usernames: string[]): void;

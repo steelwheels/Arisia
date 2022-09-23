@@ -3,10 +3,9 @@
 #
 
 src_scrs	= Transpiler.ts
-src_decls	= Builtin.d.ts $(src_scrs:.ts=.d.ts)
-
-target_scrs	= $(src_scrs:.ts=.js)
-target_decl	= ArisiaLibrary.d.ts
+dst_scrs	= $(src_scrs:.ts=.js)
+dst_decls	= $(src_scrs:.ts=.d.ts)
+targ_decl	= types/ArisiaLibrary.d.ts
 
 tsc	= npx tsc
 tsc_opt	= -t ES2017 --lib "es2017" --declaration --declarationDir types \
@@ -16,13 +15,13 @@ tsc_opt	= -t ES2017 --lib "es2017" --declaration --declarationDir types \
 %.js: %.ts
 	$(tsc) $(tsc_opt) $<
 
-all: $(target_scrs) types/$(target_decl)
+all: $(dst_scrs) $(targ_decl)
 
 clean:
-	rm -f $(target_scrs) $(target_decl)
+	rm -f $(dst_scrs) $(dst_decls) $(targ_decl)
 
-types/$(target_decl): dummy
-	(cd types && cat $(src_decls) > $(target_decl))
+$(targ_decl): types/Builtin.d.ts
+	(cd types && cat Builtin.d.ts $(dst_decls)) > $(targ_decl)
 
 dummy:
 

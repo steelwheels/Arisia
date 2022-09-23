@@ -50,7 +50,7 @@ public class ALFrameAllocator
 			}
 		}
 		if name == "Frame" {
-			return ALFrame(frameName: name, context: ctxt)
+			return ALDefaultFrame(frameName: name, context: ctxt)
 		} else {
 			return nil
 		}

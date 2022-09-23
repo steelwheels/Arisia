@@ -20,7 +20,7 @@ public class ALLibraryCompiler: KECompiler
 	}
 
 	private func defineBuiltinFunctions(context ctxt: KEContext, console cons: CNFileConsole) {
-		/* _allocateFrame(name: string): FrameCoreIF */
+		/* _allocateFrame(name: string): FrameIF */
 		let frameCoreFunc: @convention(block) (_ clsname: JSValue) -> JSValue = {
 			(_ clsname: JSValue) -> JSValue in
 			if let name = clsname.toString() {
@@ -32,7 +32,7 @@ public class ALLibraryCompiler: KECompiler
 			} else {
 				cons.error(string: "Can not allocate frame, because the parameter for _allocateFrameCore is NOT string.")
 			}
-			return JSValue(object: ALFrame(frameName: "Frame", context: ctxt), in: ctxt)
+			return JSValue(object: ALDefaultFrame(frameName: "Frame", context: ctxt), in: ctxt)
 		}
 		ctxt.set(name: "_allocateFrameCore", function: frameCoreFunc)
 	}
