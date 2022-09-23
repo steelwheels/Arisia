@@ -12,7 +12,7 @@ import KiwiLibrary
 import CoconutData
 import JavaScriptCore
 
-public class KMLibraryCompiler
+public class AMLibraryCompiler
 {
 	private var mViewController: 	KMComponentViewController
 
@@ -20,6 +20,25 @@ public class KMLibraryCompiler
 		mViewController = vcont
 	}
 
+	public func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
+		defineAllocators(context: ctxt)
+		return true
+	}
+
+	private func defineAllocators(context ctxt: KEContext) {
+		let allocator = ALFrameAllocator.shared
+
+		/* KMRootView */
+		allocator.add(className: AMRootView.ClassName, allocator: {
+			(_ ctxt: KEContext) -> ALFrame in
+			return AMRootView(context: ctxt)
+		})
+	}
+}
+
+/*
+public class KMLibraryCompiler
+{
 	public func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
 		defineComponentFuntion(context: ctxt, viewController: mViewController, resource: res)
 		defineThreadFunction(context: ctxt, viewController: mViewController, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf)
@@ -162,4 +181,5 @@ public class KMLibraryCompiler
 	}
 }
 
+*/
 

@@ -29,9 +29,9 @@ public class ALFrameAllocator
 
 	private init(){
 		mAllocators = [
-			"Frame": {
+			ALConfig.frameClassName: {
 				(_ ctxt: KEContext) -> ALFrame? in
-				return ALDefaultFrame(frameName: "Frame", context: ctxt)
+				return ALDefaultFrame(frameName: ALConfig.frameClassName, context: ctxt)
 			}
 		]
 	}

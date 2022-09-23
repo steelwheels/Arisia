@@ -89,12 +89,12 @@ open class KMComponentViewController: KCSingleViewController
 		let console  = super.globalConsole
 
 		guard let src = mSource else {
-			console.error(string: "No source file for new view\n")
+			console.log(string: "No source file for new view\n")
 			return nil
 		}
 
 		guard let procmgr = mProcessManager else {
-			console.error(string: "No process manager\n")
+			console.log(string: "No process manager\n")
 			return nil
 		}
 
@@ -108,7 +108,7 @@ open class KMComponentViewController: KCSingleViewController
 				srcfile		= res.URLOfView()
 				resource	= res
 			} else {
-				console.error(string: "Failed to load main view\n")
+				console.log(string: "Failed to load main view\n")
 				return nil
 			}
 		case .subView(let res, let name):
@@ -117,7 +117,7 @@ open class KMComponentViewController: KCSingleViewController
 				srcfile		= res.URLOfSubView(identifier: name)
 				resource	= res
 			} else {
-				console.error(string: "Failed to load sub view named: \(name)\n")
+				console.log(string: "Failed to load sub view named: \(name)\n")
 				return nil
 			}
 		}
@@ -125,12 +125,12 @@ open class KMComponentViewController: KCSingleViewController
 
 		let terminfo = CNTerminalInfo(width: 80, height: 25)
 		let loglevel = CNPreference.shared.systemPreference.logLevel
-		let config   = KEConfig(applicationType: .window, doStrict: true, logLevel: loglevel)
+		let config   = ALConfig(applicationType: .window, doStrict: true, logLevel: loglevel)
 
 		if loglevel.isIncluded(in: .detail) {
 			let txt = resource.toText()
-			console.print(string: "Resource for view\n")
-			console.print(string: txt.toStrings().joined(separator: "\n"))
+			console.log(string: "Resource for view")
+			console.log(string: txt.toStrings().joined(separator: "\n"))
 		}
 
 		/* Define global variable: Argument */
@@ -139,16 +139,16 @@ open class KMComponentViewController: KCSingleViewController
 
 		/* Compile library */
 		guard self.compile(viewController: self, context: self.context, resource: resource, processManager: procmgr, terminalInfo: terminfo, environment: self.environment, console: console, config: config) else {
-			console.error(string: "Failed to compile base\n")
+			console.log(string: "Failed to compile base\n")
 			return nil
 		}
 
 		/* Parse the Arisia script */
-		let root: ALFrameIR
-		let parser = ALParser()
+		let rootir: ALFrameIR
+		let parser = ALParser(config: config)
 		switch parser.parse(source: script, sourceFile: srcfile) {
 		case .success(let frame):
-			root = frame
+			rootir = frame
 		case .failure(let err):
 			console.error(string: err.toString())
 			return nil
@@ -156,9 +156,8 @@ open class KMComponentViewController: KCSingleViewController
 
 		/* Compile the frame */
 		let jscode : CNTextSection
-		let langconf = ALLanguageConfig()
-		let compiler = ALScriptCompiler(config: langconf)
-		switch compiler.compile(rootFrame: root) {
+		let compiler = ALScriptCompiler(config: config)
+		switch compiler.compile(rootFrame: rootir) {
 		case .success(let txt):
 			jscode = txt
 		case .failure(let err):
@@ -170,49 +169,29 @@ open class KMComponentViewController: KCSingleViewController
 		if loglevel.isIncluded(in: .detail) {
 			console.print(string: "[Output transpiled code]\n")
 			let txt = jscode.toStrings().joined(separator: "\n")
-			console.print(string: txt + "\n")
+			console.log(string: txt)
 		}
 
-
-		/*
-
-		let ambparser = AMBParser()
-		let frame: AMBFrame
-		switch ambparser.parse(source: script as String, sourceFile: srcfile) {
-		case .success(let val):
-			if let frm = val as? AMBFrame {
-				frame = frm
+		/* Execute the script */
+		let executor = ALScriptExecutor(config: config)
+		guard let rootview = executor.execute(context: context, script: jscode, sourceFile: srcfile) else {
+			let fname: String
+			if let url = srcfile {
+				fname = ": " + url.path
 			} else {
-				console.error(string: "Error: Frame object is required\n")
-				return nil
+				fname = ""
 			}
-		case .failure(let err):
-			console.error(string: "Error: \(err.toString())\n")
+			console.log(string: "[Error] Failed to compile script\(fname)")
 			return nil
 		}
 
-
-
-		/* Allocate the component */
-		let compiler = AMBFrameCompiler()
-		let mapper   = KMComponentMapper()
-		let topcomp: AMBComponent
-		switch compiler.compile(frame: frame, mapper: mapper, context: context, processManager: procmgr, resource: resource, environment: self.environment, config: config, console: console) {
-		case .success(let comp):
-			topcomp = comp
-			/* dump the component */
-			if loglevel.isIncluded(in: .detail) {
-				console.print(string: "[Output of Amber Compiler]\n")
-				let txt = comp.toText().toStrings().joined(separator: "\n")
-				console.print(string: txt + "\n")
-			}
-		case .failure(let err):
-			console.error(string: "Error: \(err.toString())\n")
+		/* Return the root view */
+		if let view = rootview as? KCView {
+			return view
+		} else {
+			console.log(string: "[Error] The root frame is not view")
 			return nil
-		}*/
-
-		/* Setup root view*/
-		//return topcomp as? KCView
+		}
 	}
 
 	private func compile(viewController vcont: KMComponentViewController, context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
@@ -221,7 +200,7 @@ open class KMComponentViewController: KCSingleViewController
 		if libcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) {
 			let alcompiler = ALLibraryCompiler()
 			if alcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) {
-				let compcompiler = KMLibraryCompiler(viewController: vcont)
+				let compcompiler = AMLibraryCompiler(viewController: vcont)
 				result = compcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf)
 			}
 		}
@@ -229,32 +208,7 @@ open class KMComponentViewController: KCSingleViewController
 	}
 
 	open override func errorContext() -> KCView {
-		let procmgr: CNProcessManager
-		if let mgr = mProcessManager {
-			procmgr = mgr
-		} else {
-			procmgr = CNProcessManager()
-		}
-		let resource: KEResource
-		if let res = mResource {
-			resource = res
-		} else {
-			resource = KEResource(packageDirectory: Bundle.main.bundleURL)
-		}
-		let environment: CNEnvironment
-		if let env = mEnvironment {
-			environment = env
-		} else {
-			environment = CNEnvironment()
-		}
-
-		let frame = AMBFrame(className: "Object", instanceName: "ErrorContext")
-		let robj  = AMBReactObject(frame: frame, context: mContext, processManager: procmgr, resource: resource, environment: environment)
-
-		let box  = KMStackView()
-		if let err = box.setup(reactObject: robj, console: super.globalConsole) {
-			super.globalConsole.error(string: "Failed to setup error context: \(err.description)")
-		}
+		let box = KCStackView()
 		box.axis = .vertical
 
 		let message  = KCTextEdit()
@@ -269,7 +223,7 @@ open class KMComponentViewController: KCSingleViewController
 			() -> Void in
 			let cons  = super.globalConsole
 			if let parent = self.parentController as? KMMultiComponentViewController {
-				if parent.popViewController(returnValue: .nullValue) {
+				if parent.popViewController(returnValue: CNValue.null) {
 					cons.error(string: "Force to return previous view\n")
 				} else {
 					cons.error(string: "Failed to pop view\n")
@@ -282,74 +236,5 @@ open class KMComponentViewController: KCSingleViewController
 
 		return box
 	}
-
-	#if os(OSX)
-	open override func viewDidLoad() {
-		super.viewDidLoad()
-		doViewDidLoad()
-	}
-	#else
-	open override func viewDidLoad() {
-		super.viewDidLoad()
-		doViewDidLoad()
-	}
-	#endif
-
-	private func doViewDidLoad() {
-		/* call init methods */
-		if !mDidAlreadyInitialized {
-			/* Execute the component */
-			if let root = super.rootView {
-				if root.hasCoreView {
-					let exec = AMBComponentExecutor(console: self.globalConsole)
-					let comp:AMBComponent = root.getCoreView()
-					exec.exec(component: comp, console: self.globalConsole)
-				} else {
-					CNLog(logLevel: .error, message: "No core view in root", atFunction: #function, inFile: #file)
-				}
-			}
-			mDidAlreadyInitialized = true
-		}
-	}
-
-	#if os(OSX)
-	open override func viewDidAppear() {
-		super.viewDidAppear()
-		doViewDidAppear()
-	}
-	#else
-	open override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		doViewDidAppear()
-	}
-	#endif
-
-	private func doViewDidAppear() {
-		/* Link components */
-		if !mDidAlreadyLinked {
-			if let res = mResource, let root = self.rootView {
-				let linker = KMComponentLinker(viewController: self, resource: res)
-				for subview in root.subviews {
-					if let subcomp = subview as? AMBComponent {
-						linker.visit(component: subcomp)
-					}
-				}
-				/* Replace global console */
-				if let console = linker.result {
-					super.globalConsole = console
-				}
-			}
-			mDidAlreadyLinked = true
-		}
-		/* dump for debug */
-		if CNPreference.shared.systemPreference.logLevel.isIncluded(in: .detail) {
-			let cons  = super.globalConsole
-			if let root = self.rootView {
-				let dumper = KCViewDumper()
-				dumper.dump(view: root, console: cons)
-			} else {
-				cons.error(string: "No root view")
-			}
-		}
-	}
 }
+

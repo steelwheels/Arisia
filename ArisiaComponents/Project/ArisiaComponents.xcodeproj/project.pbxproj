@@ -35,6 +35,8 @@
 		051405CC28D9E63200C3E2BD /* KiwiLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AC28D9E61B00C3E2BD /* KiwiLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		051405CD28D9E63200C3E2BD /* KiwiShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AF28D9E61C00C3E2BD /* KiwiShell.xcframework */; };
 		051405CE28D9E63200C3E2BD /* KiwiShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AF28D9E61C00C3E2BD /* KiwiShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		055FE1ED28DD76380007B215 /* AMRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FE1EC28DD76380007B215 /* AMRootView.swift */; };
+		055FE1EE28DD76380007B215 /* AMRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FE1EC28DD76380007B215 /* AMRootView.swift */; };
 		0563631928D9E73C00F09A3E /* KMComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563631828D9E73C00F09A3E /* KMComponentViewController.swift */; };
 		0563631A28D9E73C00F09A3E /* KMComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563631828D9E73C00F09A3E /* KMComponentViewController.swift */; };
 		0563631C28D9E9B400F09A3E /* ArisiaLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0563631B28D9E9B400F09A3E /* ArisiaLibrary.xcframework */; };
@@ -121,6 +123,7 @@
 		0524E42628D9D49400C5DA2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0542633A28D9D5C4004F05E2 /* ArisiaComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArisiaComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0542633D28D9D5C4004F05E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		055FE1EC28DD76380007B215 /* AMRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMRootView.swift; sourceTree = "<group>"; };
 		0563631828D9E73C00F09A3E /* KMComponentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMComponentViewController.swift; sourceTree = "<group>"; };
 		0563631B28D9E9B400F09A3E /* ArisiaLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ArisiaLibrary.xcframework; path = ../../../../Library/Frameworks/ArisiaLibrary.xcframework; sourceTree = "<group>"; };
 		0563632128D9EB1C00F09A3E /* KMLibraryCompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMLibraryCompiler.swift; sourceTree = "<group>"; };
@@ -215,6 +218,14 @@
 			path = ArisiaComponents_iOS;
 			sourceTree = "<group>";
 		};
+		055FE1EB28DD751F0007B215 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				055FE1EC28DD76380007B215 /* AMRootView.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		0563631728D9E72500F09A3E /* Window */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				0563632028D9EAE200F09A3E /* Compiler */,
+				055FE1EB28DD751F0007B215 /* Component */,
 				0563632A28D9EC6900F09A3E /* Process */,
 				0563631728D9E72500F09A3E /* Window */,
 			);
@@ -393,6 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				055FE1ED28DD76380007B215 /* AMRootView.swift in Sources */,
 				0563632C28D9EC7D00F09A3E /* KMThreadLauncher.swift in Sources */,
 				0563632828D9EBF300F09A3E /* KMAlert.swift in Sources */,
 				0563632228D9EB1C00F09A3E /* KMLibraryCompiler.swift in Sources */,
@@ -406,6 +419,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				055FE1EE28DD76380007B215 /* AMRootView.swift in Sources */,
 				0563632D28D9EC7D00F09A3E /* KMThreadLauncher.swift in Sources */,
 				0563632928D9EBF300F09A3E /* KMAlert.swift in Sources */,
 				0563632328D9EB1C00F09A3E /* KMLibraryCompiler.swift in Sources */,

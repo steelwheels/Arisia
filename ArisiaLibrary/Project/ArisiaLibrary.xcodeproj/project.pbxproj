@@ -55,8 +55,8 @@
 		05A7FE6928C8E25F002C1467 /* ALScriptCompiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7FE6728C8E25F002C1467 /* ALScriptCompiler.swift */; };
 		05B95F3F28C4D5BA008E3FD0 /* ALReservedWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B95F3E28C4D5BA008E3FD0 /* ALReservedWords.swift */; };
 		05B95F4028C4D5BA008E3FD0 /* ALReservedWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B95F3E28C4D5BA008E3FD0 /* ALReservedWords.swift */; };
-		05BD8A9D28D0A44E00A008C1 /* ALScriptIConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD8A9C28D0A44E00A008C1 /* ALScriptIConstructor.swift */; };
-		05BD8A9E28D0A44E00A008C1 /* ALScriptIConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD8A9C28D0A44E00A008C1 /* ALScriptIConstructor.swift */; };
+		05BD8A9D28D0A44E00A008C1 /* ALScriptConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD8A9C28D0A44E00A008C1 /* ALScriptConstructor.swift */; };
+		05BD8A9E28D0A44E00A008C1 /* ALScriptConstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD8A9C28D0A44E00A008C1 /* ALScriptConstructor.swift */; };
 		05CE363628CB78980063888E /* ALFrameAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CE363528CB78980063888E /* ALFrameAllocator.swift */; };
 		05CE363728CB78980063888E /* ALFrameAllocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CE363528CB78980063888E /* ALFrameAllocator.swift */; };
 		05D4D90A28BDB154002C5E66 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D4D90928BDB154002C5E66 /* main.swift */; };
@@ -246,7 +246,7 @@
 		059F5D1C28BFAA5B006BE786 /* ALValueIR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALValueIR.swift; sourceTree = "<group>"; };
 		05A7FE6728C8E25F002C1467 /* ALScriptCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALScriptCompiler.swift; sourceTree = "<group>"; };
 		05B95F3E28C4D5BA008E3FD0 /* ALReservedWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALReservedWords.swift; sourceTree = "<group>"; };
-		05BD8A9C28D0A44E00A008C1 /* ALScriptIConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALScriptIConstructor.swift; sourceTree = "<group>"; };
+		05BD8A9C28D0A44E00A008C1 /* ALScriptConstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALScriptConstructor.swift; sourceTree = "<group>"; };
 		05CE363528CB78980063888E /* ALFrameAllocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALFrameAllocator.swift; sourceTree = "<group>"; };
 		05D4D90728BDB154002C5E66 /* UnitTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UnitTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05D4D90928BDB154002C5E66 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -408,7 +408,7 @@
 				05CE363528CB78980063888E /* ALFrameAllocator.swift */,
 				058DC56B28BD091600BF9092 /* ALLibraryCompiler.swift */,
 				05A7FE6728C8E25F002C1467 /* ALScriptCompiler.swift */,
-				05BD8A9C28D0A44E00A008C1 /* ALScriptIConstructor.swift */,
+				05BD8A9C28D0A44E00A008C1 /* ALScriptConstructor.swift */,
 				059C2BF228DB50DF00A62EDE /* ALScriptExecutor.swift */,
 				059D3F9028CDD9C400DE405B /* ALScriptLinker.swift */,
 				051B4C2428CA2F6F005FD4C4 /* ALScriptTranspiler.swift */,
@@ -705,7 +705,7 @@
 				05B95F4028C4D5BA008E3FD0 /* ALReservedWords.swift in Sources */,
 				05CE363728CB78980063888E /* ALFrameAllocator.swift in Sources */,
 				05A7FE6928C8E25F002C1467 /* ALScriptCompiler.swift in Sources */,
-				05BD8A9E28D0A44E00A008C1 /* ALScriptIConstructor.swift in Sources */,
+				05BD8A9E28D0A44E00A008C1 /* ALScriptConstructor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,7 +744,7 @@
 				05B95F3F28C4D5BA008E3FD0 /* ALReservedWords.swift in Sources */,
 				05CE363628CB78980063888E /* ALFrameAllocator.swift in Sources */,
 				05A7FE6828C8E25F002C1467 /* ALScriptCompiler.swift in Sources */,
-				05BD8A9D28D0A44E00A008C1 /* ALScriptIConstructor.swift in Sources */,
+				05BD8A9D28D0A44E00A008C1 /* ALScriptConstructor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

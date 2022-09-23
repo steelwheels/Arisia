@@ -3,8 +3,7 @@
 build_mk = ../../Script/build.mk
 tool_mk  = ../../Script/build_tool.mk
 
-#all: lib components tools
-all: lib tools
+all: lib components tools
 
 lib: dummy
 	(cd ArisiaLibrary/Project && make -f $(build_mk))
