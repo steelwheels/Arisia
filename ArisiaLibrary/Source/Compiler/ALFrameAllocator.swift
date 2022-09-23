@@ -11,7 +11,7 @@ import Foundation
 
 public class ALFrameAllocator
 {
-	public typealias AllocatorFunc = (_ name: String, _ ctxt: KEContext) -> ALFrame?
+	public typealias AllocatorFunc = (_ ctxt: KEContext) -> ALFrame?
 
 	private static var mSharedAllocator: ALFrameAllocator? = nil
 
@@ -25,18 +25,23 @@ public class ALFrameAllocator
 		}
 	}}
 
-	private var mAllocators: Array<AllocatorFunc> = []
+	private var mAllocators: Dictionary<String, AllocatorFunc>
 
 	private init(){
-		mAllocators = []
+		mAllocators = [
+			"Frame": {
+				(_ ctxt: KEContext) -> ALFrame? in
+				return ALDefaultFrame(frameName: "Frame", context: ctxt)
+			}
+		]
 	}
 
-	public func add(allocator alloc: @escaping AllocatorFunc){
-		mAllocators.append(alloc)
+	public func add(className name: String, allocator alloc: @escaping AllocatorFunc){
+		mAllocators[name] = alloc
 	}
 
-	public func isFameClassName(name nm: String) -> Bool {
-		if nm == "Frame" {
+	public func isFrameClassName(name nm: String) -> Bool {
+		if let _ = mAllocators[nm] {
 			return true
 		} else {
 			return false
@@ -44,13 +49,8 @@ public class ALFrameAllocator
 	}
 
 	public func allocateFrame(className name: String, context ctxt: KEContext) -> ALFrame? {
-		for allocator in mAllocators {
-			if let frame = allocator(name, ctxt) {
-				return frame
-			}
-		}
-		if name == "Frame" {
-			return ALDefaultFrame(frameName: name, context: ctxt)
+		if let alloc = mAllocators[name] {
+			return alloc(ctxt)
 		} else {
 			return nil
 		}

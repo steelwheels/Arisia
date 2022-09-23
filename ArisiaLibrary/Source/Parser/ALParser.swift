@@ -351,7 +351,7 @@ public class ALParser
 			}
 			/* Decode as frame */
 			let allocator = ALFrameAllocator.shared
-			if allocator.isFameClassName(name: ident) {
+			if allocator.isFrameClassName(name: ident) {
 				return .success(.instanceType(ident))
 			}
 		} else if strm.requireSymbol(symbol: "[") {

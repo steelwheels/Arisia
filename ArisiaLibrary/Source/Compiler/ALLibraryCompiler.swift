@@ -13,7 +13,7 @@ import Foundation
 
 public class ALLibraryCompiler: KECompiler
 {
-	public func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
+	public func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: ALConfig) -> Bool {
 		defineBuiltinFunctions(context: ctxt, console: cons)
 		importBuiltinLibrary(context: ctxt, console: cons, config: conf)
 		return true
