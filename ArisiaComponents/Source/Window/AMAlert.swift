@@ -1,6 +1,6 @@
 /**
- * @file	KMAlert.swift
- * @brief	Define KMAlert class
+ * @file	AMAlert.swift
+ * @brief	Define AMAlert class
  * @par Copyright
  *   Copyright (C) 2021 Steel Wheels Project
  */
@@ -12,9 +12,9 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public class KMAlert
+public class AMAlert
 {
-	public static func execute(type typval: JSValue, message msg: JSValue, labels labs: JSValue, callback cbfunc: JSValue, viewController vcont: KMComponentViewController, context ctxt: KEContext) -> Void {
+	public static func execute(type typval: JSValue, message msg: JSValue, labels labs: JSValue, callback cbfunc: JSValue, viewController vcont: AMComponentViewController, context ctxt: KEContext) -> Void {
 		CNExecuteInMainThread(doSync: false, execute: {
 			if let atype = valueToType(value: typval),  let msgstr = msg.toString(), let labels = valueToLabels(value: labs) {
 				KCAlert.alert(type: atype, messgage: msgstr, labels: labels, in: vcont, callback: {

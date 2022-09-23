@@ -41,8 +41,8 @@ open class KMMultiComponentViewController: KCMultiViewController
 		return KEResource(packageDirectory: Bundle.main.bundleURL)
 	}
 
-	public func pushViewController(source src: KMSource, argument arg: CNValue, callback cbfunc: @escaping ViewSwitchCallback) {
-		let viewctrl = KMComponentViewController(parentViewController: self)
+	public func pushViewController(source src: AMSource, argument arg: CNValue, callback cbfunc: @escaping ViewSwitchCallback) {
+		let viewctrl = AMComponentViewController(parentViewController: self)
 		viewctrl.setup(source: src, argument: arg, processManager: mProcessManager, environment: mEnvironment)
 		super.pushViewController(viewController: viewctrl, callback: cbfunc)
 	}

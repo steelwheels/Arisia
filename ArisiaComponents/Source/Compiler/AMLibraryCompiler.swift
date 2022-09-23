@@ -14,9 +14,9 @@ import JavaScriptCore
 
 public class AMLibraryCompiler
 {
-	private var mViewController: 	KMComponentViewController
+	private var mViewController: 	AMComponentViewController
 
-	public init(viewController vcont: KMComponentViewController) {
+	public init(viewController vcont: AMComponentViewController) {
 		mViewController = vcont
 	}
 

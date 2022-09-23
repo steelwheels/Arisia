@@ -19,15 +19,15 @@ import AppKit
 import UIKit
 #endif
 
-public enum KMSource {
+public enum AMSource {
 	case	mainView(KEResource)			// The resource contains the main view
 	case	subView(KEResource, String)		// The resource contains the sub view, the sub view name
 }
 
-open class KMComponentViewController: KCSingleViewController
+open class AMComponentViewController: KCSingleViewController
 {
 	private var mContext:			KEContext
-	private var mSource:			KMSource?
+	private var mSource:			AMSource?
 	private var mArgument:			CNValue
 	private var mProcessManager:		CNProcessManager?
 	private var mResource:			KEResource?
@@ -78,7 +78,7 @@ open class KMComponentViewController: KCSingleViewController
 		}
 	}
 
-	public func setup(source src: KMSource, argument arg: CNValue, processManager pmgr: CNProcessManager, environment env: CNEnvironment) {
+	public func setup(source src: AMSource, argument arg: CNValue, processManager pmgr: CNProcessManager, environment env: CNEnvironment) {
 		mSource		= src
 		mArgument	= arg
 		mProcessManager	= pmgr
@@ -194,7 +194,7 @@ open class KMComponentViewController: KCSingleViewController
 		}
 	}
 
-	private func compile(viewController vcont: KMComponentViewController, context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
+	private func compile(viewController vcont: AMComponentViewController, context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		var result      = false
 		let libcompiler = KLLibraryCompiler()
 		if libcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) {
