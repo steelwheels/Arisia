@@ -29,11 +29,6 @@ class ViewController: AMMultiComponentViewController
 	open override func viewDidAppear() {
 		super.viewDidAppear()
 
-		/* Update log level */
-		//let _ = KCLogManager.shared
-		//let syspref = CNPreference.shared.systemPreference
-		//syspref.logLevel = .debug
-
 		/* add sub view */
 		if let res = self.resource {
 			let callback: AMMultiComponentViewController.ViewSwitchCallback = {
