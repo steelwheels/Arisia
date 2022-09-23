@@ -61,5 +61,5 @@ The arisia library contains many kind of [components](#component).
 # Related links
 * [Steel Wheels Project](https://github.com/steelwheels)
 * [ArisiaTools](https://github.com/steelwheels/Arisia/tree/main/ArisiaTools): Command line tools for development 
-* [Arisia](https://en.wikipedia.org/wiki/Lensman_series): The name of 
+* Arisia: The name of the star in the novel [lensman](https://en.wikipedia.org/wiki/Lensman_series)
 
