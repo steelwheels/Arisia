@@ -39,8 +39,10 @@ public class ALScriptExecutor
 		for pname in frm.propertyNames {
 			if let val = frm.value(name: pname) {
 				if val.isObject {
-					if let child = val.toObject() as? ALFrame {
-						setup(frame: child)
+					if let child = val.toObject() as? ALFrameCore {
+						if let cframe = child.owner as? ALFrame {
+							setup(frame: cframe)
+						}
 					}
 				}
 			}

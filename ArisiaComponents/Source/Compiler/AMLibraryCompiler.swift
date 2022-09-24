@@ -28,10 +28,15 @@ public class AMLibraryCompiler
 	private func defineAllocators(context ctxt: KEContext) {
 		let allocator = ALFrameAllocator.shared
 
-		/* KMRootView */
+		/* RootView */
 		allocator.add(className: ALConfig.rootViewFrameName, allocator: {
 			(_ ctxt: KEContext) -> ALFrame in
 			return AMStackView(context: ctxt)
+		})
+		/* ButtonView */
+		allocator.add(className: AMButtonView.ClassName, allocator: {
+			(_ ctxt: KEContext) -> ALFrame in
+			return AMButtonView(context: ctxt)
 		})
 	}
 }

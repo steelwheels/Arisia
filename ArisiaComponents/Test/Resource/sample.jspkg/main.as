@@ -1,4 +1,6 @@
 {
- a: number 0
+  button: ButtonView {
+    title: string "Hello, world !!"
+  }
 }
 

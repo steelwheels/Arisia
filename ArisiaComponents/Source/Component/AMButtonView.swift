@@ -1,0 +1,111 @@
+/**
+ * @file AMButtonView.swift
+ * @brief	Define AMButtonView class
+ * @par Copyright
+ *   Copyright (C) 2022 Steel Wheels Project
+ */
+
+import ArisiaLibrary
+import KiwiControls
+import KiwiEngine
+import CoconutData
+import JavaScriptCore
+import Foundation
+#if os(iOS)
+import UIKit
+#endif
+import Foundation
+
+public class AMButtonView: KCButton, ALFrame
+{
+	public static let ClassName		= "ButtonView"
+
+	private static let PressedItem		= "pressed"
+	private static let IsEnabledItem	= "isEnabled"
+	private static let TitleItem		= "title"
+
+	private var mContext:		KEContext
+	private var mFrameCore:		ALFrameCore
+
+	public var core: ALFrameCore { get { return mFrameCore }}
+
+	public init(context ctxt: KEContext){
+		mContext	= ctxt
+		mFrameCore	= ALFrameCore(frameName: AMStackView.ClassName, context: ctxt)
+		let frame	= CGRect(x: 0.0, y: 0.0, width: 188, height: 21)
+		super.init(frame: frame)
+		mFrameCore.owner = self
+	}
+
+	public required init?(coder: NSCoder) {
+		fatalError("Not supported")
+	}
+
+	public func setup() {
+		/* "pressed" event */
+		self.buttonPressedCallback = {
+			() -> Void in
+			if let evtval = self.value(name: AMButtonView.PressedItem) {
+				CNExecuteInUserThread(level: .event, execute: {
+					evtval.call(withArguments: [self.mFrameCore])	// insert self
+				})
+			}
+		}
+
+		/* isEnabled property */
+		definePropertyType(propertyName: AMButtonView.IsEnabledItem, valueType: .boolType)
+		if let enable = booleanValue(name: AMButtonView.IsEnabledItem) {
+			self.isEnabled = enable
+		} else {
+			let _ = setBooleanValue(name: AMButtonView.IsEnabledItem, value: self.isEnabled)
+		}
+		addObserver(propertyName: AMButtonView.IsEnabledItem, listnerFunction: {
+			(_ param: JSValue) -> Void in
+			if let num = param.toNumber() {
+				self.isEnabled = num.boolValue
+			}
+		})
+
+		/* title property */
+		definePropertyType(propertyName: AMButtonView.TitleItem, valueType: .stringType)
+		if let str = stringValue(name: AMButtonView.TitleItem) {
+			self.value = stringToValue(string: str)
+		} else {
+			let str = valueToString(value: self.value)
+			let _ = setStringValue(name: AMButtonView.TitleItem, value: str)
+		}
+		addObserver(propertyName: AMButtonView.TitleItem, listnerFunction: {
+			(_ param: JSValue) -> Void in
+			if let str = param.toString() {
+				self.value = self.stringToValue(string: str)
+			}
+		})
+	}
+
+	private func stringToValue(string str: String) -> KCButtonValue {
+		let result: KCButtonValue
+		switch str {
+		case "<-":	result = .symbol(.leftArrow)
+		case "->":	result = .symbol(.rightArrow)
+		default:	result = .text(str)
+		}
+		return result
+	}
+
+	private func valueToString(value val: KCButtonValue) -> String {
+		let result: String
+		switch val {
+		case .text(let txt):		result = txt
+		case .symbol(let sym):
+			switch sym {
+			case .leftArrow:	result = "<-"
+			case .rightArrow:	result = "->"
+			@unknown default:	result = "?"
+			}
+		@unknown default:
+			result = "?"
+		}
+		return result
+	}
+}
+

@@ -68,6 +68,37 @@ public extension ALFrame
 		}
 	}
 
+	func booleanValue(name nm: String) -> Bool? {
+		if let num = numberValue(name: nm) {
+			return num.boolValue
+		} else {
+			return nil
+		}
+	}
+
+	func setBooleanValue(name nm: String, value val: Bool) -> Bool {
+		let num = NSNumber(booleanLiteral: val)
+		return setNumberValue(name: nm, value: num)
+	}
+
+	func stringValue(name nm: String) -> String? {
+		if let val = core.value(name: nm) {
+			if val.isString {
+				return val.toString()
+			}
+		}
+		return nil
+	}
+
+	func setStringValue(name nm: String, value val: String) -> Bool {
+		if let valobj = JSValue(object: val, in: core.context) {
+			core.setValue(name: nm, value: valobj)
+			return true
+		} else {
+			return false
+		}
+	}
+
 	func objectValue(name nm: String) -> NSObject? {
 		if let val = core.value(name: nm) {
 			if val.isObject {

@@ -352,7 +352,7 @@ public class ALParser
 			/* Decode as frame */
 			let allocator = ALFrameAllocator.shared
 			if allocator.isFrameClassName(name: ident) {
-				return .success(.instanceType(ident))
+				return .success(.objectType(ident))
 			}
 		} else if strm.requireSymbol(symbol: "[") {
 			/* Decode as dictionary
@@ -431,12 +431,16 @@ public class ALParser
 			} else {
 				return .failure(parseError(message: "String value is required but not given", stream: strm))
 			}
-		case .instanceType(let clsname):
-			switch parseFrame(className: clsname, stream: strm, sourceFile: srcfile) {
-			case .success(let frame):
-				return .success(.frame(frame))
-			case .failure(let err):
-				return .failure(err)
+		case .objectType(let clsnamep):
+			if let clsname = clsnamep {
+				switch parseFrame(className: clsname, stream: strm, sourceFile: srcfile) {
+				case .success(let frame):
+					return .success(.frame(frame))
+				case .failure(let err):
+					return .failure(err)
+				}
+			} else {
+				return .failure(parseError(message: "Frame name is NOT given", stream: strm))
 			}
 		case .arrayType(let elmtype):
 			switch parseArrayValue(elementType: elmtype, stream: strm, sourceFile: srcfile) {
@@ -461,9 +465,6 @@ public class ALParser
 			case .failure(let err):
 				return .failure(err)
 			}
-
-		case .objectType:
-			return .failure(parseError(message: "You can not declare object type", stream: strm))
 		@unknown default:
 			return .failure(parseError(message: "Unsupported type", stream: strm))
 		}

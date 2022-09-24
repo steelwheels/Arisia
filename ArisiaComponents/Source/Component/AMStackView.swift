@@ -21,9 +21,9 @@ public class AMStackView: KCStackView, ALFrame
 {
 	public static let ClassName 	= "StackView"
 
-	public static let AxisItem		= "axis"		// Type: CNAxis
-	public static let AlignmentItem		= "alignment"		// Type: CNAlignment
-	public static let DistributionItem	= "distribution"	// Type: CNDistribution
+	private static let AxisItem		= "axis"		// Type: CNAxis
+	private static let AlignmentItem		= "alignment"		// Type: CNAlignment
+	private static let DistributionItem	= "distribution"	// Type: CNDistribution
 
 	private var mContext:		KEContext
 	private var mFrameCore:		ALFrameCore
@@ -43,6 +43,14 @@ public class AMStackView: KCStackView, ALFrame
 	}
 
 	public func setup() {
+		/* Link with child frames */
+		for pname in self.propertyNames {
+			if let core = self.objectValue(name: pname) as? ALFrameCore {
+				if let view = core.owner as? KCView {
+					self.addArrangedSubView(subView: view)
+				}
+			}
+		}
 
 		/* Axis */
 		definePropertyType(propertyName: AMStackView.AxisItem, enumTypeName: "Axis")
@@ -109,13 +117,6 @@ public class AMStackView: KCStackView, ALFrame
 				}
 			}
 		})
-
-		/* Link with child frames */
-		for pname in self.propertyNames {
-			if let view = self.objectValue(name: pname) as? KCView {
-				self.addArrangedSubView(subView: view)
-			}
-		}
 	}
 }
 
