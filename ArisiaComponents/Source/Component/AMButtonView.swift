@@ -55,21 +55,27 @@ public class AMButtonView: KCButton, ALFrame
 		/* isEnabled property */
 		definePropertyType(propertyName: AMButtonView.IsEnabledItem, valueType: .boolType)
 		if let enable = booleanValue(name: AMButtonView.IsEnabledItem) {
-			self.isEnabled = enable
+			CNExecuteInMainThread(doSync: false, execute: {
+				self.isEnabled = enable
+			})
 		} else {
 			let _ = setBooleanValue(name: AMButtonView.IsEnabledItem, value: self.isEnabled)
 		}
 		addObserver(propertyName: AMButtonView.IsEnabledItem, listnerFunction: {
 			(_ param: JSValue) -> Void in
 			if let num = param.toNumber() {
-				self.isEnabled = num.boolValue
+				CNExecuteInMainThread(doSync: false, execute: {
+					self.isEnabled = num.boolValue
+				})
 			}
 		})
 
 		/* title property */
 		definePropertyType(propertyName: AMButtonView.TitleItem, valueType: .stringType)
 		if let str = stringValue(name: AMButtonView.TitleItem) {
-			self.value = stringToValue(string: str)
+			CNExecuteInMainThread(doSync: false, execute: {
+				self.value = self.stringToValue(string: str)
+			})
 		} else {
 			let str = valueToString(value: self.value)
 			let _ = setStringValue(name: AMButtonView.TitleItem, value: str)
@@ -77,7 +83,9 @@ public class AMButtonView: KCButton, ALFrame
 		addObserver(propertyName: AMButtonView.TitleItem, listnerFunction: {
 			(_ param: JSValue) -> Void in
 			if let str = param.toString() {
-				self.value = self.stringToValue(string: str)
+				CNExecuteInMainThread(doSync: false, execute: {
+					self.value = self.stringToValue(string: str)
+				})
 			}
 		})
 	}

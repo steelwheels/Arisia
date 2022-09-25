@@ -56,7 +56,9 @@ public class AMStackView: KCStackView, ALFrame
 		definePropertyType(propertyName: AMStackView.AxisItem, enumTypeName: "Axis")
 		if let num = numberValue(name: AMStackView.AxisItem) {
 			if let newaxis = CNAxis(rawValue: num.intValue) {
-				self.axis = newaxis
+				CNExecuteInMainThread(doSync: false, execute: {
+					self.axis = newaxis
+				})
 			} else {
 				CNLog(logLevel: .error, message: "Unknown initial value for \(AMStackView.AxisItem)", atFunction: #function, inFile: #file)
 			}
@@ -67,7 +69,9 @@ public class AMStackView: KCStackView, ALFrame
 			(_ param: JSValue) -> Void in
 			if let num = param.toNumber() {
 				if let newaxis = CNAxis(rawValue: num.intValue) {
-					self.axis = newaxis
+					CNExecuteInMainThread(doSync: false, execute: {
+						self.axis = newaxis
+					})
 				} else {
 					CNLog(logLevel: .error, message: "Invalid value for axis: \(num.intValue)", atFunction: #function, inFile: #file)
 				}
@@ -78,7 +82,9 @@ public class AMStackView: KCStackView, ALFrame
 		definePropertyType(propertyName: AMStackView.AlignmentItem, enumTypeName: "Alignment")
 		if let num = numberValue(name: AMStackView.AlignmentItem) {
 			if let newalignment = CNAlignment(rawValue: num.intValue) {
-				self.alignment = newalignment
+				CNExecuteInMainThread(doSync: false, execute: {
+					self.alignment = newalignment
+				})
 			} else {
 				CNLog(logLevel: .error, message: "Unknown initial value for \(AMStackView.AlignmentItem)", atFunction: #function, inFile: #file)
 			}
@@ -89,7 +95,9 @@ public class AMStackView: KCStackView, ALFrame
 			(_ param: JSValue) -> Void in
 			if let num = param.toNumber() {
 				if let newalignment = CNAlignment(rawValue: num.intValue) {
-					self.alignment = newalignment
+					CNExecuteInMainThread(doSync: false, execute: {
+						self.alignment = newalignment
+					})
 				} else {
 					CNLog(logLevel: .error, message: "Invalid value for alignment: \(num.intValue)", atFunction: #function, inFile: #file)
 				}
@@ -100,7 +108,9 @@ public class AMStackView: KCStackView, ALFrame
 		definePropertyType(propertyName: AMStackView.DistributionItem, enumTypeName: "Distribution")
 		if let num = numberValue(name: AMStackView.DistributionItem) {
 			if let newdistribution = CNDistribution(rawValue: num.intValue) {
-				self.distribution = newdistribution
+				CNExecuteInMainThread(doSync: false, execute: {
+					self.distribution = newdistribution
+				})
 			} else {
 				CNLog(logLevel: .error, message: "Unknown initial value for \(AMStackView.DistributionItem)", atFunction: #function, inFile: #file)
 			}
@@ -111,7 +121,9 @@ public class AMStackView: KCStackView, ALFrame
 			(_ param: JSValue) -> Void in
 			if let num = param.toNumber() {
 				if let newdistribution = CNDistribution(rawValue: num.intValue) {
-					self.distribution = newdistribution
+					CNExecuteInMainThread(doSync: false, execute: {
+						self.distribution = newdistribution
+					})
 				} else {
 					CNLog(logLevel: .error, message: "Invalid value for distribution: \(num.intValue)", atFunction: #function, inFile: #file)
 				}
