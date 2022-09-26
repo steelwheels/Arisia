@@ -1,8 +1,8 @@
 /* allocate function for frame: Frame */
 let root = _allocateFrameCore("Frame") ;
 /* define type for all properties */
-root.definePropertyType("f0", "iFrame") ;
-root.definePropertyType("init0", "?") ;
+root.definePropertyType("f0", "o(Frame)") ;
+root.definePropertyType("init0", "y") ;
 /* define getter/setter for all properties */
 _definePropertyIF(root, ["f0","init0","_init0_ifunc"]) ;
 /* assign user declared properties */
@@ -13,7 +13,7 @@ root._init0_ifunc = function(self) {
   /* allocate function for frame: Frame */
   let f0 = _allocateFrameCore("Frame") ;
   /* define type for all properties */
-  f0.definePropertyType("init0", "?") ;
+  f0.definePropertyType("init0", "y") ;
   /* define getter/setter for all properties */
   _definePropertyIF(f0, ["init0","_init0_ifunc"]) ;
   /* assign user declared properties */

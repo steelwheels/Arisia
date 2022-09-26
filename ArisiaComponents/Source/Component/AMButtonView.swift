@@ -41,7 +41,7 @@ public class AMButtonView: KCButton, ALFrame
 		fatalError("Not supported")
 	}
 
-	public func setup() {
+	public func setup(resource res: KEResource) -> NSError? {
 		/* "pressed" event */
 		self.buttonPressedCallback = {
 			() -> Void in
@@ -88,6 +88,7 @@ public class AMButtonView: KCButton, ALFrame
 				})
 			}
 		})
+		return nil
 	}
 
 	private func stringToValue(string str: String) -> KCButtonValue {

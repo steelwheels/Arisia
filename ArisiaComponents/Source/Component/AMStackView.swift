@@ -22,7 +22,7 @@ public class AMStackView: KCStackView, ALFrame
 	public static let ClassName 	= "StackView"
 
 	private static let AxisItem		= "axis"		// Type: CNAxis
-	private static let AlignmentItem		= "alignment"		// Type: CNAlignment
+	private static let AlignmentItem	= "alignment"		// Type: CNAlignment
 	private static let DistributionItem	= "distribution"	// Type: CNDistribution
 
 	private var mContext:		KEContext
@@ -42,7 +42,7 @@ public class AMStackView: KCStackView, ALFrame
 		fatalError("Not supported")
 	}
 
-	public func setup() {
+	public func setup(resource res: KEResource) -> NSError? {
 		/* Link with child frames */
 		for pname in self.propertyNames {
 			if let core = self.objectValue(name: pname) as? ALFrameCore {
@@ -129,6 +129,7 @@ public class AMStackView: KCStackView, ALFrame
 				}
 			}
 		})
+		return nil
 	}
 }
 

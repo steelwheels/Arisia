@@ -1,7 +1,7 @@
 /* allocate function for frame: Frame */
 let root = _allocateFrameCore("Frame") ;
 /* define type for all properties */
-root.definePropertyType("f0", "iFrame") ;
+root.definePropertyType("f0", "o(Frame)") ;
 root.definePropertyType("a0", "n") ;
 /* define getter/setter for all properties */
 _definePropertyIF(root, ["f0","a0"]) ;

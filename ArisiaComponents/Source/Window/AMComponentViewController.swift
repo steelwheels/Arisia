@@ -174,7 +174,7 @@ open class AMComponentViewController: KCSingleViewController
 
 		/* Execute the script */
 		let executor = ALScriptExecutor(config: config)
-		guard let rootview = executor.execute(context: context, script: jscode, sourceFile: srcfile) else {
+		guard let rootview = executor.execute(context: context, script: jscode, sourceFile: srcfile, resource: resource) else {
 			let fname: String
 			if let url = srcfile {
 				fname = ": " + url.path

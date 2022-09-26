@@ -17,13 +17,13 @@ public class ALScriptExecutor
 		mConfig = conf
 	}
 
-	public func execute(context ctxt: KEContext, script scr: CNText, sourceFile file: URL?) -> ALFrame? {
+	public func execute(context ctxt: KEContext, script scr: CNText, sourceFile file: URL?, resource res: KEResource) -> ALFrame? {
 		ctxt.resetErrorCount()
 		let retval = ctxt.evaluateScript(script: scr.toStrings().joined(separator: "\n"), sourceFile: file)
 		if ctxt.errorCount == 0 && retval.isObject {
 			if let rootobj = retval.toObject() as? ALFrameCore {
 				if let core = rootobj.owner as? ALFrame {
-					setup(frame: core)
+					setup(frame: core, resource: res)
 					return core
 				}
 			}
@@ -34,21 +34,23 @@ public class ALScriptExecutor
 		return nil
 	}
 
-	private func setup(frame frm: ALFrame) {
+	private func setup(frame frm: ALFrame, resource res: KEResource) {
 		/* visit children */
 		for pname in frm.propertyNames {
 			if let val = frm.value(name: pname) {
 				if val.isObject {
 					if let child = val.toObject() as? ALFrameCore {
 						if let cframe = child.owner as? ALFrame {
-							setup(frame: cframe)
+							setup(frame: cframe, resource: res)
 						}
 					}
 				}
 			}
 		}
 		/* setup the frame */
-		frm.setup()
+		if let err = frm.setup(resource: res) {
+			CNLog(logLevel: .error, message: err.toString())
+		}
 	}
 }
 

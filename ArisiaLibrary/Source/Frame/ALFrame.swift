@@ -13,7 +13,7 @@ public protocol ALFrame
 {
 	var core: ALFrameCore { get }
 
-	func setup()
+	func setup(resource res: KEResource) -> NSError?
 }
 
 public extension ALFrame
@@ -46,9 +46,8 @@ public extension ALFrame
 		}
 	}
 
-	func setValue(name nm: String, value val: JSValue) -> Bool {
+	func setValue(name nm: String, value val: JSValue) {
 		core.setValue(name: nm, value: val)
-		return true
 	}
 
 	func numberValue(name nm: String) -> NSNumber? {
@@ -59,12 +58,11 @@ public extension ALFrame
 		}
 	}
 
-	func setNumberValue(name nm: String, value val: NSNumber) -> Bool {
+	func setNumberValue(name nm: String, value val: NSNumber) {
 		if let valobj = JSValue(object: val, in: core.context) {
 			core.setValue(name: nm, value: valobj)
-			return true
 		} else {
-			return false
+			CNLog(logLevel: .error, message: "Failed to allocate object", atFunction: #function, inFile: #file)
 		}
 	}
 
@@ -76,9 +74,9 @@ public extension ALFrame
 		}
 	}
 
-	func setBooleanValue(name nm: String, value val: Bool) -> Bool {
+	func setBooleanValue(name nm: String, value val: Bool) {
 		let num = NSNumber(booleanLiteral: val)
-		return setNumberValue(name: nm, value: num)
+		setNumberValue(name: nm, value: num)
 	}
 
 	func stringValue(name nm: String) -> String? {
@@ -90,12 +88,11 @@ public extension ALFrame
 		return nil
 	}
 
-	func setStringValue(name nm: String, value val: String) -> Bool {
+	func setStringValue(name nm: String, value val: String) {
 		if let valobj = JSValue(object: val, in: core.context) {
 			core.setValue(name: nm, value: valobj)
-			return true
 		} else {
-			return false
+			CNLog(logLevel: .error, message: "Failed to allocate object", atFunction: #function, inFile: #file)
 		}
 	}
 
@@ -108,12 +105,11 @@ public extension ALFrame
 		return nil
 	}
 
-	func setObjectValue(name nm: String, value val: NSObject) -> Bool {
+	func setObjectValue(name nm: String, value val: NSObject) {
 		if let valobj = JSValue(object: val, in: core.context) {
 			core.setValue(name: nm, value: valobj)
-			return true
 		} else {
-			return false
+			CNLog(logLevel: .error, message: "Failed to allocate object", atFunction: #function, inFile: #file)
 		}
 	}
 
@@ -158,6 +154,7 @@ public extension ALFrame
 		mFrameCore.owner = self
 	}
 
-	public func setup() {
+	public func setup(resource res: KEResource) -> NSError? {
+		return nil
 	}
 }

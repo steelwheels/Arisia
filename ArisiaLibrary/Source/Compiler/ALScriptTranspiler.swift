@@ -105,7 +105,7 @@ public class ALScriptTranspiler
 		let result = CNTextSection()
 		for prop in frm.properties {
 			let pname   = prop.name
-			let typestr = prop.type.encode()
+			let typestr = CNValueType.encode(valueType: prop.type)
 			let line    = CNTextLine(string: "\(inst).definePropertyType(\"\(pname)\", \"\(typestr)\") ;")
 			result.add(text: line)
 		}
