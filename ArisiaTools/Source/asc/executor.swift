@@ -34,7 +34,7 @@ public func execute(script scr: CNText, console cons: CNFileConsole) -> Result<I
 	}
 
 	let arsexec = ALScriptExecutor(config: config)
-	if let _ = arsexec.execute(context: ctxt, script: scr, sourceFile: nil) {
+	if let _ = arsexec.execute(context: ctxt, script: scr, sourceFile: nil, resource: resource) {
 		//cons.print(string: "root: \(obj)")
 		return .success(0)
 	} else {

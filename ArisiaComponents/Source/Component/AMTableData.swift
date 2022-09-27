@@ -77,9 +77,10 @@ public class AMTableData: ALFrame
 		definePropertyType(propertyName: AMTableData.CountItem, valueType: .numberType)
 
 		/* fieldNames (updated in updateTablePropeties()) */
-		definePropertyType(propertyName: AMTableData.FieldNameItem, valueType: .arrayType(.stringType))
+		definePropertyType(propertyName: AMTableData.FieldNamesItem, valueType: .arrayType(.stringType))
 
-		/* fieldName(index: number): string | null */
+		/* fieldName(index: number): string */
+		definePropertyType(propertyName: AMTableData.FieldNameItem, valueType: .functionType(.stringType, []))
 		let fnamefunc: @convention(block) (_ idxval: JSValue) -> JSValue = {
 			(_ idxval: JSValue) -> JSValue in
 			if idxval.isNumber {
@@ -91,7 +92,7 @@ public class AMTableData: ALFrame
 			} else {
 				CNLog(logLevel: .error, message: "Invalid parameter for \(AMTableData.FieldNameItem) method")
 			}
-			return JSValue(nullIn: self.core.context)
+			return JSValue(object: "", in: self.core.context)
 		}
 		if let funcval = JSValue(object: fnamefunc, in: core.context) {
 			setValue(name: AMTableData.FieldNameItem, value: funcval)
@@ -100,7 +101,7 @@ public class AMTableData: ALFrame
 		}
 
 		/* newRecord(): KLRecord */
-		definePropertyType(propertyName: AMTableData.NewRecordItem, valueType: .anyType)
+		definePropertyType(propertyName: AMTableData.NewRecordItem, valueType: .functionType(.objectType(KLRecord.ScriptInterfaceName), []))
 		let newrecfunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
 			let nrec   = table.newRecord()

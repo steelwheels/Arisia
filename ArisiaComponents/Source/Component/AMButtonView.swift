@@ -43,6 +43,7 @@ public class AMButtonView: KCButton, ALFrame
 
 	public func setup(resource res: KEResource) -> NSError? {
 		/* "pressed" event */
+		definePropertyType(propertyName: AMButtonView.PressedItem, valueType: .functionType(.voidType, []))
 		self.buttonPressedCallback = {
 			() -> Void in
 			if let evtval = self.value(name: AMButtonView.PressedItem) {
