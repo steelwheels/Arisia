@@ -16,6 +16,11 @@ public protocol ALFrame
 	func setup(resource res: KEResource) -> NSError?
 }
 
+private let FrameNameItem	= "frameName"
+private let PropertyNamesItem	= "propertyNames"
+private let ValueItem		= "value"
+private let SetValueItem	= "setValue"
+
 public extension ALFrame
 {
 	typealias ListenerFunction = (JSValue) -> Void	// new-value
@@ -38,6 +43,10 @@ public extension ALFrame
 		}
 	}}
 
+	func propertyType(propertyName pname: String) -> CNValueType? {
+		return core.propertyType(propertyName: pname)
+	}
+	
 	func value(name nm: String) -> JSValue? {
 		if let val = core.value(name: nm) {
 			return val
@@ -113,6 +122,23 @@ public extension ALFrame
 		}
 	}
 
+	func arrayValue(name nm: String) -> Array<Any>? {
+		if let val = core.value(name: nm) {
+			if val.isArray {
+				return val.toArray()
+			}
+		}
+		return nil
+	}
+
+	func setArrayValue(name nm: String, value val: Array<Any>) {
+		if let valobj = JSValue(object: val, in: core.context) {
+			core.setValue(name: nm, value: valobj)
+		} else {
+			CNLog(logLevel: .error, message: "Failed to allocate object", atFunction: #function, inFile: #file)
+		}
+	}
+
 	func definePropertyType(propertyName pname: String, valueType vtype: CNValueType) {
 		core.definePropertyType(propertyName: pname, valueType: vtype)
 	}
@@ -137,6 +163,40 @@ public extension ALFrame
 		})
 	}
 
+	func setupDefaultProperties() {
+		/* frameName */
+		definePropertyType(propertyName: FrameNameItem, valueType: .stringType)
+		setStringValue(name: FrameNameItem, value: ALConfig.defaultFrameName)
+
+		/* value(name: string) */
+		definePropertyType(propertyName: ValueItem, valueType: .functionType(.anyType, [.stringType]))
+		let valuefunc: @convention(block) (_ name: JSValue) -> JSValue = {
+			(_ name: JSValue) -> JSValue in
+			let retval = core.value(name)
+			return retval
+		}
+		if let funcval = JSValue(object: valuefunc, in: core.context) {
+			setValue(name: ValueItem, value: funcval)
+		} else {
+			CNLog(logLevel: .error, message: "Failed to allocate function", atFunction: #function, inFile: #file)
+		}
+
+		/* setValue(name: string, value: any) */
+		definePropertyType(propertyName: SetValueItem, valueType: .functionType(.boolType, [.stringType, .anyType]))
+		let setvaluefunc: @convention(block) (_ name: JSValue, _ srcval: JSValue) -> JSValue = {
+			(_ name: JSValue, _ srcval: JSValue) -> JSValue in
+			return core.setValue(name, srcval)
+		}
+		if let funcval = JSValue(object: setvaluefunc, in: core.context) {
+			setValue(name: SetValueItem, value: funcval)
+		} else {
+			CNLog(logLevel: .error, message: "Failed to allocate function", atFunction: #function, inFile: #file)
+		}
+
+		/* Property names: string[] */
+		definePropertyType(propertyName: PropertyNamesItem, valueType: .arrayType(.stringType))
+		setArrayValue(name: PropertyNamesItem, value: propertyNames)
+	}
 }
 
 @objc public class ALDefaultFrame: NSObject, ALFrame
@@ -155,6 +215,8 @@ public extension ALFrame
 	}
 
 	public func setup(resource res: KEResource) -> NSError? {
+		self.setupDefaultProperties()
 		return nil
 	}
 }
+

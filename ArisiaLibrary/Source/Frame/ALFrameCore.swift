@@ -117,6 +117,10 @@ import Foundation
 		mPropertyTypes[pname] = vtype
 	}
 
+	public func propertyType(propertyName pname: String) -> CNValueType? {
+		return mPropertyTypes[pname]
+	}
+
 	public func addObserver(_ property: JSValue, _ cbfunc: JSValue) {
 		if let pname = property.toString() {
 			addObserver(propertyName: pname,  listnerFunction: {

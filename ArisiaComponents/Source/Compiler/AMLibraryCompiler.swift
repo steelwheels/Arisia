@@ -14,10 +14,7 @@ import JavaScriptCore
 
 public class AMLibraryCompiler
 {
-	private var mViewController: 	AMComponentViewController
-
-	public init(viewController vcont: AMComponentViewController) {
-		mViewController = vcont
+	public init() {
 	}
 
 	public func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNConsole, config conf: KEConfig) -> Bool {
@@ -28,15 +25,20 @@ public class AMLibraryCompiler
 	private func defineAllocators(context ctxt: KEContext) {
 		let allocator = ALFrameAllocator.shared
 
+		/* ButtonView */
+		allocator.add(className: AMButtonView.ClassName, allocator: {
+			(_ ctxt: KEContext) -> ALFrame in
+			return AMButtonView(context: ctxt)
+		})
 		/* RootView */
 		allocator.add(className: ALConfig.rootViewFrameName, allocator: {
 			(_ ctxt: KEContext) -> ALFrame in
 			return AMStackView(context: ctxt)
 		})
-		/* ButtonView */
-		allocator.add(className: AMButtonView.ClassName, allocator: {
+		/* StackView */
+		allocator.add(className: AMStackView.ClassName, allocator: {
 			(_ ctxt: KEContext) -> ALFrame in
-			return AMButtonView(context: ctxt)
+			return AMStackView(context: ctxt)
 		})
 	}
 }

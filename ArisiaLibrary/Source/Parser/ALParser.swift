@@ -413,6 +413,8 @@ public class ALParser
 		switch vtype {
 		case .anyType:
 			return .failure(parseError(message: "You can not declare any type", stream: strm))
+		case .voidType:
+			return .failure(parseError(message: "You can not declare void type", stream: strm))
 		case .boolType:
 			if let val = strm.requireBool() {
 				return .success(.bool(val))
@@ -465,6 +467,9 @@ public class ALParser
 			case .failure(let err):
 				return .failure(err)
 			}
+
+		case .functionType(_, _):
+			return .failure(parseError(message: "Unsupported type", stream: strm))
 		@unknown default:
 			return .failure(parseError(message: "Unsupported type", stream: strm))
 		}

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05512D3C28E31F4700B82172 /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05512D3B28E31F4700B82172 /* KiwiControls.xcframework */; };
+		05512D3D28E31F4700B82172 /* KiwiControls.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05512D3B28E31F4700B82172 /* KiwiControls.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05512D4728E32B6A00B82172 /* dumper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05512D4628E32B6A00B82172 /* dumper.swift */; };
 		05A5DB9928CC0280005A6087 /* ArisiaLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A5DB9828CC0280005A6087 /* ArisiaLibrary.xcframework */; };
 		05A5DB9A28CC0280005A6087 /* ArisiaLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05A5DB9828CC0280005A6087 /* ArisiaLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05A5DB9D28CC02E5005A6087 /* compile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A5DB9C28CC02E5005A6087 /* compile.swift */; };
@@ -15,6 +18,11 @@
 		05BD8AAC28D0CC4800A008C1 /* KiwiShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05BD8AAA28D0CC4800A008C1 /* KiwiShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05BD8AAF28D0CC8300A008C1 /* CoconutShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05BD8AAE28D0CC8300A008C1 /* CoconutShell.xcframework */; };
 		05BD8AB028D0CC8300A008C1 /* CoconutShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05BD8AAE28D0CC8300A008C1 /* CoconutShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		05C2BF4328E2A7CA0059F938 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C2BF2E28E2A74A0059F938 /* main.swift */; };
+		05C2BF7128E2E2650059F938 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C2BF7028E2E2650059F938 /* config.swift */; };
+		05C2BF7728E3092E0059F938 /* compile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C2BF7628E3092E0059F938 /* compile.swift */; };
+		05C2BF7D28E317340059F938 /* ArisiaComponents.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2BF7C28E317340059F938 /* ArisiaComponents.xcframework */; };
+		05C2BF7E28E317340059F938 /* ArisiaComponents.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2BF7C28E317340059F938 /* ArisiaComponents.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05C9C36528C77B8C00E57C5D /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C9C36428C77B8C00E57C5D /* CoconutData.xcframework */; };
 		05C9C36628C77B8C00E57C5D /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05C9C36428C77B8C00E57C5D /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05C9C36A28C77BA300E57C5D /* CoconutDatabase.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C9C36928C77BA300E57C5D /* CoconutDatabase.xcframework */; };
@@ -30,6 +38,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		05C2BF3728E2A75A0059F938 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05E6E27628C7771C0073FDD8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05C2BF2B28E2A74A0059F938;
+			remoteInfo = adecl;
+		};
+		05C2BF6A28E2AA230059F938 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05E6E27628C7771C0073FDD8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05C9C38228C7827B00E57C5D;
+			remoteInfo = Install_Bundle;
+		};
 		05C9C38828C7828600E57C5D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05E6E27628C7771C0073FDD8 /* Project object */;
@@ -54,6 +76,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		05C2BF2A28E2A74A0059F938 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		05C9C36728C77B8C00E57C5D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -64,8 +95,10 @@
 				05C9C39128C788B000E57C5D /* Cobalt.xcframework in Embed Frameworks */,
 				05BD8AB028D0CC8300A008C1 /* CoconutShell.xcframework in Embed Frameworks */,
 				05A5DB9A28CC0280005A6087 /* ArisiaLibrary.xcframework in Embed Frameworks */,
+				05C2BF7E28E317340059F938 /* ArisiaComponents.xcframework in Embed Frameworks */,
 				05C9C36628C77B8C00E57C5D /* CoconutData.xcframework in Embed Frameworks */,
 				05C9C36F28C77BB600E57C5D /* KiwiEngine.xcframework in Embed Frameworks */,
+				05512D3D28E31F4700B82172 /* KiwiControls.xcframework in Embed Frameworks */,
 				05C9C37328C77BC700E57C5D /* KiwiLibrary.xcframework in Embed Frameworks */,
 				05BD8AAC28D0CC4800A008C1 /* KiwiShell.xcframework in Embed Frameworks */,
 			);
@@ -84,11 +117,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		05512D3B28E31F4700B82172 /* KiwiControls.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiControls.xcframework; path = ../../../../Library/Frameworks/KiwiControls.xcframework; sourceTree = "<group>"; };
+		05512D4628E32B6A00B82172 /* dumper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dumper.swift; sourceTree = "<group>"; };
 		05A5DB9828CC0280005A6087 /* ArisiaLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ArisiaLibrary.xcframework; path = ../../../../Library/Frameworks/ArisiaLibrary.xcframework; sourceTree = "<group>"; };
 		05A5DB9C28CC02E5005A6087 /* compile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = compile.swift; sourceTree = "<group>"; };
 		05BD8AA328D0C44B00A008C1 /* executor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = executor.swift; sourceTree = "<group>"; };
 		05BD8AAA28D0CC4800A008C1 /* KiwiShell.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiShell.xcframework; path = ../../../../Library/Frameworks/KiwiShell.xcframework; sourceTree = "<group>"; };
 		05BD8AAE28D0CC8300A008C1 /* CoconutShell.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutShell.xcframework; path = ../../../../Library/Frameworks/CoconutShell.xcframework; sourceTree = "<group>"; };
+		05C2BF2C28E2A74A0059F938 /* adecl */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = adecl; sourceTree = BUILT_PRODUCTS_DIR; };
+		05C2BF2E28E2A74A0059F938 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		05C2BF7028E2E2650059F938 /* config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
+		05C2BF7628E3092E0059F938 /* compile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = compile.swift; sourceTree = "<group>"; };
+		05C2BF7C28E317340059F938 /* ArisiaComponents.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ArisiaComponents.xcframework; path = ../../../../Library/Frameworks/ArisiaComponents.xcframework; sourceTree = "<group>"; };
 		05C9C34F28C779B500E57C5D /* ArisiaTools.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArisiaTools.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C9C35128C779B500E57C5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05C9C36428C77B8C00E57C5D /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
@@ -102,6 +142,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		05C2BF2928E2A74A0059F938 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05C9C34C28C779B500E57C5D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -110,8 +157,10 @@
 				05C9C39028C788B000E57C5D /* Cobalt.xcframework in Frameworks */,
 				05BD8AAF28D0CC8300A008C1 /* CoconutShell.xcframework in Frameworks */,
 				05A5DB9928CC0280005A6087 /* ArisiaLibrary.xcframework in Frameworks */,
+				05C2BF7D28E317340059F938 /* ArisiaComponents.xcframework in Frameworks */,
 				05C9C36528C77B8C00E57C5D /* CoconutData.xcframework in Frameworks */,
 				05C9C36E28C77BB600E57C5D /* KiwiEngine.xcframework in Frameworks */,
+				05512D3C28E31F4700B82172 /* KiwiControls.xcframework in Frameworks */,
 				05C9C37228C77BC700E57C5D /* KiwiLibrary.xcframework in Frameworks */,
 				05BD8AAB28D0CC4800A008C1 /* KiwiShell.xcframework in Frameworks */,
 			);
@@ -127,6 +176,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05C2BF3B28E2A7800059F938 /* adecl */ = {
+			isa = PBXGroup;
+			children = (
+				05C2BF2E28E2A74A0059F938 /* main.swift */,
+				05C2BF7628E3092E0059F938 /* compile.swift */,
+				05C2BF7028E2E2650059F938 /* config.swift */,
+				05512D4628E32B6A00B82172 /* dumper.swift */,
+			);
+			path = adecl;
+			sourceTree = "<group>";
+		};
 		05C9C35028C779B500E57C5D /* ArisiaToolsBundle */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +198,8 @@
 		05C9C36328C77B8C00E57C5D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05512D3B28E31F4700B82172 /* KiwiControls.xcframework */,
+				05C2BF7C28E317340059F938 /* ArisiaComponents.xcframework */,
 				05BD8AAE28D0CC8300A008C1 /* CoconutShell.xcframework */,
 				05BD8AAA28D0CC4800A008C1 /* KiwiShell.xcframework */,
 				05A5DB9828CC0280005A6087 /* ArisiaLibrary.xcframework */,
@@ -176,6 +238,7 @@
 			children = (
 				05E6E27E28C7771C0073FDD8 /* asc */,
 				05C9C34F28C779B500E57C5D /* ArisiaTools.bundle */,
+				05C2BF2C28E2A74A0059F938 /* adecl */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,6 +246,7 @@
 		05E6E28928C777920073FDD8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				05C2BF3B28E2A7800059F938 /* adecl */,
 				05C9C37C28C77E8B00E57C5D /* asc */,
 			);
 			name = Source;
@@ -216,6 +280,7 @@
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = "";
 			dependencies = (
+				05C2BF3828E2A75A0059F938 /* PBXTargetDependency */,
 				05C9C39D28C791B600E57C5D /* PBXTargetDependency */,
 			);
 			name = Install_Tools;
@@ -225,6 +290,24 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
+		05C2BF2B28E2A74A0059F938 /* adecl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05C2BF3228E2A74A0059F938 /* Build configuration list for PBXNativeTarget "adecl" */;
+			buildPhases = (
+				05C2BF2828E2A74A0059F938 /* Sources */,
+				05C2BF2928E2A74A0059F938 /* Frameworks */,
+				05C2BF2A28E2A74A0059F938 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05C2BF6B28E2AA230059F938 /* PBXTargetDependency */,
+			);
+			name = adecl;
+			productName = adecl;
+			productReference = 05C2BF2C28E2A74A0059F938 /* adecl */;
+			productType = "com.apple.product-type.tool";
+		};
 		05C9C34E28C779B500E57C5D /* ArisiaToolsBundle */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05C9C35428C779B500E57C5D /* Build configuration list for PBXNativeTarget "ArisiaToolsBundle" */;
@@ -270,6 +353,9 @@
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					05C2BF2B28E2A74A0059F938 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					05C9C34E28C779B500E57C5D = {
 						CreatedOnToolsVersion = 12.4;
 					};
@@ -300,6 +386,7 @@
 				05C9C34E28C779B500E57C5D /* ArisiaToolsBundle */,
 				05C9C38228C7827B00E57C5D /* Install_Bundle */,
 				05E6E27D28C7771C0073FDD8 /* asc */,
+				05C2BF2B28E2A74A0059F938 /* adecl */,
 				05C9C39728C791AE00E57C5D /* Install_Tools */,
 			);
 		};
@@ -316,6 +403,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		05C2BF2828E2A74A0059F938 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05512D4728E32B6A00B82172 /* dumper.swift in Sources */,
+				05C2BF4328E2A7CA0059F938 /* main.swift in Sources */,
+				05C2BF7128E2E2650059F938 /* config.swift in Sources */,
+				05C2BF7728E3092E0059F938 /* compile.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05C9C34B28C779B500E57C5D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -337,6 +435,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		05C2BF3828E2A75A0059F938 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05C2BF2B28E2A74A0059F938 /* adecl */;
+			targetProxy = 05C2BF3728E2A75A0059F938 /* PBXContainerItemProxy */;
+		};
+		05C2BF6B28E2AA230059F938 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05C9C38228C7827B00E57C5D /* Install_Bundle */;
+			targetProxy = 05C2BF6A28E2AA230059F938 /* PBXContainerItemProxy */;
+		};
 		05C9C38928C7828600E57C5D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05C9C34E28C779B500E57C5D /* ArisiaToolsBundle */;
@@ -355,6 +463,38 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		05C2BF3028E2A74A0059F938 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				INSTALL_PATH = "$(HOME)/tools/bin";
+				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		05C2BF3128E2A74A0059F938 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				INSTALL_PATH = "$(HOME)/tools/bin";
+				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		05C9C35228C779B500E57C5D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -585,6 +725,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		05C2BF3228E2A74A0059F938 /* Build configuration list for PBXNativeTarget "adecl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05C2BF3028E2A74A0059F938 /* Debug */,
+				05C2BF3128E2A74A0059F938 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		05C9C35428C779B500E57C5D /* Build configuration list for PBXNativeTarget "ArisiaToolsBundle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

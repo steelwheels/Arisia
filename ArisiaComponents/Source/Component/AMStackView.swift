@@ -129,6 +129,10 @@ public class AMStackView: KCStackView, ALFrame
 				}
 			}
 		})
+
+		/* default properties */
+		self.setupDefaultProperties()
+		
 		return nil
 	}
 }

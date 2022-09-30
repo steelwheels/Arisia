@@ -121,6 +121,9 @@ public class AMTableData: ALFrame
 		/* Update read-only properties */
 		updateTablePropeties()
 
+		/* default properties */
+		self.setupDefaultProperties()
+		
 		return nil
 	}
 

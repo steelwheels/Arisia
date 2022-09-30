@@ -36,8 +36,14 @@ public class ALFrameAllocator
 		]
 	}
 
+	public var classNames: Array<String> { get { return Array(mAllocators.keys) }}
+
 	public func add(className name: String, allocator alloc: @escaping AllocatorFunc){
 		mAllocators[name] = alloc
+	}
+
+	public func search(byClassName name: String) -> AllocatorFunc? {
+		return mAllocators[name]
 	}
 
 	public func isFrameClassName(name nm: String) -> Bool {

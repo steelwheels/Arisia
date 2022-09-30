@@ -200,7 +200,7 @@ open class AMComponentViewController: KCSingleViewController
 		if libcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) {
 			let alcompiler = ALLibraryCompiler()
 			if alcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) {
-				let compcompiler = AMLibraryCompiler(viewController: vcont)
+				let compcompiler = AMLibraryCompiler()
 				result = compcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf)
 			}
 		}

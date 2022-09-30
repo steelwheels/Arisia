@@ -26,7 +26,7 @@ public class AMScriptThread: KHScriptThread
 		if super.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) {
 			let alcompiler = ALLibraryCompiler()
 			if alcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) {
-				let compiler = AMLibraryCompiler(viewController: mViewController)
+				let compiler = AMLibraryCompiler()
 				result = compiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf)
 			}
 		}

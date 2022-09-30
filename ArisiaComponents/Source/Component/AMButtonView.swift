@@ -89,6 +89,10 @@ public class AMButtonView: KCButton, ALFrame
 				})
 			}
 		})
+
+		/* default properties */
+		self.setupDefaultProperties()
+		
 		return nil
 	}
 
