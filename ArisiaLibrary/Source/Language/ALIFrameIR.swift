@@ -8,10 +8,33 @@
 import CoconutData
 import Foundation
 
-public enum ALLanguage {
+public enum ALLanguage
+{
 	case JavaScript
 	case TypeScript
 	case ArisiaScript
+
+	public func encode() -> String {
+		let result: String
+		switch self {
+		case .JavaScript:	result = "JavaScript"
+		case .TypeScript:	result = "TypeScript"
+		case .ArisiaScript:	result = "ArisiaScript"
+		}
+		return result
+	}
+
+	public static func decode(languageName name: String) -> ALLanguage? {
+		let result: ALLanguage?
+		switch name {
+		case "JavaScript":	result = .JavaScript
+		case "TypeScript":	result = .TypeScript
+		case "ArisiaScript":	result = .ArisiaScript
+		default:		result = nil
+		}
+		return result
+	}
+
 }
 
 public class ALFrameIR

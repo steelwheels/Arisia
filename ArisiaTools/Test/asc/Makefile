@@ -22,6 +22,7 @@ as_scripts	= empty-frame.as \
 
 decl_scripts	= $(as_scripts:.as=.d.ts)
 js_scripts	= $(as_scripts:.as=.js)
+ts_scripts	= $(as_scripts:.as=.ts)
 
 tsc	= npx tsc
 tsc_opt	= -t ES2017 --lib "es2017" --declaration \
@@ -29,20 +30,20 @@ tsc_opt	= -t ES2017 --lib "es2017" --declaration \
 	  --typeRoots $(CURDIR)/types \
 	  --alwaysStrict --strict --strictNullChecks --pretty
 
-#%.js: %.ts
-#	$(tsc) $(tsc_opt) $<
-
 %.js: %.as
 	$(asc) -c $< > $@
 
-all: decls $(js_scripts) check
+%.ts: %.as
+	$(asc) -c -l TypeScript $< > $@
+
+all: decls $(js_scripts) $(ts_scripts) check
 
 clean:
 	rm -f $(js_scripts) $(ts_scripts) 
 	(cd ./types && rm -f $(decl_scripts))
 
 check: dummy
-	for file in `ls *.js` ; do \
+	for file in `ls *.[jt]s` ; do \
 		echo "file; $${file}" ; \
 		diff $$file expected/$$file ; \
 	done
@@ -57,17 +58,3 @@ types/ArisiaLibrary.d.ts: $(lib_dir)/types/ArisiaLibrary.d.ts
 
 dummy:
 
-#all:
-#	(for scr in $(scripts) ; do \
-#	    $(asc) $(script_dir)/$$scr | tee $(out_dir)/$${scr}.ts 2>&1 ; \
-#	 done)
-#
-#check: all
-#	(for scr in $(scripts) ; do \
-#		echo "* script $${scr}" ; \
-#		diff $(out_dir)/$${scr}.log $(out_dir)/$${scr}.log.OK ; \
-#	 done)
-#	
-#clean:
-#	rm -rf logs/*.log
-#

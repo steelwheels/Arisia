@@ -9,13 +9,11 @@ import ArisiaLibrary
 import CoconutData
 import Foundation
 
-public func compile(scriptFiles files: Array<String>, config conf: ALConfig) -> Result<CNText, NSError>
+public func compile(scriptFiles files: Array<String>, config conf: ALConfig, language lang: ALLanguage) -> Result<CNText, NSError>
 {
 	guard files.count > 0 else {
 		return .failure(NSError.fileError(message: "No source file"))
 	}
-
-	let lang = ALLanguage.JavaScript
 
 	let result   = CNTextSection()
 	result.add(text: CNTextLine(string: "/// <reference path=\"types/KiwiLibrary.d.ts\" />"))

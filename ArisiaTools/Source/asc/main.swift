@@ -14,7 +14,7 @@ func main(arguments args: Array<String>) {
 	let cmdline = CommandLineParser(console: console)
 	if let (config, _) = cmdline.parseArguments(arguments: Array(args.dropFirst())) {
 		let lconf = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
-		switch compile(scriptFiles: config.scriptFiles, config: lconf) {
+		switch compile(scriptFiles: config.scriptFiles, config: lconf, language: config.language) {
 		case .success(let txt):
 			if !config.compileOnly {
 				switch execute(script: txt, console: console) {
