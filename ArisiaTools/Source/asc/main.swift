@@ -17,11 +17,19 @@ func main(arguments args: Array<String>) {
 		switch compile(scriptFiles: config.scriptFiles, config: lconf, language: config.language) {
 		case .success(let txt):
 			if !config.compileOnly {
-				switch execute(script: txt, console: console) {
-				case .success(_):
-					break // Finished without errors
-				case .failure(let err):
-					console.error(string: "[Error] " + err.toString())
+				switch config.language {
+				case .JavaScript:
+					switch execute(script: txt, console: console) {
+					case .success(_):
+						break // Finished without errors
+					case .failure(let err):
+						console.error(string: "[Error] " + err.toString())
+					}
+				case .ArisiaScript, .TypeScript:
+					let lang = config.language.encode()
+					console.print(string: "[Error] Can not execute \(lang) program")
+				@unknown default:
+					console.print(string: "[Error] Can not execute unknown program")
 				}
 			} else {
 				let str = txt.toStrings().joined(separator: "\n") + "\n"

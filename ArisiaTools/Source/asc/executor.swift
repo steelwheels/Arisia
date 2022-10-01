@@ -5,6 +5,7 @@
  *   Copyright (C) 2022 Steel Wheels Project
  */
 
+import ArisiaComponents
 import ArisiaLibrary
 import KiwiLibrary
 import KiwiEngine
@@ -24,12 +25,8 @@ public func execute(script scr: CNText, console cons: CNFileConsole) -> Result<I
 	let config   = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
 
 	/* Prepare libraries */
-	let libcompiler = KLLibraryCompiler()
-	guard libcompiler.compile(context: ctxt, resource: resource, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: config) else {
-		return .failure(NSError.fileError(message: "Library error"))
-	}
-	let arscompiler = ALLibraryCompiler()
-	guard arscompiler.compile(context: ctxt, resource: resource, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: config) else {
+	let compiler = AMLibraryCompiler()
+	guard compiler.compile(context: ctxt, resource: resource, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: config) else {
 		return .failure(NSError.fileError(message: "Arisia library error"))
 	}
 

@@ -13,11 +13,11 @@ import Foundation
 public func dump(className name: String, context ctxt: KEContext, resource res: KEResource, console cons: CNConsole) -> Bool
 {
 	let allocator = ALFrameAllocator.shared
-	guard let allocfunc = allocator.search(byClassName: name) else {
+	guard let alloc = allocator.search(byClassName: name) else {
 		cons.error(string: "[Error] Can not find class: \(name)\n")
 		return false
 	}
-	guard let frame = allocfunc(ctxt) else {
+	guard let frame = alloc.allocFuncBody(ctxt) else {
 		cons.error(string: "[Error] Failed to allocate frame: \(name)\n")
 		return false
 	}
@@ -33,25 +33,33 @@ public func dump(className name: String, context ctxt: KEContext, resource res: 
 		return false
 	}
 
-	let text = CNTextSection()
-	text.header = "interface \(name)IF {"
-	text.footer = "}"
+	let intfdecl = CNTextSection()
+	intfdecl.header = "interface \(name)IF {"
+	intfdecl.footer = "}"
 
 	for pname in frame.propertyNames {
 		if let type = frame.propertyType(propertyName: pname) {
 			switch type {
 			case .functionType(_, _):
 				let decl = pname + type.toTypeDeclaration() + " ;"
-				text.add(text: CNTextLine(string: decl))
+				intfdecl.add(text: CNTextLine(string: decl))
 			default:
 				let decl = pname + " : " + type.toTypeDeclaration() + " ;"
-				text.add(text: CNTextLine(string: decl))
+				intfdecl.add(text: CNTextLine(string: decl))
 			}
 		} else {
 			cons.error(string: "[Error] No property type for \(pname)\n")
 			return false
 		}
 	}
+
+	/* Define constructor */
+	let allocname = alloc.allocFuncName()
+	let constdecl = CNTextLine(string: "declare function \(allocname)(): \(name)IF ;")
+
+	let text = CNTextSection()
+	text.add(text: intfdecl)
+	text.add(text: constdecl)
 	file.put(string: text.toStrings().joined(separator: "\n") + "\n")
 
 	/* close the file*/

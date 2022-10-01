@@ -11,30 +11,38 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public class ALLibraryCompiler: KECompiler
+open class ALLibraryCompiler : KLLibraryCompiler
 {
-	public func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
-		defineBuiltinFunctions(context: ctxt, console: cons)
+	open override func compile(context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
+		/* Compiler for KiwiKibrary */
+		guard super.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
+			CNLog(logLevel: .error, message: "Failed to compile at KiwiLibrary", atFunction: #function, inFile: #file)
+			return false
+		}
+		/* Commpile for this library */
+		defineConstructorFunctions(context: ctxt, console: cons)
 		importBuiltinLibrary(context: ctxt, console: cons, config: conf)
 		return true
 	}
 
-	private func defineBuiltinFunctions(context ctxt: KEContext, console cons: CNFileConsole) {
-		/* _allocateFrame(name: string): FrameIF */
-		let frameCoreFunc: @convention(block) (_ clsname: JSValue) -> JSValue = {
-			(_ clsname: JSValue) -> JSValue in
-			if let name = clsname.toString() {
-				if let frame = ALFrameAllocator.shared.allocateFrame(className: name, context: ctxt) {
-					return JSValue(object: frame.core, in: ctxt)
-				} else {
-					cons.error(string: "Can not allocate frame, because unknown frame name \"\(name)\" is given to _allocateFrameCore.")
+	private func defineConstructorFunctions(context ctxt: KEContext, console cons: CNFileConsole) {
+		let atable = ALFrameAllocator.shared
+		for clsname in atable.classNames {
+			if let alloc = atable.search(byClassName: clsname) {
+				let allocfunc: @convention(block) () -> JSValue = {
+					() -> JSValue in
+					if let frame = alloc.allocFuncBody(ctxt) {
+						return JSValue(object: frame.core, in: ctxt)
+					} else {
+						cons.error(string: "Can not allocate frame: \(clsname)")
+						return JSValue(nullIn: ctxt)
+					}
 				}
+				ctxt.set(name: alloc.allocFuncName(), function: allocfunc)
 			} else {
-				cons.error(string: "Can not allocate frame, because the parameter for _allocateFrameCore is NOT string.")
+				cons.error(string: "Unknown frame name: \(clsname)")
 			}
-			return JSValue(object: ALDefaultFrame(frameName: "Frame", context: ctxt), in: ctxt)
 		}
-		ctxt.set(name: "_allocateFrameCore", function: frameCoreFunc)
 	}
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNConsole, config conf: KEConfig)

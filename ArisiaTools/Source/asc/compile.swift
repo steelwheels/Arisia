@@ -16,9 +16,11 @@ public func compile(scriptFiles files: Array<String>, config conf: ALConfig, lan
 	}
 
 	let result   = CNTextSection()
-	result.add(text: CNTextLine(string: "/// <reference path=\"types/KiwiLibrary.d.ts\" />"))
-	result.add(text: CNTextLine(string: "/// <reference path=\"types/ArisiaLibrary.d.ts\" />"))
-
+	if lang == .TypeScript {
+		result.add(text: CNTextLine(string: "/// <reference path=\"types/KiwiLibrary.d.ts\" />"))
+		result.add(text: CNTextLine(string: "/// <reference path=\"types/ArisiaLibrary.d.ts\" />"))
+		result.add(text: CNTextLine(string: "/// <reference path=\"types/ArisiaComponents.d.ts\" />"))
+	}
 	for file in files {
 		let url = URL(fileURLWithPath: file)
 		guard let script = url.loadContents() else {
@@ -32,7 +34,7 @@ public func compile(scriptFiles files: Array<String>, config conf: ALConfig, lan
 			switch compiler.compile(rootFrame: frame, language: lang) {
 			case .success(let txt):
 				result.add(text: txt)
-				return .success(txt)
+				return .success(result)
 			case .failure(let err):
 				return .failure(err)
 			}

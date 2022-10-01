@@ -6,3 +6,4 @@ interface ButtonViewIF {
   value(p0 : string): any ;
   isEnabled : boolean ;
 }
+declare function _alloc_ButtonView(): ButtonViewIF ;

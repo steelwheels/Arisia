@@ -195,16 +195,8 @@ open class AMComponentViewController: KCSingleViewController
 	}
 
 	private func compile(viewController vcont: AMComponentViewController, context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
-		var result      = false
-		let libcompiler = KLLibraryCompiler()
-		if libcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) {
-			let alcompiler = ALLibraryCompiler()
-			if alcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) {
-				let compcompiler = AMLibraryCompiler()
-				result = compcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf)
-			}
-		}
-		return result
+		let compcompiler = AMLibraryCompiler()
+		return compcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf)
 	}
 
 	open override func errorContext() -> KCView {

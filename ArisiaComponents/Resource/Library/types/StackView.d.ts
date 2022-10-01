@@ -7,3 +7,4 @@ interface StackViewIF {
   value(p0 : string): any ;
   alignment : Alignment ;
 }
+declare function _alloc_StackView(): StackViewIF ;

@@ -54,10 +54,14 @@ public class ALScriptTranspiler
 	}
 
 	private func transpileOneFrame(instanceName inst: String, frame frm: ALFrameIR, language lang: ALLanguage) -> Result<CNTextSection, NSError> {
-		let result = CNTextSection()
+		guard let allocator = ALFrameAllocator.shared.search(byClassName: frm.className) else {
+			return .failure(NSError.parseError(message: "Unknown class name: \(frm.className)"))
+		}
 
+
+		let result = CNTextSection()
 		result.add(text: CNTextLine(string: "/* allocate function for frame: \(frm.className) */"))
-		let line = CNTextLine(string: "let \(inst) = _allocateFrameCore(\"\(frm.className)\") ;")
+		let line = CNTextLine(string: "let \(inst) = \(allocator.allocFuncName())() ;")
 		result.add(text: line)
 
 		/* Define type for all properties*/

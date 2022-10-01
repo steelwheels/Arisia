@@ -15,18 +15,9 @@ import Foundation
 public func compile(context ctxt: KEContext, resource res: KEResource, config conf: ALConfig, console cons: CNFileConsole) -> Bool
 {
 	
-	let procmgr  = CNProcessManager()
-	let terminfo = CNTerminalInfo(width: 80, height: 20)
-	let env      = CNEnvironment()
-
-	let libcompiler = KLLibraryCompiler()
-	guard libcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
-		return false
-	}
-	let alcompiler = ALLibraryCompiler()
-	guard alcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
-		return false
-	}
+	let procmgr    = CNProcessManager()
+	let terminfo   = CNTerminalInfo(width: 80, height: 20)
+	let env        = CNEnvironment()
 	let amcompiler = AMLibraryCompiler()
 	guard amcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
 		return false

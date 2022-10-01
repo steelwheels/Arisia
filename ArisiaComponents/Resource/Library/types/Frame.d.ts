@@ -4,3 +4,4 @@ interface FrameIF {
   propertyNames : string[] ;
   value(p0 : string): any ;
 }
+declare function _alloc_Frame(): FrameIF ;
