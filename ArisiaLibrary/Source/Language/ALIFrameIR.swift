@@ -8,6 +8,12 @@
 import CoconutData
 import Foundation
 
+public enum ALLanguage {
+	case JavaScript
+	case TypeScript
+	case ArisiaScript
+}
+
 public class ALFrameIR
 {
 	public struct Property {

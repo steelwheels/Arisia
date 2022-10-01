@@ -16,20 +16,20 @@ public class ALScriptTranspiler
 		mConfig = conf
 	}
 
-	public func transpile(frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
-		return transpileFrames(identifier: mConfig.rootInstanceName, frame: frm)
+	public func transpile(frame frm: ALFrameIR, language lang: ALLanguage) -> Result<CNTextSection, NSError> {
+		return transpileFrames(identifier: mConfig.rootInstanceName, frame: frm, language: lang)
 	}
 
-	private func transpileFrames(identifier ident: String, frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
+	private func transpileFrames(identifier ident: String, frame frm: ALFrameIR, language lang: ALLanguage) -> Result<CNTextSection, NSError> {
 		let result = CNTextSection()
-		switch transpileOneFrame(instanceName: ident, frame: frm) {
+		switch transpileOneFrame(instanceName: ident, frame: frm, language: lang) {
 		case .success(let txt):
 			result.add(text: txt)
 			for prop in frm.propertyNames {
 				if let val = frm.value(name: prop) {
 					switch val {
 					case .frame(let child):
-						switch transpileFrames(identifier: prop, frame: child) {
+						switch transpileFrames(identifier: prop, frame: child, language: lang) {
 						case .success(let txt):
 							let scope = CNTextSection()
 							scope.header = "{" ; scope.footer = "}"
@@ -53,7 +53,7 @@ public class ALScriptTranspiler
 		return .success(result)
 	}
 
-	private func transpileOneFrame(instanceName inst: String, frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
+	private func transpileOneFrame(instanceName inst: String, frame frm: ALFrameIR, language lang: ALLanguage) -> Result<CNTextSection, NSError> {
 		let result = CNTextSection()
 
 		result.add(text: CNTextLine(string: "/* allocate function for frame: \(frm.className) */"))
@@ -82,7 +82,7 @@ public class ALScriptTranspiler
 				case .frame(_):
 					break
 				default:
-					switch assignProperty(instanceName: inst, propertyName: pname, value: pval) {
+					switch assignProperty(instanceName: inst, propertyName: pname, value: pval, language: lang) {
 					case .success(let text):
 						for line in text.split(separator: "\n") {
 							udtxt.add(text: CNTextLine(string: String(line)))
@@ -139,8 +139,8 @@ public class ALScriptTranspiler
 		}
 	}
 
-	private func assignProperty(instanceName inst: String, propertyName pname: String, value pval: ALValueIR) -> Result<String, NSError> {
-		switch valueToScript(value: pval) {
+	private func assignProperty(instanceName inst: String, propertyName pname: String, value pval: ALValueIR, language lang: ALLanguage) -> Result<String, NSError> {
+		switch valueToScript(value: pval, language: lang) {
 		case .success(let valstr):
 			let bodyname: String
 			if let bname = functionBodyName(name: pname, value: pval) {
@@ -154,7 +154,7 @@ public class ALScriptTranspiler
 		}
 	}
 
-	private func valueToScript(value val: ALValueIR) -> Result<String, NSError> {
+	private func valueToScript(value val: ALValueIR, language lang: ALLanguage) -> Result<String, NSError> {
 		let result: String
 		switch val {
 		case .bool(let bval):
@@ -166,14 +166,14 @@ public class ALScriptTranspiler
 		case .frame(_):
 			return .failure(transpileError(message: "Frame can not be operate as a value"))
 		case .array(let elms):
-			switch arrayToScript(value: elms) {
+			switch arrayToScript(value: elms, language: lang) {
 			case .success(let text):
 				result = text
 			case .failure(let err):
 				return .failure(err)
 			}
 		case .dictionary(let dict):
-			switch dictionaryToScript(values: dict) {
+			switch dictionaryToScript(values: dict, language: lang) {
 			case .success(let text):
 				result = text
 			case .failure(let err):
@@ -182,22 +182,22 @@ public class ALScriptTranspiler
 		case .enumValue(let etype, let name, _):
 			result = "\(etype.typeName).\(name)"
 		case .initFunction(let ifunc):
-			result = ifunc.toScript()
+			result = ifunc.toScript(language: lang)
 		case .eventFunction(let efunc):
-			result = efunc.toScript()
+			result = efunc.toScript(language: lang)
 		case .listnerFunction(let lfunc):
-			result = lfunc.toScript()
+			result = lfunc.toScript(language: lang)
 		case .proceduralFunction(let pfunc):
-			result = pfunc.toScript()
+			result = pfunc.toScript(language: lang)
 		}
 		return .success(result)
 	}
 
-	private func arrayToScript(value elms: Array<ALValueIR>) -> Result<String, NSError>  {
+	private func arrayToScript(value elms: Array<ALValueIR>, language lang: ALLanguage) -> Result<String, NSError>  {
 		var astr: String = "["
 		var is1st = true
 		for elm in elms {
-			switch valueToScript(value: elm) {
+			switch valueToScript(value: elm, language: lang) {
 			case .success(let elmstr):
 				if is1st {
 					is1st = false
@@ -213,13 +213,13 @@ public class ALScriptTranspiler
 		return .success(astr)
 	}
 
-	private func dictionaryToScript(values dict: Dictionary<String, ALValueIR>) -> Result<String, NSError>  {
+	private func dictionaryToScript(values dict: Dictionary<String, ALValueIR>, language lang: ALLanguage) -> Result<String, NSError>  {
 		var dstr: String = "{"
 		var is1st = true
 		let names = dict.keys.sorted()
 		for name in names {
 			if let val = dict[name] {
-				switch valueToScript(value: val) {
+				switch valueToScript(value: val, language: lang) {
 				case .success(let valstr):
 					if is1st {
 						is1st = false

@@ -154,10 +154,10 @@ open class AMComponentViewController: KCSingleViewController
 			return nil
 		}
 
-		/* Compile the frame */
+		/* Compile the frame into JavaScript */
 		let jscode : CNTextSection
 		let compiler = ALScriptCompiler(config: config)
-		switch compiler.compile(rootFrame: rootir) {
+		switch compiler.compile(rootFrame: rootir, language: .JavaScript) {
 		case .success(let txt):
 			jscode = txt
 		case .failure(let err):

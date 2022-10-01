@@ -15,6 +15,8 @@ public func compile(scriptFiles files: Array<String>, config conf: ALConfig) -> 
 		return .failure(NSError.fileError(message: "No source file"))
 	}
 
+	let lang = ALLanguage.JavaScript
+
 	let result   = CNTextSection()
 	result.add(text: CNTextLine(string: "/// <reference path=\"types/KiwiLibrary.d.ts\" />"))
 	result.add(text: CNTextLine(string: "/// <reference path=\"types/ArisiaLibrary.d.ts\" />"))
@@ -29,7 +31,7 @@ public func compile(scriptFiles files: Array<String>, config conf: ALConfig) -> 
 		case .success(let frame):
 			let conf     = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
 			let compiler = ALScriptCompiler(config: conf)
-			switch compiler.compile(rootFrame: frame) {
+			switch compiler.compile(rootFrame: frame, language: lang) {
 			case .success(let txt):
 				result.add(text: txt)
 				return .success(txt)

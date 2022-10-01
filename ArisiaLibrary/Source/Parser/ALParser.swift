@@ -170,7 +170,7 @@ public class ALParser
 
 	private func parseInitFunc(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALInitFunctionIR, NSError> {
 		if let text = strm.getText() {
-			return .success(ALInitFunctionIR(script: text, source: srcfile))
+			return .success(ALInitFunctionIR(script: text, source: srcfile, config: mConfig))
 		} else {
 			return .failure(parseError(message: "The body of Init function is required", stream: strm))
 		}
@@ -198,7 +198,7 @@ public class ALParser
 			}
 		}
 		if let text = strm.getText() {
-			return .success(ALEventFunctionIR(arguments: args, script: text, source: srcfile))
+			return .success(ALEventFunctionIR(arguments: args, script: text, source: srcfile, config: mConfig))
 		} else {
 			return .failure(parseError(message: "The body of Event function is required", stream: strm))
 		}
@@ -226,7 +226,7 @@ public class ALParser
 			}
 		}
 		if let text = strm.getText() {
-			return .success(ALListnerFunctionIR(arguments: args, returnType: rtype, script: text, source: srcfile))
+			return .success(ALListnerFunctionIR(arguments: args, returnType: rtype, script: text, source: srcfile, config: mConfig))
 		} else {
 			return .failure(parseError(message: "The body of prcedural function is required", stream: strm))
 		}
@@ -254,7 +254,7 @@ public class ALParser
 			}
 		}
 		if let text = strm.getText() {
-			return .success(ALProceduralFunctionIR(arguments: args, returnType: rtype, script: text, source: srcfile))
+			return .success(ALProceduralFunctionIR(arguments: args, returnType: rtype, script: text, source: srcfile, config: mConfig))
 		} else {
 			return .failure(parseError(message: "The body of prcedural function is required", stream: strm))
 		}

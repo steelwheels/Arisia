@@ -16,9 +16,9 @@ public class ALScriptCompiler
 		mConfig = conf
 	}
 
-	public func compile(rootFrame frame: ALFrameIR) -> Result<CNTextSection, NSError> {
+	public func compile(rootFrame frame: ALFrameIR, language lang: ALLanguage) -> Result<CNTextSection, NSError> {
 		let result = CNTextSection()
-		switch transpile(frame: frame) {
+		switch transpile(frame: frame, language: lang) {
 		case .success(let csect):
 			result.add(text: csect)
 			switch link(frame: frame) {
@@ -39,9 +39,9 @@ public class ALScriptCompiler
 		}
 	}
 
-	private func transpile(frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
+	private func transpile(frame frm: ALFrameIR, language lang: ALLanguage) -> Result<CNTextSection, NSError> {
 		let transpiler = ALScriptTranspiler(config: mConfig)
-		return transpiler.transpile(frame: frm) 
+		return transpiler.transpile(frame: frm, language: lang)
 	}
 
 	private func link(frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
