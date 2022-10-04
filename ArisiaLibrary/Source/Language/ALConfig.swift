@@ -17,13 +17,11 @@ public class ALConfig: KEConfig
 	private var mApplicationType:		KEApplicationType
 
 	public var rootInstanceName: 		String
-	public var frameInterfaceForScript:	String
 
 	public override init(applicationType atype: KEApplicationType, doStrict strict: Bool, logLevel log: CNConfig.LogLevel) {
 		self.mApplicationType = atype
 
 		self.rootInstanceName		= "root"
-		self.frameInterfaceForScript	= "FrameIF"
 		super.init(applicationType: atype, doStrict: strict, logLevel: log)
 	}
 

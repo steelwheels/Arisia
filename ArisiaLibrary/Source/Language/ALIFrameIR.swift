@@ -72,6 +72,15 @@ public class ALFrameIR
 		return mMembers.map{ $0.name }
 	}}
 
+	public func property(name nm: String) -> Property? {
+		for memb in mMembers {
+			if memb.name == nm {
+				return memb
+			}
+		}
+		return nil
+	}
+
 	public func set(property prop: Property){
 		mMembers.append(prop)
 		mDictionary[prop.name] = prop.value

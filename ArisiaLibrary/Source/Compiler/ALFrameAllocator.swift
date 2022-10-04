@@ -20,7 +20,7 @@ public class ALFrameAllocator
 			allocFuncBody	= body
 		}
 
-		public func allocFuncName() -> String {
+		public func allocFunctionName() -> String {
 			return "_alloc_" + frameName
 		}
 	}
@@ -64,13 +64,4 @@ public class ALFrameAllocator
 			return false
 		}
 	}
-
-	/*
-	public func allocateFrame(className name: String, context ctxt: KEContext) -> ALFrame? {
-		if let alloc = mAllocators[name] {
-			return alloc(ctxt)
-		} else {
-			return nil
-		}
-	}*/
 }

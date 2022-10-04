@@ -14,7 +14,7 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public func execute(script scr: CNText, console cons: CNFileConsole) -> Result<Int32, NSError>
+public func execute(script scr: CNText, console cons: CNFileConsole) -> Result<ALFrame, NSError>
 {
 	let ctxt     = KEContext(virtualMachine: JSVirtualMachine())
 	let packdir  = URL(fileURLWithPath: "/bin", isDirectory: true)
@@ -31,9 +31,8 @@ public func execute(script scr: CNText, console cons: CNFileConsole) -> Result<I
 	}
 
 	let arsexec = ALScriptExecutor(config: config)
-	if let _ = arsexec.execute(context: ctxt, script: scr, sourceFile: nil, resource: resource) {
-		//cons.print(string: "root: \(obj)")
-		return .success(0)
+	if let frame = arsexec.execute(context: ctxt, script: scr, sourceFile: nil, resource: resource) {
+		return .success(frame)
 	} else {
 		return .failure(NSError.fileError(message: "Runtime error"))
 	}

@@ -26,19 +26,19 @@ open class AMLibraryCompiler: ALLibraryCompiler
 		/* ButtonView */
 		allocator.add(className: AMButtonView.ClassName,
 			      allocator: ALFrameAllocator.Allocator(frameName: AMButtonView.ClassName, allocFuncBody: {
-			(_ ctxt: KEContext) -> ALFrame? in return AMButtonView(context: ctxt)
+				(_ ctxt: KEContext) -> ALFrame? in return AMButtonView(context: ctxt)
 		}))
 
 		/* RootView */
 		allocator.add(className: ALConfig.rootViewFrameName,
 			      allocator: ALFrameAllocator.Allocator(frameName: ALConfig.rootViewFrameName, allocFuncBody: {
-			(_ ctxt: KEContext) -> ALFrame? in return AMStackView(context: ctxt)
+				(_ ctxt: KEContext) -> ALFrame? in return AMStackView(context: ctxt)
 		}))
 
 		/* StackView */
 		allocator.add(className: AMStackView.ClassName,
 			      allocator: ALFrameAllocator.Allocator(frameName: AMStackView.ClassName, allocFuncBody: {
-			(_ ctxt: KEContext) -> ALFrame? in return AMStackView(context: ctxt)
+				(_ ctxt: KEContext) -> ALFrame? in return AMStackView(context: ctxt)
 		}))
 	}
 }

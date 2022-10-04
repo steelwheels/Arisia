@@ -17,19 +17,20 @@ public class ALScriptTranspiler
 	}
 
 	public func transpile(frame frm: ALFrameIR, language lang: ALLanguage) -> Result<CNTextSection, NSError> {
-		return transpileFrames(identifier: mConfig.rootInstanceName, frame: frm, language: lang)
+		return transpileFrames(path: [], identifier: mConfig.rootInstanceName, frame: frm, language: lang)
 	}
 
-	private func transpileFrames(identifier ident: String, frame frm: ALFrameIR, language lang: ALLanguage) -> Result<CNTextSection, NSError> {
+	private func transpileFrames(path pth: Array<String>, identifier ident: String, frame frm: ALFrameIR, language lang: ALLanguage) -> Result<CNTextSection, NSError> {
 		let result = CNTextSection()
-		switch transpileOneFrame(instanceName: ident, frame: frm, language: lang) {
+		switch transpileOneFrame(path: pth, instanceName: ident, frame: frm, language: lang) {
 		case .success(let txt):
 			result.add(text: txt)
-			for prop in frm.propertyNames {
+			for prop in frm.propertyNames.sorted() {
 				if let val = frm.value(name: prop) {
 					switch val {
 					case .frame(let child):
-						switch transpileFrames(identifier: prop, frame: child, language: lang) {
+						var subpath = pth ; subpath.append(ident)
+						switch transpileFrames(path: subpath, identifier: prop, frame: child, language: lang) {
 						case .success(let txt):
 							let scope = CNTextSection()
 							scope.header = "{" ; scope.footer = "}"
@@ -53,15 +54,23 @@ public class ALScriptTranspiler
 		return .success(result)
 	}
 
-	private func transpileOneFrame(instanceName inst: String, frame frm: ALFrameIR, language lang: ALLanguage) -> Result<CNTextSection, NSError> {
+	private func transpileOneFrame(path pth: Array<String>, instanceName inst: String, frame frm: ALFrameIR, language lang: ALLanguage) -> Result<CNTextSection, NSError> {
 		guard let allocator = ALFrameAllocator.shared.search(byClassName: frm.className) else {
 			return .failure(NSError.parseError(message: "Unknown class name: \(frm.className)"))
 		}
 
-
 		let result = CNTextSection()
 		result.add(text: CNTextLine(string: "/* allocate function for frame: \(frm.className) */"))
-		let line = CNTextLine(string: "let \(inst) = \(allocator.allocFuncName())() ;")
+		let funcname = allocator.allocFunctionName()
+		let asname: String
+		switch lang {
+		case .ArisiaScript, .TypeScript:
+			let ifname   = ALFunctionInterface.userInterfaceName(path: pth, instanceName: inst, frameName: frm.className)
+			asname = "as \(ifname)"
+		case .JavaScript:
+			asname = ""
+		}
+		let line = CNTextLine(string: "let \(inst) = \(funcname)() \(asname) ;")
 		result.add(text: line)
 
 		/* Define type for all properties*/

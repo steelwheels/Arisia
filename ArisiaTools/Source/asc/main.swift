@@ -14,30 +14,61 @@ func main(arguments args: Array<String>) {
 	let cmdline = CommandLineParser(console: console)
 	if let (config, _) = cmdline.parseArguments(arguments: Array(args.dropFirst())) {
 		let lconf = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
-		switch compile(scriptFiles: config.scriptFiles, config: lconf, language: config.language) {
+		switch compile(scriptFile: config.scriptFile, config: lconf, outputFormat: config.outputFormat) {
 		case .success(let txt):
-			if !config.compileOnly {
-				switch config.language {
-				case .JavaScript:
-					switch execute(script: txt, console: console) {
-					case .success(_):
-						break // Finished without errors
-					case .failure(let err):
-						console.error(string: "[Error] " + err.toString())
-					}
-				case .ArisiaScript, .TypeScript:
-					let lang = config.language.encode()
-					console.print(string: "[Error] Can not execute \(lang) program")
-				@unknown default:
-					console.print(string: "[Error] Can not execute unknown program")
-				}
-			} else {
-				let str = txt.toStrings().joined(separator: "\n") + "\n"
-				console.print(string: str)
+			switch config.outputFormat {
+			case .JavaScript:
+				outputScript(config: config, text: txt, console: console)
+			case .TypeScript:
+				outputScript(config: config, text: txt, console: console)
+			case .TypeDeclaration:
+				executeScript(config: config, text: txt, console: console, language: lconf)
 			}
 		case .failure(let err):
 			console.error(string: "[Error] " + err.toString())
 		}
+	}
+}
+
+private func executeScript(config conf: Config, text txt: CNText, console cons: CNFileConsole, language lconf: ALConfig)
+{
+	switch execute(script: txt, console: cons) {
+	case .success(let frame):
+		outputDeclaration(config: conf, frame: frame, console: cons, language: lconf)
+	case .failure(let err):
+		cons.error(string: "[Error] " + err.toString())
+	}
+}
+
+private func outputScript(config conf: Config, text txt: CNText, console cons: CNFileConsole)
+{
+	switch conf.outputFileName() {
+	case .success(let filename):
+		if let file = CNFile.open(access: .writer, for: URL(fileURLWithPath: filename)) {
+			let str = txt.toStrings().joined(separator: "\n") + "\n"
+			file.put(string: str)
+		} else {
+			cons.print(string: "[Error] Failed to write file: \(filename)\n")
+		}
+	case .failure(let err):
+		cons.print(string: "[Error] \(err.toString())\n")
+	}
+}
+
+private func outputDeclaration(config conf: Config, frame frm: ALFrame, console cons: CNFileConsole, language lconf: ALConfig)
+{
+	switch conf.outputFileName() {
+	case .success(let filename):
+		if let file = CNFile.open(access: .writer, for: URL(fileURLWithPath: filename)) {
+			let generator = ALTypeDeclGenerator(config: lconf)
+			let txt = generator.generateTypeDeclaration(frame: frm)
+			let str = txt.toStrings().joined(separator: "\n") + "\n"
+			file.put(string: str)
+		} else {
+			cons.print(string: "[Error] Failed to write file: \(filename)\n")
+		}
+	case .failure(let err):
+		cons.print(string: "[Error] \(err.toString())\n")
 	}
 }
 

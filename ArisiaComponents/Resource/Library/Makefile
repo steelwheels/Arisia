@@ -3,13 +3,13 @@
 #
 
 src_scr 	= Alloc.ts
-src_decl	= ButtonView.d.ts \
-	  	  Frame.d.ts \
+bltin_decl	= ButtonView.d.ts \
 	  	  RootView.d.ts \
 	  	  StackView.d.ts \
 	  	  Alloc.d.ts
 dst_scr		= $(src_scr:.ts=.js)
-dst_decl	= types/ArisiaComponents.d.ts
+dst_decl	= $(src_scr:.ts=.d.ts)
+target		= types/ArisiaComponents.d.ts
 
 tsc	= npx tsc
 tsc_opt	= -t ES2017 --lib "es2017" --declaration --declarationDir types \
@@ -23,17 +23,28 @@ vpath %.d.ts types
 %.js: %.ts
 	$(tsc) $(tsc_opt) $<
 
-all: $(dst_scr) $(dst_decl)
+all: $(target)
 
 clean:
-	rm -f $(dsts) 
-	(cd types && make clean)
+	rm -f $(target) $(dst_scr)
+	(cd types && rm -f $(bltin_decl))
+	(cd types && rm -f $(dst_decl))
 
-$(dst_decl): dummy
+$(target): types/ArisiaLibrary.d.ts bltin_decl dst_decl
+	cat types/ArisiaLibrary.d.ts	>  $(target)
+	(cd types && cat $(bltin_decl))	>> $(target)
+	(cd types && cat $(dst_decl))	>> $(target)
+
+dst_decl: $(dst_scr)
+
+bltin_decl: dummy
 	if [ -x $(adecl_cmd) ] ; then \
 		(cd types && $(adecl_cmd)) ; \
 	fi 
-	(cd types && cat $(src_decl)) > $(dst_decl)
 
 dummy:
+
+#clean:
+#	rm -f $(dsts) 
+#	(cd types && make clean)
 

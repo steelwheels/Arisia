@@ -17,6 +17,11 @@ public class ALScriptCompiler
 	}
 
 	public func compile(rootFrame frame: ALFrameIR, language lang: ALLanguage) -> Result<CNTextSection, NSError> {
+		let analyzer = ALScriptAnalyzer(config: mConfig)
+		if let err = analyzer.anayze(frame: frame) {
+			return .failure(err)
+		}
+
 		let result = CNTextSection()
 		switch transpile(frame: frame, language: lang) {
 		case .success(let csect):

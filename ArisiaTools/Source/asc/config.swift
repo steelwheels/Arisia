@@ -12,28 +12,53 @@ import Foundation
 
 public class Config
 {
-	private var mScriptFiles: 	Array<String>
-	private var mCompileOnly:	Bool
-	private var mOutputLanguage:	ALLanguage
+	public enum Format {
+		case JavaScript
+		case TypeScript
+		case TypeDeclaration
+	}
 
-	public var scriptFiles: Array<String>	{ get { return mScriptFiles	}}
-	public var compileOnly: Bool		{ get { return mCompileOnly 	}}
-	public var language: ALLanguage		{ get { return mOutputLanguage  }}
+	private var mScriptFile: 	String
+	private var mOutputFormat:	Format
 
-	public init(scriptFiles files: Array<String>, compileOnly conly: Bool, language lang: ALLanguage){
-		mScriptFiles	= files
-		mCompileOnly	= conly
-		mOutputLanguage	= lang
+	public var scriptFile: String		{ get { return mScriptFile	}}
+	public var outputFormat: Format		{ get { return mOutputFormat	}}
+
+
+	public init(scriptFile file: String, outputFormat form: Format){
+		mScriptFile	= file
+		mOutputFormat	= form
+	}
+
+	public func outputFileName() -> Result<String, NSError> {
+		let ext: String
+		switch mOutputFormat {
+		case .JavaScript:	ext = ".js"
+		case .TypeScript:	ext = ".ts"
+		case .TypeDeclaration:	ext = "-if.d.ts"
+		}
+		return replaceFileName(sourceFile: mScriptFile, extension: ext)
+	}
+
+	private func replaceFileName(sourceFile src: String, extension ext: String) -> Result<String, NSError> {
+		let nsstr: NSString = src as NSString
+		let newname = nsstr.lastPathComponent.replacingOccurrences(of: ".as", with: ext)
+		if newname != src {
+			return .success(newname)
+		} else {
+			return .failure(NSError.fileError(message: "Failed to get destination file name from \(src)"))
+		}
 	}
 }
 
 public class CommandLineParser
 {
+	public typealias Format = Config.Format
+
 	private enum OptionId: Int {
 		case Help		= 0
 		case Version		= 1
-		case CompileOnly	= 2
-		case Language		= 3
+		case Format		= 2
 	}
 
 	private var mConsole:	CNConsole
@@ -49,9 +74,8 @@ public class CommandLineParser
 	private func printHelpMessage() {
 		mConsole.print(string: "usage: asc [options] script-file1 script-file2 ...\n" +
 		"  [options]\n" +
-		"    --compile-only, -c    : Compile only (Do not execute the script)\n" +
-		"    --language, -l <lang> : The output format: \"JavaScript\" (default),\n" +
-		"                            \"TypeScript\" or \"ArisiaScript\"\n" +
+		"    --format, -f <lang>   : The output format: \"JavaScript\" (default),\n" +
+		"                            \"TypeScript\" or \"TypeDeclaration\"\n" +
 		"    --help, -h            : Print this message\n" +
 		"    --version             : Print version\n"
 		)
@@ -73,10 +97,9 @@ public class CommandLineParser
 	}
 
 	private func parseOptions(arguments args: Array<CBArgument>) -> Config? {
-		var files: Array<String>		= []
-		var compileonly: Bool			= false
-		var language: ALLanguage		= .JavaScript
-		let stream   = CNArrayStream(source: args)
+		var srcfile: String?		= nil
+		var format: Format		= .JavaScript
+		let stream   			= CNArrayStream(source: args)
 		while let arg = stream.get() {
 			if let opt = arg as? CBOptionArgument {
 				if let optid = OptionId(rawValue: opt.optionType.optionId) {
@@ -87,11 +110,9 @@ public class CommandLineParser
 					case .Version:
 						printVersionMessage()
 						return nil
-					case .CompileOnly:
-						compileonly = true
-					case .Language:
-						if let lang = parseLanguageOption(values: opt.parameters) {
-							language = lang
+					case .Format:
+						if let form = parseFormat(values: opt.parameters) {
+							format = form
 						} else {
 							return nil
 						}
@@ -100,13 +121,23 @@ public class CommandLineParser
 					mConsole.error(string: "[Error] Unknown command line option id")
 				}
 			} else if let param = arg as? CBNormalArgument {
-				files.append(param.argument)
+				if srcfile == nil {
+					srcfile = param.argument
+				} else {
+					mConsole.error(string: "[Error] You can not give multiple source files")
+					return nil
+				}
 			} else {
 				mConsole.error(string: "[Error] Unknown command line parameter: \(arg)")
 				return nil
 			}
 		}
-		return Config(scriptFiles: files, compileOnly: compileonly, language: language)
+		if let file = srcfile {
+			return Config(scriptFile: file, outputFormat: format)
+		} else {
+			mConsole.error(string: "[Error] The souce file name is required\n")
+			return nil
+		}
 	}
 
 	private func parserConfig() -> CBParserConfig {
@@ -119,26 +150,22 @@ public class CommandLineParser
 				     shortName: nil, longName: "version",
 				     parameterNum: 0, parameterType: .voidType,
 				     helpInfo: "Print version information"),
-			CBOptionType(optionId: OptionId.CompileOnly.rawValue,
-				     shortName: "c", longName: "compile-only",
-				     parameterNum: 0, parameterType: .voidType,
-				     helpInfo: "Output the compiled code, not execute it"),
-			CBOptionType(optionId: OptionId.Language.rawValue,
-				     shortName: "l", longName: "language",
+			CBOptionType(optionId: OptionId.Format.rawValue,
+				     shortName: "f", longName: "format",
 				     parameterNum: 1, parameterType: .stringType,
-				     helpInfo: "Output language, \"JavaScript\" or \"TypeScript\""),
+				     helpInfo: "The format of output file"),
 		]
 		let config = CBParserConfig(hasSubCommand: false)
 		config.setDefaultOptions(optionTypes: opttypes)
 		return config
 	}
 
-	private func parseLanguageOption(values vals: Array<CBValue>) -> ALLanguage? {
-		let result: ALLanguage?
+	private func parseFormat(values vals: Array<CBValue>) -> Format? {
+		let result: Format?
 		switch vals.count {
 		case 1:
-			if let lang = parseLanguageOption(value: vals[0]) {
-				result = lang
+			if let form = parseFormat(value: vals[0]) {
+				result = form
 			} else {
 				mConsole.print(string: "[Error] Give parameter \"JavaScript\" or \"TypeScript\" for language option")
 				result = nil
@@ -153,13 +180,14 @@ public class CommandLineParser
 		return result
 	}
 
-	private func parseLanguageOption(value val: CBValue) -> ALLanguage? {
-		let result: ALLanguage?
+	private func parseFormat(value val: CBValue) -> Format? {
+		let result: Format?
 		switch val {
 		case .stringValue(let str):
 			switch str {
 			case "JavaScript":	result = .JavaScript
 			case "TypeScript":	result = .TypeScript
+			case "TypeDeclaration":	result = .TypeDeclaration
 			default:		result = nil
 			}
 		default:

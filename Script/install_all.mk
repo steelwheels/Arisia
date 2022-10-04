@@ -9,23 +9,20 @@ comp_res_dir =  ArisiaComponents/Resource/Library/types
 all: lib components tools
 
 lib: dummy
-	(pushd ArisiaLibrary/Resource && make && popd)
 	(pushd ArisiaLibrary/Project && make -f $(build_mk) && popd)
+	(pushd ArisiaLibrary/Resource && make && popd)
 
-components: $(comp_res_dir)/ArisiaLibrary.d.ts \
-	    $(comp_res_dir)/KiwiLibrary.d.ts \
-	    dummy
-	(pushd ArisiaComponents/Resource/Library && make && popd)
+components: $(comp_res_dir)/ArisiaLibrary.d.ts dummy
 	(pushd ArisiaComponents/Project && make -f $(build_mk) && popd)
+	(pushd ArisiaComponents/Resource/Library && make && popd)
 
 $(comp_res_dir)/ArisiaLibrary.d.ts: $(lib_res_dir)/ArisiaLibrary.d.ts
 	cp $< $@
 
-$(comp_res_dir)/KiwiLibrary.d.ts: $(lib_res_dir)/KiwiLibrary.d.ts
-	cp $< $@
-
 tools: dummy
 	(pushd ArisiaTools/Project && make -f $(tool_mk) && popd)
+	(pushd ArisiaLibrary/Resource && make clean && make && popd)
+	(pushd ArisiaComponents/Resource/Library && make clean && make && popd)
 
 dummy:
 

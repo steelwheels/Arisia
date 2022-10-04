@@ -4,6 +4,7 @@
 
 /// <reference path="types/KiwiLibrary.d.ts"/>
 /// <reference path="types/Builtin.d.ts"/>
+/// <reference path="types/Frame.d.ts"/>
 
 function _definePropertyIF(frame: FrameIF, usernames: string[]) {
         /* merge default property names and user defined property names */

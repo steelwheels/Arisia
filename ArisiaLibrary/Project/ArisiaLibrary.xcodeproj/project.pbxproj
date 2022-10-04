@@ -22,6 +22,10 @@
 		051B4C2628CA2F6F005FD4C4 /* ALScriptTranspiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051B4C2428CA2F6F005FD4C4 /* ALScriptTranspiler.swift */; };
 		051B4C2928CA3025005FD4C4 /* ALConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051B4C2828CA3025005FD4C4 /* ALConfig.swift */; };
 		051B4C2A28CA3025005FD4C4 /* ALConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051B4C2828CA3025005FD4C4 /* ALConfig.swift */; };
+		051E6CCA28EBF89400752B28 /* ALInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E6CC928EBF89400752B28 /* ALInterface.swift */; };
+		051E6CCB28EBF89400752B28 /* ALInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E6CC928EBF89400752B28 /* ALInterface.swift */; };
+		051F2BB228EC7097007D9CDB /* ALScriptAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051F2BB128EC7097007D9CDB /* ALScriptAnalyzer.swift */; };
+		051F2BB328EC7097007D9CDB /* ALScriptAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051F2BB128EC7097007D9CDB /* ALScriptAnalyzer.swift */; };
 		0526B69628BBAD8300E232C6 /* ALFrameCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0526B69528BBAD8300E232C6 /* ALFrameCore.swift */; };
 		0526B69B28BBADF500E232C6 /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69928BBADF400E232C6 /* CoconutData.xcframework */; };
 		0526B69C28BBADF500E232C6 /* CoconutData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0526B69928BBADF400E232C6 /* CoconutData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -228,6 +232,8 @@
 		0511F02228BDB8D8005756F8 /* UTCompiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTCompiler.swift; sourceTree = "<group>"; };
 		051B4C2428CA2F6F005FD4C4 /* ALScriptTranspiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALScriptTranspiler.swift; sourceTree = "<group>"; };
 		051B4C2828CA3025005FD4C4 /* ALConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALConfig.swift; sourceTree = "<group>"; };
+		051E6CC928EBF89400752B28 /* ALInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALInterface.swift; sourceTree = "<group>"; };
+		051F2BB128EC7097007D9CDB /* ALScriptAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALScriptAnalyzer.swift; sourceTree = "<group>"; };
 		0526B69528BBAD8300E232C6 /* ALFrameCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALFrameCore.swift; sourceTree = "<group>"; };
 		0526B69928BBADF400E232C6 /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
 		0526B69A28BBADF400E232C6 /* CoconutDatabase.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutDatabase.xcframework; path = ../../../../Library/Frameworks/CoconutDatabase.xcframework; sourceTree = "<group>"; };
@@ -408,6 +414,7 @@
 				05CE363528CB78980063888E /* ALFrameAllocator.swift */,
 				058DC56B28BD091600BF9092 /* ALLibraryCompiler.swift */,
 				05A7FE6728C8E25F002C1467 /* ALScriptCompiler.swift */,
+				051F2BB128EC7097007D9CDB /* ALScriptAnalyzer.swift */,
 				05BD8A9C28D0A44E00A008C1 /* ALScriptConstructor.swift */,
 				059C2BF228DB50DF00A62EDE /* ALScriptExecutor.swift */,
 				059D3F9028CDD9C400DE405B /* ALScriptLinker.swift */,
@@ -423,6 +430,7 @@
 				054D7D6C28BE52430074FD01 /* ALIFrameIR.swift */,
 				059F5D1828BFA996006BE786 /* ALFunctionIR.swift */,
 				051B4C2828CA3025005FD4C4 /* ALConfig.swift */,
+				051E6CC928EBF89400752B28 /* ALInterface.swift */,
 				059F5D1C28BFAA5B006BE786 /* ALValueIR.swift */,
 			);
 			path = Language;
@@ -693,6 +701,7 @@
 				055F538B28DD1944006CB404 /* ALFrame.swift in Sources */,
 				0507A51D28BBAEFD00D694A0 /* ALFrameCore.swift in Sources */,
 				058DC56D28BD091600BF9092 /* ALLibraryCompiler.swift in Sources */,
+				051F2BB328EC7097007D9CDB /* ALScriptAnalyzer.swift in Sources */,
 				059D3F9228CDD9C400DE405B /* ALScriptLinker.swift in Sources */,
 				059C2BF428DB50DF00A62EDE /* ALScriptExecutor.swift in Sources */,
 				054D7D6E28BE52430074FD01 /* ALIFrameIR.swift in Sources */,
@@ -701,6 +710,7 @@
 				059F5D1A28BFA996006BE786 /* ALFunctionIR.swift in Sources */,
 				051B4C2628CA2F6F005FD4C4 /* ALScriptTranspiler.swift in Sources */,
 				051B4C2A28CA3025005FD4C4 /* ALConfig.swift in Sources */,
+				051E6CCB28EBF89400752B28 /* ALInterface.swift in Sources */,
 				059F5D1E28BFAA5B006BE786 /* ALValueIR.swift in Sources */,
 				05B95F4028C4D5BA008E3FD0 /* ALReservedWords.swift in Sources */,
 				05CE363728CB78980063888E /* ALFrameAllocator.swift in Sources */,
@@ -732,6 +742,7 @@
 				055F538A28DD1944006CB404 /* ALFrame.swift in Sources */,
 				0526B69628BBAD8300E232C6 /* ALFrameCore.swift in Sources */,
 				058DC56C28BD091600BF9092 /* ALLibraryCompiler.swift in Sources */,
+				051F2BB228EC7097007D9CDB /* ALScriptAnalyzer.swift in Sources */,
 				059D3F9128CDD9C400DE405B /* ALScriptLinker.swift in Sources */,
 				059C2BF328DB50DF00A62EDE /* ALScriptExecutor.swift in Sources */,
 				054D7D6D28BE52430074FD01 /* ALIFrameIR.swift in Sources */,
@@ -740,6 +751,7 @@
 				059F5D1928BFA996006BE786 /* ALFunctionIR.swift in Sources */,
 				051B4C2528CA2F6F005FD4C4 /* ALScriptTranspiler.swift in Sources */,
 				051B4C2928CA3025005FD4C4 /* ALConfig.swift in Sources */,
+				051E6CCA28EBF89400752B28 /* ALInterface.swift in Sources */,
 				059F5D1D28BFAA5B006BE786 /* ALValueIR.swift in Sources */,
 				05B95F3F28C4D5BA008E3FD0 /* ALReservedWords.swift in Sources */,
 				05CE363628CB78980063888E /* ALFrameAllocator.swift in Sources */,

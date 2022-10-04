@@ -1,10 +1,11 @@
-interface RootViewIF {
-  setValue(p0 : string, p1 : any): boolean ;
+interface StackViewIF {
+  alignment : Alignment ;
+  axis : Axis ;
+  definePropertyType(p0 : string, p1 : string): void ;
   distribution : Distribution ;
   frameName : string ;
-  axis : Axis ;
   propertyNames : string[] ;
+  setValue(p0 : string, p1 : any): boolean ;
   value(p0 : string): any ;
-  alignment : Alignment ;
 }
-declare function _alloc_RootView(): RootViewIF ;
+declare function _alloc_StackView(): StackViewIF ;

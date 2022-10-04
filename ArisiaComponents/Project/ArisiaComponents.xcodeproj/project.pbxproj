@@ -63,7 +63,6 @@
 		05BB07FA28E723BA00265AC9 /* ButtonView.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 05BB07F328E723BA00265AC9 /* ButtonView.d.ts */; };
 		05BB07FB28E723BA00265AC9 /* Frame.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 05BB07F428E723BA00265AC9 /* Frame.d.ts */; };
 		05BB07FC28E723BA00265AC9 /* ArisiaComponents.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */; };
-		05BB07FD28E723BA00265AC9 /* KiwiLibrary.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 05BB07F628E723BA00265AC9 /* KiwiLibrary.d.ts */; };
 		05BB07FE28E723BA00265AC9 /* ArisiaLibrary.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 05BB07F728E723BA00265AC9 /* ArisiaLibrary.d.ts */; };
 		05BB07FF28E723BA00265AC9 /* RootView.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 05BB07F828E723BA00265AC9 /* RootView.d.ts */; };
 		05BB080228E7269700265AC9 /* ArisiaComponents.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */; };
@@ -99,20 +98,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0542635728D9DCE6004F05E2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0524E41928D9D49400C5DA2D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0542633928D9D5C4004F05E2;
-			remoteInfo = ArisiaComponents_iOS;
-		};
-		0542635928D9DCEA004F05E2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0524E41928D9D49400C5DA2D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0524E42128D9D49400C5DA2D;
-			remoteInfo = ArisiaComponents_macOS;
-		};
 		05CAC87F28DD8E3C001C9EF1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0524E41928D9D49400C5DA2D /* Project object */;
@@ -126,6 +111,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0542635128D9DCDA004F05E2;
 			remoteInfo = Install;
+		};
+		05FA4F9128E90DA300407797 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0524E41928D9D49400C5DA2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0542633928D9D5C4004F05E2;
+			remoteInfo = ArisiaComponents_iOS;
+		};
+		05FA4F9328E90DA300407797 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0524E41928D9D49400C5DA2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0524E42128D9D49400C5DA2D;
+			remoteInfo = ArisiaComponents_macOS;
+		};
+		05FA4F9528E90DB200407797 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0524E41928D9D49400C5DA2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05FA4F8B28E90D9100407797;
+			remoteInfo = Transpile;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -235,7 +241,6 @@
 		05BB07F328E723BA00265AC9 /* ButtonView.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ButtonView.d.ts; sourceTree = "<group>"; };
 		05BB07F428E723BA00265AC9 /* Frame.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Frame.d.ts; sourceTree = "<group>"; };
 		05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ArisiaComponents.d.ts; sourceTree = "<group>"; };
-		05BB07F628E723BA00265AC9 /* KiwiLibrary.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KiwiLibrary.d.ts; sourceTree = "<group>"; };
 		05BB07F728E723BA00265AC9 /* ArisiaLibrary.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ArisiaLibrary.d.ts; sourceTree = "<group>"; };
 		05BB07F828E723BA00265AC9 /* RootView.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RootView.d.ts; sourceTree = "<group>"; };
 		05CAC86728DD8C6B001C9EF1 /* UnitTest_macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTest_macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -449,7 +454,6 @@
 				05BB07F728E723BA00265AC9 /* ArisiaLibrary.d.ts */,
 				05BB07F328E723BA00265AC9 /* ButtonView.d.ts */,
 				05BB07F428E723BA00265AC9 /* Frame.d.ts */,
-				05BB07F628E723BA00265AC9 /* KiwiLibrary.d.ts */,
 				05BB07F828E723BA00265AC9 /* RootView.d.ts */,
 				05BB07F228E723BA00265AC9 /* StackView.d.ts */,
 			);
@@ -549,12 +553,27 @@
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = "";
 			dependencies = (
-				0542635A28D9DCEA004F05E2 /* PBXTargetDependency */,
-				0542635828D9DCE6004F05E2 /* PBXTargetDependency */,
+				05FA4F9628E90DB200407797 /* PBXTargetDependency */,
 			);
 			name = Install;
 			passBuildSettingsInEnvironment = 1;
 			productName = Install;
+		};
+		05FA4F8B28E90D9100407797 /* Transpile */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/transpile.mk";
+			buildConfigurationList = 05FA4F8E28E90D9100407797 /* Build configuration list for PBXLegacyTarget "Transpile" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				05FA4F9228E90DA300407797 /* PBXTargetDependency */,
+				05FA4F9428E90DA300407797 /* PBXTargetDependency */,
+			);
+			name = Transpile;
+			passBuildSettingsInEnvironment = 1;
+			productName = Transpile;
 		};
 /* End PBXLegacyTarget section */
 
@@ -663,6 +682,9 @@
 					05CAC88628DD8E9B001C9EF1 = {
 						CreatedOnToolsVersion = 12.4;
 					};
+					05FA4F8B28E90D9100407797 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 				};
 			};
 			buildConfigurationList = 0524E41C28D9D49400C5DA2D /* Build configuration list for PBXProject "ArisiaComponents" */;
@@ -680,6 +702,7 @@
 			targets = (
 				0524E42128D9D49400C5DA2D /* ArisiaComponents_macOS */,
 				0542633928D9D5C4004F05E2 /* ArisiaComponents_iOS */,
+				05FA4F8B28E90D9100407797 /* Transpile */,
 				0542635128D9DCDA004F05E2 /* Install */,
 				05CAC86628DD8C6B001C9EF1 /* UnitTest_macOS */,
 				05CAC88628DD8E9B001C9EF1 /* UnitTest_iOS */,
@@ -694,7 +717,6 @@
 			files = (
 				05BB07F928E723BA00265AC9 /* StackView.d.ts in Resources */,
 				05BB07FB28E723BA00265AC9 /* Frame.d.ts in Resources */,
-				05BB07FD28E723BA00265AC9 /* KiwiLibrary.d.ts in Resources */,
 				05BB07FA28E723BA00265AC9 /* ButtonView.d.ts in Resources */,
 				05BB07FC28E723BA00265AC9 /* ArisiaComponents.d.ts in Resources */,
 				05BB07FF28E723BA00265AC9 /* RootView.d.ts in Resources */,
@@ -785,16 +807,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0542635828D9DCE6004F05E2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0542633928D9D5C4004F05E2 /* ArisiaComponents_iOS */;
-			targetProxy = 0542635728D9DCE6004F05E2 /* PBXContainerItemProxy */;
-		};
-		0542635A28D9DCEA004F05E2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0524E42128D9D49400C5DA2D /* ArisiaComponents_macOS */;
-			targetProxy = 0542635928D9DCEA004F05E2 /* PBXContainerItemProxy */;
-		};
 		05CAC88028DD8E3C001C9EF1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0542635128D9DCDA004F05E2 /* Install */;
@@ -804,6 +816,21 @@
 			isa = PBXTargetDependency;
 			target = 0542635128D9DCDA004F05E2 /* Install */;
 			targetProxy = 05CAC89D28DD8EAD001C9EF1 /* PBXContainerItemProxy */;
+		};
+		05FA4F9228E90DA300407797 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0542633928D9D5C4004F05E2 /* ArisiaComponents_iOS */;
+			targetProxy = 05FA4F9128E90DA300407797 /* PBXContainerItemProxy */;
+		};
+		05FA4F9428E90DA300407797 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0524E42128D9D49400C5DA2D /* ArisiaComponents_macOS */;
+			targetProxy = 05FA4F9328E90DA300407797 /* PBXContainerItemProxy */;
+		};
+		05FA4F9628E90DB200407797 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05FA4F8B28E90D9100407797 /* Transpile */;
+			targetProxy = 05FA4F9528E90DB200407797 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1187,6 +1214,33 @@
 			};
 			name = Release;
 		};
+		05FA4F8C28E90D9100407797 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05FA4F8D28E90D9100407797 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1240,6 +1294,15 @@
 			buildConfigurations = (
 				05CAC89928DD8EA5001C9EF1 /* Debug */,
 				05CAC89A28DD8EA5001C9EF1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05FA4F8E28E90D9100407797 /* Build configuration list for PBXLegacyTarget "Transpile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05FA4F8C28E90D9100407797 /* Debug */,
+				05FA4F8D28E90D9100407797 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

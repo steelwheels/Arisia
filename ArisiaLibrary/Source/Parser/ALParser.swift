@@ -180,7 +180,7 @@ public class ALParser
 		guard strm.requireSymbol(symbol: "(") else {
 			return .failure(parseError(message: "\"(\" is required to define event function parameters", stream: strm))
 		}
-		var args: Array<ALFunctionIR.Argument> = []
+		var args: Array<ALArgument> = []
 		var finished = strm.requireSymbol(symbol: ")")
 		while !finished {
 			switch parseArgument(stream: strm, sourceFile: srcfile) {
@@ -208,7 +208,7 @@ public class ALParser
 		guard strm.requireSymbol(symbol: "(") else {
 			return .failure(parseError(message: "\"(\" is required to define listner function parameters", stream: strm))
 		}
-		var args: Array<ALFunctionIR.PathArgument> = []
+		var args: Array<ALPathArgument> = []
 		var finished = strm.requireSymbol(symbol: ")")
 		while !finished {
 			switch parsePathArgument(stream: strm) {
@@ -236,7 +236,7 @@ public class ALParser
 		guard strm.requireSymbol(symbol: "(") else {
 			return .failure(parseError(message: "\"(\" is required to define procedural function parameters", stream: strm))
 		}
-		var args: Array<ALFunctionIR.Argument> = []
+		var args: Array<ALArgument> = []
 		var finished = strm.requireSymbol(symbol: ")")
 		while !finished {
 			switch parseArgument(stream: strm, sourceFile: srcfile) {
@@ -260,7 +260,7 @@ public class ALParser
 		}
 	}
 
-	private func parseArgument(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALFunctionIR.Argument, NSError> {
+	private func parseArgument(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALArgument, NSError> {
 		guard let ident = strm.getIdentifier() else {
 			return .failure(parseError(message: "Identifier for argument is required", stream: strm))
 		}
@@ -269,13 +269,13 @@ public class ALParser
 		}
 		switch parseType(stream: strm, sourceFile: srcfile) {
 		case .success(let type):
-			return .success(ALFunctionIR.Argument(type: type, name: ident))
+			return .success(ALArgument(type: type, name: ident))
 		case .failure(let err):
 			return .failure(err)
 		}
 	}
 
-	private func parsePathArgument(stream strm: CNTokenStream) -> Result<ALFunctionIR.PathArgument, NSError> {
+	private func parsePathArgument(stream strm: CNTokenStream) -> Result<ALPathArgument, NSError> {
 		guard let ident = strm.getIdentifier() else {
 			return .failure(parseError(message: "Identifier for argument is required", stream: strm))
 		}
@@ -284,7 +284,7 @@ public class ALParser
 		}
 		switch parsePathExpression(stream: strm) {
 		case .success(let pexp):
-			return .success(ALFunctionIR.PathArgument(name: ident, pathExpression: pexp))
+			return .success(ALPathArgument(name: ident, pathExpression: pexp))
 		case .failure(let err):
 			return .failure(err)
 		}

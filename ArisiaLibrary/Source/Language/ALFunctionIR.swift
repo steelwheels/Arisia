@@ -17,28 +17,37 @@ public struct ALPathExpressionIR {
 	public init(elements elms: Array<String>){
 		mPathElements = elms
 	}
+
+	public func description() -> String {
+		return mPathElements.joined(separator: ".")
+	}
+
+}
+
+public class ALArgument
+{
+	public var type:	CNValueType
+	public var name:	String
+	public init(type typ: CNValueType, name nm: String){
+		type = typ
+		name = nm
+	}
+}
+
+public class ALPathArgument
+{
+	public var name:		String
+	public var type:		CNValueType?
+	public var pathExpression:	ALPathExpressionIR
+	public init(name nm: String, pathExpression pexp: ALPathExpressionIR){
+		name		= nm
+		type		= nil
+		pathExpression	= pexp
+	}
 }
 
 open class ALFunctionIR
 {
-	public struct Argument {
-		public var type:	CNValueType
-		public var name:	String
-		public init(type typ: CNValueType, name nm: String){
-			type = typ
-			name = nm
-		}
-	}
-
-	public struct PathArgument {
-		public var name:		String
-		public var pathExpression:	ALPathExpressionIR
-		public init(name nm: String, pathExpression pexp: ALPathExpressionIR){
-			name		= nm
-			pathExpression	= pexp
-		}
-	}
-
 	private var	mScript		: String
 	private var 	mSourceFile	: URL?
 	private var	mConfig		: ALConfig
@@ -56,16 +65,21 @@ open class ALFunctionIR
 		return toScript(arguments: [], language: lang)
 	}
 
-	public func selfArgument() -> Argument {
-		return Argument(type: .objectType(mConfig.frameInterfaceForScript), name: "self")
+	public func selfArgument() -> ALArgument {
+		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: "Frame")
+		return ALArgument(type: .objectType(ifname), name: "self")
 	}
 
-	public func selfPathArgument() -> PathArgument {
-		let selfexp = ALPathExpressionIR(elements: ["self"])
-		return PathArgument(name: "self", pathExpression: selfexp)
+	public func selfPathArgument() -> ALPathArgument {
+		let exp    = ALPathExpressionIR(elements: ["self"])
+		let arg    = ALPathArgument(name: "self", pathExpression: exp)
+		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: "Frame")
+		arg.type   = .objectType(ifname)
+
+		return arg
 	}
 
-	public func toScript(arguments args: Array<Argument>, language lang: ALLanguage) -> String {
+	public func toScript(arguments args: Array<ALArgument>, language lang: ALLanguage) -> String {
 		let argelms = args.map { ALFunctionIR.argumentToScript(argument: $0, language: lang)}
 		let argstr  = argelms.joined(separator: ", ")
 		return    "function(\(argstr)) {\n"
@@ -73,15 +87,19 @@ open class ALFunctionIR
 			+ "}"
 	}
 
-	public func toScript(pathArguments args: Array<PathArgument>, language lang: ALLanguage) -> String {
-		let argelms = args.map { ALFunctionIR.pathArgumentToScript(argument: $0, language: lang)}
-		let argstr  = argelms.joined(separator: ", ")
-		return    "function(\(argstr)) {\n"
-			+ mScript
-			+ "}"
+	public func toScript(pathArguments paths: Array<ALPathArgument>, language lang: ALLanguage) -> String {
+		var args: Array<String> = []
+		for path in paths {
+			args.append(ALFunctionIR.pathArgumentToScript(argument: path, language: lang))
+		}
+
+		var stmt = "function(\(args.joined(separator: ", "))) {\n"
+		stmt += mScript
+		stmt += "}"
+		return stmt
 	}
 
-	public static func argumentToScript(argument arg: Argument, language lang: ALLanguage) -> String {
+	public static func argumentToScript(argument arg: ALArgument, language lang: ALLanguage) -> String {
 		let result: String
 		switch lang {
 		case .JavaScript:
@@ -93,13 +111,19 @@ open class ALFunctionIR
 		return result
 	}
 
-	public static func pathArgumentToScript(argument arg: PathArgument, language lang: ALLanguage) -> String {
+	public static func pathArgumentToScript(argument arg: ALPathArgument, language lang: ALLanguage) -> String {
 		let result: String
 		switch lang {
 		case .JavaScript:
 			result = arg.name
 		case .TypeScript:
-			result = arg.name + ": any"
+			let typestr: String
+			if let type = arg.type {
+				typestr = type.toTypeDeclaration()
+			} else {
+				typestr = "any"
+			}
+			result = arg.name + ": " + typestr
 		case .ArisiaScript:
 			let elms = arg.pathExpression.pathElements
 			result = arg.name + ": " + elms.joined(separator: ".")
@@ -125,17 +149,17 @@ public class ALInitFunctionIR: ALFunctionIR
 
 public class ALEventFunctionIR: ALFunctionIR
 {
-	private var mArguments: Array<Argument>
+	private var mArguments: Array<ALArgument>
 
-	public var arguments: Array<Argument> { get { return mArguments }}
+	public var arguments: Array<ALArgument> { get { return mArguments }}
 
-	public init(arguments args: Array<Argument>, script scr: String, source src: URL?, config conf: ALConfig) {
+	public init(arguments args: Array<ALArgument>, script scr: String, source src: URL?, config conf: ALConfig) {
 		mArguments = args
 		super.init(script: scr, source: src, config: conf)
 	}
 
 	public override func toScript(language lang: ALLanguage) -> String {
-		var args: Array<Argument> = [self.selfArgument()]
+		var args: Array<ALArgument> = [self.selfArgument()]
 		args.append(contentsOf: mArguments)
 		return super.toScript(arguments: args, language: lang)
 	}
@@ -143,21 +167,24 @@ public class ALEventFunctionIR: ALFunctionIR
 
 public class ALListnerFunctionIR: ALFunctionIR
 {
-	private var mArguments:		Array<PathArgument>
+	private var mArguments:		Array<ALPathArgument>
 	private var mReturnType:	CNValueType
 
-	public var pathArguments: Array<PathArgument>	{ get { return mArguments }}
-	public var returnType:    CNValueType		{ get { return mReturnType }}
+	public var pathArguments: 	Array<ALPathArgument>	{ get { return mArguments	}}
+	public var returnType:    	CNValueType		{ get { return mReturnType	}}
 
-	public init(arguments args: Array<PathArgument>, returnType rtype: CNValueType, script scr: String, source src: URL?, config conf: ALConfig) {
-		mArguments  = args
-		mReturnType = rtype
+	public init(arguments args: Array<ALPathArgument>, returnType rtype: CNValueType, script scr: String, source src: URL?, config conf: ALConfig) {
+		mArguments	= args
+		mReturnType	= rtype
 		super.init(script: scr, source: src, config: conf)
 	}
 
 	public override func toScript(language lang: ALLanguage) -> String {
-		var args: Array<PathArgument> = [ self.selfPathArgument() ]
+		let selfarg  = self.selfPathArgument()
+
+		var args: Array<ALPathArgument> = [ selfarg ]
 		args.append(contentsOf: mArguments)
+
 		return super.toScript(pathArguments: args, language: lang)
 	}
 
@@ -168,13 +195,13 @@ public class ALListnerFunctionIR: ALFunctionIR
 
 public class ALProceduralFunctionIR: ALFunctionIR
 {
-	private var mArguments:		Array<Argument>
+	private var mArguments:		Array<ALArgument>
 	private var mReturnType:	CNValueType
 
-	public var arguments:  Array<Argument>	{ get { return mArguments }}
+	public var arguments:  Array<ALArgument>	{ get { return mArguments }}
 	public var returnType: CNValueType	{ get { return mReturnType }}
 
-	public init(arguments args: Array<Argument>, returnType rtype: CNValueType, script scr: String, source src: URL?, config conf: ALConfig) {
+	public init(arguments args: Array<ALArgument>, returnType rtype: CNValueType, script scr: String, source src: URL?, config conf: ALConfig) {
 		mArguments	= args
 		mReturnType	= rtype
 		super.init(script: scr, source: src, config: conf)

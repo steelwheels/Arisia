@@ -1,0 +1,33 @@
+#
+# Makefile.common: 
+#
+
+as_scripts	= empty-frame.as \
+		  property-boolean.as \
+		  property-number.as \
+		  property-string.as \
+		  property-array.as \
+		  property-dictionary.as \
+		  property-enum.as \
+		  property-init.as \
+		  property-func.as \
+		  property-listner.as \
+		  property-frame.as \
+		  init-0.as \
+		  listner-0.as
+js_scripts	= $(as_scripts:.as=.js)
+
+tsc	= npx tsc
+tsc_opt	= -t ES2017 --lib "es2017" --declaration \
+	  --declarationDir $(CURDIR)/types \
+	  --typeRoots $(CURDIR)/types \
+	  --alwaysStrict --strict --strictNullChecks --pretty
+
+%.js: %.ts
+	$(tsc) $(tsc_opt) $<
+
+all: $(js_scripts) 
+
+clean:
+	rm -f $(js_scripts)
+

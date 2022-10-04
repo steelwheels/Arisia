@@ -8,11 +8,9 @@
 import CoconutData
 import Foundation
 
-public class ALScriptLinker
+open class ALScriptLinkerBase
 {
-	private var mConfig:	ALConfig
-
-	private struct OwnerFrame {
+	public struct OwnerFrame {
 		public var frame:		ALFrameIR
 		public var pathString:		String
 		public var propertyName:	String
@@ -23,13 +21,72 @@ public class ALScriptLinker
 		}
 	}
 
+	private var mConfig:	ALConfig
+
+	public var config: ALConfig { get { return mConfig }}
+
 	public init(config conf: ALConfig){
 		mConfig = conf
 	}
 
+	public func pathToFullPath(pathExpression pexp: ALPathExpressionIR, pathStack pstack: CNStack<String>, rootFrame root: ALFrameIR) -> Result<ALPathExpressionIR, NSError> {
+		let elements = pexp.pathElements
+		guard elements.count >= 2 else {
+			return .failure(linkError(message: "Too short path expression"))
+		}
+		switch elements[0] {
+		case self.config.rootInstanceName:
+			return .success(pexp)
+		case "self":
+			/* make absolute expression */
+			var newelms: Array<String> = pstack.peekAll(doReverseOrder: false)
+			for i in 1..<elements.count {
+				newelms.append(elements[i])
+			}
+			return .success(ALPathExpressionIR(elements: newelms))
+		default:
+			return .failure(linkError(message: "Path expression must be started by " +
+			  "\"\(self.config.rootInstanceName)\" or \"self\" but \"\(elements[0])\" is given"))
+		}
+	}
+
+	public func pointedFrame(by pexp: ALPathExpressionIR, rootFrame root: ALFrameIR) -> Result<OwnerFrame, NSError> {
+		let elements = pexp.pathElements
+		guard elements.count >= 2 else {
+			return .failure(linkError(message: "Too short path expression"))
+		}
+		var owner: ALFrameIR = root
+		var curpath: String   = self.config.rootInstanceName
+		for i in 1..<elements.count - 1 {
+			curpath += "." + elements[i]
+			if let child = owner.value(name: elements[i]) {
+				switch child {
+				case .frame(let child):
+					owner = child
+				default:
+					return .failure(linkError(message: "Path expression does not point the frame: \(curpath)"))
+				}
+			} else {
+				return .failure(linkError(message: "Invalid path expression: \(curpath)"))
+			}
+		}
+		return .success(OwnerFrame(frame: owner, pathString: curpath, propertyName: elements[elements.count - 1]))
+	}
+
+	private func linkError(message msg: String) -> NSError {
+		return NSError.parseError(message: msg)
+	}
+}
+
+public class ALScriptLinker: ALScriptLinkerBase
+{
+	public override init(config conf: ALConfig){
+		super.init(config: conf)
+	}
+
 	public func link(frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
 		let pstack: CNStack<String> = CNStack()
-		return linkFrames(identifier: mConfig.rootInstanceName, frame: frm, pathStack: pstack, rootFrame: frm)
+		return linkFrames(identifier: self.config.rootInstanceName, frame: frm, pathStack: pstack, rootFrame: frm)
 	}
 
 	private func linkFrames(identifier ident: String, frame frm: ALFrameIR, pathStack pstack: CNStack<String>, rootFrame root: ALFrameIR) -> Result<CNTextSection, NSError> {
@@ -68,11 +125,11 @@ public class ALScriptLinker
 		let result = CNTextSection()
 
 		/* make absolute path from root frame */
-		var newpath: Array<ALListnerFunctionIR.PathArgument> = []
+		var newpath: Array<ALPathArgument> = []
 		for path in lfunc.pathArguments {
 			switch pathToFullPath(pathExpression: path.pathExpression, pathStack: pstack, rootFrame: root) {
 			case .success(let pathexp):
-				let newarg = ALListnerFunctionIR.PathArgument(name: path.name, pathExpression: pathexp)
+				let newarg = ALPathArgument(name: path.name, pathExpression: pathexp)
 				newpath.append(newarg)
 			case .failure(let err):
 				return .failure(err)
@@ -92,7 +149,7 @@ public class ALScriptLinker
 		return .success(result)
 	}
 
-	private func linkListnerFunction(listnerName lname: String, pathIndex pidx: Int, pathExpressions pargs: Array<ALListnerFunctionIR.PathArgument>, pathStack pstack: CNStack<String>, rootFrame root: ALFrameIR) -> Result<CNTextSection, NSError> {
+	private func linkListnerFunction(listnerName lname: String, pathIndex pidx: Int, pathExpressions pargs: Array<ALPathArgument>, pathStack pstack: CNStack<String>, rootFrame root: ALFrameIR) -> Result<CNTextSection, NSError> {
 		switch pointedFrame(by: pargs[pidx].pathExpression, rootFrame: root) {
 		case .success(let owner):
 			let curpath  = pstack.peekAll(doReverseOrder: false).joined(separator: ".")
@@ -114,79 +171,6 @@ public class ALScriptLinker
 			return .failure(err)
 		}
 	}
-
-	private func pathToFullPath(pathExpression pexp: ALPathExpressionIR, pathStack pstack: CNStack<String>, rootFrame root: ALFrameIR) -> Result<ALPathExpressionIR, NSError> {
-		let elements = pexp.pathElements
-		guard elements.count >= 2 else {
-			return .failure(linkError(message: "Too short path expression"))
-		}
-		switch elements[0] {
-		case mConfig.rootInstanceName:
-			return .success(pexp)
-		case "self":
-			/* make absolute expression */
-			var newelms: Array<String> = pstack.peekAll(doReverseOrder: false)
-			for i in 1..<elements.count {
-				newelms.append(elements[i])
-			}
-			return .success(ALPathExpressionIR(elements: newelms))
-		default:
-			return .failure(linkError(message: "Path expression must be started by " +
-			  "\"\(mConfig.rootInstanceName)\" or \"self\" but \"\(elements[0])\" is given"))
-		}
-	}
-
-	private func pointedFrame(by pexp: ALPathExpressionIR, rootFrame root: ALFrameIR) -> Result<OwnerFrame, NSError> {
-		let elements = pexp.pathElements
-		guard elements.count >= 2 else {
-			return .failure(linkError(message: "Too short path expression"))
-		}
-		var owner: ALFrameIR = root
-		var curpath: String   = mConfig.rootInstanceName
-		for i in 1..<elements.count - 1 {
-			curpath += "." + elements[i]
-			if let child = owner.value(name: elements[i]) {
-				switch child {
-				case .frame(let child):
-					owner = child
-				default:
-					return .failure(linkError(message: "Path expression does not point the frame: \(curpath)"))
-				}
-			} else {
-				return .failure(linkError(message: "Invalid path expression: \(curpath)"))
-			}
-		}
-		return .success(OwnerFrame(frame: owner, pathString: curpath, propertyName: elements[elements.count - 1]))
-	}
-
-	private func linkError(message msg: String) -> NSError {
-		return NSError.parseError(message: msg)
-	}
 }
 
-/*
-
-
-
-
-
-
-	private func linkListnerFunction(identifier ident: String, frame frm: ALFrameIR, listnerName lname: String, listnerFunction lfunc: ALListnerFunctionIR, pathStack pstack: CNStack<String>, rootFrame root: ALFrameIR) -> Result<CNTextSection, NSError> {
-		let result = CNTextSection()
-		for path in lfunc.pathArguments {
-			case .success(let pathexp):
-
-			case .failure(let err):
-				return .failure(err)
-			}
-		}
-		return .success(result)
-	}
-
-
-
-
-
-
-*/
 

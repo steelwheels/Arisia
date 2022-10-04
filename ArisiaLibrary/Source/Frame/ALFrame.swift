@@ -20,6 +20,7 @@ private let FrameNameItem	= "frameName"
 private let PropertyNamesItem	= "propertyNames"
 private let ValueItem		= "value"
 private let SetValueItem	= "setValue"
+private let DefinePropertyType	= "definePropertyType"
 
 public extension ALFrame
 {
@@ -196,6 +197,19 @@ public extension ALFrame
 		/* Property names: string[] */
 		definePropertyType(propertyName: PropertyNamesItem, valueType: .arrayType(.stringType))
 		setArrayValue(name: PropertyNamesItem, value: propertyNames)
+
+		/* Property name: definePropertyType(propertyName pname: String, typeCode tcode: String) */
+		definePropertyType(propertyName: DefinePropertyType, valueType: .functionType(.voidType, [.stringType, .stringType]))
+		let defpropfunc: @convention(block) (_ name: JSValue, _ tcode: JSValue) -> JSValue = {
+			(_ name: JSValue, _ tcode: JSValue) -> JSValue in
+			core.definePropertyType(name, tcode)
+			return JSValue(bool: true, in: core.context)
+		}
+		if let funcval = JSValue(object: defpropfunc, in: core.context) {
+			setValue(name: DefinePropertyType, value: funcval)
+		} else {
+			CNLog(logLevel: .error, message: "Failed to allocate function", atFunction: #function, inFile: #file)
+		}
 	}
 }
 

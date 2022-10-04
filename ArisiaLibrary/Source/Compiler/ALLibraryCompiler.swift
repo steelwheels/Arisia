@@ -38,7 +38,7 @@ open class ALLibraryCompiler : KLLibraryCompiler
 						return JSValue(nullIn: ctxt)
 					}
 				}
-				ctxt.set(name: alloc.allocFuncName(), function: allocfunc)
+				ctxt.set(name: alloc.allocFunctionName(), function: allocfunc)
 			} else {
 				cons.error(string: "Unknown frame name: \(clsname)")
 			}
