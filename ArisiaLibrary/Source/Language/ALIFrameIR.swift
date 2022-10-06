@@ -41,11 +41,12 @@ public class ALFrameIR
 {
 	public struct Property {
 		var name:	String
-		var type:	CNValueType
 		var value:	ALValueIR
-		public init(name nm: String, type tp: CNValueType, value val: ALValueIR){
+
+		public var type: CNValueType { get { return value.toType() }}
+
+		public init(name nm: String, value val: ALValueIR){
 			name  = nm
-			type  = tp
 			value = val
 		}
 	}

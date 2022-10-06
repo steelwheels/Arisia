@@ -14,6 +14,7 @@ as_scripts	= empty-frame.as \
 		  property-dictionary.as \
 		  property-enum.as \
 		  property-init.as \
+		  property-event.as \
 		  property-func.as \
 		  property-listner.as \
 		  property-frame.as \

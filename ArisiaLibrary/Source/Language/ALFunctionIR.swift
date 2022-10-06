@@ -65,20 +65,6 @@ open class ALFunctionIR
 		return toScript(arguments: [], language: lang)
 	}
 
-	public func selfArgument() -> ALArgument {
-		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: "Frame")
-		return ALArgument(type: .objectType(ifname), name: "self")
-	}
-
-	public func selfPathArgument() -> ALPathArgument {
-		let exp    = ALPathExpressionIR(elements: ["self"])
-		let arg    = ALPathArgument(name: "self", pathExpression: exp)
-		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: "Frame")
-		arg.type   = .objectType(ifname)
-
-		return arg
-	}
-
 	public func toScript(arguments args: Array<ALArgument>, language lang: ALLanguage) -> String {
 		let argelms = args.map { ALFunctionIR.argumentToScript(argument: $0, language: lang)}
 		let argstr  = argelms.joined(separator: ", ")
@@ -97,6 +83,30 @@ open class ALFunctionIR
 		stmt += mScript
 		stmt += "}"
 		return stmt
+	}
+
+	open func toType() -> CNValueType {
+		CNLog(logLevel: .error, message: "Do override", atFunction: #function, inFile: #file)
+		return .anyType
+	}
+
+	public func selfArgument() -> ALArgument {
+		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: "Frame")
+		return ALArgument(type: .objectType(ifname), name: "self")
+	}
+
+	public func selfType() -> CNValueType {
+		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: "Frame")
+		return .objectType(ifname)
+	}
+
+	public func selfPathArgument() -> ALPathArgument {
+		let exp    = ALPathExpressionIR(elements: ["self"])
+		let arg    = ALPathArgument(name: "self", pathExpression: exp)
+		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: "Frame")
+		arg.type   = .objectType(ifname)
+
+		return arg
 	}
 
 	public static func argumentToScript(argument arg: ALArgument, language lang: ALLanguage) -> String {
@@ -142,6 +152,10 @@ public class ALInitFunctionIR: ALFunctionIR
 		return super.toScript(arguments: [self.selfArgument()], language: lang)
 	}
 
+	public override func toType() -> CNValueType {
+		return .functionType(.voidType, [selfType()])
+	}
+
 	public static func functionBodyName(name nm: String) -> String {
 		return "_" + nm + "_ifunc"
 	}
@@ -162,6 +176,12 @@ public class ALEventFunctionIR: ALFunctionIR
 		var args: Array<ALArgument> = [self.selfArgument()]
 		args.append(contentsOf: mArguments)
 		return super.toScript(arguments: args, language: lang)
+	}
+
+	public override func toType() -> CNValueType {
+		var ptypes: Array<CNValueType> = [ selfType() ]
+		ptypes.append(contentsOf: self.mArguments.map { $0.type })
+		return .functionType(.voidType, ptypes)
 	}
 }
 
@@ -188,6 +208,14 @@ public class ALListnerFunctionIR: ALFunctionIR
 		return super.toScript(pathArguments: args, language: lang)
 	}
 
+	public override func toType() -> CNValueType {
+		var ptypes: Array<CNValueType> = [ selfType() ]
+		ptypes.append(contentsOf: mArguments.map {
+			if let type = $0.type { return type } else { return .anyType}
+		})
+		return .functionType(.voidType, ptypes)
+	}
+
 	public static func functionBodyName(name nm: String) -> String {
 		return "_" + nm + "_lfunc"
 	}
@@ -199,7 +227,7 @@ public class ALProceduralFunctionIR: ALFunctionIR
 	private var mReturnType:	CNValueType
 
 	public var arguments:  Array<ALArgument>	{ get { return mArguments }}
-	public var returnType: CNValueType	{ get { return mReturnType }}
+	public var returnType: CNValueType		{ get { return mReturnType }}
 
 	public init(arguments args: Array<ALArgument>, returnType rtype: CNValueType, script scr: String, source src: URL?, config conf: ALConfig) {
 		mArguments	= args
@@ -209,6 +237,11 @@ public class ALProceduralFunctionIR: ALFunctionIR
 
 	public override func toScript(language lang: ALLanguage) -> String {
 		return super.toScript(arguments: mArguments, language: lang)
+	}
+
+	public override func toType() -> CNValueType {
+		let ptypes = mArguments.map { return $0.type }
+		return .functionType(.voidType, ptypes)
 	}
 }
 
