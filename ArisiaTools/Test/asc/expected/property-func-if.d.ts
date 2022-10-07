@@ -3,6 +3,6 @@ interface root_FrameIF {
   frameName : string ;
   propertyNames : string[] ;
   setValue(p0 : string, p1 : any): boolean ;
-  sum : number ;
+  sum(p0 : number, p1 : number): void ;
   value(p0 : string): any ;
 }

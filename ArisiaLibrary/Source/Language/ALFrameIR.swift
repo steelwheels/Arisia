@@ -87,6 +87,18 @@ public class ALFrameIR
 		mDictionary[prop.name] = prop.value
 	}
 
+	public func remove(name nm: String) -> Bool {
+		for i in 0..<mMembers.count {
+			let prop = mMembers[i]
+			if prop.name == nm {
+				mMembers.remove(at: i)
+				mDictionary[nm] = nil
+				return true
+			}
+		}
+		return false
+	}
+
 	public func value(name nm: String) -> ALValueIR? {
 		return mDictionary[nm]
 	}

@@ -1,7 +1,7 @@
 /* allocate function for frame: Frame */
 let root = _alloc_Frame()  ;
 /* define type for all properties */
-root.definePropertyType("sum", "n") ;
+root.definePropertyType("sum", "f(v,[n,n])") ;
 /* define getter/setter for all properties */
 _definePropertyIF(root, ["sum"]) ;
 /* assign user declared properties */

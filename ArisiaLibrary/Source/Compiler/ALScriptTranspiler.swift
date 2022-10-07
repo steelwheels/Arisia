@@ -143,8 +143,6 @@ public class ALScriptTranspiler
 
 	private func functionBodyName(name nm: String, value val: ALValueIR) -> String? {
 		switch val {
-		case .initFunction(_):
-			return ALInitFunctionIR.functionBodyName(name: nm)
 		case .listnerFunction(_):
 			return ALListnerFunctionIR.functionBodyName(name: nm)
 		default:

@@ -155,10 +155,6 @@ public class ALInitFunctionIR: ALFunctionIR
 	public override func toType() -> CNValueType {
 		return .functionType(.voidType, [selfType()])
 	}
-
-	public static func functionBodyName(name nm: String) -> String {
-		return "_" + nm + "_ifunc"
-	}
 }
 
 public class ALEventFunctionIR: ALFunctionIR

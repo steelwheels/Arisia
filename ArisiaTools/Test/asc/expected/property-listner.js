@@ -3,7 +3,7 @@ let root = _alloc_Frame()  ;
 /* define type for all properties */
 root.definePropertyType("a", "n") ;
 root.definePropertyType("b", "n") ;
-root.definePropertyType("l0", "n") ;
+root.definePropertyType("l0", "f(v,[o(FrameIF),n,n])") ;
 /* define getter/setter for all properties */
 _definePropertyIF(root, ["a","b","l0","_l0_lfunc"]) ;
 /* assign user declared properties */
