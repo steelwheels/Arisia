@@ -7,7 +7,7 @@ root.definePropertyType("sum", "f(v,[n,n])") ;
 /* define getter/setter for all properties */
 _definePropertyIF(root, ["sum"]) ;
 /* assign user declared properties */
-root.sum = function(a: number, b: number) {
+root.sum = function(a: number, b: number): number {
 		return a + b ;
 	};
 /* This value will be return value of evaluateScript() */

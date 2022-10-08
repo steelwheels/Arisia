@@ -45,20 +45,27 @@ public class ALTypeDeclGenerator
 
 	private func generateOneTypeDeclaration(path pth: Array<String>, instanceName iname: String, frame frm: ALFrame) -> CNTextSection {
 		let ifname = ALFunctionInterface.userInterfaceName(path: pth, instanceName: iname, frameName: frm.frameName)
+
 		let ifdecl = CNTextSection()
 		ifdecl.header = "interface \(ifname) {"
 		ifdecl.footer = "}"
 
+		var subpath = pth ; subpath.append(iname)
+
 		for pname in frm.propertyNames.sorted() {
 			if let vtype = frm.propertyType(propertyName: pname) {
+				let decl: String
 				switch vtype {
 				case .functionType(_, _):
-					let decl = pname + vtype.toTypeDeclaration() + " ;"
-					ifdecl.add(text: CNTextLine(string: decl))
+					decl = pname + vtype.toTypeDeclaration() + " ;"
+				case .objectType(let clsnamep):
+					let clsname = clsnamep ?? ALConfig.defaultFrameName
+					let ifname  = ALFunctionInterface.userInterfaceName(path: subpath, instanceName: pname, frameName: clsname)
+					decl = pname + ": " + ifname + " ;"
 				default:
-					let decl = pname + " : " + vtype.toTypeDeclaration() + " ;"
-					ifdecl.add(text: CNTextLine(string: decl))
+					decl = pname + ": " + vtype.toTypeDeclaration() + " ;"
 				}
+				ifdecl.add(text: CNTextLine(string: decl))
 			}
 		}
 		return ifdecl
@@ -66,23 +73,27 @@ public class ALTypeDeclGenerator
 
 	public static func generateBaseDeclaration(frame frm: ALFrame, config conf: ALConfig) -> CNTextSection {
 		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: frm.frameName)
+
 		let ifdecl = CNTextSection()
 		ifdecl.header = "interface \(ifname) {"
 		ifdecl.footer = "}"
 
 		for pname in frm.propertyNames.sorted() {
 			if let vtype = frm.propertyType(propertyName: pname) {
+				let decl: String
 				switch vtype {
 				case .functionType(_, _):
-					let decl = pname + vtype.toTypeDeclaration() + " ;"
-					ifdecl.add(text: CNTextLine(string: decl))
+					decl = pname + vtype.toTypeDeclaration() + " ;"
+				case .objectType(let clsnamep):
+					let clsname = clsnamep ?? ALConfig.defaultFrameName
+					let ifname  = ALFunctionInterface.defaultInterfaceName(frameName: clsname)
+					decl = pname + ": " + ifname + " ;"
 				default:
-					let decl = pname + " : " + vtype.toTypeDeclaration() + " ;"
-					ifdecl.add(text: CNTextLine(string: decl))
+					decl = pname + ": " + vtype.toTypeDeclaration() + " ;"
 				}
+				ifdecl.add(text: CNTextLine(string: decl))
 			}
 		}
-
 		return ifdecl
 	}
 }

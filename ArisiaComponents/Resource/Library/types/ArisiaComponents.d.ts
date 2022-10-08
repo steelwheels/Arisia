@@ -695,11 +695,12 @@ declare function requestContactAccess(): boolean;
  */
 
 interface FrameIF {
-  definePropertyType(p0 : string, p1 : string): void ;
-  frameName : string ;
-  propertyNames : string[] ;
-  setValue(p0 : string, p1 : any): boolean ;
-  value(p0 : string): any ;
+  addObserver(p0: string, p1: () => void): void ;
+  definePropertyType(p0: string, p1: string): void ;
+  frameName: string ;
+  propertyNames: string[] ;
+  setValue(p0: string, p1: any): boolean ;
+  value(p0: string): any ;
 }
 declare function _alloc_Frame(): FrameIF ;
 /**
@@ -710,35 +711,38 @@ declare function _alloc_Frame(): FrameIF ;
 /// <reference path="Frame.d.ts" />
 declare function _definePropertyIF(frame: FrameIF, usernames: string[]): void;
 interface StackViewIF {
-  definePropertyType(p0 : string, p1 : string): void ;
-  frameName : string ;
-  isEnabled : boolean ;
-  propertyNames : string[] ;
-  setValue(p0 : string, p1 : any): boolean ;
-  title : string ;
-  value(p0 : string): any ;
+  addObserver(p0: string, p1: () => void): void ;
+  definePropertyType(p0: string, p1: string): void ;
+  frameName: string ;
+  isEnabled: boolean ;
+  propertyNames: string[] ;
+  setValue(p0: string, p1: any): boolean ;
+  title: string ;
+  value(p0: string): any ;
 }
 declare function _alloc_StackView(): StackViewIF ;
 interface StackViewIF {
-  alignment : Alignment ;
-  axis : Axis ;
-  definePropertyType(p0 : string, p1 : string): void ;
-  distribution : Distribution ;
-  frameName : string ;
-  propertyNames : string[] ;
-  setValue(p0 : string, p1 : any): boolean ;
-  value(p0 : string): any ;
+  addObserver(p0: string, p1: () => void): void ;
+  alignment: Alignment ;
+  axis: Axis ;
+  definePropertyType(p0: string, p1: string): void ;
+  distribution: Distribution ;
+  frameName: string ;
+  propertyNames: string[] ;
+  setValue(p0: string, p1: any): boolean ;
+  value(p0: string): any ;
 }
 declare function _alloc_StackView(): StackViewIF ;
 interface StackViewIF {
-  alignment : Alignment ;
-  axis : Axis ;
-  definePropertyType(p0 : string, p1 : string): void ;
-  distribution : Distribution ;
-  frameName : string ;
-  propertyNames : string[] ;
-  setValue(p0 : string, p1 : any): boolean ;
-  value(p0 : string): any ;
+  addObserver(p0: string, p1: () => void): void ;
+  alignment: Alignment ;
+  axis: Axis ;
+  definePropertyType(p0: string, p1: string): void ;
+  distribution: Distribution ;
+  frameName: string ;
+  propertyNames: string[] ;
+  setValue(p0: string, p1: any): boolean ;
+  value(p0: string): any ;
 }
 declare function _alloc_StackView(): StackViewIF ;
 /// <reference path="ArisiaLibrary.d.ts" />

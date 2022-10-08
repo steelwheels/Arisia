@@ -5,13 +5,27 @@
  *   Copyright (C) 2022 Steel Wheels Project
  */
 
+import ArisiaComponents
 import ArisiaLibrary
+import KiwiEngine
 import CoconutData
 import Foundation
 
-public func compile(scriptFile file: String, config conf: ALConfig, outputFormat format: Config.Format) -> Result<CNText, NSError>
+public func compile(context ctxt: KEContext, scriptFile file: String, outputFormat format: Config.Format, resource res: KEResource, config conf: ALConfig, console cons: CNFileConsole) -> Result<CNText, NSError>
 {
-	let result   = CNTextSection()
+	
+	let procmgr  = CNProcessManager()
+	let terminfo = CNTerminalInfo(width: 80, height: 20)
+	let env      = CNEnvironment()
+	let config   = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
+
+	/* Prepare libraries */
+	let compiler = AMLibraryCompiler()
+	guard compiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: config) else {
+		return .failure(NSError.fileError(message: "Arisia library error"))
+	}
+
+	let result = CNTextSection()
 	if format == .TypeScript {
 		result.add(text: CNTextLine(string: "/// <reference path=\"types/ArisiaComponents.d.ts\" />"))
 

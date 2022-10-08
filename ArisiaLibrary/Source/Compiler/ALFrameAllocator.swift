@@ -40,11 +40,12 @@ public class ALFrameAllocator
 	private var mAllocators: Dictionary<String, Allocator>
 
 	private init(){
-		let defalloc = Allocator(frameName: ALConfig.defaultFrameName, allocFuncBody: {
+		let defname =  ALConfig.defaultFrameName
+		let defalloc = Allocator(frameName: defname, allocFuncBody: {
 			(_ ctxt: KEContext) -> ALFrame? in
-			return ALDefaultFrame(frameName: ALConfig.defaultFrameName, context: ctxt)
+			return ALDefaultFrame(frameName: defname, context: ctxt)
 		})
-		mAllocators = [ALConfig.defaultFrameName: defalloc]
+		mAllocators = [defname: defalloc]
 	}
 
 	public var classNames: Array<String> { get { return Array(mAllocators.keys) }}

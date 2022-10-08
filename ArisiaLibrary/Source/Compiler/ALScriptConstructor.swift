@@ -82,13 +82,13 @@ public class ALScriptConstructor
 				case .listnerFunction(let lfunc):
 					/* Add statement to call the listner */
 					let pathstr  = paths.peekAll(doReverseOrder: false).joined(separator: ".")
-					let funcname = ALListnerFunctionIR.functionBodyName(name: pname)
+					let funcname = ALListnerFunctionIR.makeFullPathFuncName(path: paths.peekAll(doReverseOrder: false), propertyName: pname)
 					var argstr   = pathstr // callee
 					for patharg in lfunc.pathArguments {
 						let pathexp = patharg.pathExpression.pathElements.joined(separator: ".")
 						argstr += ", " + pathexp
 					}
-					let line     = CNTextLine(string: "\(pathstr).\(pname) = \(pathstr).\(funcname)(\(argstr)) ;")
+					let line     = CNTextLine(string: "\(pathstr).\(pname) = \(funcname)(\(argstr)) ;")
 					result.add(text: line)
 				default:
 					break

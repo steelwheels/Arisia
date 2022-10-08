@@ -6,15 +6,21 @@
  */
 
 import ArisiaLibrary
+import KiwiEngine
 import CoconutData
+import JavaScriptCore
 import Foundation
 
 func main(arguments args: Array<String>) {
 	let console = CNFileConsole()
 	let cmdline = CommandLineParser(console: console)
 	if let (config, _) = cmdline.parseArguments(arguments: Array(args.dropFirst())) {
+		let ctxt     = KEContext(virtualMachine: JSVirtualMachine())
+		let packdir  = URL(fileURLWithPath: "/bin", isDirectory: true)
+		let resource = KEResource(packageDirectory: packdir)
+		
 		let lconf = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
-		switch compile(scriptFile: config.scriptFile, config: lconf, outputFormat: config.outputFormat) {
+		switch compile(context: ctxt, scriptFile: config.scriptFile, outputFormat: config.outputFormat, resource: resource, config: lconf,  console: console) {
 		case .success(let txt):
 			switch config.outputFormat {
 			case .JavaScript:
@@ -22,7 +28,7 @@ func main(arguments args: Array<String>) {
 			case .TypeScript:
 				outputScript(config: config, text: txt, console: console)
 			case .TypeDeclaration:
-				executeScript(config: config, text: txt, console: console, language: lconf)
+				executeScript(context: ctxt, config: config, text: txt, resource: resource, console: console, language: lconf)
 			}
 		case .failure(let err):
 			console.error(string: "[Error] " + err.toString())
@@ -30,9 +36,9 @@ func main(arguments args: Array<String>) {
 	}
 }
 
-private func executeScript(config conf: Config, text txt: CNText, console cons: CNFileConsole, language lconf: ALConfig)
+private func executeScript(context ctxt: KEContext, config conf: Config, text txt: CNText, resource res: KEResource, console cons: CNFileConsole, language lconf: ALConfig)
 {
-	switch execute(script: txt, console: cons) {
+	switch execute(context: ctxt, script: txt, resource: res, languageConf: lconf, console: cons) {
 	case .success(let frame):
 		outputDeclaration(config: conf, frame: frame, console: cons, language: lconf)
 	case .failure(let err):

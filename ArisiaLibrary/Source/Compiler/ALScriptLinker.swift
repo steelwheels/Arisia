@@ -153,7 +153,7 @@ public class ALScriptLinker: ALScriptLinkerBase
 		switch pointedFrame(by: pargs[pidx].pathExpression, rootFrame: root) {
 		case .success(let owner):
 			let curpath  = pstack.peekAll(doReverseOrder: false).joined(separator: ".")
-			let funcname = ALListnerFunctionIR.functionBodyName(name: lname)
+			let funcname = ALListnerFunctionIR.makeFullPathFuncName(path: pstack.peekAll(doReverseOrder: false), propertyName: lname)
 			let funcdecl = CNTextSection()
 			funcdecl.header = "\(owner.pathString).addObserver(\"\(owner.propertyName)\", function(){"
 			funcdecl.footer = "}) ;"
@@ -164,7 +164,7 @@ public class ALScriptLinker: ALScriptLinkerBase
 				funcdecl.add(text: line1)
 			}
 			let argstr = pargs.map { $0.name }
-			let line = CNTextLine(string: "\(curpath).\(lname) = \(curpath).\(funcname)(self, \(argstr.joined(separator: ","))) ;")
+			let line = CNTextLine(string: "\(curpath).\(lname) = \(funcname)(self, \(argstr.joined(separator: ","))) ;")
 			funcdecl.add(text: line)
 			return .success(funcdecl)
 		case .failure(let err):

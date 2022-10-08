@@ -7,7 +7,7 @@ root.definePropertyType("pressed", "f(v,[o(FrameIF),b])") ;
 /* define getter/setter for all properties */
 _definePropertyIF(root, ["pressed"]) ;
 /* assign user declared properties */
-root.pressed = function(self: FrameIF, isenable: boolean) {
+root.pressed = function(self: FrameIF, isenable: boolean): void {
 		console.log("pressed") ;
 	};
 /* This value will be return value of evaluateScript() */

@@ -1,10 +1,12 @@
-top: VBox {
-    button_a: Button {
-		title:  "Back to First"
-        pressed: Event() %{
-			console.log("leave view") ;
-			leaveView(1234) ;
-        %}
+{
+  top: StackView {
+    button_a: ButtonView {
+      title:  string "Back to First"
+      pressed: event() %{
+	console.log("leave view") ;
+	leaveView(1234) ;
+      %}
     }
+  }
 }
 

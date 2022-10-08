@@ -18,17 +18,6 @@ public class ALFunctionInterface
 		return defaultInterfaceName(frameName: pathstr + iname + "_" + fname)
 	}
 
-	/*
-	public func defaultInterfaceName(frameName name: String) -> String {
-		return name + "IF"
-	}
-
-	public func userInterfaceName(frameName fname: String, instanceName iname: String) -> String {
-		return iname + "_" + baseInterfaceName(frameName: fname)
-	}
-
-	public func baseInterfaceName(frameName fname: String) -> String {
-		return fname + "IF"
-	}*/
 }
+
 

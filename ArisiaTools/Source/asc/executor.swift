@@ -14,24 +14,10 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public func execute(script scr: CNText, console cons: CNFileConsole) -> Result<ALFrame, NSError>
+public func execute(context ctxt: KEContext, script scr: CNText, resource res: KEResource, languageConf lconf: ALConfig, console cons: CNFileConsole) -> Result<ALFrame, NSError>
 {
-	let ctxt     = KEContext(virtualMachine: JSVirtualMachine())
-	let packdir  = URL(fileURLWithPath: "/bin", isDirectory: true)
-	let resource = KEResource(packageDirectory: packdir)
-	let procmgr  = CNProcessManager()
-	let terminfo = CNTerminalInfo(width: 80, height: 20)
-	let env      = CNEnvironment()
-	let config   = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
-
-	/* Prepare libraries */
-	let compiler = AMLibraryCompiler()
-	guard compiler.compile(context: ctxt, resource: resource, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: config) else {
-		return .failure(NSError.fileError(message: "Arisia library error"))
-	}
-
-	let arsexec = ALScriptExecutor(config: config)
-	if let frame = arsexec.execute(context: ctxt, script: scr, sourceFile: nil, resource: resource) {
+	let arsexec = ALScriptExecutor(config: lconf)
+	if let frame = arsexec.execute(context: ctxt, script: scr, sourceFile: nil, resource: res) {
 		return .success(frame)
 	} else {
 		return .failure(NSError.fileError(message: "Runtime error"))

@@ -34,7 +34,6 @@ public enum ALLanguage
 		}
 		return result
 	}
-
 }
 
 public class ALFrameIR

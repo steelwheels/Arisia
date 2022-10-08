@@ -40,30 +40,30 @@ root.init0 = function(self) {
   /* allocate function for frame: Frame */
   let f2 = _alloc_Frame()  ;
   /* define type for all properties */
-  f2.definePropertyType("l0", "f(v,[o(FrameIF),n,n])") ;
+  f2.definePropertyType("l0", "n") ;
   /* define getter/setter for all properties */
-  _definePropertyIF(f2, ["l0","_l0_lfunc"]) ;
-  /* assign user declared properties */
-  f2._l0_lfunc = function(self, p0, p1) {
-        return p0 + p1 ;
-      };
+  _definePropertyIF(f2, ["l0"]) ;
   root.f2 = f2 ;
 }
+/* Define listner functions */
+let _lfunc_root_f2_l0 = function(self, p0, p1) {
+      return p0 + p1 ;
+    } ;
 /* add observers for listner function */
 root.f0.addObserver("p0", function(){
   let self = root.f2 ;
   let p0 = root.f0.p0 ;
   let p1 = root.f1.p1 ;
-  root.f2.l0 = root.f2._l0_lfunc(self, p0,p1) ;
+  root.f2.l0 = _lfunc_root_f2_l0(self, p0,p1) ;
 }) ;
 root.f1.addObserver("p1", function(){
   let self = root.f2 ;
   let p0 = root.f0.p0 ;
   let p1 = root.f1.p1 ;
-  root.f2.l0 = root.f2._l0_lfunc(self, p0,p1) ;
+  root.f2.l0 = _lfunc_root_f2_l0(self, p0,p1) ;
 }) ;
 /* call listner methods to initialize it's property value for frame f2 */
-root.f2.l0 = root.f2._l0_lfunc(root.f2, root.f0.p0, root.f1.p1) ;
+root.f2.l0 = _lfunc_root_f2_l0(root.f2, root.f0.p0, root.f1.p1) ;
 /* execute initializer methods for frame root */
 root.init0(root) ;
 /* This value will be return value of evaluateScript() */

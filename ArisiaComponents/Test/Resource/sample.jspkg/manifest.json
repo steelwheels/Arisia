@@ -1,5 +1,5 @@
 {
-	view:	"main.as"
+	view:	"main_view.as"
 	threads: {
 		main_thread:	"main.js"
 	}

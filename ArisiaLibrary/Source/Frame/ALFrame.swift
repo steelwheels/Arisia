@@ -21,6 +21,7 @@ private let PropertyNamesItem	= "propertyNames"
 private let ValueItem		= "value"
 private let SetValueItem	= "setValue"
 private let DefinePropertyType	= "definePropertyType"
+private let AddObserverItem	= "addObserver"
 
 public extension ALFrame
 {
@@ -207,6 +208,20 @@ public extension ALFrame
 		}
 		if let funcval = JSValue(object: defpropfunc, in: core.context) {
 			setValue(name: DefinePropertyType, value: funcval)
+		} else {
+			CNLog(logLevel: .error, message: "Failed to allocate function", atFunction: #function, inFile: #file)
+		}
+
+		/* Property name: addObserver(property: string, cbfunc: ():void) */
+		let cbtype: CNValueType = .functionType(.voidType, [])
+		definePropertyType(propertyName: AddObserverItem, valueType: .functionType(.voidType, [.stringType, cbtype]))
+		let addobsfunc: @convention(block) (_ name: JSValue, _ cbfunc: JSValue) -> JSValue = {
+			(_ name: JSValue, _ cbfunc: JSValue) -> JSValue in
+			core.addObserver(name, cbfunc)
+			return JSValue(bool: true, in: core.context)
+		}
+		if let funcval = JSValue(object: addobsfunc, in: core.context) {
+			setValue(name: AddObserverItem, value: funcval)
 		} else {
 			CNLog(logLevel: .error, message: "Failed to allocate function", atFunction: #function, inFile: #file)
 		}

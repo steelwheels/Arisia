@@ -8,7 +8,7 @@ root.definePropertyType("init0", "f(v,[o(FrameIF)])") ;
 /* define getter/setter for all properties */
 _definePropertyIF(root, ["f0","init0"]) ;
 /* assign user declared properties */
-root.init0 = function(self: FrameIF) {
+root.init0 = function(self: FrameIF): void {
     console.print("root.init0()\n") ;
   };
 {
@@ -19,11 +19,12 @@ root.init0 = function(self: FrameIF) {
   /* define getter/setter for all properties */
   _definePropertyIF(f0, ["init0"]) ;
   /* assign user declared properties */
-  f0.init0 = function(self: FrameIF) {
+  f0.init0 = function(self: FrameIF): void {
         console.print("root.f0.init0()\n") ;
       };
   root.f0 = f0 ;
 }
+/* Define listner functions */
 /* execute initializer methods for frame f0 */
 root.f0.init0(root.f0) ;
 /* execute initializer methods for frame root */

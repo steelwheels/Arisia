@@ -61,25 +61,39 @@ open class ALFunctionIR
 		mConfig		= conf
 	}
 
-	open func toScript(language lang: ALLanguage) -> String {
-		return toScript(arguments: [], language: lang)
+	open func toScript(returnType rettype: CNValueType, language lang: ALLanguage) -> String {
+		return toScript(arguments: [], returnType: rettype, language: lang)
 	}
 
-	public func toScript(arguments args: Array<ALArgument>, language lang: ALLanguage) -> String {
+	public func toScript(arguments args: Array<ALArgument>, returnType rettype: CNValueType, language lang: ALLanguage) -> String {
 		let argelms = args.map { ALFunctionIR.argumentToScript(argument: $0, language: lang)}
 		let argstr  = argelms.joined(separator: ", ")
-		return    "function(\(argstr)) {\n"
+
+		let retstr: String
+		switch lang {
+		case .ArisiaScript, .TypeScript:
+			retstr = ": " + rettype.toTypeDeclaration()
+		case .JavaScript:
+			retstr = ""
+		}
+		return    "function(\(argstr))\(retstr) {\n"
 			+ mScript
 			+ "}"
 	}
 
-	public func toScript(pathArguments paths: Array<ALPathArgument>, language lang: ALLanguage) -> String {
+	public func toScript(pathArguments paths: Array<ALPathArgument>, returnType rettype: CNValueType, language lang: ALLanguage) -> String {
 		var args: Array<String> = []
 		for path in paths {
 			args.append(ALFunctionIR.pathArgumentToScript(argument: path, language: lang))
 		}
-
-		var stmt = "function(\(args.joined(separator: ", "))) {\n"
+		let retstr: String
+		switch lang {
+		case .ArisiaScript, .TypeScript:
+			retstr = ": " + rettype.toTypeDeclaration()
+		case .JavaScript:
+			retstr = ""
+		}
+		var stmt = "function(\(args.joined(separator: ", ")))\(retstr) {\n"
 		stmt += mScript
 		stmt += "}"
 		return stmt
@@ -115,7 +129,7 @@ open class ALFunctionIR
 		case .JavaScript:
 			result = arg.name
 		case .TypeScript, .ArisiaScript:
-			let tdecl = CNValueType.convertToTypeDeclaration(valueType: arg.type)
+			let tdecl = arg.type.toTypeDeclaration()
 			result = arg.name + ": " + tdecl
 		}
 		return result
@@ -148,8 +162,8 @@ public class ALInitFunctionIR: ALFunctionIR
 		super.init(script: scr, source: src, config: conf)
 	}
 
-	public override func toScript(language lang: ALLanguage) -> String {
-		return super.toScript(arguments: [self.selfArgument()], language: lang)
+	public func toScript(language lang: ALLanguage) -> String {
+		return super.toScript(arguments: [self.selfArgument()], returnType: .voidType, language: lang)
 	}
 
 	public override func toType() -> CNValueType {
@@ -168,10 +182,10 @@ public class ALEventFunctionIR: ALFunctionIR
 		super.init(script: scr, source: src, config: conf)
 	}
 
-	public override func toScript(language lang: ALLanguage) -> String {
+	public func toScript(language lang: ALLanguage) -> String {
 		var args: Array<ALArgument> = [self.selfArgument()]
 		args.append(contentsOf: mArguments)
-		return super.toScript(arguments: args, language: lang)
+		return super.toScript(arguments: args, returnType: .voidType, language: lang)
 	}
 
 	public override func toType() -> CNValueType {
@@ -195,13 +209,13 @@ public class ALListnerFunctionIR: ALFunctionIR
 		super.init(script: scr, source: src, config: conf)
 	}
 
-	public override func toScript(language lang: ALLanguage) -> String {
+	public func toScript(language lang: ALLanguage) -> String {
 		let selfarg  = self.selfPathArgument()
 
 		var args: Array<ALPathArgument> = [ selfarg ]
 		args.append(contentsOf: mArguments)
 
-		return super.toScript(pathArguments: args, language: lang)
+		return super.toScript(pathArguments: args, returnType: mReturnType, language: lang)
 	}
 
 	public override func toType() -> CNValueType {
@@ -212,8 +226,14 @@ public class ALListnerFunctionIR: ALFunctionIR
 		return .functionType(.voidType, ptypes)
 	}
 
-	public static func functionBodyName(name nm: String) -> String {
-		return "_" + nm + "_lfunc"
+	public static func makeFullPathFuncName(path pth: Array<String>, propertyName pname: String) -> String {
+		var result: String
+		if pth.count > 0 {
+			result = "_lfunc_" + pth.joined(separator: "_") + "_" + pname
+		} else {
+			result = "_lfunc_" + pname
+		}
+		return result
 	}
 }
 
@@ -231,8 +251,8 @@ public class ALProceduralFunctionIR: ALFunctionIR
 		super.init(script: scr, source: src, config: conf)
 	}
 
-	public override func toScript(language lang: ALLanguage) -> String {
-		return super.toScript(arguments: mArguments, language: lang)
+	public func toScript(language lang: ALLanguage) -> String {
+		return super.toScript(arguments: mArguments, returnType: mReturnType, language: lang)
 	}
 
 	public override func toType() -> CNValueType {

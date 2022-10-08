@@ -17,7 +17,58 @@ public class ALScriptTranspiler
 	}
 
 	public func transpile(frame frm: ALFrameIR, language lang: ALLanguage) -> Result<CNTextSection, NSError> {
-		return transpileFrames(path: [], identifier: mConfig.rootInstanceName, frame: frm, language: lang)
+		let result = CNTextSection()
+
+		/* Allocate hierarchical frame objects */
+		switch transpileFrames(path: [], identifier: mConfig.rootInstanceName, frame: frm, language: lang) {
+		case .success(let txt):
+			result.add(text: txt)
+		case .failure(let err):
+			return .failure(err)
+		}
+
+		/* Allocate listner functions */
+		switch transpileListnerFunctions(path: [], identifier: mConfig.rootInstanceName, frame: frm, language: lang) {
+		case .success(let txt):
+			if txt.contentCount > 0 {
+				result.add(text: CNTextLine(string: "/* Define listner functions */"))
+				result.add(text: txt)
+			}
+		case .failure(let err):
+			return .failure(err)
+		}
+
+		return .success(result)
+	}
+
+	private func transpileListnerFunctions(path pth: Array<String>, identifier ident: String, frame frm: ALFrameIR, language lang: ALLanguage) -> Result<CNTextSection, NSError> {
+		let result = CNTextSection()
+		for pname in frm.propertyNames.sorted() {
+			if let pval = frm.value(name: pname) {
+				switch pval {
+				case .frame(let child):
+					var subpath = pth ; subpath.append(ident)
+					switch transpileListnerFunctions(path: subpath, identifier: pname, frame: child, language: lang) {
+					case .success(let txt):
+						result.add(text: txt)
+					case .failure(let err):
+						return .failure(err)
+					}
+				case .listnerFunction(_):
+					switch valueToScript(value: pval, language: lang) {
+					case .success(let str):
+						var subpath = pth ; subpath.append(ident)
+						let funcname = ALListnerFunctionIR.makeFullPathFuncName(path: subpath, propertyName: pname)
+						result.add(text: CNTextLine(string: "let \(funcname) = \(str) ;"))
+					case .failure(let err):
+						return .failure(err)
+					}
+				default:
+					break
+				}
+			}
+		}
+		return .success(result)
 	}
 
 	private func transpileFrames(path pth: Array<String>, identifier ident: String, frame frm: ALFrameIR, language lang: ALLanguage) -> Result<CNTextSection, NSError> {
@@ -94,6 +145,9 @@ public class ALScriptTranspiler
 				switch pval {
 				case .frame(_):
 					break
+				case .listnerFunction(_):
+					/* Already transpiled in transpileListnerFunctions */
+					break
 				default:
 					switch assignProperty(instanceName: inst, propertyName: pname, value: pval, language: lang) {
 					case .success(let text):
@@ -114,12 +168,23 @@ public class ALScriptTranspiler
 		return .success(result)
 	}
 
+
+	/*
+	 * Call "definePropertyType" methods for each properties in the frame.
+	 */
 	private func definePropertyTypes(instanceName inst: String, frame frm: ALFrameIR) -> CNTextSection {
 		let result = CNTextSection()
 		for prop in frm.properties {
-			let pname   = prop.name
-			let typestr = CNValueType.encode(valueType: prop.type)
-			let line    = CNTextLine(string: "\(inst).definePropertyType(\"\(pname)\", \"\(typestr)\") ;")
+			let ptype: CNValueType
+			switch prop.value {
+			case .listnerFunction(let lfunc):
+				/* Use return type instead of the listner function itself */
+				ptype = lfunc.returnType
+			default:
+				ptype = prop.type
+			}
+			let typestr = CNValueType.encode(valueType: ptype)
+			let line    = CNTextLine(string: "\(inst).definePropertyType(\"\(prop.name)\", \"\(typestr)\") ;")
 			result.add(text: line)
 		}
 		return result
@@ -128,12 +193,7 @@ public class ALScriptTranspiler
 	private func definePropertyNames(instanceName inst: String, frame frm: ALFrameIR) -> CNTextLine {
 		var usernames: Array<String> = []
 		for pname in frm.propertyNames {
-			if let pval = frm.value(name: pname) {
-				usernames.append(pname)
-				if let funcname = functionBodyName(name: pname, value: pval) {
-					usernames.append(funcname)
-				}
-			}
+			usernames.append(pname)
 		}
 		let propnames = usernames.map { "\"" + $0 + "\"" }
 		let userdecls = "[" + propnames.joined(separator: ",") + "]"
@@ -141,25 +201,10 @@ public class ALScriptTranspiler
 		return line
 	}
 
-	private func functionBodyName(name nm: String, value val: ALValueIR) -> String? {
-		switch val {
-		case .listnerFunction(_):
-			return ALListnerFunctionIR.functionBodyName(name: nm)
-		default:
-			return nil
-		}
-	}
-
 	private func assignProperty(instanceName inst: String, propertyName pname: String, value pval: ALValueIR, language lang: ALLanguage) -> Result<String, NSError> {
 		switch valueToScript(value: pval, language: lang) {
 		case .success(let valstr):
-			let bodyname: String
-			if let bname = functionBodyName(name: pname, value: pval) {
-				bodyname = bname
-			} else {
-				bodyname = pname
-			}
-			return .success("\(inst).\(bodyname) = " + valstr + ";")
+			return .success("\(inst).\(pname) = " + valstr + ";")
 		case .failure(let err):
 			return .failure(err)
 		}

@@ -22,6 +22,7 @@ root.init0 = function(self) {
       };
   root.f0 = f0 ;
 }
+/* Define listner functions */
 /* execute initializer methods for frame f0 */
 root.f0.init0(root.f0) ;
 /* execute initializer methods for frame root */
