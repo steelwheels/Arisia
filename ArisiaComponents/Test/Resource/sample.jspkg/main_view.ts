@@ -1,7 +1,7 @@
 /// <reference path="types/ArisiaComponents.d.ts" />
 /// <reference path="types/main_view-if.d.ts" />
-/* allocate function for frame: Frame */
-let root = _alloc_Frame() as root_FrameIF ;
+/* allocate function for frame: StackView */
+let root = _alloc_StackView() as root_StackViewIF ;
 /* define type for all properties */
 root.definePropertyType("button", "o(ButtonView)") ;
 /* define getter/setter for all properties */

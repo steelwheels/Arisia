@@ -1,8 +1,8 @@
 "use strict";
 /// <reference path="types/ArisiaComponents.d.ts" />
 /// <reference path="types/button-if.d.ts" />
-/* allocate function for frame: Frame */
-let root = _alloc_Frame();
+/* allocate function for frame: StackView */
+let root = _alloc_StackView();
 /* define type for all properties */
 root.definePropertyType("top", "o(StackView)");
 /* define getter/setter for all properties */

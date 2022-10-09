@@ -171,6 +171,10 @@ public class CommandLineParser
 				     shortName: "f", longName: "format",
 				     parameterNum: 1, parameterType: .stringType,
 				     helpInfo: "The format of output file"),
+			CBOptionType(optionId: OptionId.Target.rawValue,
+				     shortName: "t", longName: "target",
+				     parameterNum: 1, parameterType: .stringType,
+				     helpInfo: "The design of target component")
 		]
 		let config = CBParserConfig(hasSubCommand: false)
 		config.setDefaultOptions(optionTypes: opttypes)

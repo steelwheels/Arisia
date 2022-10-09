@@ -109,7 +109,7 @@ open class ALFunctionIR
 		return ALArgument(type: .objectType(ifname), name: "self")
 	}
 
-	public func selfType() -> CNValueType {
+	public static func selfType() -> CNValueType {
 		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: "Frame")
 		return .objectType(ifname)
 	}
@@ -167,7 +167,7 @@ public class ALInitFunctionIR: ALFunctionIR
 	}
 
 	public override func toType() -> CNValueType {
-		return .functionType(.voidType, [selfType()])
+		return .functionType(.voidType, [ALFunctionIR.selfType()])
 	}
 }
 
@@ -189,7 +189,7 @@ public class ALEventFunctionIR: ALFunctionIR
 	}
 
 	public override func toType() -> CNValueType {
-		var ptypes: Array<CNValueType> = [ selfType() ]
+		var ptypes: Array<CNValueType> = [ ALFunctionIR.selfType() ]
 		ptypes.append(contentsOf: self.mArguments.map { $0.type })
 		return .functionType(.voidType, ptypes)
 	}
@@ -219,7 +219,7 @@ public class ALListnerFunctionIR: ALFunctionIR
 	}
 
 	public override func toType() -> CNValueType {
-		var ptypes: Array<CNValueType> = [ selfType() ]
+		var ptypes: Array<CNValueType> = [ ALFunctionIR.selfType() ]
 		ptypes.append(contentsOf: mArguments.map {
 			if let type = $0.type { return type } else { return .anyType}
 		})

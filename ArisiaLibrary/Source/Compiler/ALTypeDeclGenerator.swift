@@ -33,7 +33,7 @@ public class ALTypeDeclGenerator
 			if let val = frm.value(name: prop) {
 				if let core = val.toObject() as? ALFrameCore {
 					if let child = core.owner as? ALFrame {
-						let txt = generateOneTypeDeclaration(path: subpath, instanceName: prop, frame: child)
+						let txt = generateTypeDeclaration(path: subpath, instanceName: prop, frame: child)
 						result.add(text: txt)
 					}
 				}
@@ -59,7 +59,7 @@ public class ALTypeDeclGenerator
 				case .functionType(_, _):
 					decl = pname + vtype.toTypeDeclaration() + " ;"
 				case .objectType(let clsnamep):
-					let clsname = clsnamep ?? ALConfig.defaultFrameName
+					let clsname = clsnamep ?? ALDefaultFrame.FrameName
 					let ifname  = ALFunctionInterface.userInterfaceName(path: subpath, instanceName: pname, frameName: clsname)
 					decl = pname + ": " + ifname + " ;"
 				default:
@@ -71,7 +71,7 @@ public class ALTypeDeclGenerator
 		return ifdecl
 	}
 
-	public static func generateBaseDeclaration(frame frm: ALFrame, config conf: ALConfig) -> CNTextSection {
+	public static func generateBaseDeclaration(frame frm: ALFrame) -> CNTextSection {
 		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: frm.frameName)
 
 		let ifdecl = CNTextSection()
@@ -85,7 +85,7 @@ public class ALTypeDeclGenerator
 				case .functionType(_, _):
 					decl = pname + vtype.toTypeDeclaration() + " ;"
 				case .objectType(let clsnamep):
-					let clsname = clsnamep ?? ALConfig.defaultFrameName
+					let clsname = clsnamep ?? ALDefaultFrame.FrameName
 					let ifname  = ALFunctionInterface.defaultInterfaceName(frameName: clsname)
 					decl = pname + ": " + ifname + " ;"
 				default:

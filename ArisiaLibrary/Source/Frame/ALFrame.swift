@@ -168,7 +168,7 @@ public extension ALFrame
 	func setupDefaultProperties() {
 		/* frameName */
 		definePropertyType(propertyName: FrameNameItem, valueType: .stringType)
-		setStringValue(name: FrameNameItem, value: ALConfig.defaultFrameName)
+		setStringValue(name: FrameNameItem, value: self.frameName)
 
 		/* value(name: string) */
 		definePropertyType(propertyName: ValueItem, valueType: .functionType(.anyType, [.stringType]))
@@ -230,6 +230,8 @@ public extension ALFrame
 
 @objc public class ALDefaultFrame: NSObject, ALFrame
 {
+	public static let FrameName = "Frame"
+
 	private var mFrameCore:		ALFrameCore
 
 	public var core: ALFrameCore { get {

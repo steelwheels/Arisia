@@ -3,6 +3,7 @@ interface ButtonViewIF {
   definePropertyType(p0: string, p1: string): void ;
   frameName: string ;
   isEnabled: boolean ;
+  pressed(p0: FrameIF): void ;
   propertyNames: string[] ;
   setValue(p0: string, p1: any): boolean ;
   title: string ;

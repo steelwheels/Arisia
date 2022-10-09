@@ -23,12 +23,14 @@ func main(arguments args: Array<String>) {
 	}
 	let packdir  = URL(fileURLWithPath: "/bin", isDirectory: true)
 	let resource = KEResource(packageDirectory: packdir)
+
 	let ctxt     = KEContext(virtualMachine: vm)
 	let lconf    = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
 	guard compile(context: ctxt, resource: resource, config: lconf, console: console) else {
 		console.error(string: "[Error] Failed to compile")
 		return
 	}
+
 	let clsnames: Array<String>
 	if config.frameNames.isEmpty {
 		let allocator = ALFrameAllocator.shared
@@ -36,6 +38,7 @@ func main(arguments args: Array<String>) {
 	} else {
 		clsnames = config.frameNames
 	}
+	
 	for clsname in clsnames {
 		let _ = dump(className: clsname, context: ctxt, resource: resource, console: console)
 	}

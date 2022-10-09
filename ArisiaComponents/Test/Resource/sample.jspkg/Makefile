@@ -19,8 +19,8 @@ tsc_opt	= -t ES2017 --lib "es2017" --declaration \
 	  --alwaysStrict --strict --strictNullChecks --pretty
 
 %.ts: %.as
-	$(asc_cmd) -f TypeScript $<
-	$(asc_cmd) -f TypeDeclaration $<
+	$(asc_cmd) -t window -f TypeScript $<
+	$(asc_cmd) -t window -f TypeDeclaration $<
 	mv *.d.ts types/
 
 %.js: %.ts

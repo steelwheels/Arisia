@@ -14,7 +14,6 @@ import Foundation
 
 public func compile(context ctxt: KEContext, resource res: KEResource, config conf: ALConfig, console cons: CNFileConsole) -> Bool
 {
-	
 	let procmgr    = CNProcessManager()
 	let terminfo   = CNTerminalInfo(width: 80, height: 20)
 	let env        = CNEnvironment()

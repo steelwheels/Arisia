@@ -36,8 +36,7 @@ public func dump(className cname: String, context ctxt: KEContext, resource res:
 	let result = CNTextSection()
 
 	/* Generate declaration */
-	let config = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
-	let decl   = ALTypeDeclGenerator.generateBaseDeclaration(frame: frame, config: config)
+	let decl   = ALTypeDeclGenerator.generateBaseDeclaration(frame: frame)
 	result.add(text: decl)
 
 	/* Allocator function */

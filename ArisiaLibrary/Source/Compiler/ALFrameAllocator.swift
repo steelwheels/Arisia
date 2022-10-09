@@ -40,7 +40,7 @@ public class ALFrameAllocator
 	private var mAllocators: Dictionary<String, Allocator>
 
 	private init(){
-		let defname =  ALConfig.defaultFrameName
+		let defname = ALDefaultFrame.FrameName
 		let defalloc = Allocator(frameName: defname, allocFuncBody: {
 			(_ ctxt: KEContext) -> ALFrame? in
 			return ALDefaultFrame(frameName: defname, context: ctxt)

@@ -1,3 +1,3 @@
 /// <reference path="ArisiaComponents.d.ts" />
 /// <reference path="button-if.d.ts" />
-declare let root: root_FrameIF;
+declare let root: root_StackViewIF;

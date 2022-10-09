@@ -4,7 +4,6 @@
 
 src_scr 	= window.ts
 bltin_decl	= ButtonView.d.ts \
-	  	  RootView.d.ts \
 	  	  StackView.d.ts \
 	  	  window.d.ts
 dst_scr		= $(src_scr:.ts=.js)
@@ -30,7 +29,7 @@ clean:
 	(cd types && rm -f $(bltin_decl))
 	(cd types && rm -f $(dst_decl))
 
-$(target): types/ArisiaLibrary.d.ts types/Builtin.d.ts bltin_decl dst_decl
+$(target): types/ArisiaLibrary.d.ts types/Builtin.d.ts dst_decl bltin_decl 
 	cat types/ArisiaLibrary.d.ts	>  $(target)
 	cat types/Builtin.d.ts		>>  $(target)
 	(cd types && cat $(bltin_decl))	>> $(target)
@@ -44,8 +43,4 @@ bltin_decl: dummy
 	fi 
 
 dummy:
-
-#clean:
-#	rm -f $(dsts) 
-#	(cd types && make clean)
 
