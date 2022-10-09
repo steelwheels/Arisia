@@ -18,7 +18,7 @@ public func compile(context ctxt: KEContext, resource res: KEResource, config co
 	let procmgr    = CNProcessManager()
 	let terminfo   = CNTerminalInfo(width: 80, height: 20)
 	let env        = CNEnvironment()
-	let amcompiler = AMLibraryCompiler()
+	let amcompiler = AMLibraryCompiler(viewController: nil)
 	guard amcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf) else {
 		return false
 	}

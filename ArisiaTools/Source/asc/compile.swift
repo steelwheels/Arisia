@@ -18,7 +18,7 @@ public func compile(context ctxt: KEContext, scriptFile file: String, resource r
 	let env      = CNEnvironment()
 
 	/* Prepare libraries */
-	let compiler = AMLibraryCompiler()
+	let compiler = AMLibraryCompiler(viewController: nil)
 	let lconf    = ALConfig(applicationType: conf.target, doStrict: true, logLevel: .defaultLevel)
 	guard compiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: lconf) else {
 		return .failure(NSError.fileError(message: "Arisia library error"))

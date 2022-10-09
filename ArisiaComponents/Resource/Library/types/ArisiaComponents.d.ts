@@ -710,6 +710,16 @@ declare function _alloc_Frame(): FrameIF ;
 /// <reference path="Builtin.d.ts" />
 /// <reference path="Frame.d.ts" />
 declare function _definePropertyIF(frame: FrameIF, usernames: string[]): void;
+/**
+ * Builtin.d.ts : Built-in objects in KiwiComponents
+ */
+
+declare function _enterView(path: string, arg: any, cbfunc: (retval: any) => void): void ;
+declare function _alert(type: AlertType, message: string, labels: string[], cbfunc: (retval: number) => void): void ;
+
+declare function leaveView(param: any): void ;
+
+
 interface ButtonViewIF {
   addObserver(p0: string, p1: () => void): void ;
   definePropertyType(p0: string, p1: string): void ;
@@ -746,12 +756,10 @@ interface StackViewIF {
 }
 declare function _alloc_StackView(): StackViewIF ;
 /// <reference path="ArisiaLibrary.d.ts" />
-/// <reference path="ButtonView.d.ts" />
-/// <reference path="Frame.d.ts" />
-/// <reference path="RootView.d.ts" />
-/// <reference path="StackView.d.ts" />
+/// <reference path="Builtin.d.ts" />
+declare function alert(type: AlertType, message: string, labels: string[]): number;
+declare function enterView(path: string, arg: any): any;
 /// <reference path="ArisiaLibrary.d.ts" />
-/// <reference path="ButtonView.d.ts" />
-/// <reference path="Frame.d.ts" />
-/// <reference path="RootView.d.ts" />
-/// <reference path="StackView.d.ts" />
+/// <reference path="Builtin.d.ts" />
+declare function alert(type: AlertType, message: string, labels: string[]): number;
+declare function enterView(path: string, arg: any): any;

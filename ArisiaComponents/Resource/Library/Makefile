@@ -2,11 +2,11 @@
 # Makefile
 #
 
-src_scr 	= Alloc.ts
+src_scr 	= window.ts
 bltin_decl	= ButtonView.d.ts \
 	  	  RootView.d.ts \
 	  	  StackView.d.ts \
-	  	  Alloc.d.ts
+	  	  window.d.ts
 dst_scr		= $(src_scr:.ts=.js)
 dst_decl	= $(src_scr:.ts=.d.ts)
 target		= types/ArisiaComponents.d.ts
@@ -30,8 +30,9 @@ clean:
 	(cd types && rm -f $(bltin_decl))
 	(cd types && rm -f $(dst_decl))
 
-$(target): types/ArisiaLibrary.d.ts bltin_decl dst_decl
+$(target): types/ArisiaLibrary.d.ts types/Builtin.d.ts bltin_decl dst_decl
 	cat types/ArisiaLibrary.d.ts	>  $(target)
+	cat types/Builtin.d.ts		>>  $(target)
 	(cd types && cat $(bltin_decl))	>> $(target)
 	(cd types && cat $(dst_decl))	>> $(target)
 

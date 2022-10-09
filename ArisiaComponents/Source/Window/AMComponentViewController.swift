@@ -195,7 +195,7 @@ open class AMComponentViewController: KCSingleViewController
 	}
 
 	private func compile(viewController vcont: AMComponentViewController, context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
-		let compcompiler = AMLibraryCompiler()
+		let compcompiler = AMLibraryCompiler(viewController: vcont)
 		return compcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf)
 	}
 
