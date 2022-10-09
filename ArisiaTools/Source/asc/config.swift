@@ -6,6 +6,7 @@
  */
 
 import ArisiaLibrary
+import KiwiEngine
 import CoconutData
 import Cobalt
 import Foundation
@@ -20,14 +21,16 @@ public class Config
 
 	private var mScriptFile: 	String
 	private var mOutputFormat:	Format
+	private var mTarget:		KEApplicationType
 
 	public var scriptFile: String		{ get { return mScriptFile	}}
 	public var outputFormat: Format		{ get { return mOutputFormat	}}
+	public var target: KEApplicationType	{ get { return mTarget		}}
 
-
-	public init(scriptFile file: String, outputFormat form: Format){
+	public init(scriptFile file: String, outputFormat form: Format, target targ: KEApplicationType){
 		mScriptFile	= file
 		mOutputFormat	= form
+		mTarget		= targ
 	}
 
 	public func outputFileName() -> Result<String, NSError> {
@@ -38,6 +41,10 @@ public class Config
 		case .TypeDeclaration:	ext = "-if.d.ts"
 		}
 		return replaceFileName(sourceFile: mScriptFile, extension: ext)
+	}
+
+	public func declarationFileName() -> Result<String, NSError> {
+		return replaceFileName(sourceFile: mScriptFile, extension: "-if.d.ts")
 	}
 
 	private func replaceFileName(sourceFile src: String, extension ext: String) -> Result<String, NSError> {
@@ -59,6 +66,7 @@ public class CommandLineParser
 		case Help		= 0
 		case Version		= 1
 		case Format		= 2
+		case Target		= 3
 	}
 
 	private var mConsole:	CNConsole
@@ -76,6 +84,8 @@ public class CommandLineParser
 		"  [options]\n" +
 		"    --format, -f <lang>   : The output format: \"JavaScript\" (default),\n" +
 		"                            \"TypeScript\" or \"TypeDeclaration\"\n" +
+		"    --target, -t <targ>   : The target design: \"terminal\" (default) or\n" +
+		"                            \"window\"\n" +
 		"    --help, -h            : Print this message\n" +
 		"    --version             : Print version\n"
 		)
@@ -99,6 +109,7 @@ public class CommandLineParser
 	private func parseOptions(arguments args: Array<CBArgument>) -> Config? {
 		var srcfile: String?		= nil
 		var format: Format		= .JavaScript
+		var target: KEApplicationType	= .terminal
 		let stream   			= CNArrayStream(source: args)
 		while let arg = stream.get() {
 			if let opt = arg as? CBOptionArgument {
@@ -113,6 +124,12 @@ public class CommandLineParser
 					case .Format:
 						if let form = parseFormat(values: opt.parameters) {
 							format = form
+						} else {
+							return nil
+						}
+					case .Target:
+						if let targ = parseTarget(values: opt.parameters) {
+							target = targ
 						} else {
 							return nil
 						}
@@ -133,7 +150,7 @@ public class CommandLineParser
 			}
 		}
 		if let file = srcfile {
-			return Config(scriptFile: file, outputFormat: format)
+			return Config(scriptFile: file, outputFormat: format, target: target)
 		} else {
 			mConsole.error(string: "[Error] The souce file name is required\n")
 			return nil
@@ -188,7 +205,46 @@ public class CommandLineParser
 			case "JavaScript":	result = .JavaScript
 			case "TypeScript":	result = .TypeScript
 			case "TypeDeclaration":	result = .TypeDeclaration
-			default:		result = nil
+			default:
+				mConsole.print(string: "[Error] Unexpected format: \(str)")
+				result = nil
+			}
+		default:
+			result = nil
+		}
+		return result
+	}
+
+	private func parseTarget(values vals: Array<CBValue>) -> KEApplicationType? {
+		let result: KEApplicationType?
+		switch vals.count {
+		case 1:
+			if let form = parseTarget(value: vals[0]) {
+				result = form
+			} else {
+				mConsole.print(string: "[Error] Give parameter \"JavaScript\" or \"TypeScript\" for language option")
+				result = nil
+			}
+		case 0:
+			mConsole.print(string: "[Error] Give parameter \"JavaScript\" or \"TypeScript\" for language option")
+			result = nil
+		default:
+			mConsole.print(string: "[Error] Too many parameter for language option")
+			result = nil
+		}
+		return result
+	}
+
+	private func parseTarget(value val: CBValue) -> KEApplicationType? {
+		let result: KEApplicationType?
+		switch val {
+		case .stringValue(let str):
+			switch str {
+			case "terminal":	result = .terminal
+			case "window":		result = .window
+			default:
+				mConsole.error(string: "[Error] Unexpected target: \(str)")
+				result = nil
 			}
 		default:
 			result = nil

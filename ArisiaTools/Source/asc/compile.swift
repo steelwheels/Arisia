@@ -11,26 +11,23 @@ import KiwiEngine
 import CoconutData
 import Foundation
 
-public func compile(context ctxt: KEContext, scriptFile file: String, outputFormat format: Config.Format, resource res: KEResource, config conf: ALConfig, console cons: CNFileConsole) -> Result<CNText, NSError>
+public func compile(context ctxt: KEContext, scriptFile file: String, resource res: KEResource, config conf: Config, console cons: CNFileConsole) -> Result<CNText, NSError>
 {
-	
 	let procmgr  = CNProcessManager()
 	let terminfo = CNTerminalInfo(width: 80, height: 20)
 	let env      = CNEnvironment()
-	let config   = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
 
 	/* Prepare libraries */
 	let compiler = AMLibraryCompiler()
-	guard compiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: config) else {
+	let lconf    = ALConfig(applicationType: conf.target, doStrict: true, logLevel: .defaultLevel)
+	guard compiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: lconf) else {
 		return .failure(NSError.fileError(message: "Arisia library error"))
 	}
 
 	let result = CNTextSection()
-	if format == .TypeScript {
+	if conf.outputFormat == .TypeScript {
 		result.add(text: CNTextLine(string: "/// <reference path=\"types/ArisiaComponents.d.ts\" />"))
-
-		let dconf = Config(scriptFile: file, outputFormat: .TypeDeclaration)
-		switch dconf.outputFileName() {
+		switch conf.declarationFileName() {
 		case .success(let dfile):
 			result.add(text: CNTextLine(string: "/// <reference path=\"types/\(dfile)\" />"))
 		case .failure(let err):
@@ -41,13 +38,12 @@ public func compile(context ctxt: KEContext, scriptFile file: String, outputForm
 	guard let script = url.loadContents() else {
 		return .failure(NSError.fileError(message: "Failed to read \(file)"))
 	}
-	let parser   = ALParser(config: conf)
+	let parser = ALParser(config: lconf)
 	switch parser.parse(source: script as String, sourceFile: url) {
 	case .success(let frame):
-		let conf     = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
-		let compiler = ALScriptCompiler(config: conf)
+		let compiler = ALScriptCompiler(config: lconf)
 		let lang: ALLanguage
-		switch format {
+		switch conf.outputFormat {
 		case .JavaScript:	lang = .JavaScript
 		case .TypeScript:	lang = .TypeScript
 		case .TypeDeclaration:	lang = .JavaScript

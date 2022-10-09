@@ -31,7 +31,7 @@ public class AMButtonView: KCButton, ALFrame
 
 	public init(context ctxt: KEContext){
 		mContext	= ctxt
-		mFrameCore	= ALFrameCore(frameName: AMStackView.ClassName, context: ctxt)
+		mFrameCore	= ALFrameCore(frameName: AMButtonView.ClassName, context: ctxt)
 		let frame	= CGRect(x: 0.0, y: 0.0, width: 188, height: 21)
 		super.init(frame: frame)
 		mFrameCore.owner = self

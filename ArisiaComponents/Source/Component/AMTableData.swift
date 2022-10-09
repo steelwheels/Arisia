@@ -14,6 +14,8 @@ import Foundation
 
 public class AMTableData: ALFrame
 {
+	public static let ClassName 		= "TableData"
+
 	private static let AppendItem		= "append"
 	private static let CountItem		= "count"
 	private static let StorageItem		= "storage"
@@ -34,7 +36,7 @@ public class AMTableData: ALFrame
 
 	public init(context ctxt: KEContext){
 		mContext	= ctxt
-		mFrameCore	= ALFrameCore(frameName: AMStackView.ClassName, context: ctxt)
+		mFrameCore	= ALFrameCore(frameName: AMTableData.ClassName, context: ctxt)
 		mTable		= nil
 
 		mFrameCore.owner = self

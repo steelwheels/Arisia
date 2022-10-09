@@ -1,4 +1,4 @@
-interface StackViewIF {
+interface ButtonViewIF {
   addObserver(p0: string, p1: () => void): void ;
   definePropertyType(p0: string, p1: string): void ;
   frameName: string ;
@@ -8,4 +8,4 @@ interface StackViewIF {
   title: string ;
   value(p0: string): any ;
 }
-declare function _alloc_StackView(): StackViewIF ;
+declare function _alloc_ButtonView(): ButtonViewIF ;

@@ -20,7 +20,7 @@ func main(arguments args: Array<String>) {
 		let resource = KEResource(packageDirectory: packdir)
 		
 		let lconf = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
-		switch compile(context: ctxt, scriptFile: config.scriptFile, outputFormat: config.outputFormat, resource: resource, config: lconf,  console: console) {
+		switch compile(context: ctxt, scriptFile: config.scriptFile, resource: resource, config: config,  console: console) {
 		case .success(let txt):
 			switch config.outputFormat {
 			case .JavaScript:
@@ -38,7 +38,7 @@ func main(arguments args: Array<String>) {
 
 private func executeScript(context ctxt: KEContext, config conf: Config, text txt: CNText, resource res: KEResource, console cons: CNFileConsole, language lconf: ALConfig)
 {
-	switch execute(context: ctxt, script: txt, resource: res, languageConf: lconf, console: cons) {
+	switch execute(context: ctxt, script: txt, resource: res, config: conf, console: cons) {
 	case .success(let frame):
 		outputDeclaration(config: conf, frame: frame, console: cons, language: lconf)
 	case .failure(let err):
