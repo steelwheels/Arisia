@@ -18,6 +18,23 @@ Now, the targets platforms are:
 * macOS
 * iOS
 
+## Sample screen shot
+This is a simple example of ArisiaScript program.
+````
+{
+  button: ButtonView {
+    title: string "Hello, world !!"
+    pressed: event() %{
+      console.log("Pressed") ;
+    %}
+  }
+}
+````
+There are sample screen shots which is executed on MacOS and iOS.
+
+<img src="./Document/images/hello-1-macos.png"  width="48%" height="80%" />
+<img src="./Document/images/hello-1-ios.png" width="48%" height="80%" />
+
 ## ArisiaScript language
 The *ArisiaScript* extends the syntax of [TypeScript](https://www.typescriptlang.org) to support [frame](#frame) declaration.
 For more details, see [ArisiaScript language specification](./Document/arisia-lang.md).

@@ -34,6 +34,18 @@ public enum ALLanguage
 		}
 		return result
 	}
+
+	public static func judge(byFileName name: String) -> ALLanguage? {
+		let result: ALLanguage?
+		let comp  = (name as NSString).pathExtension
+		switch comp {
+		case "js":		result = .JavaScript
+		case "ts":		result = .TypeScript
+		case "as":		result = .ArisiaScript
+		default:		result = nil
+		}
+		return result
+	}
 }
 
 public class ALFrameIR

@@ -17,9 +17,9 @@ public class ALScriptExecutor
 		mConfig = conf
 	}
 
-	public func execute(context ctxt: KEContext, script scr: CNText, sourceFile file: URL?, resource res: KEResource) -> ALFrame? {
+	public func execute(context ctxt: KEContext, script scr: String, sourceFile file: URL?, resource res: KEResource) -> ALFrame? {
 		ctxt.resetErrorCount()
-		let retval = ctxt.evaluateScript(script: scr.toStrings().joined(separator: "\n"), sourceFile: file)
+		let retval = ctxt.evaluateScript(script: scr, sourceFile: file)
 		if ctxt.errorCount == 0 && retval.isObject {
 			if let rootobj = retval.toObject() as? ALFrameCore {
 				if let core = rootobj.owner as? ALFrame {

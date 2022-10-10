@@ -137,39 +137,31 @@ open class AMComponentViewController: KCSingleViewController
 		let obj = mArgument.toJSValue(context: self.context)
 		self.context.set(name: "Argument", value: obj)
 
-		/* Compile library */
-		guard self.compile(viewController: self, context: self.context, resource: resource, processManager: procmgr, terminalInfo: terminfo, environment: self.environment, console: console, config: config) else {
+		guard self.compileLibrary(viewController: self, context: self.context, resource: resource, processManager: procmgr, terminalInfo: terminfo, environment: self.environment, console: console, config: config) else {
 			console.log(string: "Failed to compile base\n")
 			return nil
 		}
 
-		/* Parse the Arisia script */
-		let rootir: ALFrameIR
-		let parser = ALParser(config: config)
-		switch parser.parse(source: script, sourceFile: srcfile) {
-		case .success(let frame):
-			rootir = frame
+		/* Compile library */
+		let isarisia: Bool
+		switch isArisiaScriptFile(sourceFile: srcfile) {
+		case .success(let result):
+			isarisia = result
 		case .failure(let err):
-			console.error(string: err.toString())
+			console.log(string: "[Error] \(err.toString())\n")
 			return nil
 		}
 
-		/* Compile the frame into JavaScript */
-		let jscode : CNTextSection
-		let compiler = ALScriptCompiler(config: config)
-		switch compiler.compile(rootFrame: rootir, language: .JavaScript) {
-		case .success(let txt):
-			jscode = txt
-		case .failure(let err):
-			console.error(string: err.toString())
-			return nil
-		}
-
-		/* dump the frame */
-		if loglevel.isIncluded(in: .detail) {
-			console.print(string: "[Output transpiled code]\n")
-			let txt = jscode.toStrings().joined(separator: "\n")
-			console.log(string: txt)
+		let jscode: String
+		if isarisia {
+			if let txt = compileArisiaScript(script: script, sourceFile: srcfile, console: console, config: config) {
+				jscode = txt.toStrings().joined(separator: "\n")
+			} else {
+				console.log(string: "Failed to compile ArisiaScript\n")
+				return nil
+			}
+		} else {
+			jscode = script // treat as JavaScript code
 		}
 
 		/* Execute the script */
@@ -194,9 +186,65 @@ open class AMComponentViewController: KCSingleViewController
 		}
 	}
 
-	private func compile(viewController vcont: AMComponentViewController, context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
+	private func isArisiaScriptFile(sourceFile url: URL?) -> Result<Bool, NSError> {
+		if let u = url {
+			if let lang = ALLanguage.judge(byFileName: u.path) {
+				let result: Bool
+				switch lang {
+				case .JavaScript:
+					result = false
+				case .ArisiaScript:
+					result = true
+				case .TypeScript:
+					return .failure(NSError.fileError(message: "Can not compile TypeScript file"))
+				@unknown default:
+					return .failure(NSError.fileError(message: ""))
+				}
+				return .success(result)
+			} else {
+				return .failure(NSError.fileError(message: "Unknown source file exptension: \(u.path)"))
+			}
+		} else {
+			return .failure(NSError.fileError(message: "No source file name. Can not decide Language"))
+		}
+	}
+
+	private func compileLibrary(viewController vcont: AMComponentViewController, context ctxt: KEContext, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, console cons: CNFileConsole, config conf: KEConfig) -> Bool {
 		let compcompiler = AMLibraryCompiler(viewController: vcont)
 		return compcompiler.compile(context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, console: cons, config: conf)
+	}
+
+	private func compileArisiaScript(script scr: String, sourceFile srcfile: URL?, console cons: CNFileConsole, config conf: ALConfig) -> CNTextSection? {
+		/* Parse the Arisia script */
+		let rootir: ALFrameIR
+		let parser = ALParser(config: conf)
+		switch parser.parse(source: scr, sourceFile: srcfile) {
+		case .success(let frame):
+			rootir = frame
+		case .failure(let err):
+			cons.error(string: err.toString())
+			return nil
+		}
+
+		/* Compile the frame into JavaScript */
+		let jscode: CNTextSection
+		let compiler = ALScriptCompiler(config: conf)
+		switch compiler.compile(rootFrame: rootir, language: .JavaScript) {
+		case .success(let txt):
+			jscode = txt
+		case .failure(let err):
+			cons.error(string: err.toString())
+			return nil
+		}
+
+		/* dump the frame */
+		let loglevel = CNPreference.shared.systemPreference.logLevel
+		if loglevel.isIncluded(in: .detail) {
+			cons.print(string: "[Output transpiled code]\n")
+			let txt = jscode.toStrings().joined(separator: "\n")
+			cons.log(string: txt)
+		}
+		return jscode
 	}
 
 	open override func errorContext() -> KCView {
