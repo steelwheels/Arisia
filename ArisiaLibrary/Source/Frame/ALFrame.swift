@@ -12,8 +12,9 @@ import JavaScriptCore
 public protocol ALFrame
 {
 	var core: ALFrameCore { get }
-
-	func setup(resource res: KEResource) -> NSError?
+	var path: ALFramePath { get }
+	
+	func setup(path pth: ALFramePath, resource res: KEResource) -> NSError?
 }
 
 private let FrameNameItem	= "frameName"
@@ -232,20 +233,22 @@ public extension ALFrame
 {
 	public static let FrameName = "Frame"
 
-	private var mFrameCore:		ALFrameCore
+	private var mFrameCore:	ALFrameCore
+	private var mPath:	ALFramePath
 
-	public var core: ALFrameCore { get {
-		return mFrameCore
-	}}
+	public var core: ALFrameCore { get { return mFrameCore	}}
+	public var path: ALFramePath { get { return mPath	}}
 
 	public init(frameName cname: String, context ctxt: KEContext){
 		mFrameCore = ALFrameCore(frameName: cname, context: ctxt)
+		mPath      = ALFramePath()
 		super.init()
 
 		mFrameCore.owner = self
 	}
 
-	public func setup(resource res: KEResource) -> NSError? {
+	public func setup(path pth: ALFramePath, resource res: KEResource) -> NSError? {
+		mPath = pth
 		self.setupDefaultProperties()
 		return nil
 	}

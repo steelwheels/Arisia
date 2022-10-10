@@ -99,7 +99,7 @@ open class ALFunctionIR
 		return stmt
 	}
 
-	open func toType() -> CNValueType {
+	open func toType(framePath path: ALFramePath) -> CNValueType {
 		CNLog(logLevel: .error, message: "Do override", atFunction: #function, inFile: #file)
 		return .anyType
 	}
@@ -107,11 +107,6 @@ open class ALFunctionIR
 	public func selfArgument() -> ALArgument {
 		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: "Frame")
 		return ALArgument(type: .objectType(ifname), name: "self")
-	}
-
-	public static func selfType() -> CNValueType {
-		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: "Frame")
-		return .objectType(ifname)
 	}
 
 	public func selfPathArgument() -> ALPathArgument {
@@ -166,8 +161,8 @@ public class ALInitFunctionIR: ALFunctionIR
 		return super.toScript(arguments: [self.selfArgument()], returnType: .voidType, language: lang)
 	}
 
-	public override func toType() -> CNValueType {
-		return .functionType(.voidType, [ALFunctionIR.selfType()])
+	public override func toType(framePath path: ALFramePath) -> CNValueType {
+		return .functionType(.voidType, [path.selfType])
 	}
 }
 
@@ -188,8 +183,8 @@ public class ALEventFunctionIR: ALFunctionIR
 		return super.toScript(arguments: args, returnType: .voidType, language: lang)
 	}
 
-	public override func toType() -> CNValueType {
-		var ptypes: Array<CNValueType> = [ ALFunctionIR.selfType() ]
+	public override func toType(framePath path: ALFramePath) -> CNValueType {
+		var ptypes: Array<CNValueType> = [ path.selfType ]
 		ptypes.append(contentsOf: self.mArguments.map { $0.type })
 		return .functionType(.voidType, ptypes)
 	}
@@ -218,8 +213,8 @@ public class ALListnerFunctionIR: ALFunctionIR
 		return super.toScript(pathArguments: args, returnType: mReturnType, language: lang)
 	}
 
-	public override func toType() -> CNValueType {
-		var ptypes: Array<CNValueType> = [ ALFunctionIR.selfType() ]
+	public override func toType(framePath path: ALFramePath) -> CNValueType {
+		var ptypes: Array<CNValueType> = [ path.selfType ]
 		ptypes.append(contentsOf: mArguments.map {
 			if let type = $0.type { return type } else { return .anyType}
 		})
@@ -255,7 +250,7 @@ public class ALProceduralFunctionIR: ALFunctionIR
 		return super.toScript(arguments: mArguments, returnType: mReturnType, language: lang)
 	}
 
-	public override func toType() -> CNValueType {
+	public override func toType(framePath path: ALFramePath) -> CNValueType {
 		let ptypes = mArguments.map { return $0.type }
 		return .functionType(.voidType, ptypes)
 	}

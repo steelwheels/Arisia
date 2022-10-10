@@ -26,12 +26,15 @@ public class AMButtonView: KCButton, ALFrame
 
 	private var mContext:		KEContext
 	private var mFrameCore:		ALFrameCore
+	private var mPath:		ALFramePath
 
 	public var core: ALFrameCore { get { return mFrameCore }}
+	public var path: ALFramePath { get { return mPath 	}}
 
 	public init(context ctxt: KEContext){
 		mContext	= ctxt
 		mFrameCore	= ALFrameCore(frameName: AMButtonView.ClassName, context: ctxt)
+		mPath		= ALFramePath()
 		let frame	= CGRect(x: 0.0, y: 0.0, width: 188, height: 21)
 		super.init(frame: frame)
 		mFrameCore.owner = self
@@ -41,9 +44,12 @@ public class AMButtonView: KCButton, ALFrame
 		fatalError("Not supported")
 	}
 
-	public func setup(resource res: KEResource) -> NSError? {
+	public func setup(path pth: ALFramePath, resource res: KEResource) -> NSError? {
+		/* Set path of this frame */
+		mPath = pth
+
 		/* "pressed" event */
-		definePropertyType(propertyName: AMButtonView.PressedItem, valueType: .functionType(.voidType, [ ALFunctionIR.selfType() ]))
+		definePropertyType(propertyName: AMButtonView.PressedItem, valueType: .functionType(.voidType, [ path.selfType ]))
 		if self.value(name: AMButtonView.PressedItem) == nil {
 			self.setValue(name: AMButtonView.PressedItem, value: JSValue(nullIn: core.context))
 		}

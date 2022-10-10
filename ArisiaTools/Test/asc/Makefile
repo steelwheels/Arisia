@@ -69,6 +69,7 @@ compile: dummy
 	cp *.ts compile
 	rm -f compile/Makefile
 	(cd compile && ln -s ../Makefile.compile ./Makefile)
+	(cd compile && make)
 
 dummy:
 

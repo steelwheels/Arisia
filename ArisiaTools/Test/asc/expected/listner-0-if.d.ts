@@ -5,7 +5,7 @@ interface root_FrameIF {
   f1: root_f1_FrameIF ;
   f2: root_f2_FrameIF ;
   frameName: string ;
-  init0(p0: FrameIF): void ;
+  init0(p0: rootFrameIF): void ;
   propertyNames: string[] ;
   setValue(p0: string, p1: any): boolean ;
   value(p0: string): any ;

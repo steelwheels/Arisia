@@ -21,8 +21,6 @@ $(comp_res_dir)/ArisiaLibrary.d.ts: $(lib_res_dir)/ArisiaLibrary.d.ts
 
 tools: dummy
 	(pushd ArisiaTools/Project && make -f $(tool_mk) && popd)
-	(pushd ArisiaLibrary/Resource && make clean && make && popd)
-	(pushd ArisiaComponents/Resource/Library && make clean && make && popd)
 
 dummy:
 

@@ -15,9 +15,9 @@ public class ALFunctionInterface
 
 	public static func userInterfaceName(path pth: Array<String>, instanceName iname: String, frameName fname: String) -> String {
 		let pathstr = pth.count > 0 ? pth.joined(separator: "_") + "_" : ""
-		return defaultInterfaceName(frameName: pathstr + iname + "_" + fname)
+		let namestr = iname.isEmpty ? "" : iname + "_"
+		return defaultInterfaceName(frameName: pathstr + namestr + fname)
 	}
-
 }
 
 

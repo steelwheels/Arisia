@@ -22,7 +22,7 @@ public enum ALValueIR
 	case listnerFunction(ALListnerFunctionIR)
 	case proceduralFunction(ALProceduralFunctionIR)
 
-	public func toType() -> CNValueType {
+	public func toType(framePath path: ALFramePath) -> CNValueType {
 		let result: CNValueType
 		switch self {
 		case .bool(_):
@@ -35,27 +35,27 @@ public enum ALValueIR
 			result = .objectType(frm.className)
 		case .array(let arr):
 			if arr.count > 0 {
-				result = .arrayType(arr[0].toType())
+				result = .arrayType(arr[0].toType(framePath: path))
 			} else {
 				result = .arrayType(.anyType)
 			}
 		case .dictionary(let dict):
 			if dict.count > 0 {
 				let elms = Array(dict.values)
-				result = .dictionaryType(elms[0].toType())
+				result = .dictionaryType(elms[0].toType(framePath: path))
 			} else {
 				result = .dictionaryType(.anyType)
 			}
 		case .enumValue(let etype, _, _):
 			result = .enumType(etype)
 		case .initFunction(let ifunc):
-			result = ifunc.toType()
+			result = ifunc.toType(framePath: path)
 		case .eventFunction(let efunc):
-			result = efunc.toType()
+			result = efunc.toType(framePath: path)
 		case .listnerFunction(let lfunc):
-			result = lfunc.toType()
+			result = lfunc.toType(framePath: path)
 		case .proceduralFunction(let pfunc):
-			result = pfunc.toType()
+			result = pfunc.toType(framePath: path)
 		}
 		return result
 	}

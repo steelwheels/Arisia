@@ -30,19 +30,25 @@ public class AMTableData: ALFrame
 
 	private var mContext:		KEContext
 	private var mFrameCore:		ALFrameCore
+	private var mPath:		ALFramePath
 	private var mTable: 		CNStorageTable?
 
 	public var core: ALFrameCore { get { return mFrameCore }}
+	public var path: ALFramePath { get { return mPath 	}}
 
 	public init(context ctxt: KEContext){
 		mContext	= ctxt
 		mFrameCore	= ALFrameCore(frameName: AMTableData.ClassName, context: ctxt)
+		mPath 		= ALFramePath()
 		mTable		= nil
 
 		mFrameCore.owner = self
 	}
 
-	public func setup(resource res: KEResource) -> NSError? {
+	public func setup(path pth: ALFramePath, resource res: KEResource) -> NSError? {
+		/* Set path of this frame */
+		mPath = pth
+
 		/* storage */
 		definePropertyType(propertyName: AMTableData.StorageItem, valueType: .stringType)
 		let storagename: String

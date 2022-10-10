@@ -27,12 +27,15 @@ public class AMStackView: KCStackView, ALFrame
 
 	private var mContext:		KEContext
 	private var mFrameCore:		ALFrameCore
+	private var mPath:		ALFramePath
 
-	public var core: ALFrameCore { get { return mFrameCore }}
+	public var core: ALFrameCore { get { return mFrameCore	}}
+	public var path: ALFramePath { get { return mPath 	}}
 
 	public init(context ctxt: KEContext){
 		mContext	= ctxt
 		mFrameCore	= ALFrameCore(frameName: AMStackView.ClassName, context: ctxt)
+		mPath		= ALFramePath()
 		let frame	= CGRect(x: 0.0, y: 0.0, width: 188, height: 21)
 		super.init(frame: frame)
 		mFrameCore.owner = self
@@ -42,7 +45,10 @@ public class AMStackView: KCStackView, ALFrame
 		fatalError("Not supported")
 	}
 
-	public func setup(resource res: KEResource) -> NSError? {
+	public func setup(path pth: ALFramePath, resource res: KEResource) -> NSError? {
+		/* Set path of this frame */
+		mPath = pth
+
 		/* Link with child frames */
 		for pname in self.propertyNames {
 			if let core = self.objectValue(name: pname) as? ALFrameCore {

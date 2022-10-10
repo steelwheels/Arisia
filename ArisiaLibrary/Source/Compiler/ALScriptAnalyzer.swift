@@ -20,6 +20,9 @@ public class ALScriptAnalyzer: ALScriptLinkerBase
 	}
 
 	private func decideParameterTypes(identifier ident: String, frame frm: ALFrameIR, pathStack pstack: CNStack<String>, rootFrame root: ALFrameIR) -> NSError? {
+		/* Set path info */
+		frm.path = ALFramePath(path: pstack.peekAll(doReverseOrder: false), instanceName: ident, frameName: frm.className)
+
 		/* updata path stack*/
 		pstack.push(ident)
 		defer { let _ = pstack.pop() }

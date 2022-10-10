@@ -75,6 +75,8 @@
 		05D4D93D28BDB393002C5E66 /* ArisiaLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D4D91B28BDB1E8002C5E66 /* ArisiaLibrary.xcframework */; };
 		05D4D93E28BDB393002C5E66 /* ArisiaLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05D4D91B28BDB1E8002C5E66 /* ArisiaLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05D8503628BBAC5B00796FB1 /* ArisiaLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = 05D8503428BBAC5B00796FB1 /* ArisiaLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05EF818928F3857F002CE526 /* ALFramePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF818828F3857F002CE526 /* ALFramePath.swift */; };
+		05EF818A28F3857F002CE526 /* ALFramePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF818828F3857F002CE526 /* ALFramePath.swift */; };
 		05F1AC8E28BE343F00D8F1E1 /* Transpiler.ts in Resources */ = {isa = PBXBuildFile; fileRef = 05F1AC8D28BE343F00D8F1E1 /* Transpiler.ts */; };
 		05F1AC9228BE348D00D8F1E1 /* Transpiler.js in Resources */ = {isa = PBXBuildFile; fileRef = 05F1AC9128BE348D00D8F1E1 /* Transpiler.js */; };
 		05F1AC9628BE351E00D8F1E1 /* Transpiler.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05F1AC8D28BE343F00D8F1E1 /* Transpiler.ts */; };
@@ -262,6 +264,7 @@
 		05D8503128BBAC5B00796FB1 /* ArisiaLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArisiaLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		05D8503428BBAC5B00796FB1 /* ArisiaLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArisiaLibrary.h; sourceTree = "<group>"; };
 		05D8503528BBAC5B00796FB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05EF818828F3857F002CE526 /* ALFramePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ALFramePath.swift; sourceTree = "<group>"; };
 		05F1AC8D28BE343F00D8F1E1 /* Transpiler.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Transpiler.ts; sourceTree = "<group>"; };
 		05F1AC9128BE348D00D8F1E1 /* Transpiler.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Transpiler.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -428,6 +431,7 @@
 			isa = PBXGroup;
 			children = (
 				054D7D6C28BE52430074FD01 /* ALFrameIR.swift */,
+				05EF818828F3857F002CE526 /* ALFramePath.swift */,
 				059F5D1828BFA996006BE786 /* ALFunctionIR.swift */,
 				051B4C2828CA3025005FD4C4 /* ALConfig.swift */,
 				051E6CC928EBF89400752B28 /* ALInterface.swift */,
@@ -698,6 +702,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05EF818A28F3857F002CE526 /* ALFramePath.swift in Sources */,
 				055F538B28DD1944006CB404 /* ALFrame.swift in Sources */,
 				0507A51D28BBAEFD00D694A0 /* ALFrameCore.swift in Sources */,
 				058DC56D28BD091600BF9092 /* ALLibraryCompiler.swift in Sources */,
@@ -739,6 +744,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05EF818928F3857F002CE526 /* ALFramePath.swift in Sources */,
 				055F538A28DD1944006CB404 /* ALFrame.swift in Sources */,
 				0526B69628BBAD8300E232C6 /* ALFrameCore.swift in Sources */,
 				058DC56C28BD091600BF9092 /* ALLibraryCompiler.swift in Sources */,

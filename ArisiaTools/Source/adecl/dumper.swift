@@ -21,7 +21,8 @@ public func dump(className cname: String, context ctxt: KEContext, resource res:
 		cons.error(string: "[Error] Failed to allocate frame: \(cname)\n")
 		return false
 	}
-	if let err = frame.setup(resource: res) {
+	let path = ALFramePath(path: [], instanceName: "", frameName: frame.frameName)
+	if let err = frame.setup(path: path, resource: res) {
 		cons.error(string: err.toString() + "\n")
 		return false
 	}
@@ -40,7 +41,8 @@ public func dump(className cname: String, context ctxt: KEContext, resource res:
 	result.add(text: decl)
 
 	/* Allocator function */
-	let proto = CNTextLine(string: "declare function _alloc_\(frame.frameName)(): \(frame.frameName)IF ;")
+	let ifname = ALFunctionInterface.defaultInterfaceName(frameName: frame.frameName)
+	let proto = CNTextLine(string: "declare function _alloc_\(frame.frameName)(): \(ifname) ;")
 	result.add(text: proto)
 
 	file.put(string: result.toStrings().joined(separator: "\n") + "\n")

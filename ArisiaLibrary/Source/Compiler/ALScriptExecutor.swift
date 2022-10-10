@@ -23,7 +23,7 @@ public class ALScriptExecutor
 		if ctxt.errorCount == 0 && retval.isObject {
 			if let rootobj = retval.toObject() as? ALFrameCore {
 				if let core = rootobj.owner as? ALFrame {
-					setup(frame: core, resource: res)
+					setup(frame: core, path:[], instanceName: mConfig.rootFrameName, resource: res)
 					return core
 				}
 			}
@@ -34,21 +34,23 @@ public class ALScriptExecutor
 		return nil
 	}
 
-	private func setup(frame frm: ALFrame, resource res: KEResource) {
+	private func setup(frame frm: ALFrame, path pth: Array<String>, instanceName iname: String, resource res: KEResource) {
 		/* visit children */
 		for pname in frm.propertyNames {
 			if let val = frm.value(name: pname) {
 				if val.isObject {
 					if let child = val.toObject() as? ALFrameCore {
 						if let cframe = child.owner as? ALFrame {
-							setup(frame: cframe, resource: res)
+							var subpath = pth ; subpath.append(iname)
+							setup(frame: cframe, path: subpath, instanceName: pname, resource: res)
 						}
 					}
 				}
 			}
 		}
 		/* setup the frame */
-		if let err = frm.setup(resource: res) {
+		let newpath = ALFramePath(path: pth, instanceName: iname, frameName: frm.frameName)
+		if let err = frm.setup(path: newpath, resource: res) {
 			CNLog(logLevel: .error, message: err.toString())
 		}
 	}

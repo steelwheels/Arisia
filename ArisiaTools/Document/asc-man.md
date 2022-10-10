@@ -18,9 +18,13 @@ Output help message and quit the command.
 #### `--version`
 Output the version information and quit the command.
 
-#### `-f` *format*:
+#### `-f`, `--format` *format*:
 The format of output file. Select one format from `JavaScript`, `TypeScript` or `TypeDeclaration`. The default format is `JavaScript`.
 
+### `-t`, `--target` *target*
+The kind of target application. Select one target from `terminal`
+or `window`. The default target is `terminal`.
+This information is used the class of root frame.
 
 # Reference
 * [ArisiaTools](https://github.com/steelwheels/Arisia/tree/main/ArisiaTools): The framework which contains this command.

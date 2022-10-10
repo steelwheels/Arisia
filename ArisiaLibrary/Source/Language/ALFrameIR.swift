@@ -39,23 +39,34 @@ public enum ALLanguage
 public class ALFrameIR
 {
 	public struct Property {
-		var name:	String
-		var value:	ALValueIR
+		weak var	owner:	ALFrameIR?
+		var		name:	String
+		var		value:	ALValueIR
 
-		public var type: CNValueType { get { return value.toType() }}
+		public var type: CNValueType { get {
+			if let frm = owner {
+				return value.toType(framePath: frm.path)
+			} else {
+				CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
+				return .anyType
+			}
+		}}
 
-		public init(name nm: String, value val: ALValueIR){
-			name  = nm
-			value = val
+		public init(owner frame: ALFrameIR, name nm: String, value val: ALValueIR){
+			owner	= frame
+			name 	= nm
+			value	= val
 		}
 	}
 
 	private var mClassName:		String
+	private var mPath:		ALFramePath
 	private var mMembers:		Array<Property>
 	private var mDictionary:	Dictionary<String, ALValueIR>
 
 	public init(className cname: String) {
 		mClassName	= cname
+		mPath		= ALFramePath()
 		mMembers	= []
 		mDictionary	= [:]
 	}
@@ -63,6 +74,11 @@ public class ALFrameIR
 	public var className: String { get {
 		return mClassName
 	}}
+
+	public var path: ALFramePath {
+		get          { return mPath    }
+		set(newpath) { mPath = newpath }
+	}
 
 	public var properties: Array<Property> { get {
 		return mMembers
@@ -81,7 +97,8 @@ public class ALFrameIR
 		return nil
 	}
 
-	public func set(property prop: Property){
+	public func set(name nm: String, value val: ALValueIR) {
+		let prop = Property(owner: self, name: nm, value: val)
 		mMembers.append(prop)
 		mDictionary[prop.name] = prop.value
 	}

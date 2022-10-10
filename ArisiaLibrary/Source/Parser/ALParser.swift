@@ -13,6 +13,16 @@ import Foundation
  */
 public class ALParser
 {
+	private struct Property {
+		public var 	name:	String
+		public var 	value:	ALValueIR
+
+		public init(name nm: String, value val: ALValueIR){
+			name  = nm
+			value = val
+		}
+	}
+
 	private var mConfig: ALConfig
 
 	public init(config conf: ALConfig){
@@ -110,7 +120,7 @@ public class ALParser
 			}
 			switch parseProperty(stream: strm, sourceFile: srcfile) {
 			case .success(let prop):
-				frame.set(property: prop)
+				frame.set(name: prop.name, value: prop.value)
 			case .failure(let err):
 				return .failure(err)
 			}
@@ -118,7 +128,7 @@ public class ALParser
 		return .success(frame)
 	}
 
-	private func parseProperty(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<ALFrameIR.Property, NSError> {
+	private func parseProperty(stream strm: CNTokenStream, sourceFile srcfile: URL?) -> Result<Property, NSError> {
 		guard let ident = strm.getIdentifier() else {
 			return .failure(parseError(message: "Identifier is required", stream: strm))
 		}
@@ -127,7 +137,7 @@ public class ALParser
 		}
 		switch parsePropertyValue(stream: strm, sourceFile: srcfile){
 		case .success(let val):
-			let prop = ALFrameIR.Property(name: ident, value: val)
+			let prop = Property(name: ident, value: val)
 			return .success(prop)
 		case .failure(let err):
 			return .failure(err)
