@@ -32,8 +32,9 @@ This is a simple example of ArisiaScript program.
 ````
 There are sample screen shots which is executed on MacOS and iOS.
 
-<img src="./Document/images/hello-1-macos.png"  width="48%" height="80%" />
-<img src="./Document/images/hello-1-ios.png" width="48%" height="80%" />
+<p align="center">
+<img src="./Document/Images/hello-1.png" width="75%" height="75%" />
+</p>
 
 ## ArisiaScript language
 The *ArisiaScript* extends the syntax of [TypeScript](https://www.typescriptlang.org) to support [frame](#frame) declaration.
