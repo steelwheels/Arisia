@@ -23,7 +23,7 @@ public class ALScriptExecutor
 		if ctxt.errorCount == 0 && retval.isObject {
 			if let rootobj = retval.toObject() as? ALFrameCore {
 				if let core = rootobj.owner as? ALFrame {
-					setup(frame: core, path:[], instanceName: mConfig.rootFrameName, resource: res)
+					setup(frame: core, path:[], instanceName: mConfig.rootInstanceName, resource: res)
 					return core
 				}
 			}

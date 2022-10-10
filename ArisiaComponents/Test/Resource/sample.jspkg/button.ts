@@ -18,7 +18,7 @@ _definePropertyIF(root, ["top"]) ;
     let button_a = _alloc_ButtonView() as root_top_button_a_ButtonViewIF ;
     /* define type for all properties */
     button_a.definePropertyType("title", "s") ;
-    button_a.definePropertyType("pressed", "f(v,[o(FrameIF)])") ;
+    button_a.definePropertyType("pressed", "f(v,[o(root_top_button_a_ButtonViewIF)])") ;
     /* define getter/setter for all properties */
     _definePropertyIF(button_a, ["title","pressed"]) ;
     /* assign user declared properties */

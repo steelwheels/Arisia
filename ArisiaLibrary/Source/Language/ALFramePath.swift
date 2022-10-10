@@ -38,10 +38,14 @@ public class ALFramePath
 		}
 	}}
 
-	public var selfType: CNValueType { get {
+	public var interfaceName: String { get {
 		let name0 = self.fullName
 		let name1 = name0.isEmpty ? "" : name0 + "_"
-		return .objectType(name1 + mFrameName + "IF")
+		return name1 + mFrameName + "IF"
+	}}
+
+	public var selfType: CNValueType { get {
+		return .objectType(self.interfaceName)
 	}}
 }
 

@@ -3,7 +3,7 @@ interface root_FrameIF {
   definePropertyType(p0: string, p1: string): void ;
   f0: root_f0_FrameIF ;
   frameName: string ;
-  init0(p0: FrameIF): void ;
+  init0(p0: root_FrameIF): void ;
   propertyNames: string[] ;
   setValue(p0: string, p1: any): boolean ;
   value(p0: string): any ;
@@ -12,7 +12,7 @@ interface root_f0_FrameIF {
   addObserver(p0: string, p1: () => void): void ;
   definePropertyType(p0: string, p1: string): void ;
   frameName: string ;
-  init0(p0: FrameIF): void ;
+  init0(p0: root_f0_FrameIF): void ;
   propertyNames: string[] ;
   setValue(p0: string, p1: any): boolean ;
   value(p0: string): any ;

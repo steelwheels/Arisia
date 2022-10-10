@@ -125,6 +125,18 @@ public extension ALFrame
 		}
 	}
 
+	func frameValue(name nm: String) -> ALFrame? {
+		if let val = objectValue(name: nm) as? ALFrameCore {
+			return val.owner as? ALFrame
+		} else {
+			return nil
+		}
+	}
+
+	func setFrameValue(name nm: String, value val: ALFrame) {
+		setObjectValue(name: nm, value: val.core)
+	}
+
 	func arrayValue(name nm: String) -> Array<Any>? {
 		if let val = core.value(name: nm) {
 			if val.isArray {

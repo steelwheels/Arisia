@@ -17,40 +17,29 @@ public class ALTypeDeclGenerator
 	}
 
 	public func generateTypeDeclaration(frame frm: ALFrame) -> CNTextSection {
-		return generateTypeDeclaration(path: [], instanceName: mConfig.rootInstanceName, frame: frm)
-	}
-
-	private func generateTypeDeclaration(path pth: Array<String>, instanceName iname: String, frame frm: ALFrame) -> CNTextSection {
 		let result = CNTextSection()
 
 		/* Generate declaration for current frame */
-		let txt = generateOneTypeDeclaration(path: pth, instanceName: iname, frame: frm)
+		let txt = generateOneTypeDeclaration(frame: frm)
 		result.add(text: txt)
 
 		/* Generate declaration for child frames */
-		var subpath = pth ; subpath.append(iname)
 		for prop in frm.propertyNames.sorted() {
-			if let val = frm.value(name: prop) {
-				if let core = val.toObject() as? ALFrameCore {
-					if let child = core.owner as? ALFrame {
-						let txt = generateTypeDeclaration(path: subpath, instanceName: prop, frame: child)
-						result.add(text: txt)
-					}
-				}
+			if let child = frm.frameValue(name: prop) {
+				let txt = generateTypeDeclaration(frame: child)
+				result.add(text: txt)
 			}
 		}
 
 		return result
 	}
 
-	private func generateOneTypeDeclaration(path pth: Array<String>, instanceName iname: String, frame frm: ALFrame) -> CNTextSection {
-		let ifname = ALFunctionInterface.userInterfaceName(path: pth, instanceName: iname, frameName: frm.frameName)
+	private func generateOneTypeDeclaration(frame frm: ALFrame) -> CNTextSection {
+		let ifname = frm.path.interfaceName
 
 		let ifdecl = CNTextSection()
 		ifdecl.header = "interface \(ifname) {"
 		ifdecl.footer = "}"
-
-		var subpath = pth ; subpath.append(iname)
 
 		for pname in frm.propertyNames.sorted() {
 			if let vtype = frm.propertyType(propertyName: pname) {
@@ -58,9 +47,14 @@ public class ALTypeDeclGenerator
 				switch vtype {
 				case .functionType(_, _):
 					decl = pname + vtype.toTypeDeclaration() + " ;"
-				case .objectType(let clsnamep):
-					let clsname = clsnamep ?? ALDefaultFrame.FrameName
-					let ifname  = ALFunctionInterface.userInterfaceName(path: subpath, instanceName: pname, frameName: clsname)
+				case .objectType(_):
+					let ifname: String
+					if let child = frm.frameValue(name: pname) {
+						ifname = child.path.interfaceName
+					} else {
+						CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
+						ifname = "<no-if>"
+					}
 					decl = pname + ": " + ifname + " ;"
 				default:
 					decl = pname + ": " + vtype.toTypeDeclaration() + " ;"
@@ -84,9 +78,14 @@ public class ALTypeDeclGenerator
 				switch vtype {
 				case .functionType(_, _):
 					decl = pname + vtype.toTypeDeclaration() + " ;"
-				case .objectType(let clsnamep):
-					let clsname = clsnamep ?? ALDefaultFrame.FrameName
-					let ifname  = ALFunctionInterface.defaultInterfaceName(frameName: clsname)
+				case .objectType(_):
+					let ifname: String
+					if let child = frm.frameValue(name: pname) {
+						ifname = ALFunctionInterface.defaultInterfaceName(frameName: child.frameName)
+					} else {
+						CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
+						ifname = "<no-if>"
+					}
 					decl = pname + ": " + ifname + " ;"
 				default:
 					decl = pname + ": " + vtype.toTypeDeclaration() + " ;"

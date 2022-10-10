@@ -12,10 +12,14 @@ _definePropertyIF(root, ["button"]);
     let button = _alloc_ButtonView();
     /* define type for all properties */
     button.definePropertyType("title", "s");
+    button.definePropertyType("pressed", "f(v,[o(root_button_ButtonViewIF)])");
     /* define getter/setter for all properties */
-    _definePropertyIF(button, ["title"]);
+    _definePropertyIF(button, ["title", "pressed"]);
     /* assign user declared properties */
     button.title = "Hello, world !!";
+    button.pressed = function (self) {
+        console.log("Pressed");
+    };
     root.button = button;
 }
 /* Define listner functions */

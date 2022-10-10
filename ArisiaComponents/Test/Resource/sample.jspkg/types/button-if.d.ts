@@ -27,7 +27,7 @@ interface root_top_button_a_ButtonViewIF {
   definePropertyType(p0: string, p1: string): void ;
   frameName: string ;
   isEnabled: boolean ;
-  pressed(p0: FrameIF): void ;
+  pressed(p0: root_top_button_a_ButtonViewIF): void ;
   propertyNames: string[] ;
   setValue(p0: string, p1: any): boolean ;
   title: string ;

@@ -4,7 +4,7 @@ let root = _alloc_Frame()  ;
 root.definePropertyType("f0", "o(Frame)") ;
 root.definePropertyType("f1", "o(Frame)") ;
 root.definePropertyType("f2", "o(Frame)") ;
-root.definePropertyType("init0", "f(v,[o(FrameIF)])") ;
+root.definePropertyType("init0", "f(v,[o(root_FrameIF)])") ;
 /* define getter/setter for all properties */
 _definePropertyIF(root, ["f0","f1","f2","init0"]) ;
 /* assign user declared properties */
