@@ -13,17 +13,9 @@ For rapid application development, the following matters are required:
 * The platform which supports multiple target OS and hardware
 
 This platform has following features to meet these requirements:
-
-It targets on *rappid GUI application development*.
-To reduce the amount code to implement the application.
-this environment has following features:
-* Programming based on event driven software architecture. The [ArisiaScript](#arisiascript-language) support it.
-* [ArisiaLibrary](#arisia-library) has many predefined components to implement GUI application which uses database access.
-
-This environment assumes the platform allows the application to execute the JavaScript code in it. 
-Now, the targets platforms are:
-* macOS
-* iOS
+* Extend the TypeScript syntax to support event driven programming. The language is named [ArisiaScript](#arisiascript-language).
+* Usual GUI parts are implemented as built-in components. See [Component](#component) section.
+* The application designed for Arisia Platform runs on [macOS](https://www.apple.com/macos/) and [iOS](https://www.apple.com/ios/). 
 
 ## Sample screen shot
 This is a simple example of ArisiaScript program.
@@ -42,6 +34,14 @@ There are sample screen shots which is executed on MacOS and iOS.
 <p align="center">
 <img src="./Document/Images/hello-1.png" width="75%" height="75%" />
 </p>
+
+## License
+Copyright (C) 2014-2022 [Steel Wheels Project](http://steelwheels.github.io).
+This software is distributed under [GNU LESSER GENERAL PUBLIC LICENSE Version 2.1](https://www.gnu.org/licenses/lgpl-2.1-standalone.html) and the document is distributed under [GNU Free Documentation License](https://www.gnu.org/licenses/fdl-1.3.en.html).
+
+## Dowload
+* Source code: https://github.com/steelwheels
+* AooStore: Not released yet
 
 ## ArisiaScript language
 The *ArisiaScript* extends the syntax of [TypeScript](https://www.typescriptlang.org) to support [frame](#frame) declaration.

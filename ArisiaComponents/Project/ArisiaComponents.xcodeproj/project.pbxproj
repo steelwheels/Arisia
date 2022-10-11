@@ -91,6 +91,10 @@
 		05CAC8BB28DD9566001C9EF1 /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405B028D9E61C00C3E2BD /* KiwiEngine.xcframework */; };
 		05CAC8BC28DD9566001C9EF1 /* KiwiLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AC28D9E61B00C3E2BD /* KiwiLibrary.xcframework */; };
 		05CAC8BD28DD9566001C9EF1 /* KiwiShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AF28D9E61C00C3E2BD /* KiwiShell.xcframework */; };
+		05D50B5728F5AFDC00469108 /* dummy-storage-table.json in Resources */ = {isa = PBXBuildFile; fileRef = 05D50B5628F5AFDC00469108 /* dummy-storage-table.json */; };
+		05D50B5828F5AFDC00469108 /* dummy-storage-table.json in Resources */ = {isa = PBXBuildFile; fileRef = 05D50B5628F5AFDC00469108 /* dummy-storage-table.json */; };
+		05D50B5B28F5AFE600469108 /* dummy-storage-table.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05D50B5628F5AFDC00469108 /* dummy-storage-table.json */; };
+		05D50B5F28F5AFFB00469108 /* dummy-storage-table.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05D50B5628F5AFDC00469108 /* dummy-storage-table.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,6 +212,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		05D50B5428F5AF9600469108 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Data;
+			dstSubfolderSpec = 7;
+			files = (
+				05D50B5B28F5AFE600469108 /* dummy-storage-table.json in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05D50B5E28F5AFEF00469108 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Data;
+			dstSubfolderSpec = 7;
+			files = (
+				05D50B5F28F5AFFB00469108 /* dummy-storage-table.json in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -255,6 +279,7 @@
 		05CAC89528DD8EA5001C9EF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05CAC89728DD8EA5001C9EF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05CAC8A428DD9526001C9EF1 /* ArisiaComponents.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ArisiaComponents.xcframework; path = ../../../../Library/Frameworks/ArisiaComponents.xcframework; sourceTree = "<group>"; };
+		05D50B5628F5AFDC00469108 /* dummy-storage-table.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "dummy-storage-table.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -429,6 +454,7 @@
 		05BB07EF28E71E3F00265AC9 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				05D50B5528F5AFC400469108 /* Data */,
 				05BB07F028E71F4E00265AC9 /* Library */,
 			);
 			name = Resource;
@@ -508,6 +534,14 @@
 			path = UnitTest_iOS;
 			sourceTree = "<group>";
 		};
+		05D50B5528F5AFC400469108 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				05D50B5628F5AFDC00469108 /* dummy-storage-table.json */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		05F763B228D9D4E600CAF37B /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -584,6 +618,7 @@
 				0524E42028D9D49400C5DA2D /* Resources */,
 				051405BF28D9E61C00C3E2BD /* Embed Frameworks */,
 				0501588C28DDB32000BE2C8D /* CopyFiles */,
+				05D50B5428F5AF9600469108 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -604,6 +639,7 @@
 				0542633828D9D5C4004F05E2 /* Resources */,
 				051405CF28D9E63200C3E2BD /* Embed Frameworks */,
 				05BB080528E7269E00265AC9 /* CopyFiles */,
+				05D50B5E28F5AFEF00469108 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -711,6 +747,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05D50B5728F5AFDC00469108 /* dummy-storage-table.json in Resources */,
 				05BB07FC28E723BA00265AC9 /* ArisiaComponents.d.ts in Resources */,
 				05BB07FE28E723BA00265AC9 /* ArisiaLibrary.d.ts in Resources */,
 			);
@@ -720,6 +757,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05D50B5828F5AFDC00469108 /* dummy-storage-table.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

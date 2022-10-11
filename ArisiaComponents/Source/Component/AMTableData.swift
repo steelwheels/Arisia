@@ -51,40 +51,35 @@ public class AMTableData: ALFrame
 
 		/* storage */
 		definePropertyType(propertyName: AMTableData.StorageItem, valueType: .stringType)
-		let storagename: String
+		let storagename: String?
 		if let name = stringValue(name: AMTableData.StorageItem) {
 			storagename = name
 		} else {
-			return NSError.parseError(message: "The TableData frame requires \(AMTableData.StorageItem) property.")
+			storagename = nil
 		}
 
 		/* path */
 		definePropertyType(propertyName: AMTableData.PathItem, valueType: .stringType)
-		let pathname: String
+		let pathname: String?
 		if let name = stringValue(name: AMTableData.PathItem) {
 			pathname = name
 		} else {
-			return NSError.parseError(message: "The TableData frame requires \(AMTableData.PathItem) property.")
+			pathname = nil
 		}
 
 		/* Load storage dictionary */
 		let table: CNStorageTable
-		if let storage = res.loadStorage(identifier: storagename) {
-			switch CNValuePath.pathExpression(string: pathname) {
-			case .success(let path):
-				table = CNStorageTable(path: path, storage: storage)
-				mTable = table
-			case .failure(let err):
-				return err
-			}
+		if let tbl = loadTable(storageName: storagename, pathName: pathname, resource: res) {
+			table = tbl
 		} else {
-			return NSError.fileError(message: "Failed to load storage named: \(storagename)")
+			/* Load failed, use dummy table */
+			table = loadDummyTable()
 		}
 
-		/* count (updated in updateTablePropeties()) */
+		/* count (set and updated in updateTablePropeties()) */
 		definePropertyType(propertyName: AMTableData.CountItem, valueType: .numberType)
 
-		/* fieldNames (updated in updateTablePropeties()) */
+		/* fieldNames (set and updated in updateTablePropeties()) */
 		definePropertyType(propertyName: AMTableData.FieldNamesItem, valueType: .arrayType(.stringType))
 
 		/* fieldName(index: number): string */
@@ -135,6 +130,43 @@ public class AMTableData: ALFrame
 		return nil
 	}
 
+	private func loadTable(storageName snamep: String?, pathName pnamep: String?, resource res: KEResource) -> CNStorageTable? {
+		guard let sname = snamep else {
+			CNLog(logLevel: .error, message: "TableData component requires the value of \(AMTableData.StorageItem) property")
+			return nil
+		}
+		guard let pname = pnamep else {
+			CNLog(logLevel: .error, message: "TableData component requires the value of \(AMTableData.PathItem) property")
+			return nil
+		}
+		if let storage = res.loadStorage(identifier: sname) {
+			switch CNValuePath.pathExpression(string: pname) {
+			case .success(let path):
+				return CNStorageTable(path: path, storage: storage)
+			case .failure(let err):
+				CNLog(logLevel: .error, message: "Failed to load tabale for TableData component: \(err.toString())")
+				return nil
+			}
+		} else {
+			CNLog(logLevel: .error, message: "Failed to load tabale for TableData component: \(AMTableData.StorageItem) = \(sname), \(AMTableData.PathItem) = \(pname)")
+			return nil
+		}
+	}
+
+	private func loadDummyTable() -> CNStorageTable {
+		let FILENAME = "dummy-storage-table"
+		guard let srcfile = CNFilePath.URLForResourceFile(fileName: FILENAME, fileExtension: "json", subdirectory: "Data", forClass: AMTableData.self) else {
+			CNLog(logLevel: .error, message: "Failed to load dummy table")
+			fatalError()
+		}
+		let cachefile = CNFilePath.URLForApplicationSupportFile(fileName: FILENAME, fileExtension: "json", subdirectory: "Data")
+		let srcdir    = srcfile.deletingLastPathComponent()
+		let cachedir  = cachefile.deletingLastPathComponent()
+		let storage   = CNStorage(sourceDirectory: srcdir, cacheDirectory: cachedir, filePath: FILENAME)
+		let vpath     = CNValuePath(identifier: nil, elements: [.member("table")])
+		return CNStorageTable(path: vpath, storage: storage)
+	}
+
 	private func updateTablePropeties() {
 		guard let table = mTable else {
 			return
@@ -151,125 +183,3 @@ public class AMTableData: ALFrame
 		}
 	}
 }
-
-/*
-
-public class KMTableData: AMBComponentObject
-{
-
-
-	private var mEventCallbackId:	Int?	= nil
-	private var mUpdateCount:	Int	= 0
-
-	deinit {
-		if let table = mTable, let eid = mEventCallbackId {
-			table.removeEventFunction(eventFuncId: eid)
-		}
-	}
-
-	public override func setup(reactObject robj: AMBReactObject, console cons: CNConsole) -> NSError? {
-		/* update count */
-		addScriptedProperty(object: robj, forProperty: KMTableData.UpdateItem)
-		robj.setNumberValue(value: NSNumber(integerLiteral: mUpdateCount), forProperty: KMTableData.UpdateItem)
-		mUpdateCount += 1
-
-		/* record(index) */
-		addScriptedProperty(object: robj, forProperty: KMTableData.RecordItem)
-		let recfunc: @convention(block) (_ idxval: JSValue) -> JSValue = {
-			(_ idxval: JSValue) -> JSValue in
-			if idxval.isNumber {
-				if let rec = table.record(at: Int(idxval.toInt32())) {
-					let recobj = KLRecord(record: rec, context: robj.context)
-					if let val = KLRecord.allocate(record: recobj) {
-						return val
-					} else {
-						CNLog(logLevel: .error, message: "Failed to allocate record")
-					}
-				} else {
-					CNLog(logLevel: .error, message: "Unexpected index range: \(idxval.toInt32())")
-				}
-			}
-			return JSValue(nullIn: robj.context)
-		}
-		robj.setImmediateValue(value: JSValue(object: recfunc, in: robj.context), forProperty: KMTableData.RecordItem)
-
-		/* append(record) */
-		addScriptedProperty(object: robj, forProperty: KMTableData.AppendItem)
-		let appendfunc: @convention(block) (_ recval: JSValue) -> JSValue = {
-			(_ recval: JSValue) -> JSValue in
-			if recval.isObject {
-				if let rec = recval.toObject() as? KLRecord {
-					table.append(record: rec.core())
-				} else {
-					CNLog(logLevel: .error, message: "Failed to convert to record")
-				}
-			} else {
-				CNLog(logLevel: .error, message: "Not record parameter: \(recval)")
-			}
-			return JSValue(nullIn: robj.context)
-		}
-		robj.setImmediateValue(value: JSValue(object: appendfunc, in: robj.context), forProperty: KMTableData.AppendItem)
-
-		/* search(field, value) */
-		addScriptedProperty(object: robj, forProperty: KMTableData.SearchItem)
-		let searchfunc: @convention(block) (_ field: JSValue, _ value: JSValue) -> JSValue = {
-			(_ field: JSValue, _ value: JSValue) -> JSValue in
-			var result: Array<KLRecord> = []
-			if let fname = field.toString() {
-				let nval = value.toNativeValue()
-				let recs = table.search(value: nval, forField: fname)
-				result.append(contentsOf: recs.map {KLRecord(record: $0, context: robj.context) } )
-			}
-			if let resobj = KLRecord.allocate(records: result, context: robj.context) {
-				return resobj
-			} else {
-				CNLog(logLevel: .error, message: "Failed to allocate records", atFunction: #function, inFile: #file)
-				return JSValue(newArrayIn: robj.context)
-			}
-		}
-		robj.setImmediateValue(value: JSValue(object: searchfunc, in: robj.context), forProperty: KMTableData.SearchItem)
-
-		/* table() */
-		addScriptedProperty(object: robj, forProperty: KMTableData.TableItem)
-		let tabfunc: @convention(block) () -> JSValue = {
-			() -> JSValue in
-			if let table = self.mTable {
-				let tabobj = KLTable(table: table, context: robj.context)
-				return JSValue(object: tabobj, in: robj.context)
-			} else {
-				return JSValue(nullIn: robj.context)
-			}
-		}
-		robj.setImmediateValue(value: JSValue(object: tabfunc, in: robj.context), forProperty: KMTableData.TableItem)
-
-		/* callback for update event */
-		mEventCallbackId = table.allocateEventFunction(eventFunc: {
-			() -> Void in
-			CNExecuteInMainThread(doSync: false, execute: {
-				() -> Void in self.updateData()
-			})
-		})
-		return nil // no error
-	}
-
-	private func updateData() {
-		if let table = mTable {
-			let robj = super.reactObject
-
-			/* fieldNames */
-			let fnames = table.fieldNames.map({ (_ key: String) -> CNValue in return .stringValue(key) })
-			robj.setArrayValue(value: fnames, forProperty: KMTableData.FieldNamesItem)
-
-			/* recordCount */
-			robj.setNumberValue(value: NSNumber(integerLiteral: table.recordCount), forProperty: KMTableData.RecordCountItem)
-
-			/* update count */
-			addScriptedProperty(object: robj, forProperty: KMTableData.UpdateItem)
-			robj.setNumberValue(value: NSNumber(integerLiteral: mUpdateCount), forProperty: KMTableData.UpdateItem)
-			mUpdateCount += 1
-		}
-	}
-}
-
-
-*/

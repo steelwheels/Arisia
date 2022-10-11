@@ -49,6 +49,12 @@ open class AMLibraryCompiler: ALLibraryCompiler
 			      allocator: ALFrameAllocator.Allocator(frameName: AMStackView.ClassName, allocFuncBody: {
 				(_ ctxt: KEContext) -> ALFrame? in return AMStackView(context: ctxt)
 		}))
+		
+		/* TableData */
+		allocator.add(className: AMTableData.ClassName,
+			      allocator: ALFrameAllocator.Allocator(frameName: AMTableData.ClassName, allocFuncBody: {
+				(_ ctxt: KEContext) -> ALFrame? in return AMTableData(context: ctxt)
+		}))
 	}
 
 	private func defineComponentFuntion(context ctxt: KEContext, viewController vcont: AMComponentViewController, resource res: KEResource) {

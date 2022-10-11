@@ -5,6 +5,7 @@
 src_scr 	= window.ts
 bltin_decl	= ButtonView.d.ts \
 	  	  StackView.d.ts \
+		  TableData.d.ts \
 	  	  window.d.ts
 dst_scr		= $(src_scr:.ts=.js)
 dst_decl	= $(src_scr:.ts=.d.ts)
