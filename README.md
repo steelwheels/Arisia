@@ -1,11 +1,18 @@
-# Arisia Programming Environment
+# Arisia Platform
 
-<div style="text-align: center">
+<p align="center">
 <img src="./Document/Images/arisia-title.png" alt="Arisia Icon" width="50%" height="50%">
-</div>v
+</p>
 
 ## Introduction
-The *Arisia Programming Environment* is application software development environment for macOS and iOS.
+The *Arisia Platform* is the platform for the rappid application software development.
+
+For rapid application development, the following matters are required:
+* The programming language that allows writing your ideas directory.
+* Rich built-in components that eliminate the needs to reinvent the wheel
+* The platform which supports multiple target OS and hardware
+
+This platform has following features to meet these requirements:
 
 It targets on *rappid GUI application development*.
 To reduce the amount code to implement the application.
@@ -72,6 +79,13 @@ The arisia library contains many kind of [components](#component).
 ### User defined component
 
 ## Arisia Runtime
+
+# Compile
+The Arisia Platform recommends to use TypeScript to implement the user logic.
+
+<p align="center">
+<img src="./Document/Images/compile-flow.png" width="75%" height="75%" />
+</p>
 
 # References
 * [Implementation](./Document/arisia-implementation.md): The implementation of this software
