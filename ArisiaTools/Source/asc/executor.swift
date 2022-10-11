@@ -14,11 +14,12 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public func execute(context ctxt: KEContext, script scr: CNText, resource res: KEResource, config conf: Config, console cons: CNFileConsole) -> Result<ALFrame, NSError>
+public func execute(context ctxt: KEContext, script scr: CNText, sourceFile srcfile: URL?, resource res: KEResource, config conf: Config, console cons: CNFileConsole) -> Result<ALFrame, NSError>
 {
 	let conf    = ALConfig(applicationType: conf.target, doStrict: true, logLevel: .defaultLevel)
 	let arsexec = ALScriptExecutor(config: conf)
-	if let frame = arsexec.execute(context: ctxt, script: scr, sourceFile: nil, resource: res) {
+	let script  = scr.toStrings().joined(separator: "\n")
+	if let frame = arsexec.execute(context: ctxt, script: script, sourceFile: srcfile, resource: res) {
 		return .success(frame)
 	} else {
 		return .failure(NSError.fileError(message: "Runtime error"))

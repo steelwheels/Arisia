@@ -18,8 +18,9 @@ func main(arguments args: Array<String>) {
 		let ctxt     = KEContext(virtualMachine: JSVirtualMachine())
 		let packdir  = URL(fileURLWithPath: "/bin", isDirectory: true)
 		let resource = KEResource(packageDirectory: packdir)
-		
-		let lconf = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
+
+		let srcurl = URL(fileURLWithPath: config.scriptFile)
+		let lconf  = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
 		switch compile(context: ctxt, scriptFile: config.scriptFile, resource: resource, config: config,  console: console) {
 		case .success(let txt):
 			switch config.outputFormat {
@@ -28,7 +29,7 @@ func main(arguments args: Array<String>) {
 			case .TypeScript:
 				outputScript(config: config, text: txt, console: console)
 			case .TypeDeclaration:
-				executeScript(context: ctxt, config: config, text: txt, resource: resource, console: console, language: lconf)
+				executeScript(context: ctxt, config: config, text: txt, sourceFile: srcurl, resource: resource, console: console, language: lconf)
 			}
 		case .failure(let err):
 			console.error(string: "[Error] " + err.toString())
@@ -36,9 +37,9 @@ func main(arguments args: Array<String>) {
 	}
 }
 
-private func executeScript(context ctxt: KEContext, config conf: Config, text txt: CNText, resource res: KEResource, console cons: CNFileConsole, language lconf: ALConfig)
+private func executeScript(context ctxt: KEContext, config conf: Config, text txt: CNText, sourceFile srcfile: URL?, resource res: KEResource, console cons: CNFileConsole, language lconf: ALConfig)
 {
-	switch execute(context: ctxt, script: txt, resource: res, config: conf, console: cons) {
+	switch execute(context: ctxt, script: txt, sourceFile: srcfile, resource: res, config: conf, console: cons) {
 	case .success(let frame):
 		outputDeclaration(config: conf, frame: frame, console: cons, language: lconf)
 	case .failure(let err):
