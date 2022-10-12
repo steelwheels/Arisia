@@ -2,6 +2,25 @@
 
 ## Introduction
 The ArisiaScript is the extension of TypeScript/JavaScript for event driven programming.
+The program is described as the hierarchical frames.
+The hierarchy presents the layout of the frames.
+For exmaple, the next script presents two GUI buttons which allocated horizontally.
+
+````
+{
+  box: StackView {
+    axis:         Axis .horizontal
+    left_button:  ButtonView {
+        title: "Left Button"
+    }
+    right_button: ButtonView {
+        title: "Right Button"
+    }
+  }
+}
+````
+You can design the control logic and the layout of GUI components at the same time without needless codes.
+
 
 ## Frame
 The frame is a basic object which supports event driven programming.
