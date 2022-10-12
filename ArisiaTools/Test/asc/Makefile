@@ -13,6 +13,7 @@ as_scripts	= empty-frame.as \
 		  property-array.as \
 		  property-dictionary.as \
 		  property-enum.as \
+		  property-exp.as \
 		  property-init.as \
 		  property-event.as \
 		  property-func.as \

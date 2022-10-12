@@ -256,4 +256,28 @@ public class ALProceduralFunctionIR: ALFunctionIR
 	}
 }
 
+public class ALImmediatelyInvokedFunctionIR: ALFunctionIR
+{
+	private var mReturnType:	CNValueType
+
+	public init(returnType rtype: CNValueType, script scr: String, source src: URL?, config conf: ALConfig) {
+		mReturnType = rtype
+		super.init(script: scr, source: src, config: conf)
+	}
+
+	/* IIFE: Immediately Invoked function expression
+	 *    (function() {
+	 *       console.log(`Hi, I'm ${name}.`);
+	 *    })();
+	 */
+	public func toScript(language lang: ALLanguage) -> String {
+		let head = "(function() {\n"
+		let tail = "\n})()"
+		return head + self.script + tail
+	}
+
+	public override func toType(framePath path: ALFramePath) -> CNValueType {
+		return mReturnType
+	}
+}
 

@@ -139,7 +139,27 @@ The expression to point the object (such as `root.a`) is called as path expressi
 ````
 
 ### Array value
+You can define array property. It is compatible with JavaScript array.
+````
+{
+  s: number[] [1, 2, 3, 4]
+  init0: init %{
+    console.print("length = " + root.s.length + "\n") ;
+  %}
+}
+````
+
 ### Dictionary value
+You can define array property. It is compatible with JavaScript dictionary.
+````
+{
+  s: [key:string]:number {a:10, b:20}
+  init0: init %{
+    console.print("keys = " + Object.keys(root.s) + "\n") ;
+  %}
+}
+````
+
 ### Frame value
 
 ## Expression

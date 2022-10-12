@@ -245,6 +245,8 @@ public class ALScriptTranspiler
 			result = lfunc.toScript(language: lang)
 		case .proceduralFunction(let pfunc):
 			result = pfunc.toScript(language: lang)
+		case .invokedFunction(let ifunc):
+			result = ifunc.toScript(language: lang)
 		}
 		return .success(result)
 	}

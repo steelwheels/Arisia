@@ -21,6 +21,7 @@ public enum ALValueIR
 	case eventFunction(ALEventFunctionIR)
 	case listnerFunction(ALListnerFunctionIR)
 	case proceduralFunction(ALProceduralFunctionIR)
+	case invokedFunction(ALImmediatelyInvokedFunctionIR)
 
 	public func toType(framePath path: ALFramePath) -> CNValueType {
 		let result: CNValueType
@@ -56,6 +57,8 @@ public enum ALValueIR
 			result = lfunc.toType(framePath: path)
 		case .proceduralFunction(let pfunc):
 			result = pfunc.toType(framePath: path)
+		case .invokedFunction(let ifunc):
+			result = ifunc.toType(framePath: path)
 		}
 		return result
 	}

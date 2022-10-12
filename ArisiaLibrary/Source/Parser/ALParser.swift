@@ -428,18 +428,27 @@ public class ALParser
 		case .boolType:
 			if let val = strm.requireBool() {
 				return .success(.bool(val))
+			} else if let txt = strm.requireText() {
+				let ifunc = ALImmediatelyInvokedFunctionIR(returnType: vtype, script: txt, source: nil, config: mConfig)
+				return .success(.invokedFunction(ifunc))
 			} else {
 				return .failure(parseError(message: "Boolean value is required but not given", stream: strm))
 			}
 		case .numberType:
 			if let val = strm.requireNumber() {
 				return .success(.number(val))
+			} else if let txt = strm.requireText() {
+				let ifunc = ALImmediatelyInvokedFunctionIR(returnType: vtype, script: txt, source: nil, config: mConfig)
+				return .success(.invokedFunction(ifunc))
 			} else {
 				return .failure(parseError(message: "Number value is required but not given", stream: strm))
 			}
 		case .stringType:
 			if let val = strm.requireString() {
 				return .success(.string(val))
+			} else if let txt = strm.requireText() {
+				let ifunc = ALImmediatelyInvokedFunctionIR(returnType: vtype, script: txt, source: nil, config: mConfig)
+				return .success(.invokedFunction(ifunc))
 			} else {
 				return .failure(parseError(message: "String value is required but not given", stream: strm))
 			}

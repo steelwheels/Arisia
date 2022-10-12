@@ -9,6 +9,7 @@ as_scripts	= empty-frame.as \
 		  property-array.as \
 		  property-dictionary.as \
 		  property-enum.as \
+		  property-exp.as \
 		  property-init.as \
 		  property-func.as \
 		  property-listner.as \
