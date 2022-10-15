@@ -20,7 +20,8 @@ as_scripts	= empty-frame.as \
 		  property-listner.as \
 		  property-frame.as \
 		  init-0.as \
-		  listner-0.as
+		  listner-0.as \
+		  table-0.as
 
 decl_scripts	= $(as_scripts:.as=-if.d.ts)
 js_scripts	= $(as_scripts:.as=.js)
