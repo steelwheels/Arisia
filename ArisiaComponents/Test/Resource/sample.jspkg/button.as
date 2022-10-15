@@ -1,5 +1,5 @@
 {
-  top: StackView {
+  top: Box {
     button_a: Button {
       title:  string "Back to First"
       pressed: event() %{

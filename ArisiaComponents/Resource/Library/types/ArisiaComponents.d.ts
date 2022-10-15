@@ -732,7 +732,7 @@ interface ButtonIF {
   value(p0: string): any ;
 }
 declare function _alloc_Button(): ButtonIF ;
-interface StackViewIF {
+interface BoxIF {
   addObserver(p0: string, p1: () => void): void ;
   alignment: Alignment ;
   axis: Axis ;
@@ -743,7 +743,7 @@ interface StackViewIF {
   setValue(p0: string, p1: any): boolean ;
   value(p0: string): any ;
 }
-declare function _alloc_StackView(): StackViewIF ;
+declare function _alloc_Box(): BoxIF ;
 interface TableDataIF {
   addObserver(p0: string, p1: () => void): void ;
   definePropertyType(p0: string, p1: string): void ;

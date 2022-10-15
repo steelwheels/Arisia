@@ -11,7 +11,7 @@ import Foundation
 
 public class ALConfig: KEConfig
 {
-	private static let rootWindowFrame	= "StackView"
+	private static let rootWindowFrame = "Box"
 
 	private var mApplicationType:		KEApplicationType
 

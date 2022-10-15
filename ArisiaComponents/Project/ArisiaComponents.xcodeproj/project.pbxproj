@@ -39,8 +39,8 @@
 		051405CE28D9E63200C3E2BD /* KiwiShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AF28D9E61C00C3E2BD /* KiwiShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0556618728E090B200FC4CF2 /* AMTableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0556618628E090B200FC4CF2 /* AMTableData.swift */; };
 		0556618828E090B200FC4CF2 /* AMTableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0556618628E090B200FC4CF2 /* AMTableData.swift */; };
-		055FE1ED28DD76380007B215 /* AMStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FE1EC28DD76380007B215 /* AMStackView.swift */; };
-		055FE1EE28DD76380007B215 /* AMStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FE1EC28DD76380007B215 /* AMStackView.swift */; };
+		055FE1ED28DD76380007B215 /* AMBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FE1EC28DD76380007B215 /* AMBox.swift */; };
+		055FE1EE28DD76380007B215 /* AMBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055FE1EC28DD76380007B215 /* AMBox.swift */; };
 		0563631928D9E73C00F09A3E /* AMComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563631828D9E73C00F09A3E /* AMComponentViewController.swift */; };
 		0563631A28D9E73C00F09A3E /* AMComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563631828D9E73C00F09A3E /* AMComponentViewController.swift */; };
 		0563631C28D9E9B400F09A3E /* ArisiaLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0563631B28D9E9B400F09A3E /* ArisiaLibrary.xcframework */; };
@@ -224,7 +224,7 @@
 		0542633A28D9D5C4004F05E2 /* ArisiaComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArisiaComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0542633D28D9D5C4004F05E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0556618628E090B200FC4CF2 /* AMTableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMTableData.swift; sourceTree = "<group>"; };
-		055FE1EC28DD76380007B215 /* AMStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMStackView.swift; sourceTree = "<group>"; };
+		055FE1EC28DD76380007B215 /* AMBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMBox.swift; sourceTree = "<group>"; };
 		0563631828D9E73C00F09A3E /* AMComponentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMComponentViewController.swift; sourceTree = "<group>"; };
 		0563631B28D9E9B400F09A3E /* ArisiaLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ArisiaLibrary.xcframework; path = ../../../../Library/Frameworks/ArisiaLibrary.xcframework; sourceTree = "<group>"; };
 		0563632128D9EB1C00F09A3E /* AMLibraryCompiler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMLibraryCompiler.swift; sourceTree = "<group>"; };
@@ -392,8 +392,8 @@
 		055FE1EB28DD751F0007B215 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				055FE1EC28DD76380007B215 /* AMBox.swift */,
 				0587294528DE792500254084 /* AMButton.swift */,
-				055FE1EC28DD76380007B215 /* AMStackView.swift */,
 				0556618628E090B200FC4CF2 /* AMTableData.swift */,
 			);
 			path = Component;
@@ -749,7 +749,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				055FE1ED28DD76380007B215 /* AMStackView.swift in Sources */,
+				055FE1ED28DD76380007B215 /* AMBox.swift in Sources */,
 				0556618728E090B200FC4CF2 /* AMTableData.swift in Sources */,
 				0563632C28D9EC7D00F09A3E /* AMThreadLauncher.swift in Sources */,
 				0587294628DE792500254084 /* AMButton.swift in Sources */,
@@ -765,7 +765,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				055FE1EE28DD76380007B215 /* AMStackView.swift in Sources */,
+				055FE1EE28DD76380007B215 /* AMBox.swift in Sources */,
 				0556618828E090B200FC4CF2 /* AMTableData.swift in Sources */,
 				0563632D28D9EC7D00F09A3E /* AMThreadLauncher.swift in Sources */,
 				0587294728DE792500254084 /* AMButton.swift in Sources */,

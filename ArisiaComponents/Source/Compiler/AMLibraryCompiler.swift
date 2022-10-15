@@ -44,10 +44,10 @@ open class AMLibraryCompiler: ALLibraryCompiler
 				(_ ctxt: KEContext) -> ALFrame? in return AMButton(context: ctxt)
 		}))
 
-		/* StackView */
-		allocator.add(className: AMStackView.ClassName,
-			      allocator: ALFrameAllocator.Allocator(frameName: AMStackView.ClassName, allocFuncBody: {
-				(_ ctxt: KEContext) -> ALFrame? in return AMStackView(context: ctxt)
+		/* Box */
+		allocator.add(className: AMBox.ClassName,
+			      allocator: ALFrameAllocator.Allocator(frameName: AMBox.ClassName, allocFuncBody: {
+				(_ ctxt: KEContext) -> ALFrame? in return AMBox(context: ctxt)
 		}))
 		
 		/* TableData */

@@ -1,6 +1,6 @@
 /**
- * @file AMStackView.swift
- * @brief	Define AMStackView class
+ * @file AMBox.swift
+ * @brief	Define AMBox class
  * @par Copyright
  *   Copyright (C) 2022 Steel Wheels Project
  */
@@ -17,9 +17,9 @@ import AppKit
 import UIKit
 #endif
 
-public class AMStackView: KCStackView, ALFrame
+public class AMBox: KCStackView, ALFrame
 {
-	public static let ClassName 	= "StackView"
+	public static let ClassName 	= "Box"
 
 	private static let AxisItem		= "axis"		// Type: CNAxis
 	private static let AlignmentItem	= "alignment"		// Type: CNAlignment
@@ -34,7 +34,7 @@ public class AMStackView: KCStackView, ALFrame
 
 	public init(context ctxt: KEContext){
 		mContext	= ctxt
-		mFrameCore	= ALFrameCore(frameName: AMStackView.ClassName, context: ctxt)
+		mFrameCore	= ALFrameCore(frameName: AMBox.ClassName, context: ctxt)
 		mPath		= ALFramePath()
 		let frame	= CGRect(x: 0.0, y: 0.0, width: 188, height: 21)
 		super.init(frame: frame)
@@ -59,19 +59,19 @@ public class AMStackView: KCStackView, ALFrame
 		}
 
 		/* Axis */
-		definePropertyType(propertyName: AMStackView.AxisItem, enumTypeName: "Axis")
-		if let num = numberValue(name: AMStackView.AxisItem) {
+		definePropertyType(propertyName: AMBox.AxisItem, enumTypeName: "Axis")
+		if let num = numberValue(name: AMBox.AxisItem) {
 			if let newaxis = CNAxis(rawValue: num.intValue) {
 				CNExecuteInMainThread(doSync: false, execute: {
 					self.axis = newaxis
 				})
 			} else {
-				CNLog(logLevel: .error, message: "Unknown initial value for \(AMStackView.AxisItem)", atFunction: #function, inFile: #file)
+				CNLog(logLevel: .error, message: "Unknown initial value for \(AMBox.AxisItem)", atFunction: #function, inFile: #file)
 			}
 		} else {
-			let _ = setNumberValue(name: AMStackView.AxisItem, value: NSNumber(value: self.axis.rawValue))
+			let _ = setNumberValue(name: AMBox.AxisItem, value: NSNumber(value: self.axis.rawValue))
 		}
-		addObserver(propertyName: AMStackView.AxisItem, listnerFunction: {
+		addObserver(propertyName: AMBox.AxisItem, listnerFunction: {
 			(_ param: JSValue) -> Void in
 			if let num = param.toNumber() {
 				if let newaxis = CNAxis(rawValue: num.intValue) {
@@ -85,19 +85,19 @@ public class AMStackView: KCStackView, ALFrame
 		})
 
 		/* Alignment */
-		definePropertyType(propertyName: AMStackView.AlignmentItem, enumTypeName: "Alignment")
-		if let num = numberValue(name: AMStackView.AlignmentItem) {
+		definePropertyType(propertyName: AMBox.AlignmentItem, enumTypeName: "Alignment")
+		if let num = numberValue(name: AMBox.AlignmentItem) {
 			if let newalignment = CNAlignment(rawValue: num.intValue) {
 				CNExecuteInMainThread(doSync: false, execute: {
 					self.alignment = newalignment
 				})
 			} else {
-				CNLog(logLevel: .error, message: "Unknown initial value for \(AMStackView.AlignmentItem)", atFunction: #function, inFile: #file)
+				CNLog(logLevel: .error, message: "Unknown initial value for \(AMBox.AlignmentItem)", atFunction: #function, inFile: #file)
 			}
 		} else {
-			let _ = setNumberValue(name: AMStackView.AlignmentItem, value: NSNumber(value: self.alignment.rawValue))
+			let _ = setNumberValue(name: AMBox.AlignmentItem, value: NSNumber(value: self.alignment.rawValue))
 		}
-		addObserver(propertyName: AMStackView.AlignmentItem, listnerFunction: {
+		addObserver(propertyName: AMBox.AlignmentItem, listnerFunction: {
 			(_ param: JSValue) -> Void in
 			if let num = param.toNumber() {
 				if let newalignment = CNAlignment(rawValue: num.intValue) {
@@ -111,19 +111,19 @@ public class AMStackView: KCStackView, ALFrame
 		})
 
 		/* Distribution */
-		definePropertyType(propertyName: AMStackView.DistributionItem, enumTypeName: "Distribution")
-		if let num = numberValue(name: AMStackView.DistributionItem) {
+		definePropertyType(propertyName: AMBox.DistributionItem, enumTypeName: "Distribution")
+		if let num = numberValue(name: AMBox.DistributionItem) {
 			if let newdistribution = CNDistribution(rawValue: num.intValue) {
 				CNExecuteInMainThread(doSync: false, execute: {
 					self.distribution = newdistribution
 				})
 			} else {
-				CNLog(logLevel: .error, message: "Unknown initial value for \(AMStackView.DistributionItem)", atFunction: #function, inFile: #file)
+				CNLog(logLevel: .error, message: "Unknown initial value for \(AMBox.DistributionItem)", atFunction: #function, inFile: #file)
 			}
 		} else {
-			let _ = setNumberValue(name: AMStackView.DistributionItem, value: NSNumber(value: self.distribution.rawValue))
+			let _ = setNumberValue(name: AMBox.DistributionItem, value: NSNumber(value: self.distribution.rawValue))
 		}
-		addObserver(propertyName: AMStackView.DistributionItem, listnerFunction: {
+		addObserver(propertyName: AMBox.DistributionItem, listnerFunction: {
 			(_ param: JSValue) -> Void in
 			if let num = param.toNumber() {
 				if let newdistribution = CNDistribution(rawValue: num.intValue) {

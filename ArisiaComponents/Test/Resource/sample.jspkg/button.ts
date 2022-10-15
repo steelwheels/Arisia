@@ -1,14 +1,14 @@
 /// <reference path="types/ArisiaComponents.d.ts" />
 /// <reference path="types/button-if.d.ts" />
-/* allocate function for frame: StackView */
-let root = _alloc_StackView() as root_StackViewIF ;
+/* allocate function for frame: Box */
+let root = _alloc_Box() as root_BoxIF ;
 /* define type for all properties */
-root.definePropertyType("top", "o(StackView)") ;
+root.definePropertyType("top", "o(Box)") ;
 /* define getter/setter for all properties */
 _definePropertyIF(root, ["top"]) ;
 {
-  /* allocate function for frame: StackView */
-  let top = _alloc_StackView() as root_top_StackViewIF ;
+  /* allocate function for frame: Box */
+  let top = _alloc_Box() as root_top_BoxIF ;
   /* define type for all properties */
   top.definePropertyType("button_a", "o(Button)") ;
   /* define getter/setter for all properties */

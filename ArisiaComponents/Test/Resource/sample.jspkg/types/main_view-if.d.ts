@@ -1,4 +1,4 @@
-interface root_StackViewIF {
+interface root_BoxIF {
   addObserver(p0: string, p1: () => void): void ;
   alignment: Alignment ;
   axis: Axis ;

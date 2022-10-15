@@ -1,0 +1,11 @@
+# `Button` component
+
+## Introduction
+A control that defines an area on the screen that a user clicks to trigger an action.
+
+## Interface
+
+This is the interface definition for TypeScript:
+<pre>
+m4_include(`Button.d.ts')
+</pre>

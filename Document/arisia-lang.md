@@ -8,7 +8,7 @@ For exmaple, the next script presents two GUI buttons which allocated horizontal
 
 ````
 {
-  box: StackView {
+  box: Box {
     axis:         Axis .horizontal
     left_button:  ButtonView {
         title: "Left Button"
