@@ -68,12 +68,12 @@ public class AMTableData: ALFrame
 		}
 
 		/* Load storage dictionary */
-		let table: CNStorageTable
+		let table:   CNStorageTable
 		if let tbl = loadTable(storageName: storagename, pathName: pathname, resource: res) {
-			table = tbl
+			table   = tbl
 		} else {
 			/* Load failed, use dummy table */
-			table = loadDummyTable()
+			table   = CNStorageTable.loadDummyTable()
 		}
 
 		/* count (set and updated in updateTablePropeties()) */
@@ -104,7 +104,7 @@ public class AMTableData: ALFrame
 		}
 
 		/* newRecord(): KLRecord */
-		definePropertyType(propertyName: AMTableData.NewRecordItem, valueType: .functionType(.objectType(KLRecord.ScriptInterfaceName), []))
+		definePropertyType(propertyName: AMTableData.NewRecordItem, valueType: .functionType(.recordType(table.defaultTypes), []))
 		let newrecfunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
 			let nrec   = table.newRecord()
@@ -151,20 +151,6 @@ public class AMTableData: ALFrame
 			CNLog(logLevel: .error, message: "Failed to load tabale for TableData component: \(AMTableData.StorageItem) = \(sname), \(AMTableData.PathItem) = \(pname)")
 			return nil
 		}
-	}
-
-	private func loadDummyTable() -> CNStorageTable {
-		let FILENAME = "dummy-storage-table"
-		guard let srcfile = CNFilePath.URLForResourceFile(fileName: FILENAME, fileExtension: "json", subdirectory: "Data", forClass: AMTableData.self) else {
-			CNLog(logLevel: .error, message: "Failed to load dummy table")
-			fatalError()
-		}
-		let cachefile = CNFilePath.URLForApplicationSupportFile(fileName: FILENAME, fileExtension: "json", subdirectory: "Data")
-		let srcdir    = srcfile.deletingLastPathComponent()
-		let cachedir  = cachefile.deletingLastPathComponent()
-		let storage   = CNStorage(sourceDirectory: srcdir, cacheDirectory: cachedir, filePath: FILENAME)
-		let vpath     = CNValuePath(identifier: nil, elements: [.member("table")])
-		return CNStorageTable(path: vpath, storage: storage)
 	}
 
 	private func updateTablePropeties() {
