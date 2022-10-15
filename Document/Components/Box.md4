@@ -1,0 +1,12 @@
+# `Box` component
+
+## Introduction
+The box to pack some components.
+They will be layouted holizontally or vertically.
+
+## Interface
+
+This is the interface definition for TypeScript:
+<pre>
+m4_include(`Box.d.ts')
+</pre>

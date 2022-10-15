@@ -1,0 +1,12 @@
+# `TableData` component
+
+## Introduction
+The TableData component manages the database which contains
+multiple data records.
+
+## Interface
+
+This is the interface definition for TypeScript:
+<pre>
+m4_include(`TableData.d.ts')
+</pre>

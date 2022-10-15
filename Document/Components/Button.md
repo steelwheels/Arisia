@@ -1,5 +1,8 @@
 # `Button` component
 
+## Introduction
+A control that defines an area on the screen that a user clicks to trigger an action.
+
 ## Interface
 
 This is the interface definition for TypeScript:
@@ -18,5 +21,3 @@ interface ButtonIF {
 declare function _alloc_Button(): ButtonIF ;
 
 </pre>
-
-

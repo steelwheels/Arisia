@@ -14,7 +14,7 @@ For rapid application development, the following matters are required:
 
 This platform has following features to meet these requirements:
 * Extend the TypeScript syntax to support event driven programming. The language is named [ArisiaScript](#arisiascript-language).
-* Usual GUI parts are implemented as built-in components. See [Component](#component) section.
+* Usual GUI parts are implemented as built-in components. See [component list](./Document/arisia-components.md).
 * The application designed for Arisia Platform runs on [macOS](https://www.apple.com/macos/) and [iOS](https://www.apple.com/ios/). 
 
 ## Sample screen shot
@@ -65,26 +65,14 @@ This is sample frame implementation:
 }
 ````
 
-### Component
-The component is the class which inherit the frame class.
-It is used to implement the following parts of the application:
-* GUI parts
-* Database access modules
-
-## Arisia Transcriptor
-The arisia transcriptor parse the amber script and generate the JavaScript code.
-
+## Arisia Component
+See the [component list](./Document/arisia-components.md).
 
 ## Arisia Library
-The arisia library contains many kind of [components](#component).
+Many built-in classes, functions and data types are supported. See the [Kiwi Standard Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md).
 
-### Built-in native component
-### Built-in script component
-### User defined component
-
-## Arisia Runtime
-
-# Compile
+## Software development environment
+### Compile flow
 The Arisia Platform recommends to use TypeScript to implement the user logic.
 
 <p align="center">
