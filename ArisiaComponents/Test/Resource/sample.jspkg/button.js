@@ -11,15 +11,15 @@ _definePropertyIF(root, ["top"]);
     /* allocate function for frame: StackView */
     let top = _alloc_StackView();
     /* define type for all properties */
-    top.definePropertyType("button_a", "o(ButtonView)");
+    top.definePropertyType("button_a", "o(Button)");
     /* define getter/setter for all properties */
     _definePropertyIF(top, ["button_a"]);
     {
-        /* allocate function for frame: ButtonView */
-        let button_a = _alloc_ButtonView();
+        /* allocate function for frame: Button */
+        let button_a = _alloc_Button();
         /* define type for all properties */
         button_a.definePropertyType("title", "s");
-        button_a.definePropertyType("pressed", "f(v,[o(root_top_button_a_ButtonViewIF)])");
+        button_a.definePropertyType("pressed", "f(v,[o(root_top_button_a_ButtonIF)])");
         /* define getter/setter for all properties */
         _definePropertyIF(button_a, ["title", "pressed"]);
         /* assign user declared properties */

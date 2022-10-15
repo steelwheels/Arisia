@@ -720,18 +720,18 @@ declare function _alert(type: AlertType, message: string, labels: string[], cbfu
 declare function leaveView(param: any): void ;
 
 
-interface ButtonViewIF {
+interface ButtonIF {
   addObserver(p0: string, p1: () => void): void ;
   definePropertyType(p0: string, p1: string): void ;
   frameName: string ;
   isEnabled: boolean ;
-  pressed(p0: ButtonViewIF): void ;
+  pressed(p0: ButtonIF): void ;
   propertyNames: string[] ;
   setValue(p0: string, p1: any): boolean ;
   title: string ;
   value(p0: string): any ;
 }
-declare function _alloc_ButtonView(): ButtonViewIF ;
+declare function _alloc_Button(): ButtonIF ;
 interface StackViewIF {
   addObserver(p0: string, p1: () => void): void ;
   alignment: Alignment ;
@@ -744,6 +744,20 @@ interface StackViewIF {
   value(p0: string): any ;
 }
 declare function _alloc_StackView(): StackViewIF ;
+interface TableDataIF {
+  addObserver(p0: string, p1: () => void): void ;
+  definePropertyType(p0: string, p1: string): void ;
+  fieldName(): string ;
+  frameName: string ;
+  newRecord(): { c0:number;
+  c1:number;
+  c2:number;
+   } ;
+  propertyNames: string[] ;
+  setValue(p0: string, p1: any): boolean ;
+  value(p0: string): any ;
+}
+declare function _alloc_TableData(): TableDataIF ;
 /// <reference path="ArisiaLibrary.d.ts" />
 /// <reference path="Builtin.d.ts" />
 declare function alert(type: AlertType, message: string, labels: string[]): number;

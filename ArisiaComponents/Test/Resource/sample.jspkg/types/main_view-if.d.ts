@@ -2,7 +2,7 @@ interface root_StackViewIF {
   addObserver(p0: string, p1: () => void): void ;
   alignment: Alignment ;
   axis: Axis ;
-  button: root_button_ButtonViewIF ;
+  button: root_button_ButtonIF ;
   definePropertyType(p0: string, p1: string): void ;
   distribution: Distribution ;
   frameName: string ;
@@ -10,12 +10,12 @@ interface root_StackViewIF {
   setValue(p0: string, p1: any): boolean ;
   value(p0: string): any ;
 }
-interface root_button_ButtonViewIF {
+interface root_button_ButtonIF {
   addObserver(p0: string, p1: () => void): void ;
   definePropertyType(p0: string, p1: string): void ;
   frameName: string ;
   isEnabled: boolean ;
-  pressed(p0: root_button_ButtonViewIF): void ;
+  pressed(p0: root_button_ButtonIF): void ;
   propertyNames: string[] ;
   setValue(p0: string, p1: any): boolean ;
   title: string ;

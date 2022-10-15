@@ -38,10 +38,10 @@ open class AMLibraryCompiler: ALLibraryCompiler
 	private func defineAllocators(context ctxt: KEContext) {
 		let allocator = ALFrameAllocator.shared
 
-		/* ButtonView */
-		allocator.add(className: AMButtonView.ClassName,
-			      allocator: ALFrameAllocator.Allocator(frameName: AMButtonView.ClassName, allocFuncBody: {
-				(_ ctxt: KEContext) -> ALFrame? in return AMButtonView(context: ctxt)
+		/* Button */
+		allocator.add(className: AMButton.ClassName,
+			      allocator: ALFrameAllocator.Allocator(frameName: AMButton.ClassName, allocFuncBody: {
+				(_ ctxt: KEContext) -> ALFrame? in return AMButton(context: ctxt)
 		}))
 
 		/* StackView */

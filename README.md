@@ -5,7 +5,7 @@
 </p>
 
 ## Introduction
-The *Arisia Platform* is the platform for the rappid application software development.
+The *Arisia Platform* is the software platform for the rapid application software development.
 
 For rapid application development, the following matters are required:
 * The programming language that allows writing your ideas directory.
@@ -21,7 +21,7 @@ This platform has following features to meet these requirements:
 This is a simple example of ArisiaScript program.
 ````
 {
-  button: ButtonView {
+  button: Button {
     title: string "Hello, world !!"
     pressed: event() %{
       console.log("Pressed") ;
@@ -47,7 +47,7 @@ This software is distributed under [GNU LESSER GENERAL PUBLIC LICENSE Version 2.
 The *ArisiaScript* extends the syntax of [TypeScript](https://www.typescriptlang.org) to support [frame](#frame) declaration.
 For more details, see [ArisiaScript language specification](./Document/arisia-lang.md).
 
-### Frame
+### Overview of the Frame
 The arisia script defines the *frame*. It is the super class of all objects. 
 The frame will have following items to support event driven programming.
 * Observable properties
@@ -56,8 +56,12 @@ The frame will have following items to support event driven programming.
 This is sample frame implementation:
 ````
 {
-        // property variable
-        member_a : number 0
+  ok_button: Button {
+    title: string "OK"
+    pressed: event() %{
+      console.log("Button pressed")
+    %}
+  }
 }
 ````
 

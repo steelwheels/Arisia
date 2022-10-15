@@ -1,6 +1,6 @@
 {
   top: StackView {
-    button_a: ButtonView {
+    button_a: Button {
       title:  string "Back to First"
       pressed: event() %{
 	console.log("leave view") ;

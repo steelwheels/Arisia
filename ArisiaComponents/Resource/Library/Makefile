@@ -3,7 +3,7 @@
 #
 
 src_scr 	= window.ts
-bltin_decl	= ButtonView.d.ts \
+bltin_decl	= Button.d.ts \
 	  	  StackView.d.ts \
 		  TableData.d.ts \
 	  	  window.d.ts

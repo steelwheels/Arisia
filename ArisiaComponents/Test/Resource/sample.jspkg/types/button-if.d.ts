@@ -14,7 +14,7 @@ interface root_top_StackViewIF {
   addObserver(p0: string, p1: () => void): void ;
   alignment: Alignment ;
   axis: Axis ;
-  button_a: root_top_button_a_ButtonViewIF ;
+  button_a: root_top_button_a_ButtonIF ;
   definePropertyType(p0: string, p1: string): void ;
   distribution: Distribution ;
   frameName: string ;
@@ -22,12 +22,12 @@ interface root_top_StackViewIF {
   setValue(p0: string, p1: any): boolean ;
   value(p0: string): any ;
 }
-interface root_top_button_a_ButtonViewIF {
+interface root_top_button_a_ButtonIF {
   addObserver(p0: string, p1: () => void): void ;
   definePropertyType(p0: string, p1: string): void ;
   frameName: string ;
   isEnabled: boolean ;
-  pressed(p0: root_top_button_a_ButtonViewIF): void ;
+  pressed(p0: root_top_button_a_ButtonIF): void ;
   propertyNames: string[] ;
   setValue(p0: string, p1: any): boolean ;
   title: string ;

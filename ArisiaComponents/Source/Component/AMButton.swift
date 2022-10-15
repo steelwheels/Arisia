@@ -1,6 +1,6 @@
 /**
- * @file AMButtonView.swift
- * @brief	Define AMButtonView class
+ * @file AMButton.swift
+ * @brief	Define AMButton class
  * @par Copyright
  *   Copyright (C) 2022 Steel Wheels Project
  */
@@ -16,9 +16,9 @@ import UIKit
 #endif
 import Foundation
 
-public class AMButtonView: KCButton, ALFrame
+public class AMButton: KCButton, ALFrame
 {
-	public static let ClassName		= "ButtonView"
+	public static let ClassName		= "Button"
 
 	private static let PressedItem		= "pressed"
 	private static let IsEnabledItem	= "isEnabled"
@@ -33,7 +33,7 @@ public class AMButtonView: KCButton, ALFrame
 
 	public init(context ctxt: KEContext){
 		mContext	= ctxt
-		mFrameCore	= ALFrameCore(frameName: AMButtonView.ClassName, context: ctxt)
+		mFrameCore	= ALFrameCore(frameName: AMButton.ClassName, context: ctxt)
 		mPath		= ALFramePath()
 		let frame	= CGRect(x: 0.0, y: 0.0, width: 188, height: 21)
 		super.init(frame: frame)
@@ -49,13 +49,13 @@ public class AMButtonView: KCButton, ALFrame
 		mPath = pth
 
 		/* "pressed" event */
-		definePropertyType(propertyName: AMButtonView.PressedItem, valueType: .functionType(.voidType, [ path.selfType ]))
-		if self.value(name: AMButtonView.PressedItem) == nil {
-			self.setValue(name: AMButtonView.PressedItem, value: JSValue(nullIn: core.context))
+		definePropertyType(propertyName: AMButton.PressedItem, valueType: .functionType(.voidType, [ path.selfType ]))
+		if self.value(name: AMButton.PressedItem) == nil {
+			self.setValue(name: AMButton.PressedItem, value: JSValue(nullIn: core.context))
 		}
 		self.buttonPressedCallback = {
 			() -> Void in
-			if let evtval = self.value(name: AMButtonView.PressedItem) {
+			if let evtval = self.value(name: AMButton.PressedItem) {
 				if !evtval.isNull {
 					CNExecuteInUserThread(level: .event, execute: {
 						evtval.call(withArguments: [self.mFrameCore])	// insert self
@@ -65,15 +65,15 @@ public class AMButtonView: KCButton, ALFrame
 		}
 
 		/* isEnabled property */
-		definePropertyType(propertyName: AMButtonView.IsEnabledItem, valueType: .boolType)
-		if let enable = booleanValue(name: AMButtonView.IsEnabledItem) {
+		definePropertyType(propertyName: AMButton.IsEnabledItem, valueType: .boolType)
+		if let enable = booleanValue(name: AMButton.IsEnabledItem) {
 			CNExecuteInMainThread(doSync: false, execute: {
 				self.isEnabled = enable
 			})
 		} else {
-			let _ = setBooleanValue(name: AMButtonView.IsEnabledItem, value: self.isEnabled)
+			let _ = setBooleanValue(name: AMButton.IsEnabledItem, value: self.isEnabled)
 		}
-		addObserver(propertyName: AMButtonView.IsEnabledItem, listnerFunction: {
+		addObserver(propertyName: AMButton.IsEnabledItem, listnerFunction: {
 			(_ param: JSValue) -> Void in
 			if let num = param.toNumber() {
 				CNExecuteInMainThread(doSync: false, execute: {
@@ -83,16 +83,16 @@ public class AMButtonView: KCButton, ALFrame
 		})
 
 		/* title property */
-		definePropertyType(propertyName: AMButtonView.TitleItem, valueType: .stringType)
-		if let str = stringValue(name: AMButtonView.TitleItem) {
+		definePropertyType(propertyName: AMButton.TitleItem, valueType: .stringType)
+		if let str = stringValue(name: AMButton.TitleItem) {
 			CNExecuteInMainThread(doSync: false, execute: {
 				self.value = self.stringToValue(string: str)
 			})
 		} else {
 			let str = valueToString(value: self.value)
-			let _ = setStringValue(name: AMButtonView.TitleItem, value: str)
+			let _ = setStringValue(name: AMButton.TitleItem, value: str)
 		}
-		addObserver(propertyName: AMButtonView.TitleItem, listnerFunction: {
+		addObserver(propertyName: AMButton.TitleItem, listnerFunction: {
 			(_ param: JSValue) -> Void in
 			if let str = param.toString() {
 				CNExecuteInMainThread(doSync: false, execute: {
