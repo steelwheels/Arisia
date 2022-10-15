@@ -1,0 +1,7 @@
+{
+	view: "welcome.as"
+	images: {
+		icon: "arisia-icon.png"
+	}
+}
+
