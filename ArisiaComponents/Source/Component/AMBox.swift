@@ -45,7 +45,7 @@ public class AMBox: KCStackView, ALFrame
 		fatalError("Not supported")
 	}
 
-	public func setup(path pth: ALFramePath, resource res: KEResource) -> NSError? {
+	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
 		/* Set path of this frame */
 		mPath = pth
 

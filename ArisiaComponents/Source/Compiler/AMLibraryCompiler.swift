@@ -49,6 +49,12 @@ open class AMLibraryCompiler: ALLibraryCompiler
 			      allocator: ALFrameAllocator.Allocator(frameName: AMBox.ClassName, allocFuncBody: {
 				(_ ctxt: KEContext) -> ALFrame? in return AMBox(context: ctxt)
 		}))
+
+		/* Image */
+		allocator.add(className: AMImage.ClassName,
+			      allocator: ALFrameAllocator.Allocator(frameName: AMImage.ClassName, allocFuncBody: {
+				(_ ctxt: KEContext) -> ALFrame? in return AMImage(context: ctxt)
+		}))
 		
 		/* TableData */
 		allocator.add(className: AMTableData.ClassName,

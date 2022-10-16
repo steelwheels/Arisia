@@ -14,7 +14,7 @@ public protocol ALFrame
 	var core: ALFrameCore { get }
 	var path: ALFramePath { get }
 	
-	func setup(path pth: ALFramePath, resource res: KEResource) -> NSError?
+	func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError?
 }
 
 private let FrameNameItem	= "frameName"
@@ -259,7 +259,7 @@ public extension ALFrame
 		mFrameCore.owner = self
 	}
 
-	public func setup(path pth: ALFramePath, resource res: KEResource) -> NSError? {
+	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
 		mPath = pth
 		self.setupDefaultProperties()
 		return nil

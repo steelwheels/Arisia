@@ -19,7 +19,7 @@ public func execute(context ctxt: KEContext, script scr: CNText, sourceFile srcf
 	let conf    = ALConfig(applicationType: conf.target, doStrict: true, logLevel: .defaultLevel)
 	let arsexec = ALScriptExecutor(config: conf)
 	let script  = scr.toStrings().joined(separator: "\n")
-	if let frame = arsexec.execute(context: ctxt, script: script, sourceFile: srcfile, resource: res) {
+	if let frame = arsexec.execute(context: ctxt, script: script, sourceFile: srcfile, resource: res, console: cons) {
 		return .success(frame)
 	} else {
 		return .failure(NSError.fileError(message: "Runtime error"))

@@ -1,0 +1,11 @@
+# `Image` component
+
+## Introduction
+Display image which is written in image file such as *.png.
+
+## Interface
+
+This is the interface definition for TypeScript:
+<pre>
+m4_include(`Image.d.ts')
+</pre>

@@ -744,6 +744,11 @@ interface BoxIF {
   value(p0: string): any ;
 }
 declare function _alloc_Box(): BoxIF ;
+interface ImageIF {
+  name: string ;
+  scale: number ;
+}
+declare function _alloc_Image(): ImageIF ;
 interface TableDataIF {
   addObserver(p0: string, p1: () => void): void ;
   definePropertyType(p0: string, p1: string): void ;

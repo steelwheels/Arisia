@@ -17,13 +17,13 @@ public class ALScriptExecutor
 		mConfig = conf
 	}
 
-	public func execute(context ctxt: KEContext, script scr: String, sourceFile file: URL?, resource res: KEResource) -> ALFrame? {
+	public func execute(context ctxt: KEContext, script scr: String, sourceFile file: URL?, resource res: KEResource, console cons: CNConsole) -> ALFrame? {
 		ctxt.resetErrorCount()
 		let retval = ctxt.evaluateScript(script: scr, sourceFile: file)
 		if ctxt.errorCount == 0 && retval.isObject {
 			if let rootobj = retval.toObject() as? ALFrameCore {
 				if let core = rootobj.owner as? ALFrame {
-					setup(frame: core, path:[], instanceName: mConfig.rootInstanceName, resource: res)
+					setup(frame: core, path:[], instanceName: mConfig.rootInstanceName, resource: res, console: cons)
 					return core
 				}
 			}
@@ -34,7 +34,7 @@ public class ALScriptExecutor
 		return nil
 	}
 
-	private func setup(frame frm: ALFrame, path pth: Array<String>, instanceName iname: String, resource res: KEResource) {
+	private func setup(frame frm: ALFrame, path pth: Array<String>, instanceName iname: String, resource res: KEResource, console cons: CNConsole) {
 		/* visit children */
 		for pname in frm.propertyNames {
 			if let val = frm.value(name: pname) {
@@ -42,7 +42,7 @@ public class ALScriptExecutor
 					if let child = val.toObject() as? ALFrameCore {
 						if let cframe = child.owner as? ALFrame {
 							var subpath = pth ; subpath.append(iname)
-							setup(frame: cframe, path: subpath, instanceName: pname, resource: res)
+							setup(frame: cframe, path: subpath, instanceName: pname, resource: res, console: cons)
 						}
 					}
 				}
@@ -50,7 +50,7 @@ public class ALScriptExecutor
 		}
 		/* setup the frame */
 		let newpath = ALFramePath(path: pth, instanceName: iname, frameName: frm.frameName)
-		if let err = frm.setup(path: newpath, resource: res) {
+		if let err = frm.setup(path: newpath, resource: res, console: cons) {
 			CNLog(logLevel: .error, message: err.toString())
 		}
 	}

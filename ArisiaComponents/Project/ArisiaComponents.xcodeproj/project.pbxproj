@@ -59,6 +59,8 @@
 		0563633028D9ECAE00F09A3E /* AMScriptThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0563632E28D9ECAE00F09A3E /* AMScriptThread.swift */; };
 		0587294628DE792500254084 /* AMButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587294528DE792500254084 /* AMButton.swift */; };
 		0587294728DE792500254084 /* AMButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587294528DE792500254084 /* AMButton.swift */; };
+		05946F3528FC17AF00AF2452 /* AMImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05946F3428FC17AF00AF2452 /* AMImage.swift */; };
+		05946F3628FC17AF00AF2452 /* AMImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05946F3428FC17AF00AF2452 /* AMImage.swift */; };
 		05BB07FC28E723BA00265AC9 /* ArisiaComponents.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */; };
 		05BB07FE28E723BA00265AC9 /* ArisiaLibrary.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 05BB07F728E723BA00265AC9 /* ArisiaLibrary.d.ts */; };
 		05BB080228E7269700265AC9 /* ArisiaComponents.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */; };
@@ -233,6 +235,7 @@
 		0563632B28D9EC7D00F09A3E /* AMThreadLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMThreadLauncher.swift; sourceTree = "<group>"; };
 		0563632E28D9ECAE00F09A3E /* AMScriptThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMScriptThread.swift; sourceTree = "<group>"; };
 		0587294528DE792500254084 /* AMButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMButton.swift; sourceTree = "<group>"; };
+		05946F3428FC17AF00AF2452 /* AMImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMImage.swift; sourceTree = "<group>"; };
 		05BB07F228E723BA00265AC9 /* StackView.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = StackView.d.ts; sourceTree = "<group>"; };
 		05BB07F328E723BA00265AC9 /* ButtonView.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ButtonView.d.ts; sourceTree = "<group>"; };
 		05BB07F428E723BA00265AC9 /* Frame.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Frame.d.ts; sourceTree = "<group>"; };
@@ -394,6 +397,7 @@
 			children = (
 				055FE1EC28DD76380007B215 /* AMBox.swift */,
 				0587294528DE792500254084 /* AMButton.swift */,
+				05946F3428FC17AF00AF2452 /* AMImage.swift */,
 				0556618628E090B200FC4CF2 /* AMTableData.swift */,
 			);
 			path = Component;
@@ -752,6 +756,7 @@
 				055FE1ED28DD76380007B215 /* AMBox.swift in Sources */,
 				0556618728E090B200FC4CF2 /* AMTableData.swift in Sources */,
 				0563632C28D9EC7D00F09A3E /* AMThreadLauncher.swift in Sources */,
+				05946F3528FC17AF00AF2452 /* AMImage.swift in Sources */,
 				0587294628DE792500254084 /* AMButton.swift in Sources */,
 				0563632828D9EBF300F09A3E /* AMAlert.swift in Sources */,
 				0563632228D9EB1C00F09A3E /* AMLibraryCompiler.swift in Sources */,
@@ -768,6 +773,7 @@
 				055FE1EE28DD76380007B215 /* AMBox.swift in Sources */,
 				0556618828E090B200FC4CF2 /* AMTableData.swift in Sources */,
 				0563632D28D9EC7D00F09A3E /* AMThreadLauncher.swift in Sources */,
+				05946F3628FC17AF00AF2452 /* AMImage.swift in Sources */,
 				0587294728DE792500254084 /* AMButton.swift in Sources */,
 				0563632928D9EBF300F09A3E /* AMAlert.swift in Sources */,
 				0563632328D9EB1C00F09A3E /* AMLibraryCompiler.swift in Sources */,

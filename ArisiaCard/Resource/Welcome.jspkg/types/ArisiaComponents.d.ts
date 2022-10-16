@@ -744,6 +744,10 @@ interface BoxIF {
   value(p0: string): any ;
 }
 declare function _alloc_Box(): BoxIF ;
+interface ButtonIF {
+  scale: number ;
+}
+declare function _alloc_Button(): ButtonIF ;
 interface TableDataIF {
   addObserver(p0: string, p1: () => void): void ;
   definePropertyType(p0: string, p1: string): void ;
