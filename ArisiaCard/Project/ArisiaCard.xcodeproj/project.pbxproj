@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05177EB528FC030600152D23 /* Welcome.jspkg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05AEC01528FB7EAB00EE675C /* Welcome.jspkg */; };
+		05177EB628FC031200152D23 /* Welcome.jspkg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05AEC01528FB7EAB00EE675C /* Welcome.jspkg */; };
 		0569BBDF28FB0542003BD24B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569BBDE28FB0542003BD24B /* AppDelegate.swift */; };
 		0569BBE128FB0542003BD24B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569BBE028FB0542003BD24B /* SceneDelegate.swift */; };
 		0569BBE628FB0542003BD24B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0569BBE428FB0542003BD24B /* Main.storyboard */; };
@@ -49,14 +51,28 @@
 		0597DCDA28FB0760003F3233 /* KiwiShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0597DC8428FB063A003F3233 /* KiwiShell.xcframework */; };
 		0597DCDB28FB0760003F3233 /* KiwiShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0597DC8428FB063A003F3233 /* KiwiShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05AEC01328FB706D00EE675C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEE0B428FB03E40092E1C4 /* ViewController.swift */; };
-		05AEC01628FB7EAB00EE675C /* Welcome.jspkg in Resources */ = {isa = PBXBuildFile; fileRef = 05AEC01528FB7EAB00EE675C /* Welcome.jspkg */; };
-		05AEC01828FB7F9500EE675C /* Welcome.jspkg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05AEC01528FB7EAB00EE675C /* Welcome.jspkg */; };
-		05AEC01A28FB7FA600EE675C /* Welcome.jspkg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05AEC01528FB7EAB00EE675C /* Welcome.jspkg */; };
 		05BEE0B328FB03E40092E1C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEE0B228FB03E40092E1C4 /* AppDelegate.swift */; };
 		05BEE0B528FB03E40092E1C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEE0B428FB03E40092E1C4 /* ViewController.swift */; };
 		05BEE0B728FB03ED0092E1C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BEE0B628FB03ED0092E1C4 /* Assets.xcassets */; };
 		05BEE0BA28FB03ED0092E1C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05BEE0B828FB03ED0092E1C4 /* Main.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0517391728FC0FB1000B9D99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05BEE0A728FB03E40092E1C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0517391328FC0F98000B9D99;
+			remoteInfo = make_resource;
+		};
+		0517391928FC0FB6000B9D99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05BEE0A728FB03E40092E1C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0517391328FC0F98000B9D99;
+			remoteInfo = make_resource;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		0597DCA928FB0739003F3233 /* Embed Frameworks */ = {
@@ -103,7 +119,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
-				05AEC01828FB7F9500EE675C /* Welcome.jspkg in CopyFiles */,
+				05177EB628FC031200152D23 /* Welcome.jspkg in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,7 +129,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
-				05AEC01A28FB7FA600EE675C /* Welcome.jspkg in CopyFiles */,
+				05177EB528FC030600152D23 /* Welcome.jspkg in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +282,23 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXLegacyTarget section */
+		0517391328FC0F98000B9D99 /* make_resource */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../Resource/Makefile";
+			buildConfigurationList = 0517391628FC0F98000B9D99 /* Build configuration list for PBXLegacyTarget "make_resource" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = make_resource;
+			passBuildSettingsInEnvironment = 1;
+			productName = make_resource;
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		0569BBDB28FB0542003BD24B /* ArisiaCard_iOS */ = {
 			isa = PBXNativeTarget;
@@ -280,6 +313,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0517391A28FC0FB6000B9D99 /* PBXTargetDependency */,
 			);
 			name = ArisiaCard_iOS;
 			productName = ArisiaCard_iOS;
@@ -299,6 +333,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0517391828FC0FB1000B9D99 /* PBXTargetDependency */,
 			);
 			name = ArisiaCard;
 			productName = ArisiaCard;
@@ -314,6 +349,9 @@
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					0517391328FC0F98000B9D99 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					0569BBDB28FB0542003BD24B = {
 						CreatedOnToolsVersion = 12.4;
 					};
@@ -335,6 +373,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				0517391328FC0F98000B9D99 /* make_resource */,
 				05BEE0AE28FB03E40092E1C4 /* ArisiaCard */,
 				0569BBDB28FB0542003BD24B /* ArisiaCard_iOS */,
 			);
@@ -357,7 +396,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				05BEE0B728FB03ED0092E1C4 /* Assets.xcassets in Resources */,
-				05AEC01628FB7EAB00EE675C /* Welcome.jspkg in Resources */,
 				05BEE0BA28FB03ED0092E1C4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +423,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0517391828FC0FB1000B9D99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0517391328FC0F98000B9D99 /* make_resource */;
+			targetProxy = 0517391728FC0FB1000B9D99 /* PBXContainerItemProxy */;
+		};
+		0517391A28FC0FB6000B9D99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0517391328FC0F98000B9D99 /* make_resource */;
+			targetProxy = 0517391928FC0FB6000B9D99 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0569BBE428FB0542003BD24B /* Main.storyboard */ = {
@@ -414,6 +465,33 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0517391428FC0F98000B9D99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0517391528FC0F98000B9D99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		0569BBEE28FB054C003BD24B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -625,6 +703,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0517391628FC0F98000B9D99 /* Build configuration list for PBXLegacyTarget "make_resource" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0517391428FC0F98000B9D99 /* Debug */,
+				0517391528FC0F98000B9D99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0569BBED28FB054C003BD24B /* Build configuration list for PBXNativeTarget "ArisiaCard_iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

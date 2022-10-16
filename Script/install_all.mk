@@ -2,11 +2,12 @@
 
 build_mk = ../../Script/build.mk
 tool_mk  = ../../Script/build_tool.mk
+app_mk   = ../../Script/build_app.mk
 
 lib_res_dir  =  ArisiaLibrary/Resource/Library/types
 comp_res_dir =  ArisiaComponents/Resource/Library/types
 
-all: lib components tools
+all: lib components tools card
 
 lib: dummy
 	(pushd ArisiaLibrary/Project && make -f $(build_mk) && popd)
@@ -21,6 +22,9 @@ $(comp_res_dir)/ArisiaLibrary.d.ts: $(lib_res_dir)/ArisiaLibrary.d.ts
 
 tools: dummy
 	(pushd ArisiaTools/Project && make -f $(tool_mk) && popd)
+
+card: dummy
+	(pushd ArisiaCard/Project && make -f $(app_mk) && popd)
 
 dummy:
 
