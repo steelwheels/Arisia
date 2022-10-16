@@ -1,7 +1,9 @@
 interface FrameIF {
-  frameName : string ;
-  propertyNames : string[] ;
-  setValue(p0 : string, p1 : any): boolean ;
-  value(p0 : string): any ;
+  frameName: string ;
+  value(p0: string): any ;
+  setValue(p0: string, p1: any): boolean ;
+  propertyNames: string[] ;
+  definePropertyType(p0: string, p1: string): void ;
+  addObserver(p0: string, p1: () => void): void ;
 }
-declare function _alloc_Frame(instname: string): FrameIF ;
+declare function _alloc_Frame(): FrameIF ;

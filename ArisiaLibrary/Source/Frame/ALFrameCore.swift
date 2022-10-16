@@ -29,6 +29,7 @@ import Foundation
 
 	private var mFrameName:		String
 	private var mPropertyTypes:	Dictionary<String, CNValueType>	// <property-name, value-type>
+	private var mPropertyNames:	Array<String>
 	private var mPropertyValues:	CNObserverDictionary
 	private var mPropertyListners:	Array<ListnerHolder>
 	private var mContext:		KEContext
@@ -38,6 +39,7 @@ import Foundation
 	public init(frameName cname: String, context ctxt: KEContext){
 		mFrameName		= cname
 		mPropertyTypes		= [:]
+		mPropertyNames		= []
 		mPropertyValues		= CNObserverDictionary()
 		mPropertyListners	= []
 		mContext		= ctxt
@@ -59,7 +61,7 @@ import Foundation
 	}}
 
 	public var propertyNames: JSValue { get {
-		return JSValue(object: mPropertyValues.keys, in: mContext)
+		return JSValue(object: mPropertyNames, in: mContext)
 
 	}}
 
@@ -82,6 +84,7 @@ import Foundation
 
 	public func setValue(_ name: JSValue, _ val: JSValue) -> JSValue {
 		let result: Bool
+		/* Add property name if it is not defined */
 		if let namestr = name.toString() {
 			setValue(name: namestr, value: val)
 			result = true
@@ -92,6 +95,11 @@ import Foundation
 	}
 
 	public func setValue(name nm: String, value val: JSValue) {
+		if let _ = mPropertyNames.firstIndex(where: { $0 == nm }) {
+			/* Already defined */
+		} else {
+			mPropertyNames.append(nm)
+		}
 		mPropertyValues.setValue(val, forKey: nm)
 	}
 

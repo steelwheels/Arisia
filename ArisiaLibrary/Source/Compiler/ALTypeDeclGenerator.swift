@@ -24,7 +24,7 @@ public class ALTypeDeclGenerator
 		result.add(text: txt)
 
 		/* Generate declaration for child frames */
-		for prop in frm.propertyNames.sorted() {
+		for prop in frm.propertyNames {
 			if let child = frm.frameValue(name: prop) {
 				let txt = generateTypeDeclaration(frame: child)
 				result.add(text: txt)
@@ -41,7 +41,7 @@ public class ALTypeDeclGenerator
 		ifdecl.header = "interface \(ifname) {"
 		ifdecl.footer = "}"
 
-		for pname in frm.propertyNames.sorted() {
+		for pname in frm.propertyNames {
 			if let vtype = frm.propertyType(propertyName: pname) {
 				let decl: String
 				switch vtype {
@@ -72,7 +72,7 @@ public class ALTypeDeclGenerator
 		ifdecl.header = "interface \(ifname) {"
 		ifdecl.footer = "}"
 
-		for pname in frm.propertyNames.sorted() {
+		for pname in frm.propertyNames {
 			if let vtype = frm.propertyType(propertyName: pname) {
 				let decl: String
 				switch vtype {

@@ -695,12 +695,12 @@ declare function requestContactAccess(): boolean;
  */
 
 interface FrameIF {
-  addObserver(p0: string, p1: () => void): void ;
-  definePropertyType(p0: string, p1: string): void ;
   frameName: string ;
-  propertyNames: string[] ;
-  setValue(p0: string, p1: any): boolean ;
   value(p0: string): any ;
+  setValue(p0: string, p1: any): boolean ;
+  propertyNames: string[] ;
+  definePropertyType(p0: string, p1: string): void ;
+  addObserver(p0: string, p1: () => void): void ;
 }
 declare function _alloc_Frame(): FrameIF ;
 /**
@@ -721,27 +721,27 @@ declare function leaveView(param: any): void ;
 
 
 interface ButtonIF {
-  addObserver(p0: string, p1: () => void): void ;
-  definePropertyType(p0: string, p1: string): void ;
-  frameName: string ;
-  isEnabled: boolean ;
   pressed(p0: ButtonIF): void ;
-  propertyNames: string[] ;
-  setValue(p0: string, p1: any): boolean ;
+  isEnabled: boolean ;
   title: string ;
+  frameName: string ;
   value(p0: string): any ;
+  setValue(p0: string, p1: any): boolean ;
+  propertyNames: string[] ;
+  definePropertyType(p0: string, p1: string): void ;
+  addObserver(p0: string, p1: () => void): void ;
 }
 declare function _alloc_Button(): ButtonIF ;
 interface BoxIF {
-  addObserver(p0: string, p1: () => void): void ;
-  alignment: Alignment ;
   axis: Axis ;
-  definePropertyType(p0: string, p1: string): void ;
+  alignment: Alignment ;
   distribution: Distribution ;
   frameName: string ;
-  propertyNames: string[] ;
-  setValue(p0: string, p1: any): boolean ;
   value(p0: string): any ;
+  setValue(p0: string, p1: any): boolean ;
+  propertyNames: string[] ;
+  definePropertyType(p0: string, p1: string): void ;
+  addObserver(p0: string, p1: () => void): void ;
 }
 declare function _alloc_Box(): BoxIF ;
 interface ImageIF {
@@ -750,17 +750,17 @@ interface ImageIF {
 }
 declare function _alloc_Image(): ImageIF ;
 interface TableDataIF {
-  addObserver(p0: string, p1: () => void): void ;
-  definePropertyType(p0: string, p1: string): void ;
   fieldName(): string ;
-  frameName: string ;
   newRecord(): { c0:number;
   c1:number;
   c2:number;
    } ;
-  propertyNames: string[] ;
-  setValue(p0: string, p1: any): boolean ;
+  frameName: string ;
   value(p0: string): any ;
+  setValue(p0: string, p1: any): boolean ;
+  propertyNames: string[] ;
+  definePropertyType(p0: string, p1: string): void ;
+  addObserver(p0: string, p1: () => void): void ;
 }
 declare function _alloc_TableData(): TableDataIF ;
 /// <reference path="ArisiaLibrary.d.ts" />

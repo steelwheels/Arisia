@@ -48,7 +48,7 @@ public class ALFrameAllocator
 		mAllocators = [defname: defalloc]
 	}
 
-	public var classNames: Array<String> { get { return Array(mAllocators.keys) }}
+	public var classNames: Array<String> { get { return Array(mAllocators.keys.sorted()) }}
 
 	public func add(className name: String, allocator alloc: Allocator){
 		mAllocators[name] = alloc

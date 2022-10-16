@@ -43,7 +43,7 @@ public class ALScriptTranspiler
 
 	private func transpileListnerFunctions(path pth: Array<String>, identifier ident: String, frame frm: ALFrameIR, language lang: ALLanguage) -> Result<CNTextSection, NSError> {
 		let result = CNTextSection()
-		for pname in frm.propertyNames.sorted() {
+		for pname in frm.propertyNames {
 			if let pval = frm.value(name: pname) {
 				switch pval {
 				case .frame(let child):
@@ -76,7 +76,7 @@ public class ALScriptTranspiler
 		switch transpileOneFrame(path: pth, instanceName: ident, frame: frm, language: lang) {
 		case .success(let txt):
 			result.add(text: txt)
-			for prop in frm.propertyNames.sorted() {
+			for prop in frm.propertyNames {
 				if let val = frm.value(name: prop) {
 					switch val {
 					case .frame(let child):
@@ -305,7 +305,7 @@ public class ALScriptTranspiler
 	private func recordToScript(record rec: CNRecord, language lang: ALLanguage) -> Result<String, NSError>  {
 		var dstr: String = "{"
 		dstr += "}"
-		let names = rec.fieldNames.sorted()
+		let names = rec.fieldNames
 		var is1st = true
 		for name in names {
 			if let val = rec.value(ofField: name) {
