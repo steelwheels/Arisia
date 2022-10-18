@@ -183,7 +183,7 @@ open class AMComponentViewController: KCSingleViewController
 		if let view = rootview as? KCView {
 			return view
 		} else {
-			console.log(string: "[Error] The root frame is not view")
+			console.log(string: "[Error] The root frame is not view: \(rootview)")
 			return nil
 		}
 	}

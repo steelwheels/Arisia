@@ -45,6 +45,7 @@ public class AMCollection: KCCollectionView, ALFrame
 	}
 
 	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
+		/* Set path of this frame */
 		mPath = pth
 
 		/* columnNumber */
@@ -83,6 +84,8 @@ public class AMCollection: KCCollectionView, ALFrame
 		definePropertyType(propertyName: AMCollection.CollectionItem, valueType: .arrayType(.stringType))
 		if let cols = arrayValue(name: AMCollection.CollectionItem) as? Array<String> {
 			setCollections(collections: cols, resource: res, console: cons)
+		} else {
+			setArrayValue(name: AMCollection.CollectionItem, value: [])
 		}
 		addObserver(propertyName: AMCollection.CollectionItem, listnerFunction: {
 			(_ param: JSValue) -> Void in
@@ -94,6 +97,9 @@ public class AMCollection: KCCollectionView, ALFrame
 			cons.error(string: "Invalid data type for \(AMCollection.CollectionItem) in Collection component")
 		})
 
+		/* default properties */
+		self.setupDefaultProperties()
+		
 		return nil
 	}
 

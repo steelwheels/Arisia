@@ -98,6 +98,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		05934A5328FED921000E777A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0524E41928D9D49400C5DA2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05FA4F8B28E90D9100407797;
+			remoteInfo = Transpile;
+		};
 		05CAC87F28DD8E3C001C9EF1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0524E41928D9D49400C5DA2D /* Project object */;
@@ -125,13 +132,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0524E42128D9D49400C5DA2D;
 			remoteInfo = ArisiaComponents_macOS;
-		};
-		05FA4F9528E90DB200407797 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0524E41928D9D49400C5DA2D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 05FA4F8B28E90D9100407797;
-			remoteInfo = Transpile;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -557,7 +557,7 @@
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = "";
 			dependencies = (
-				05FA4F9628E90DB200407797 /* PBXTargetDependency */,
+				05934A5428FED921000E777A /* PBXTargetDependency */,
 			);
 			name = Install;
 			passBuildSettingsInEnvironment = 1;
@@ -811,6 +811,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		05934A5428FED921000E777A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05FA4F8B28E90D9100407797 /* Transpile */;
+			targetProxy = 05934A5328FED921000E777A /* PBXContainerItemProxy */;
+		};
 		05CAC88028DD8E3C001C9EF1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0542635128D9DCDA004F05E2 /* Install */;
@@ -830,11 +835,6 @@
 			isa = PBXTargetDependency;
 			target = 0524E42128D9D49400C5DA2D /* ArisiaComponents_macOS */;
 			targetProxy = 05FA4F9328E90DA300407797 /* PBXContainerItemProxy */;
-		};
-		05FA4F9628E90DB200407797 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 05FA4F8B28E90D9100407797 /* Transpile */;
-			targetProxy = 05FA4F9528E90DB200407797 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

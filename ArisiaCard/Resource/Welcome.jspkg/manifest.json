@@ -1,7 +1,8 @@
 {
 	view: "welcome.as"
 	images: {
-		icon: "arisia-icon.png"
+		arisia_icon: "images/arisia-icon.png"
+		run_icon:    "images/run-icon.png"
 	}
 }
 

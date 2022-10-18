@@ -43,6 +43,9 @@ public class AMImage: KCImageView, ALFrame
 	}
 
 	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
+		/* Set path of this frame */
+		mPath = pth
+
 		/* name property */
 		definePropertyType(propertyName: AMImage.NameItem, valueType: .stringType)
 		if let name = stringValue(name: AMImage.NameItem) {
@@ -81,6 +84,9 @@ public class AMImage: KCImageView, ALFrame
 			}
 		})
 
+		/* default properties */
+		self.setupDefaultProperties()
+		
 		return nil
 	}
 

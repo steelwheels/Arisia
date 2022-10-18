@@ -14,8 +14,7 @@ adecl_cmd = ~/tools/bin/adecl
 	$(tsc) $(tsc_opt) $<
 
 %.ts: %.as
-	$(asc_cmd) -f TypeScript $<
-
-%-if.d.ts: %.as
 	$(asc_cmd) -f TypeDeclaration $<
+	mv $(<:.as=-if.d.ts) types/
+	$(asc_cmd) --target window -f TypeScript $<
 
