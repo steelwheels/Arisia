@@ -5,6 +5,7 @@
 src_scr 	= window.ts
 bltin_decl	= Button.d.ts \
 		  Box.d.ts \
+		  Collection.d.ts \
 		  Image.d.ts \
 		  TableData.d.ts \
 	  	  window.d.ts
