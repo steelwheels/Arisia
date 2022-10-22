@@ -113,9 +113,11 @@ public class AMCollection: KCCollectionView, ALFrame
 			}
 		}
 		if items.count > 0 {
-			let collection = CNCollection()
-			collection.add(header: "", footer: "", items: items)
-			super.store(data: collection)
+			CNExecuteInMainThread(doSync: false, execute: {
+				let collection = CNCollection()
+				collection.add(header: "", footer: "", items: items)
+				super.store(data: collection)
+			})
 		} else {
 			cons.print(string: "[Error] No items for collection component")
 		}

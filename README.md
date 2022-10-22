@@ -43,27 +43,15 @@ This software is distributed under [GNU LESSER GENERAL PUBLIC LICENSE Version 2.
 * Source code: https://github.com/steelwheels
 * AooStore: Not released yet
 
-## ArisiaScript language
-The *ArisiaScript* extends the syntax of [TypeScript](https://www.typescriptlang.org) to support [frame](#frame) declaration.
-For more details, see [ArisiaScript language specification](./Document/arisia-lang.md).
+## Software for development Arisia Platform
+The macOS machine is required to use them:
+* [Xcode](https://developer.apple.com/xcode/resources/): The most impotant platform to develop macOS and iOS application software.
+* [Type Script Compiler](https://www.typescriptlang.org): Arisia Platform recommeds to write script by TypeScript. But you can write *raw* JavaScript instead of it.
+* Unix tools: You can use them at "Terminal" application in your Mac.
 
-### Overview of the Frame
-The arisia script defines the *frame*. It is the super class of all objects. 
-The frame will have following items to support event driven programming.
-* Observable properties
-* Listner methods
+## Frameworks to build ArisiaPlatform
+The [Steel Wheels Project](https://github.com/steelwheels) releases following software. They will be used to build Arisia Platform software.
 
-This is sample frame implementation:
-````
-{
-  ok_button: Button {
-    title: string "OK"
-    pressed: event() %{
-      console.log("Button pressed")
-    %}
-  }
-}
-````
 
 ## Arisia Component
 See the [component list](./Document/arisia-components.md).

@@ -17,15 +17,8 @@ import CoconutData
 class ViewController: AMMultiComponentViewController
 {
 	open override func loadResource() -> KEResource {
-		let path: String?
-		let homedir = CNPreference.shared.userPreference.homeDirectory
-		if homedir.isNull {
-			path = Bundle.main.path(forResource: "Welcome", ofType: "jspkg")
-		} else {
-			path = Bundle.main.path(forResource: "Home", ofType: "jspkg")
-		}
 		/* Load resource */
-		if let path = path {
+		if let path = Bundle.main.path(forResource: "Welcome", ofType: "jspkg") {
 			let resource = KEResource.init(packageDirectory: URL(fileURLWithPath: path))
 			let loader   = KEManifestLoader()
 			if let err = loader.load(into: resource) {

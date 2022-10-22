@@ -25,7 +25,7 @@ func main(arguments args: Array<String>) {
 	let resource = KEResource(packageDirectory: packdir)
 
 	let ctxt     = KEContext(virtualMachine: vm)
-	let lconf    = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
+	let lconf    = ALConfig(applicationType: config.target, doStrict: true, logLevel: .defaultLevel)
 	guard compile(context: ctxt, resource: resource, config: lconf, console: console) else {
 		console.error(string: "[Error] Failed to compile")
 		return
