@@ -4,22 +4,37 @@
 /* allocate function for frame: Box */
 let root = _alloc_Box();
 /* define type for all properties */
+root.definePropertyType("alignment", "e(Alignment)");
 root.definePropertyType("logo", "o(Image)");
+root.definePropertyType("icons_table", "o(Collection)");
 root.definePropertyType("ok_button", "o(Button)");
 /* define getter/setter for all properties */
-_definePropertyIF(root, ["logo", "ok_button"]);
+_definePropertyIF(root, ["alignment", "logo", "icons_table", "ok_button"]);
+/* assign user declared properties */
+root.alignment = Alignment.center;
 {
     /* allocate function for frame: Image */
     let logo = _alloc_Image();
     /* define type for all properties */
     logo.definePropertyType("name", "s");
-    logo.definePropertyType("scale", "n");
     /* define getter/setter for all properties */
-    _definePropertyIF(logo, ["name", "scale"]);
+    _definePropertyIF(logo, ["name"]);
     /* assign user declared properties */
     logo.name = "arisia_icon";
-    logo.scale = 0.5;
     root.logo = logo;
+}
+{
+    /* allocate function for frame: Collection */
+    let icons_table = _alloc_Collection();
+    /* define type for all properties */
+    icons_table.definePropertyType("collection", "a(s)");
+    icons_table.definePropertyType("columnNumber", "n");
+    /* define getter/setter for all properties */
+    _definePropertyIF(icons_table, ["collection", "columnNumber"]);
+    /* assign user declared properties */
+    icons_table.collection = ["run_icon", "pref_icon", "quit_icon"];
+    icons_table.columnNumber = 4;
+    root.icons_table = icons_table;
 }
 {
     /* allocate function for frame: Button */

@@ -1,13 +1,14 @@
 {
+  alignment: Alignment center
   logo: Image {
     name:  string  "arisia_icon"
-    scale: number  0.5
   }
-  //icons_table: Collection {
-  // collection: string[] ["run_icon", "quit_icon"]
-  //}
+  icons_table: Collection {
+    collection:   string[] ["run_icon", "pref_icon", "quit_icon"]
+    columnNumber: number   4
+  }
   ok_button: Button {
-     title: string "OK"
+    title: string "OK"
   }
 }
 
