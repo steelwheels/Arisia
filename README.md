@@ -14,7 +14,7 @@ For rapid application development, the following matters are required:
 * The platform which supports multiple target OS and hardware
 
 This platform has following features to meet these requirements:
-* Extend the TypeScript syntax to support event driven programming. The language is named [ArisiaScript](#arisiascript-language).
+* Extend the TypeScript syntax to support event driven programming. The language is named [ArisiaScript](./Document/arisia-lang.md).
 * Usual GUI parts are implemented as built-in components. See [component list](./Document/arisia-components.md).
 * The application designed for Arisia Platform runs on [macOS](https://www.apple.com/macos/) and [iOS](https://www.apple.com/ios/). 
 
@@ -52,7 +52,6 @@ The macOS machine is required to use them:
 
 ## Frameworks to build ArisiaPlatform
 The [Steel Wheels Project](https://github.com/steelwheels) releases following software. They will be used to build Arisia Platform software.
-
 
 ## Arisia Component
 See the [component list](./Document/arisia-components.md).

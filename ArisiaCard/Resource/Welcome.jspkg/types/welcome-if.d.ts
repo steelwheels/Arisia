@@ -24,6 +24,7 @@ interface root_logo_ImageIF {
 interface root_icons_table_CollectionIF {
   collection: string[] ;
   columnNumber: number ;
+  pressed(p0: root_icons_table_CollectionIF, p1: number, p2: number): void ;
   totalNumber(): number ;
   frameName: string ;
   value(p0: string): any ;
