@@ -6,6 +6,7 @@
 
 ## Introduction
 The *Arisia Platform* is the software platform for the rapid application software development.
+The [ArisiaCard](./ArisiaCard/README.md) is an implementation of it.
 
 For rapid application development, the following matters are required:
 * The programming language that allows writing your ideas directory.
@@ -96,6 +97,7 @@ The ArisiaScript compiler parse the ArisiaScript and generate JavaScript program
 
 # Related links
 * [Steel Wheels Project](https://github.com/steelwheels)
-* [ArisiaTools](https://github.com/steelwheels/Arisia/tree/main/ArisiaTools): Command line tools for development 
+* [ArisiaCard](./ArisiaCard/README.md): The implementation of Arisia Platform. 
+* [ArisiaTools](./ArisiaTools/README.md): Command line tools for development 
 * Arisia: The name of the star in the novel [lensman](https://en.wikipedia.org/wiki/Lensman_series)
 

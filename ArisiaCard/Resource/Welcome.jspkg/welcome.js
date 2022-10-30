@@ -7,9 +7,8 @@ let root = _alloc_Box();
 root.definePropertyType("alignment", "e(Alignment)");
 root.definePropertyType("logo", "o(Image)");
 root.definePropertyType("icons_table", "o(Collection)");
-root.definePropertyType("ok_button", "o(Button)");
 /* define getter/setter for all properties */
-_definePropertyIF(root, ["alignment", "logo", "icons_table", "ok_button"]);
+_definePropertyIF(root, ["alignment", "logo", "icons_table"]);
 /* assign user declared properties */
 root.alignment = Alignment.center;
 {
@@ -33,19 +32,8 @@ root.alignment = Alignment.center;
     _definePropertyIF(icons_table, ["collection", "columnNumber"]);
     /* assign user declared properties */
     icons_table.collection = ["run_icon", "pref_icon", "quit_icon"];
-    icons_table.columnNumber = 4;
+    icons_table.columnNumber = 3;
     root.icons_table = icons_table;
-}
-{
-    /* allocate function for frame: Button */
-    let ok_button = _alloc_Button();
-    /* define type for all properties */
-    ok_button.definePropertyType("title", "s");
-    /* define getter/setter for all properties */
-    _definePropertyIF(ok_button, ["title"]);
-    /* assign user declared properties */
-    ok_button.title = "OK";
-    root.ok_button = ok_button;
 }
 /* Define listner functions */
 /* This value will be return value of evaluateScript() */

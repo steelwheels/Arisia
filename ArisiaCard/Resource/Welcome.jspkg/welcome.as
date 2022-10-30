@@ -5,10 +5,7 @@
   }
   icons_table: Collection {
     collection:   string[] ["run_icon", "pref_icon", "quit_icon"]
-    columnNumber: number   4
-  }
-  ok_button: Button {
-    title: string "OK"
+    columnNumber: number   3
   }
 }
 
