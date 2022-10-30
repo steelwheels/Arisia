@@ -22,6 +22,7 @@ public class AMCollection: KCCollectionView, ALFrame
 
 	private static let CollectionItem	= "collection"
 	private static let ColumnNumberItem	= "columnNumber"
+	private static let PressedItem 		= "pressed"
 	private static let TotalNumberItem	= "totalNumber"
 
 	private var mContext:		KEContext
@@ -95,6 +96,26 @@ public class AMCollection: KCCollectionView, ALFrame
 				}
 			}
 			cons.error(string: "Invalid data type for \(AMCollection.CollectionItem) in Collection component")
+		})
+
+		/* pressed event */
+		definePropertyType(propertyName: AMCollection.PressedItem, valueType: .functionType(.voidType, [ path.selfType, .numberType, .numberType ]))
+		if self.value(name: AMCollection.PressedItem) == nil {
+			/* pressed event is not implemented */
+			self.setValue(name: AMCollection.PressedItem, value: JSValue(nullIn: self.mContext))
+		}
+		super.set(selectionCallback: {
+			(_ section: Int, _ item: Int) -> Void in
+			if let evtval = self.value(name: AMCollection.PressedItem) {
+				if !evtval.isNull {
+					if let secval  = JSValue(int32: Int32(section), in: self.mContext),
+					   let itemval = JSValue(int32: Int32(item), in: self.mContext) {
+						CNExecuteInUserThread(level: .event, execute: {
+							evtval.call(withArguments: [self.mFrameCore, secval, itemval])	// insert self
+						})
+					}
+				}
+			}
 		})
 
 		/* default properties */

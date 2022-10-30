@@ -748,6 +748,7 @@ interface CollectionIF {
   columnNumber: number ;
   totalNumber(): number ;
   collection: string[] ;
+  pressed(p0: CollectionIF, p1: number, p2: number): void ;
   frameName: string ;
   value(p0: string): any ;
   setValue(p0: string, p1: any): boolean ;
