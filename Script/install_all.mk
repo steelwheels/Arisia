@@ -14,6 +14,7 @@ lib: dummy
 	(pushd ArisiaLibrary/Resource && make && popd)
 
 doc: dummy
+	(pushd ArisiaLibrary/Resource && make && popd)
 	(pushd ArisiaComponents/Resource && make && popd)
 	(pushd ArisiaCard/Resource && make && popd)
 	(pushd ArisiaCard/Document && make && popd)

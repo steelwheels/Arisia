@@ -3,6 +3,7 @@
 ## GUI components
 * [Box](./Components/Box.md): The container component which has multiple components in it. These components are layouted horizontally or vertically.
 * [Button](./Components/Button.md): The push botton which can be pressed by the user.
+* [Collection](./Components/Collection.md): The collection of image. You can get callback by clicking the image
 * [Image](./Components/Image.md): The image which is read from image file.
 
 ## Data components
