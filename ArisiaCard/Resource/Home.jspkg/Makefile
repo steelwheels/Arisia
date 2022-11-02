@@ -7,7 +7,7 @@ include ../Makefile.inc
 src_types = ../../../ArisiaComponents/Resource/Library/types
 
 src_tsscrs = main.ts
-src_asscrs = welcome.as
+src_asscrs = home.as
 dst_jsscrs = $(src_tsscrs:.ts=.js) $(src_asscrs:.as=.js)
 
 all: types $(dst_jsscrs)

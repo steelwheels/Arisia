@@ -1,6 +1,6 @@
 "use strict";
 /// <reference path="types/ArisiaComponents.d.ts" />
-/// <reference path="types/welcome-if.d.ts" />
+/// <reference path="types/home-if.d.ts" />
 /* allocate function for frame: Box */
 let root = _alloc_Box();
 /* define type for all properties */

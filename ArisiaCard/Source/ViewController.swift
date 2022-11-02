@@ -18,7 +18,7 @@ class ViewController: AMMultiComponentViewController
 {
 	open override func loadResource() -> KEResource {
 		/* Load resource */
-		if let path = Bundle.main.path(forResource: "Welcome", ofType: "jspkg") {
+		if let path = Bundle.main.path(forResource: "Home", ofType: "jspkg") {
 			let resource = KEResource.init(packageDirectory: URL(fileURLWithPath: path))
 			let loader   = KEManifestLoader()
 			if let err = loader.load(into: resource) {
