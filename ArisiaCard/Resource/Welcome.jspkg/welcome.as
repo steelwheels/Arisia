@@ -11,7 +11,14 @@
         case 0:
 	  /* run */
           let url = openPanel("Select application",
-					FileType.directory, ["jspkg"]) ;
+					FileType.file, ["jspkg"]) ;
+          if(url != null){
+	    if(FileManager.isReadable(url)){
+              console.log("Readable path = " + (url.path ?? "null")) ;
+	    } else {
+              console.log("Not readable") ;
+	    }
+          }
         break ;
         case 1:
 	  /* preference */

@@ -35,10 +35,19 @@ root.alignment = Alignment.center;
     icons_table.collection = ["run_icon", "pref_icon"];
     icons_table.columnNumber = 3;
     icons_table.pressed = function (self, section, item) {
+        var _a;
         switch (item) {
             case 0:
                 /* run */
-                let url = openPanel("Select application", FileType.directory, ["jspkg"]);
+                let url = openPanel("Select application", FileType.file, ["jspkg"]);
+                if (url != null) {
+                    if (FileManager.isReadable(url)) {
+                        console.log("Readable path = " + ((_a = url.path) !== null && _a !== void 0 ? _a : "null"));
+                    }
+                    else {
+                        console.log("Not readable");
+                    }
+                }
                 break;
             case 1:
                 /* preference */

@@ -99,6 +99,15 @@ open class AMLibraryCompiler: ALLibraryCompiler
 		ctxt.set(name: "_alert", function: alertfunc)
 	}
 
+	private func defineBuiltinFuntion(context ctxt: KEContext, viewController vcont: AMComponentViewController, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, config conf: KEConfig) {
+		let runfunc: @convention(block) (_ pathval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue = {
+			(_ pathval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
+			let launcher = AMThreadLauncher(viewController: vcont, context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, config: conf)
+			return launcher.run(path: pathval, input: inval, output: outval, error: errval)
+		}
+		ctxt.set(name: "_run", function: runfunc)
+	}
+
 	private func enterParameter(parameter param: JSValue, resource res: KEResource) -> AMSource? {
 		if let paramstr = param.toString() {
 			return .subView(res, paramstr)

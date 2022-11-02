@@ -262,6 +262,22 @@ interface PipeIF {
         writing:        FileIF ;
 }
 
+interface FileManagerIF {
+	open(path: URLIF | string, access: string): FileIF ;
+
+	isReadable(file: URLIF | string): boolean ;
+	isWritable(file: URLIF | string): boolean ;
+	isExecutable(file: URLIF | string): boolean ;
+	isAccessible(file: URLIF | string): boolean ;
+
+	fullPath(path: string, base: URLIF): URLIF | null ;
+
+	homeDirectory(): URLIF ;
+	currentDirectory(): URLIF ;
+	temporaryDirectory(): URLIF ;
+
+}
+
 interface PointIF {
 	x : number ;
 	y : number ;
@@ -326,7 +342,7 @@ interface TextTableIF extends TextIF
         prepend(str: string): void ;
 }
 
-interface ImageIF {
+interface ImageDataIF {
 	size: SizeIF ;
 }
 
@@ -361,8 +377,8 @@ interface ProcessIF {
 
 interface URLIF {
 	isNull:			boolean ;
-	absoluteString:		string ;
-	path:			string ;
+	absoluteString:		string | null ;
+	path:			string | null ;
 	appendingPathComponent(comp: string): URLIF | null ;
 	loadText():		string | null ;
 }
@@ -449,7 +465,7 @@ interface ContactDatabaseIF {
 	forEach(callback: (record: RecordIF) => void): void ;
 }
 
-interface CollectionIF {
+interface CollectionCoreIF {
 	sectionCount:			number ;
 	itemCount(section: number):	number ;
 
@@ -492,12 +508,13 @@ declare var EscapeCode: 	EscapeCodeIF ;
 declare var Contacts:	        ContactDatabaseIF ;
 declare var Symbols:		SymbolsIF ;
 declare var Preference:		PreferenceIF ;
+declare var FileManager:	FileManagerIF ;
 
 declare function Pipe(): PipeIF ;
 declare function Point(x: number, y: number): PointIF ;
 declare function Rect(x: number, y: number, width: number, height: number): RectIF ;
 declare function Size(width: number, height: number): SizeIF ;
-declare function Collection(): CollectionIF ;
+declare function CollectionCore(): CollectionCoreIF ;
 declare function URL(path: string): URLIF | null ;
 
 declare function Storage(path: string): StorageIF | null ;
@@ -549,8 +566,7 @@ declare function TextSection(): TextSectionIF ;
 declare function TextRecord(): TextRecordIF ;
 declare function TextTable(): TextTableIF ;
 
-declare function _openPanel(title: string, type: number,
-					exts: string[], cbfunc: any): void ;
+declare function _openPanel(title: string, type: FileType, exts: string[], cbfunc: any): void ;
 declare function _savePanel(title: string, cbfunc: any): void ;
 declare function _run(path: URLIF | string, input: FileIF, output: FileIF, error: FileIF): object | null ;
 
@@ -625,9 +641,13 @@ declare class CancelException extends Error {
     constructor(code: number);
 }
 declare function _cancel(): void;
-declare function openPanel(title: string, type: number, exts: string[]): URLIF | null;
+declare function openPanel(title: string, type: FileType, exts: string[]): URLIF | null;
 declare function savePanel(title: string): URLIF | null;
 declare function run(path: URLIF | string | null, input: FileIF, output: FileIF, error: FileIF): object | null;
+declare var _stdin: FileIF;
+declare var _stdout: FileIF;
+declare var _stderr: FileIF;
+declare function launch(path: URLIF | string | null): object | null;
 /// <reference path="Builtin.d.ts" />
 /// <reference path="Enum.d.ts" />
 declare function maxLengthOfStrings(strs: string[]): number;
