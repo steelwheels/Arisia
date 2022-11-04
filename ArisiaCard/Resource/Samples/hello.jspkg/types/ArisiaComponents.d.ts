@@ -500,14 +500,6 @@ interface PreferenceIF {
 	user:			UserPreferenceIF ;
 }
 
-interface ThreadIF {
-	isRunning:		boolean ;
-	didFinished:		boolean ;
-	exitCode:		number ;
-	start(args: string[]):	void ;
-	terminate():		void ;
-}
-
 /* Singleton object*/
 declare var console:		ConsoleIF ;
 declare var Color:      	ColorManagerIF ;
@@ -576,7 +568,7 @@ declare function TextTable(): TextTableIF ;
 
 declare function _openPanel(title: string, type: FileType, exts: string[], cbfunc: any): void ;
 declare function _savePanel(title: string, cbfunc: any): void ;
-declare function _allocateThread(path: URLIF | string, input: FileIF, output: FileIF, error: FileIF): ThreadIF | null ;
+declare function _run(path: URLIF | string, input: FileIF, output: FileIF, error: FileIF): object | null ;
 
 /// <reference path="Builtin.d.ts" />
 /// <reference path="Enum.d.ts" />
@@ -651,8 +643,11 @@ declare class CancelException extends Error {
 declare function _cancel(): void;
 declare function openPanel(title: string, type: FileType, exts: string[]): URLIF | null;
 declare function savePanel(title: string): URLIF | null;
-declare function allocateThread(path: URLIF | string | null, input: FileIF, output: FileIF, error: FileIF): ThreadIF | null;
-declare function run(path: URLIF | string | null, args: string[], input: FileIF, output: FileIF, error: FileIF): number;
+declare function run(path: URLIF | string | null, input: FileIF, output: FileIF, error: FileIF): object | null;
+declare var _stdin: FileIF;
+declare var _stdout: FileIF;
+declare var _stderr: FileIF;
+declare function launch(path: URLIF | string | null): object | null;
 /// <reference path="Builtin.d.ts" />
 /// <reference path="Enum.d.ts" />
 declare function maxLengthOfStrings(strs: string[]): number;
@@ -735,3 +730,83 @@ declare function _alloc_Frame(): FrameIF ;
 /// <reference path="Builtin.d.ts" />
 /// <reference path="Frame.d.ts" />
 declare function _definePropertyIF(frame: FrameIF, usernames: string[]): void;
+/**
+ * Builtin.d.ts : Built-in objects in KiwiComponents
+ */
+
+declare function _enterView(path: string, arg: any, cbfunc: (retval: any) => void): void ;
+declare function _alert(type: AlertType, message: string, labels: string[], cbfunc: (retval: number) => void): void ;
+
+declare function leaveView(param: any): void ;
+
+
+interface ButtonIF {
+  pressed(p0: ButtonIF): void ;
+  isEnabled: boolean ;
+  title: string ;
+  frameName: string ;
+  value(p0: string): any ;
+  setValue(p0: string, p1: any): boolean ;
+  propertyNames: string[] ;
+  definePropertyType(p0: string, p1: string): void ;
+  addObserver(p0: string, p1: () => void): void ;
+}
+declare function _alloc_Button(): ButtonIF ;
+interface BoxIF {
+  axis: Axis ;
+  alignment: Alignment ;
+  distribution: Distribution ;
+  frameName: string ;
+  value(p0: string): any ;
+  setValue(p0: string, p1: any): boolean ;
+  propertyNames: string[] ;
+  definePropertyType(p0: string, p1: string): void ;
+  addObserver(p0: string, p1: () => void): void ;
+}
+declare function _alloc_Box(): BoxIF ;
+interface CollectionIF {
+  columnNumber: number ;
+  totalNumber(): number ;
+  collection: string[] ;
+  pressed(p0: CollectionIF, p1: number, p2: number): void ;
+  frameName: string ;
+  value(p0: string): any ;
+  setValue(p0: string, p1: any): boolean ;
+  propertyNames: string[] ;
+  definePropertyType(p0: string, p1: string): void ;
+  addObserver(p0: string, p1: () => void): void ;
+}
+declare function _alloc_Collection(): CollectionIF ;
+interface ImageIF {
+  name: string ;
+  scale: number ;
+  frameName: string ;
+  value(p0: string): any ;
+  setValue(p0: string, p1: any): boolean ;
+  propertyNames: string[] ;
+  definePropertyType(p0: string, p1: string): void ;
+  addObserver(p0: string, p1: () => void): void ;
+}
+declare function _alloc_Image(): ImageIF ;
+interface TableDataIF {
+  fieldName(): string ;
+  newRecord(): { c0:number;
+  c1:number;
+  c2:number;
+   } ;
+  frameName: string ;
+  value(p0: string): any ;
+  setValue(p0: string, p1: any): boolean ;
+  propertyNames: string[] ;
+  definePropertyType(p0: string, p1: string): void ;
+  addObserver(p0: string, p1: () => void): void ;
+}
+declare function _alloc_TableData(): TableDataIF ;
+/// <reference path="ArisiaLibrary.d.ts" />
+/// <reference path="Builtin.d.ts" />
+declare function alert(type: AlertType, message: string, labels: string[]): number;
+declare function enterView(path: string, arg: any): any;
+/// <reference path="ArisiaLibrary.d.ts" />
+/// <reference path="Builtin.d.ts" />
+declare function alert(type: AlertType, message: string, labels: string[]): number;
+declare function enterView(path: string, arg: any): any;

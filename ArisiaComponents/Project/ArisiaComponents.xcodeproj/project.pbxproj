@@ -63,8 +63,6 @@
 		0587294728DE792500254084 /* AMButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587294528DE792500254084 /* AMButton.swift */; };
 		05946F3528FC17AF00AF2452 /* AMImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05946F3428FC17AF00AF2452 /* AMImage.swift */; };
 		05946F3628FC17AF00AF2452 /* AMImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05946F3428FC17AF00AF2452 /* AMImage.swift */; };
-		05BB07FC28E723BA00265AC9 /* ArisiaComponents.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */; };
-		05BB07FE28E723BA00265AC9 /* ArisiaLibrary.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 05BB07F728E723BA00265AC9 /* ArisiaLibrary.d.ts */; };
 		05BB080228E7269700265AC9 /* ArisiaComponents.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */; };
 		05BB080628E726AB00265AC9 /* ArisiaComponents.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */; };
 		05CAC86A28DD8C6B001C9EF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CAC86928DD8C6B001C9EF1 /* AppDelegate.swift */; };
@@ -95,6 +93,10 @@
 		05CAC8BB28DD9566001C9EF1 /* KiwiEngine.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405B028D9E61C00C3E2BD /* KiwiEngine.xcframework */; };
 		05CAC8BC28DD9566001C9EF1 /* KiwiLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AC28D9E61B00C3E2BD /* KiwiLibrary.xcframework */; };
 		05CAC8BD28DD9566001C9EF1 /* KiwiShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AF28D9E61C00C3E2BD /* KiwiShell.xcframework */; };
+		05D112342914071800EDAF71 /* window.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B953B22913EEED00E6EC3C /* window.js */; };
+		05D112352914071800EDAF71 /* window.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B953B32913EEED00E6EC3C /* window.ts */; };
+		05D112392914074E00EDAF71 /* window.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B953B22913EEED00E6EC3C /* window.js */; };
+		05D1123A2914074E00EDAF71 /* window.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B953B32913EEED00E6EC3C /* window.ts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,6 +214,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		05D112332914070400EDAF71 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Library;
+			dstSubfolderSpec = 7;
+			files = (
+				05D112342914071800EDAF71 /* window.js in CopyFiles */,
+				05D112352914071800EDAF71 /* window.ts in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05D112382914073A00EDAF71 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Library;
+			dstSubfolderSpec = 7;
+			files = (
+				05D112392914074E00EDAF71 /* window.js in CopyFiles */,
+				05D1123A2914074E00EDAF71 /* window.ts in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -239,12 +263,14 @@
 		0563632E28D9ECAE00F09A3E /* AMScriptThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMScriptThread.swift; sourceTree = "<group>"; };
 		0587294528DE792500254084 /* AMButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMButton.swift; sourceTree = "<group>"; };
 		05946F3428FC17AF00AF2452 /* AMImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMImage.swift; sourceTree = "<group>"; };
-		05BB07F228E723BA00265AC9 /* StackView.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = StackView.d.ts; sourceTree = "<group>"; };
-		05BB07F328E723BA00265AC9 /* ButtonView.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ButtonView.d.ts; sourceTree = "<group>"; };
+		05B953B22913EEED00E6EC3C /* window.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = window.js; sourceTree = "<group>"; };
+		05B953B32913EEED00E6EC3C /* window.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = window.ts; sourceTree = "<group>"; };
+		05BB07F228E723BA00265AC9 /* Builtin.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Builtin.d.ts; sourceTree = "<group>"; };
+		05BB07F328E723BA00265AC9 /* Button.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Button.d.ts; sourceTree = "<group>"; };
 		05BB07F428E723BA00265AC9 /* Frame.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Frame.d.ts; sourceTree = "<group>"; };
 		05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ArisiaComponents.d.ts; sourceTree = "<group>"; };
 		05BB07F728E723BA00265AC9 /* ArisiaLibrary.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ArisiaLibrary.d.ts; sourceTree = "<group>"; };
-		05BB07F828E723BA00265AC9 /* RootView.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RootView.d.ts; sourceTree = "<group>"; };
+		05BB07F828E723BA00265AC9 /* Box.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Box.d.ts; sourceTree = "<group>"; };
 		05CAC86728DD8C6B001C9EF1 /* UnitTest_macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTest_macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05CAC86928DD8C6B001C9EF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05CAC86B28DD8C6B001C9EF1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -447,6 +473,8 @@
 			isa = PBXGroup;
 			children = (
 				05BB07F128E7239000265AC9 /* types */,
+				05B953B22913EEED00E6EC3C /* window.js */,
+				05B953B32913EEED00E6EC3C /* window.ts */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -456,10 +484,10 @@
 			children = (
 				05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */,
 				05BB07F728E723BA00265AC9 /* ArisiaLibrary.d.ts */,
-				05BB07F328E723BA00265AC9 /* ButtonView.d.ts */,
+				05BB07F228E723BA00265AC9 /* Builtin.d.ts */,
+				05BB07F328E723BA00265AC9 /* Button.d.ts */,
 				05BB07F428E723BA00265AC9 /* Frame.d.ts */,
-				05BB07F828E723BA00265AC9 /* RootView.d.ts */,
-				05BB07F228E723BA00265AC9 /* StackView.d.ts */,
+				05BB07F828E723BA00265AC9 /* Box.d.ts */,
 			);
 			path = types;
 			sourceTree = "<group>";
@@ -589,9 +617,9 @@
 				0524E41D28D9D49400C5DA2D /* Headers */,
 				0524E41E28D9D49400C5DA2D /* Sources */,
 				0524E41F28D9D49400C5DA2D /* Frameworks */,
-				0524E42028D9D49400C5DA2D /* Resources */,
 				051405BF28D9E61C00C3E2BD /* Embed Frameworks */,
 				0501588C28DDB32000BE2C8D /* CopyFiles */,
+				05D112332914070400EDAF71 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -609,9 +637,9 @@
 				0542633528D9D5C4004F05E2 /* Headers */,
 				0542633628D9D5C4004F05E2 /* Sources */,
 				0542633728D9D5C4004F05E2 /* Frameworks */,
-				0542633828D9D5C4004F05E2 /* Resources */,
 				051405CF28D9E63200C3E2BD /* Embed Frameworks */,
 				05BB080528E7269E00265AC9 /* CopyFiles */,
+				05D112382914073A00EDAF71 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -715,22 +743,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0524E42028D9D49400C5DA2D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				05BB07FC28E723BA00265AC9 /* ArisiaComponents.d.ts in Resources */,
-				05BB07FE28E723BA00265AC9 /* ArisiaLibrary.d.ts in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0542633828D9D5C4004F05E2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		05CAC86528DD8C6B001C9EF1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;

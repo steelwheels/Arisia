@@ -6,6 +6,8 @@ app_mk   = ../../Script/build_app.mk
 
 lib_res_dir  =  ArisiaLibrary/Resource/Library/types
 comp_res_dir =  ArisiaComponents/Resource/Library/types
+card_res_dir =  ArisiaCard/Resource/Library/types
+
 
 all: lib doc components tools card
 
@@ -28,11 +30,14 @@ components: $(comp_res_dir)/ArisiaLibrary.d.ts dummy
 $(comp_res_dir)/ArisiaLibrary.d.ts: $(lib_res_dir)/ArisiaLibrary.d.ts
 	cp $< $@
 
-tools: dummy
+tools: $(card_res_dir)/ArisiaComponents.d.ts
 	(pushd ArisiaTools/Project && make -f $(tool_mk) && popd)
 
-card: dummy
+card: $(card_res_dir)/ArisiaComponents.d.ts dummy
 	(pushd ArisiaCard/Project && make -f $(app_mk) && popd)
+
+$(card_res_dir)/ArisiaComponents.d.ts: $(comp_res_dir)/ArisiaComponents.d.ts
+	cp $< $@
 
 dummy:
 

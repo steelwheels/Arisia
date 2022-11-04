@@ -51,6 +51,8 @@
 		0597DCDA28FB0760003F3233 /* KiwiShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0597DC8428FB063A003F3233 /* KiwiShell.xcframework */; };
 		0597DCDB28FB0760003F3233 /* KiwiShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0597DC8428FB063A003F3233 /* KiwiShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05AEC01328FB706D00EE675C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEE0B428FB03E40092E1C4 /* ViewController.swift */; };
+		05B953AD2913CC4500E6EC3C /* types in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B953AB2913CC2600E6EC3C /* types */; };
+		05B953AF2913CC5600E6EC3C /* types in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B953AB2913CC2600E6EC3C /* types */; };
 		05BEE0B328FB03E40092E1C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEE0B228FB03E40092E1C4 /* AppDelegate.swift */; };
 		05BEE0B528FB03E40092E1C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEE0B428FB03E40092E1C4 /* ViewController.swift */; };
 		05BEE0B728FB03ED0092E1C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05BEE0B628FB03ED0092E1C4 /* Assets.xcassets */; };
@@ -133,6 +135,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		05B953AC2913CC3B00E6EC3C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Library;
+			dstSubfolderSpec = 7;
+			files = (
+				05B953AD2913CC4500E6EC3C /* types in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05B953AE2913CC4D00E6EC3C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Library;
+			dstSubfolderSpec = 7;
+			files = (
+				05B953AF2913CC5600E6EC3C /* types in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -154,6 +176,7 @@
 		0597DC8728FB063A003F3233 /* KiwiControls.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiControls.xcframework; path = ../../../../Library/Frameworks/KiwiControls.xcframework; sourceTree = "<group>"; };
 		0597DC8828FB063A003F3233 /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
 		05AEC01528FB7EAB00EE675C /* Home.jspkg */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Home.jspkg; sourceTree = "<group>"; };
+		05B953AB2913CC2600E6EC3C /* types */ = {isa = PBXFileReference; lastKnownFileType = folder; name = types; path = Library/types; sourceTree = "<group>"; };
 		05BEE0AF28FB03E40092E1C4 /* ArisiaCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArisiaCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05BEE0B228FB03E40092E1C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05BEE0B428FB03E40092E1C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -241,10 +264,19 @@
 		05AEC01428FB70E200EE675C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				05B953AA2913CC0200E6EC3C /* Library */,
 				05AEC01528FB7EAB00EE675C /* Home.jspkg */,
 			);
 			name = Resource;
 			path = ../Resource;
+			sourceTree = "<group>";
+		};
+		05B953AA2913CC0200E6EC3C /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				05B953AB2913CC2600E6EC3C /* types */,
+			);
+			name = Library;
 			sourceTree = "<group>";
 		};
 		05BEE0A628FB03E40092E1C4 = {
@@ -309,6 +341,7 @@
 				0569BBDA28FB0542003BD24B /* Resources */,
 				0597DCC928FB0752003F3233 /* Embed Frameworks */,
 				05AEC01728FB7F8E00EE675C /* CopyFiles */,
+				05B953AE2913CC4D00E6EC3C /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -329,6 +362,7 @@
 				05BEE0AD28FB03E40092E1C4 /* Resources */,
 				0597DCA928FB0739003F3233 /* Embed Frameworks */,
 				05AEC01928FB7FA000EE675C /* CopyFiles */,
+				05B953AC2913CC3B00E6EC3C /* CopyFiles */,
 			);
 			buildRules = (
 			);

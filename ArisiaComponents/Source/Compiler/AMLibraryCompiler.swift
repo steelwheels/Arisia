@@ -31,7 +31,11 @@ open class AMLibraryCompiler: ALLibraryCompiler
 		/* Define functions for built-in components */
 		if let vcont = mViewController {
 			defineComponentFuntion(context: ctxt, viewController: vcont, resource: res)
+			defineBuiltinFuntion(context: ctxt, viewController: vcont, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, config: conf)
 		}
+
+		importBuiltinLibrary(context: ctxt, console: cons, config: conf)
+
 		return true
 	}
 
@@ -100,12 +104,15 @@ open class AMLibraryCompiler: ALLibraryCompiler
 	}
 
 	private func defineBuiltinFuntion(context ctxt: KEContext, viewController vcont: AMComponentViewController, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, config conf: KEConfig) {
+		/* Redefine _allocateThread method */
 		let runfunc: @convention(block) (_ pathval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue = {
 			(_ pathval: JSValue, _ inval: JSValue, _ outval: JSValue, _ errval: JSValue) -> JSValue in
-			let launcher = AMThreadLauncher(viewController: vcont, context: ctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, config: conf)
-			return launcher.run(path: pathval, input: inval, output: outval, error: errval)
+			let newctxt  = KEContext(virtualMachine: ctxt.virtualMachine)
+			let launcher = AMThreadLauncher(viewController: vcont, context: newctxt, resource: res, processManager: procmgr, terminalInfo: terminfo, environment: env, config: conf)
+			let result = launcher.run(path: pathval, input: inval, output: outval, error: errval)
+			return result
 		}
-		ctxt.set(name: "_run", function: runfunc)
+		ctxt.set(name: "_allocateThread", function: runfunc)
 	}
 
 	private func enterParameter(parameter param: JSValue, resource res: KEResource) -> AMSource? {
@@ -147,6 +154,23 @@ open class AMLibraryCompiler: ALLibraryCompiler
 		CNExecuteInMainThread(doSync: false, execute: {
 			AMAlert.execute(type: typ, message: msg, labels: labs, callback: cbfunc, viewController: vcont, context: ctxt)
 		})
+	}
+
+	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig)
+	{
+		let libnames = ["window"]
+		do {
+			for libname in libnames {
+				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", subdirectory: "Library", forClass: AMLibraryCompiler.self) {
+					let script = try String(contentsOf: url, encoding: .utf8)
+					let _ = compileStatement(context: ctxt, statement: script, sourceFile: url, console: cons, config: conf)
+				} else {
+					cons.error(string: "Built-in script \"\(libname)\" is not found.\n")
+				}
+			}
+		} catch {
+			cons.error(string: "Failed to read built-in script in KiwiComponents")
+		}
 	}
 }
 

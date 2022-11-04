@@ -43,6 +43,7 @@ root.alignment = Alignment.center;
                 if (url != null) {
                     if (FileManager.isReadable(url)) {
                         console.log("Readable path = " + ((_a = url.path) !== null && _a !== void 0 ? _a : "null"));
+                        run(url, [], _stdin, _stdout, _stderr);
                     }
                     else {
                         console.log("Not readable");
