@@ -15,7 +15,7 @@ For rapid application development, the following matters are required:
 
 This platform has following features to meet these requirements:
 * Extend the TypeScript syntax to support event driven programming. The language is named [ArisiaScript](./Document/arisia-lang.md).
-* Usual GUI parts are implemented as built-in components. See [component list](./Document/arisia-components.md).
+* Usual GUI parts are implemented as built-in components. See [component list](./Document/arisia-components.md).　And there are some classes and functions to control them, see [Arisia Library](./Document/arisia-library.md).
 * The application designed for Arisia Platform runs on [macOS](https://www.apple.com/macos/) and [iOS](https://www.apple.com/ios/). 
 
 ## Sample screen shot
@@ -53,11 +53,10 @@ The macOS machine is required to use them:
 ## Frameworks to build ArisiaPlatform
 The [Steel Wheels Project](https://github.com/steelwheels) releases following software. They will be used to build Arisia Platform software.
 
-## Arisia Component
-See the [component list](./Document/arisia-components.md).
-
-## Arisia Library
-Many built-in classes, functions and data types are supported. See the [Kiwi Standard Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md).
+## Arisia Component and Library
+* [component list](./Document/arisia-components.md)
+* [Arisia Library](./Document/arisia-library.md)
+*  [Kiwi Standard Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md).
 
 ## Software development environment
 ### Compile flow
