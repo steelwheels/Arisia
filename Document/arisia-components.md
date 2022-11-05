@@ -5,7 +5,7 @@
 * [Button](./Components/Button.md): The push botton which can be pressed by the user.
 * [Collection](./Components/Collection.md): The collection of image. You can get callback by clicking the image
 * [Image](./Components/Image.md): The image which is read from image file.
-* [Label](./Conponents/Label.md): The text/number field.
+* [Label](./Components/Label.md): The text/number field.
 
 ## Data components
 * [TableData](./Components/TableData.md): The database which contains multiple records.
