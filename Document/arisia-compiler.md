@@ -1,6 +1,37 @@
 # ArisiaCompiler specification
 ## Introduction
 
+## Compile flow
+The Arisia Platform recommends you to implement the application by TypeScript.
+Your ArisiaScript will be translated into TypeScript (*.ts) and type declaration (*.d.ts).
+Arisia Platform provides type declaration files for all built-in type, function and classes.
+
+But the Arisia Platform does not have type script compiler.
+So there are 2 compile flows.
+
+###  1. The compile flow without TypeScript compiler
+The ArisiaScript compiler parse the ArisiaScript and generate JavaScript program to execute it on the JavaScript engine. 
+
+[pros]
+* The TypeScript compiler is *not* required.
+
+[cons]
+* There are no type, syntax check. You must fix all bugs at application run time.
+
+###  2. The compile flow with TypeScript compiler
+
+[pros]
+* Your code will be checked by TypeScript compiler. 
+
+[cons]
+* You have to install TypeScript compiler. You can download it from https://www.typescriptlang.org/download .
+* You have to prepare build tool (such as Makefile).
+
+### Compile flow
+<p align="center">
+<img src="./Images/compile-flow.png" width="75%" height="75%" />
+</p>
+
 ## Compilation pahases
 1. parser pass
 2. transpiler pass

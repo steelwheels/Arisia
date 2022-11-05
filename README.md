@@ -44,57 +44,15 @@ This software is distributed under [GNU LESSER GENERAL PUBLIC LICENSE Version 2.
 * Source code: https://github.com/steelwheels
 * AooStore: Not released yet
 
-## Software for development Arisia Platform
-The macOS machine is required to use them:
-* [Xcode](https://developer.apple.com/xcode/resources/): The most impotant platform to develop macOS and iOS application software.
-* [Type Script Compiler](https://www.typescriptlang.org): Arisia Platform recommeds to write script by TypeScript. But you can write *raw* JavaScript instead of it.
-* Unix tools: You can use them at "Terminal" application in your Mac.
-
-## Frameworks to build ArisiaPlatform
-The [Steel Wheels Project](https://github.com/steelwheels) releases following software. They will be used to build Arisia Platform software.
-
-## Arisia Component and Library
-* [component list](./Document/arisia-components.md)
-* [Arisia Library](./Document/arisia-library.md)
-*  [Kiwi Standard Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md).
-
-## Software development environment
-### Compile flow
-The Arisia Platform recommends you to implement the application by TypeScript.
-Your ArisiaScript will be translated into TypeScript (*.ts) and type declaration (*.d.ts).
-Arisia Platform provides type declaration files for all built-in type, function and classes.
-
-But the Arisia Platform does not have type script compiler.
-So there are 2 compile flows.
-
-####  1. The compile flow without TypeScript compiler
-The ArisiaScript compiler parse the ArisiaScript and generate JavaScript program to execute it on the JavaScript engine. 
-
-[pros]
-* The TypeScript compiler is *not* required.
-
-[cons]
-* There are no type, syntax check. You must fix all bugs at application run time.
-
-####  2. The compile flow with TypeScript compiler
-
-[pros]
-* Your code will be checked by TypeScript compiler. 
-
-[cons]
-* You have to install TypeScript compiler. You can download it from https://www.typescriptlang.org/download .
-* You have to prepare build tool (such as Makefile).
-
-#### Compile flow
-<p align="center">
-<img src="./Document/Images/compile-flow.png" width="75%" height="75%" />
-</p>
-
-# References
+## Documentations
+* [ArisiaScript](./Document/arisia-lang.md): The language specification of *ArisiaScript*. 
+* [component list](./Document/arisia-components.md): The list of built-in components. It supports GUI and database programming.
+* [Arisia Library](./Document/arisia-library.md): The built-in functions to support Arisia Platform.
+* [Kiwi Standard Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): General purpose JavaScript (coded by TypeScript) library.
 * [Implementation](./Document/arisia-implementation.md): The implementation of this software
 
 # Related links
-* [Steel Wheels Project](https://github.com/steelwheels)
+* [Steel Wheels Project](https://github.com/steelwheels): The developper of this product.
 * [ArisiaCard](./ArisiaCard/README.md): The implementation of Arisia Platform. 
 * [ArisiaTools](./ArisiaTools/README.md): Command line tools for development 
 * Arisia: The name of the star in the novel [lensman](https://en.wikipedia.org/wiki/Lensman_series)
