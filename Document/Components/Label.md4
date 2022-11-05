@@ -15,6 +15,9 @@ m4_include(`Label.d.ts')
 m4_include(`hello.jspkg/hello.as')
 </pre>
 
+### Sample screenshot (macOS)
+![Sample screenshot](./Label-macos.png)
+
 For more details, see [hello.jspkg](https://github.com/steelwheels/Arisia/tree/main/ArisiaCard/Resource/Samples/hello.jspkg).
 
 m4_include(`footer.md')

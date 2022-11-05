@@ -38,6 +38,9 @@ declare function _alloc_Label(): LabelIF ;
 
 </pre>
 
+### Sample screenshot (macOS)
+![Sample screenshot](./Label-macos.png)
+
 For more details, see [hello.jspkg](https://github.com/steelwheels/Arisia/tree/main/ArisiaCard/Resource/Samples/hello.jspkg).
 
 # Related links
