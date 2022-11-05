@@ -2,11 +2,13 @@
 # Makefile
 #
 
-res_dir	= ../Resource
+PROJECT_DIR	?= .
+
+res_dir	= $(PROJECT_DIR)/../Resource
 
 all: dummy
 	(cd $(res_dir)/Home.jspkg && make)
-	(cd Samples && make)
+	(cd $(res_dir)/Samples && make)
 
 dummy:
 
