@@ -1,0 +1,21 @@
+# `Label` component
+
+## Introduction
+Display text/number field
+
+## Interface
+
+This is the interface definition for TypeScript:
+<pre>
+m4_include(`Label.d.ts')
+</pre>
+
+## Sample
+<pre>
+m4_include(`hello.jspkg/hello.as')
+</pre>
+
+For more details, see [hello.jspkg](https://github.com/steelwheels/Arisia/tree/main/ArisiaCard/Resource/Samples/hello.jspkg).
+
+m4_include(`footer.md')
+

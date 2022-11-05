@@ -22,3 +22,10 @@ interface CollectionIF {
 declare function _alloc_Collection(): CollectionIF ;
 
 </pre>
+
+# Related links
+* [Arisia Platform](https://github.com/steelwheels/Arisia#readme)
+* [Steel Wheels Project](https://github.com/steelwheels)
+
+
+

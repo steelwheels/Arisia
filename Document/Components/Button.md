@@ -21,3 +21,10 @@ interface ButtonIF {
 declare function _alloc_Button(): ButtonIF ;
 
 </pre>
+
+# Related links
+* [Arisia Platform](https://github.com/steelwheels/Arisia#readme)
+* [Steel Wheels Project](https://github.com/steelwheels)
+
+
+

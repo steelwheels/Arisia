@@ -9,3 +9,6 @@ This is the interface definition for TypeScript:
 <pre>
 m4_include(`Button.d.ts')
 </pre>
+
+m4_include(`footer.md')
+

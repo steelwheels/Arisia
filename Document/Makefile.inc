@@ -2,7 +2,8 @@
 # Makefile.inc
 #
 
-inc_opt	= -I../../ArisiaComponents/Resource/Library/types 
+inc_opt	= -I../../ArisiaComponents/Resource/Library/types \
+	  -I../../ArisiaCard/Resource/Samples
 m4_opt  = -P $(inc_opt)
 
 %.md : %.md4
