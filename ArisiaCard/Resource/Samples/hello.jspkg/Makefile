@@ -8,15 +8,16 @@ src_ts		= main.ts
 src_as		= hello.as 
 src_type_dir	= ../../Library/types
 
-dsts = $(src_ts:.ts=.js) $(src_as:.as=.js)
+dsts = $(src_ts:.ts=.js) $(src_as:.as=.ts) $(src_as:.as=.js)
+dst_type	= ./types/ArisiaComponents.d.ts
 
 all: types $(dsts)
 
-types: ./types/ArisiaComponents.d.ts
+types: $(dst_type)
 
-./types/ArisiaComponents.d.ts: $(src_type_dir)/ArisiaComponents.d.ts
+$(dst_type): $(src_type_dir)/ArisiaComponents.d.ts
 	cp $< $@
 
 clean:
-	rm -f $(dsts)
+	rm -f $(dsts) $(dst_type)
 

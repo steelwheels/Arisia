@@ -4,9 +4,21 @@
 /* allocate function for frame: Box */
 let root = _alloc_Box();
 /* define type for all properties */
+root.definePropertyType("label", "o(Label)");
 root.definePropertyType("ok_button", "o(Button)");
 /* define getter/setter for all properties */
-_definePropertyIF(root, ["ok_button"]);
+_definePropertyIF(root, ["label", "ok_button"]);
+{
+    /* allocate function for frame: Label */
+    let label = _alloc_Label();
+    /* define type for all properties */
+    label.definePropertyType("text", "s");
+    /* define getter/setter for all properties */
+    _definePropertyIF(label, ["text"]);
+    /* assign user declared properties */
+    label.text = "Hello, World !!";
+    root.label = label;
+}
 {
     /* allocate function for frame: Button */
     let ok_button = _alloc_Button();
@@ -18,7 +30,6 @@ _definePropertyIF(root, ["ok_button"]);
     /* assign user declared properties */
     ok_button.title = "OK";
     ok_button.pressed = function (self) {
-        console.log("pressed: OK");
         leaveView(1);
     };
     root.ok_button = ok_button;

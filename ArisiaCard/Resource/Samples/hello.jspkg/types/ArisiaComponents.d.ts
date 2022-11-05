@@ -500,6 +500,14 @@ interface PreferenceIF {
 	user:			UserPreferenceIF ;
 }
 
+interface ThreadIF {
+	isRunning:		boolean ;
+	didFinished:		boolean ;
+	exitCode:		number ;
+	start(args: string[]):	void ;
+	terminate():		void ;
+}
+
 /* Singleton object*/
 declare var console:		ConsoleIF ;
 declare var Color:      	ColorManagerIF ;
@@ -568,7 +576,7 @@ declare function TextTable(): TextTableIF ;
 
 declare function _openPanel(title: string, type: FileType, exts: string[], cbfunc: any): void ;
 declare function _savePanel(title: string, cbfunc: any): void ;
-declare function _run(path: URLIF | string, input: FileIF, output: FileIF, error: FileIF): object | null ;
+declare function _allocateThread(path: URLIF | string, input: FileIF, output: FileIF, error: FileIF): ThreadIF | null ;
 
 /// <reference path="Builtin.d.ts" />
 /// <reference path="Enum.d.ts" />
@@ -643,11 +651,8 @@ declare class CancelException extends Error {
 declare function _cancel(): void;
 declare function openPanel(title: string, type: FileType, exts: string[]): URLIF | null;
 declare function savePanel(title: string): URLIF | null;
-declare function run(path: URLIF | string | null, input: FileIF, output: FileIF, error: FileIF): object | null;
-declare var _stdin: FileIF;
-declare var _stdout: FileIF;
-declare var _stderr: FileIF;
-declare function launch(path: URLIF | string | null): object | null;
+declare function allocateThread(path: URLIF | string | null, input: FileIF, output: FileIF, error: FileIF): ThreadIF | null;
+declare function run(path: URLIF | string | null, args: string[], input: FileIF, output: FileIF, error: FileIF): number;
 /// <reference path="Builtin.d.ts" />
 /// <reference path="Enum.d.ts" />
 declare function maxLengthOfStrings(strs: string[]): number;
@@ -788,6 +793,17 @@ interface ImageIF {
   addObserver(p0: string, p1: () => void): void ;
 }
 declare function _alloc_Image(): ImageIF ;
+interface LabelIF {
+  text: string ;
+  number: number ;
+  frameName: string ;
+  value(p0: string): any ;
+  setValue(p0: string, p1: any): boolean ;
+  propertyNames: string[] ;
+  definePropertyType(p0: string, p1: string): void ;
+  addObserver(p0: string, p1: () => void): void ;
+}
+declare function _alloc_Label(): LabelIF ;
 interface TableDataIF {
   fieldName(): string ;
   newRecord(): { c0:number;

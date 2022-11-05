@@ -2,8 +2,7 @@
  * main.js
  */
 
-/// <reference path="../types/KiwiLibrary.d.ts"/>
-/// <reference path="../types/KiwiComponent.d.ts"/>
+/// <reference path="types/ArisiaComponents.d.ts"/>
 
 function main(args: string[])
 {

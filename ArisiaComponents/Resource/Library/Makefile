@@ -7,6 +7,7 @@ bltin_decl	= Button.d.ts \
 		  Box.d.ts \
 		  Collection.d.ts \
 		  Image.d.ts \
+		  Label.d.ts \
 		  TableData.d.ts \
 	  	  window.d.ts
 dst_scr		= $(src_scr:.ts=.js)

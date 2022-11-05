@@ -63,6 +63,8 @@
 		0587294728DE792500254084 /* AMButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0587294528DE792500254084 /* AMButton.swift */; };
 		05946F3528FC17AF00AF2452 /* AMImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05946F3428FC17AF00AF2452 /* AMImage.swift */; };
 		05946F3628FC17AF00AF2452 /* AMImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05946F3428FC17AF00AF2452 /* AMImage.swift */; };
+		05B322282915576700AAA84D /* AMLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B322272915576700AAA84D /* AMLabel.swift */; };
+		05B322292915576700AAA84D /* AMLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B322272915576700AAA84D /* AMLabel.swift */; };
 		05BB080228E7269700265AC9 /* ArisiaComponents.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */; };
 		05BB080628E726AB00265AC9 /* ArisiaComponents.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */; };
 		05CAC86A28DD8C6B001C9EF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CAC86928DD8C6B001C9EF1 /* AppDelegate.swift */; };
@@ -263,6 +265,7 @@
 		0563632E28D9ECAE00F09A3E /* AMScriptThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AMScriptThread.swift; sourceTree = "<group>"; };
 		0587294528DE792500254084 /* AMButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMButton.swift; sourceTree = "<group>"; };
 		05946F3428FC17AF00AF2452 /* AMImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMImage.swift; sourceTree = "<group>"; };
+		05B322272915576700AAA84D /* AMLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMLabel.swift; sourceTree = "<group>"; };
 		05B953B22913EEED00E6EC3C /* window.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = window.js; sourceTree = "<group>"; };
 		05B953B32913EEED00E6EC3C /* window.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = window.ts; sourceTree = "<group>"; };
 		05BB07F228E723BA00265AC9 /* Builtin.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Builtin.d.ts; sourceTree = "<group>"; };
@@ -428,6 +431,7 @@
 				0587294528DE792500254084 /* AMButton.swift */,
 				053FF24728FD98D1005A888D /* AMCollection.swift */,
 				05946F3428FC17AF00AF2452 /* AMImage.swift */,
+				05B322272915576700AAA84D /* AMLabel.swift */,
 				0556618628E090B200FC4CF2 /* AMTableData.swift */,
 			);
 			path = Component;
@@ -776,6 +780,7 @@
 				05946F3528FC17AF00AF2452 /* AMImage.swift in Sources */,
 				0587294628DE792500254084 /* AMButton.swift in Sources */,
 				0563632828D9EBF300F09A3E /* AMAlert.swift in Sources */,
+				05B322282915576700AAA84D /* AMLabel.swift in Sources */,
 				0563632228D9EB1C00F09A3E /* AMLibraryCompiler.swift in Sources */,
 				0563631928D9E73C00F09A3E /* AMComponentViewController.swift in Sources */,
 				0563632F28D9ECAE00F09A3E /* AMScriptThread.swift in Sources */,
@@ -794,6 +799,7 @@
 				05946F3628FC17AF00AF2452 /* AMImage.swift in Sources */,
 				0587294728DE792500254084 /* AMButton.swift in Sources */,
 				0563632928D9EBF300F09A3E /* AMAlert.swift in Sources */,
+				05B322292915576700AAA84D /* AMLabel.swift in Sources */,
 				0563632328D9EB1C00F09A3E /* AMLibraryCompiler.swift in Sources */,
 				0563631A28D9E73C00F09A3E /* AMComponentViewController.swift in Sources */,
 				0563633028D9ECAE00F09A3E /* AMScriptThread.swift in Sources */,

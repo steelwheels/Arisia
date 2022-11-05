@@ -6,6 +6,7 @@ res_dir	= ../Resource
 
 all: dummy
 	(cd $(res_dir)/Home.jspkg && make)
+	(cd Samples && make)
 
 dummy:
 
