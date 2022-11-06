@@ -142,7 +142,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		05408D4729172E0B00F12033 /* arecdecl */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = arecdecl; sourceTree = BUILT_PRODUCTS_DIR; };
+		05408D4729172E0B00F12033 /* ares */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ares; sourceTree = BUILT_PRODUCTS_DIR; };
 		05408D4929172E0B00F12033 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		05408D6A2917330900F12033 /* config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		05512D3B28E31F4700B82172 /* KiwiControls.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiControls.xcframework; path = ../../../../Library/Frameworks/KiwiControls.xcframework; sourceTree = "<group>"; };
@@ -211,13 +211,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		05408D4829172E0B00F12033 /* arecdecl */ = {
+		05408D4829172E0B00F12033 /* ares */ = {
 			isa = PBXGroup;
 			children = (
 				05408D4929172E0B00F12033 /* main.swift */,
 				05408D6A2917330900F12033 /* config.swift */,
 			);
-			path = arecdecl;
+			path = ares;
 			sourceTree = "<group>";
 		};
 		05C2BF3B28E2A7800059F938 /* adecl */ = {
@@ -283,7 +283,7 @@
 				05E6E27E28C7771C0073FDD8 /* asc */,
 				05C9C34F28C779B500E57C5D /* ArisiaTools.bundle */,
 				05C2BF2C28E2A74A0059F938 /* adecl */,
-				05408D4729172E0B00F12033 /* arecdecl */,
+				05408D4729172E0B00F12033 /* ares */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -293,7 +293,7 @@
 			children = (
 				05C2BF3B28E2A7800059F938 /* adecl */,
 				05C9C37C28C77E8B00E57C5D /* asc */,
-				05408D4829172E0B00F12033 /* arecdecl */,
+				05408D4829172E0B00F12033 /* ares */,
 			);
 			name = Source;
 			path = ../Source;
@@ -337,9 +337,9 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
-		05408D4629172E0B00F12033 /* arecdecl */ = {
+		05408D4629172E0B00F12033 /* ares */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 05408D4D29172E0B00F12033 /* Build configuration list for PBXNativeTarget "arecdecl" */;
+			buildConfigurationList = 05408D4D29172E0B00F12033 /* Build configuration list for PBXNativeTarget "ares" */;
 			buildPhases = (
 				05408D4329172E0B00F12033 /* Sources */,
 				05408D4429172E0B00F12033 /* Frameworks */,
@@ -350,9 +350,9 @@
 			dependencies = (
 				05408D66291731E300F12033 /* PBXTargetDependency */,
 			);
-			name = arecdecl;
+			name = ares;
 			productName = arecdecl;
-			productReference = 05408D4729172E0B00F12033 /* arecdecl */;
+			productReference = 05408D4729172E0B00F12033 /* ares */;
 			productType = "com.apple.product-type.tool";
 		};
 		05C2BF2B28E2A74A0059F938 /* adecl */ = {
@@ -456,7 +456,7 @@
 				05C9C39728C791AE00E57C5D /* Install_Tools */,
 				05E6E27D28C7771C0073FDD8 /* asc */,
 				05C2BF2B28E2A74A0059F938 /* adecl */,
-				05408D4629172E0B00F12033 /* arecdecl */,
+				05408D4629172E0B00F12033 /* ares */,
 			);
 		};
 /* End PBXProject section */
@@ -515,7 +515,7 @@
 /* Begin PBXTargetDependency section */
 		05408D5229172E2A00F12033 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 05408D4629172E0B00F12033 /* arecdecl */;
+			target = 05408D4629172E0B00F12033 /* ares */;
 			targetProxy = 05408D5129172E2A00F12033 /* PBXContainerItemProxy */;
 		};
 		05408D66291731E300F12033 /* PBXTargetDependency */ = {
@@ -853,7 +853,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		05408D4D29172E0B00F12033 /* Build configuration list for PBXNativeTarget "arecdecl" */ = {
+		05408D4D29172E0B00F12033 /* Build configuration list for PBXNativeTarget "ares" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				05408D4B29172E0B00F12033 /* Debug */,

@@ -9,6 +9,7 @@ tsc_opt	= -t ES2017 --lib "es2017" --declaration --declarationDir types \
 
 asc_cmd   = ~/tools/bin/asc
 adecl_cmd = ~/tools/bin/adecl
+ares_cmd  = ~/tools/bin/ares
 
 asc_opt   =
 

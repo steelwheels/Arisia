@@ -35,11 +35,11 @@ public class CommandLineParser
 	}
 
 	private func printUsage() {
-		mConsole.print(string: "usage: arecdecl [options] package-name (option \"-h\" for help)\n")
+		mConsole.print(string: "usage: ares [options] package-name (option \"-h\" for help)\n")
 	}
 
 	private func printHelpMessage() {
-		mConsole.print(string: "usage: adecl [options] package-name\n" +
+		mConsole.print(string: "usage: ares [options] package-name\n" +
 		"  [options]\n" +
 		"    --help, -h         : Print this message\n" +
 		"    --version          : Print version\n"

@@ -19,7 +19,7 @@ install_bundle: dummy
 	  DSTROOT=/ \
 	  ONLY_ACTIVE_ARCH=NO
 
-install_tools: install_asc install_adecl install_arecdecl
+install_tools: install_asc install_adecl install_ares
 
 install_asc: dummy
 	xcodebuild install \
@@ -47,9 +47,9 @@ install_adecl: dummy
 	  DSTROOT=/ \
 	  ONLY_ACTIVE_ARCH=NO
 
-install_arecdecl: dummy
+install_ares: dummy
 	xcodebuild install \
-	  -scheme arecdecl \
+	  -scheme ares \
 	  -project $(PROJECT_NAME).xcodeproj \
 	  -destination="macOSX" \
 	  -configuration Release \
