@@ -5,6 +5,7 @@
  *   Copyright (C) 2022 Steel Wheels Project
  */
 
+import KiwiEngine
 import CoconutData
 import Foundation
 
@@ -95,6 +96,122 @@ public class ALTypeDeclGenerator
 		}
 		return ifdecl
 	}
+
+	public static func generateRecordDeclaration(resource res: KEResource) -> CNTextSection? {
+		if let idents = res.identifiersOfStorage() {
+			if idents.count > 0 {
+				let result = CNTextSection()
+				for ident in idents {
+					if let strg = res.loadStorage(identifier: ident) {
+						let path   = CNValuePath(identifier: nil, elements: [.member(ident)])
+						let subtxt = generateRecordDeclaration(path: path, rootValue: strg.toValue())
+						if !subtxt.isEmpty() {
+							result.add(text: subtxt)
+						}
+					}
+				}
+				return !result.isEmpty() ? result : nil
+			}
+		}
+		return nil
+	}
+
+	private static func generateRecordDeclaration(path pth: CNValuePath, rootValue val: CNValue) -> CNTextSection {
+		let result = CNTextSection()
+		switch val {
+		case .boolValue(_), .numberValue(_), .stringValue(_), .enumValue(_), .objectValue(_):
+			/* ignore scalar value*/
+			break
+		case .arrayValue(let elms):
+			for i in 0..<elms.count {
+				let newpath = CNValuePath(path: pth, subPath: [.index(i)])
+				let newtxt  = generateRecordDeclaration(path: newpath, rootValue: elms[i])
+				result.add(text: newtxt)
+			}
+		case .setValue(let elms):
+			for i in 0..<elms.count {
+				let newpath = CNValuePath(path: pth, subPath: [.index(i)])
+				let newtxt  = generateRecordDeclaration(path: newpath, rootValue: elms[i])
+				result.add(text: newtxt)
+			}
+		case .dictionaryValue(let dict):
+			if let fields = getDefaultFields(value: dict) {
+				if let subtxt = decodeFields(path: pth, fields: fields) {
+					result.add(text: subtxt)
+				}
+			} else {
+				for (key, elm) in dict {
+					let newpath = CNValuePath(path: pth, subPath: [.member(key)])
+					let newtxt  = generateRecordDeclaration(path: newpath, rootValue: elm)
+					result.add(text: newtxt)
+				}
+			}
+		case .recordValue(let rec):
+			var fields: Dictionary<String, CNValue> = [:]
+			let fnames = rec.fieldNames
+			for fname in fnames {
+				if let val = rec.value(ofField: fname) {
+					fields[fname] = val
+				}
+			}
+			if let newtxt = decodeFields(path: pth, fields: fields) {
+				result.add(text: newtxt)
+			}
+		@unknown default:
+			CNLog(logLevel: .error, message: "Unknown value type", atFunction: #function, inFile: #file)
+		}
+		return result
+	}
+
+	private static func getDefaultFields(value val: Dictionary<String, CNValue>) -> Dictionary<String, CNValue>? {
+		if let clsname = CNValue.className(forValue: val) {
+			if clsname == "Table" {
+				if let fval = val["defaultFields"] {
+					switch fval {
+					case .dictionaryValue(let dict):
+						return dict
+					default:
+						break
+					}
+				}
+			}
+		}
+		return nil
+	}
+
+	private static func decodeFields(path pth: CNValuePath, fields flds: Dictionary<String, CNValue>) -> CNTextSection? {
+		let ifname = pathToRecordIF(path: pth)
+		let ifdecl = CNTextSection()
+		ifdecl.header = "interface \(ifname) {"
+		ifdecl.footer = "}"
+
+		for (key, val) in flds {
+			let txt = CNTextLine(string: "\(key): \(val.valueType.toTypeDeclaration()) ;")
+			ifdecl.add(text: txt)
+		}
+
+		return ifdecl
+	}
+
+	private static func pathToRecordIF(path pth: CNValuePath) -> String {
+		var result = ""
+		var is1st  = true
+		for elm in pth.elements {
+			if is1st { is1st = false } else { result += "_" }
+			switch elm {
+			case .index(let i):
+				result += "\(i)"
+			case .member(let str):
+				result += str
+			case .keyAndValue(let key, let val):
+				result += key + "_" + val.description
+			@unknown default:
+				CNLog(logLevel: .error, message: "Unknown element type")
+			}
+		}
+		return result + "_RecordIF"
+	}
+
 }
 
 

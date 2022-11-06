@@ -21,7 +21,7 @@ func main(arguments args: Array<String>) {
 
 		let srcurl = URL(fileURLWithPath: config.scriptFile)
 		let lconf  = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
-		switch compile(context: ctxt, scriptFile: config.scriptFile, resource: resource, config: config,  console: console) {
+		switch compile(context: ctxt, scriptFile: config.scriptFile, importFiles: config.importFiles, resource: resource, config: config,  console: console) {
 		case .success(let txt):
 			switch config.outputFormat {
 			case .JavaScript:

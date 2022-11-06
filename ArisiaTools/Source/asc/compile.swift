@@ -11,7 +11,7 @@ import KiwiEngine
 import CoconutData
 import Foundation
 
-public func compile(context ctxt: KEContext, scriptFile file: String, resource res: KEResource, config conf: Config, console cons: CNFileConsole) -> Result<CNText, NSError>
+public func compile(context ctxt: KEContext, scriptFile file: String, importFiles imports: Array<String>, resource res: KEResource, config conf: Config, console cons: CNFileConsole) -> Result<CNText, NSError>
 {
 	let procmgr  = CNProcessManager()
 	let terminfo = CNTerminalInfo(width: 80, height: 20)
@@ -27,6 +27,9 @@ public func compile(context ctxt: KEContext, scriptFile file: String, resource r
 	let result = CNTextSection()
 	if conf.outputFormat == .TypeScript {
 		result.add(text: CNTextLine(string: "/// <reference path=\"types/ArisiaComponents.d.ts\" />"))
+		for ifile in imports {
+			result.add(text: CNTextLine(string: "/// <reference path=\"\(ifile)\" />"))
+		}
 		switch conf.declarationFileName() {
 		case .success(let dfile):
 			result.add(text: CNTextLine(string: "/// <reference path=\"types/\(dfile)\" />"))

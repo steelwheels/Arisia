@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05408D4A29172E0B00F12033 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05408D4929172E0B00F12033 /* main.swift */; };
+		05408D6B2917330900F12033 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05408D6A2917330900F12033 /* config.swift */; };
 		05512D3C28E31F4700B82172 /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05512D3B28E31F4700B82172 /* KiwiControls.xcframework */; };
 		05512D3D28E31F4700B82172 /* KiwiControls.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05512D3B28E31F4700B82172 /* KiwiControls.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05512D4728E32B6A00B82172 /* dumper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05512D4628E32B6A00B82172 /* dumper.swift */; };
@@ -38,6 +40,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		05408D5129172E2A00F12033 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05E6E27628C7771C0073FDD8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05408D4629172E0B00F12033;
+			remoteInfo = arecdecl;
+		};
+		05408D65291731E300F12033 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05E6E27628C7771C0073FDD8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05C9C38228C7827B00E57C5D;
+			remoteInfo = Install_Bundle;
+		};
 		05C2BF3728E2A75A0059F938 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05E6E27628C7771C0073FDD8 /* Project object */;
@@ -76,6 +92,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		05408D4529172E0B00F12033 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		05C2BF2A28E2A74A0059F938 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -117,6 +142,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		05408D4729172E0B00F12033 /* arecdecl */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = arecdecl; sourceTree = BUILT_PRODUCTS_DIR; };
+		05408D4929172E0B00F12033 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		05408D6A2917330900F12033 /* config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		05512D3B28E31F4700B82172 /* KiwiControls.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiControls.xcframework; path = ../../../../Library/Frameworks/KiwiControls.xcframework; sourceTree = "<group>"; };
 		05512D4628E32B6A00B82172 /* dumper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dumper.swift; sourceTree = "<group>"; };
 		05A5DB9828CC0280005A6087 /* ArisiaLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ArisiaLibrary.xcframework; path = ../../../../Library/Frameworks/ArisiaLibrary.xcframework; sourceTree = "<group>"; };
@@ -142,6 +170,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		05408D4429172E0B00F12033 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05C2BF2928E2A74A0059F938 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -176,6 +211,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05408D4829172E0B00F12033 /* arecdecl */ = {
+			isa = PBXGroup;
+			children = (
+				05408D4929172E0B00F12033 /* main.swift */,
+				05408D6A2917330900F12033 /* config.swift */,
+			);
+			path = arecdecl;
+			sourceTree = "<group>";
+		};
 		05C2BF3B28E2A7800059F938 /* adecl */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +283,7 @@
 				05E6E27E28C7771C0073FDD8 /* asc */,
 				05C9C34F28C779B500E57C5D /* ArisiaTools.bundle */,
 				05C2BF2C28E2A74A0059F938 /* adecl */,
+				05408D4729172E0B00F12033 /* arecdecl */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -248,6 +293,7 @@
 			children = (
 				05C2BF3B28E2A7800059F938 /* adecl */,
 				05C9C37C28C77E8B00E57C5D /* asc */,
+				05408D4829172E0B00F12033 /* arecdecl */,
 			);
 			name = Source;
 			path = ../Source;
@@ -280,6 +326,7 @@
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = "";
 			dependencies = (
+				05408D5229172E2A00F12033 /* PBXTargetDependency */,
 				05C2BF3828E2A75A0059F938 /* PBXTargetDependency */,
 				05C9C39D28C791B600E57C5D /* PBXTargetDependency */,
 			);
@@ -290,6 +337,24 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
+		05408D4629172E0B00F12033 /* arecdecl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05408D4D29172E0B00F12033 /* Build configuration list for PBXNativeTarget "arecdecl" */;
+			buildPhases = (
+				05408D4329172E0B00F12033 /* Sources */,
+				05408D4429172E0B00F12033 /* Frameworks */,
+				05408D4529172E0B00F12033 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05408D66291731E300F12033 /* PBXTargetDependency */,
+			);
+			name = arecdecl;
+			productName = arecdecl;
+			productReference = 05408D4729172E0B00F12033 /* arecdecl */;
+			productType = "com.apple.product-type.tool";
+		};
 		05C2BF2B28E2A74A0059F938 /* adecl */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05C2BF3228E2A74A0059F938 /* Build configuration list for PBXNativeTarget "adecl" */;
@@ -353,6 +418,9 @@
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					05408D4629172E0B00F12033 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					05C2BF2B28E2A74A0059F938 = {
 						CreatedOnToolsVersion = 12.4;
 					};
@@ -385,9 +453,10 @@
 			targets = (
 				05C9C34E28C779B500E57C5D /* ArisiaToolsBundle */,
 				05C9C38228C7827B00E57C5D /* Install_Bundle */,
+				05C9C39728C791AE00E57C5D /* Install_Tools */,
 				05E6E27D28C7771C0073FDD8 /* asc */,
 				05C2BF2B28E2A74A0059F938 /* adecl */,
-				05C9C39728C791AE00E57C5D /* Install_Tools */,
+				05408D4629172E0B00F12033 /* arecdecl */,
 			);
 		};
 /* End PBXProject section */
@@ -403,6 +472,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		05408D4329172E0B00F12033 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05408D4A29172E0B00F12033 /* main.swift in Sources */,
+				05408D6B2917330900F12033 /* config.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		05C2BF2828E2A74A0059F938 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -435,6 +513,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		05408D5229172E2A00F12033 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05408D4629172E0B00F12033 /* arecdecl */;
+			targetProxy = 05408D5129172E2A00F12033 /* PBXContainerItemProxy */;
+		};
+		05408D66291731E300F12033 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05C9C38228C7827B00E57C5D /* Install_Bundle */;
+			targetProxy = 05408D65291731E300F12033 /* PBXContainerItemProxy */;
+		};
 		05C2BF3828E2A75A0059F938 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05C2BF2B28E2A74A0059F938 /* adecl */;
@@ -463,6 +551,38 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		05408D4B29172E0B00F12033 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				GCC_OPTIMIZATION_LEVEL = 2;
+				INSTALL_PATH = "$(HOME)/tools/bin";
+				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		05408D4C29172E0B00F12033 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				GCC_OPTIMIZATION_LEVEL = 2;
+				INSTALL_PATH = "$(HOME)/tools/bin";
+				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		05C2BF3028E2A74A0059F938 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -471,10 +591,12 @@
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INSTALL_PATH = "$(HOME)/tools/bin";
 				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -487,10 +609,12 @@
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INSTALL_PATH = "$(HOME)/tools/bin";
 				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -701,9 +825,11 @@
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INSTALL_PATH = "$(HOME)/tools/bin";
 				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -715,9 +841,11 @@
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				GCC_OPTIMIZATION_LEVEL = 2;
 				INSTALL_PATH = "$(HOME)/tools/bin";
 				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -725,6 +853,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		05408D4D29172E0B00F12033 /* Build configuration list for PBXNativeTarget "arecdecl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05408D4B29172E0B00F12033 /* Debug */,
+				05408D4C29172E0B00F12033 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		05C2BF3228E2A74A0059F938 /* Build configuration list for PBXNativeTarget "adecl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

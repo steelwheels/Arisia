@@ -19,7 +19,7 @@ install_bundle: dummy
 	  DSTROOT=/ \
 	  ONLY_ACTIVE_ARCH=NO
 
-install_tools: install_asc install_adecl
+install_tools: install_asc install_adecl install_arecdecl
 
 install_asc: dummy
 	xcodebuild install \
@@ -37,6 +37,19 @@ install_asc: dummy
 install_adecl: dummy
 	xcodebuild install \
 	  -scheme adecl \
+	  -project $(PROJECT_NAME).xcodeproj \
+	  -destination="macOSX" \
+	  -configuration Release \
+	  -sdk macosx \
+	  BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+	  INSTALL_PATH=$(BIN_PATH) \
+	  SKIP_INSTALL=NO \
+	  DSTROOT=/ \
+	  ONLY_ACTIVE_ARCH=NO
+
+install_arecdecl: dummy
+	xcodebuild install \
+	  -scheme arecdecl \
 	  -project $(PROJECT_NAME).xcodeproj \
 	  -destination="macOSX" \
 	  -configuration Release \

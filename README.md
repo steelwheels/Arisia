@@ -45,7 +45,9 @@ This software is distributed under [GNU LESSER GENERAL PUBLIC LICENSE Version 2.
 * AooStore: Not released yet
 
 ## Documentations
+* [ArisiaCard](./ArisiaCard/README.md): The implementation of Arisia Platform. 
 * [ArisiaScript](./Document/arisia-lang.md): The language specification of *ArisiaScript*. 
+* [ArisiaTools](./ArisiaTools/README.md): Command line tools for development 
 * [component list](./Document/arisia-components.md): The list of built-in components. It supports GUI and database programming.
 * [Arisia Library](./Document/arisia-library.md): The built-in functions to support Arisia Platform.
 * [Kiwi Standard Library](https://github.com/steelwheels/KiwiScript/blob/master/KiwiLibrary/Document/Library.md): General purpose JavaScript (coded by TypeScript) library.
@@ -53,7 +55,5 @@ This software is distributed under [GNU LESSER GENERAL PUBLIC LICENSE Version 2.
 
 # Related links
 * [Steel Wheels Project](https://github.com/steelwheels): The developper of this product.
-* [ArisiaCard](./ArisiaCard/README.md): The implementation of Arisia Platform. 
-* [ArisiaTools](./ArisiaTools/README.md): Command line tools for development 
 * Arisia: The name of the star in the novel [lensman](https://en.wikipedia.org/wiki/Lensman_series)
 

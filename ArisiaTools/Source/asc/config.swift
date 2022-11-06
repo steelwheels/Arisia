@@ -20,15 +20,18 @@ public class Config
 	}
 
 	private var mScriptFile: 	String
+	private var mImportFiles:	Array<String>
 	private var mOutputFormat:	Format
 	private var mTarget:		KEApplicationType
 
 	public var scriptFile: String		{ get { return mScriptFile	}}
+	public var importFiles: Array<String> 	{ get { return mImportFiles	}}
 	public var outputFormat: Format		{ get { return mOutputFormat	}}
 	public var target: KEApplicationType	{ get { return mTarget		}}
 
-	public init(scriptFile file: String, outputFormat form: Format, target targ: KEApplicationType){
+	public init(scriptFile file: String, importFiles ifiles: Array<String>, outputFormat form: Format, target targ: KEApplicationType){
 		mScriptFile	= file
+		mImportFiles 	= ifiles
 		mOutputFormat	= form
 		mTarget		= targ
 	}
@@ -65,8 +68,9 @@ public class CommandLineParser
 	private enum OptionId: Int {
 		case Help		= 0
 		case Version		= 1
-		case Format		= 2
-		case Target		= 3
+		case Import 		= 2
+		case Format		= 3
+		case Target		= 4
 	}
 
 	private var mConsole:	CNConsole
@@ -84,6 +88,7 @@ public class CommandLineParser
 		"  [options]\n" +
 		"    --format, -f <lang>   : The output format: \"JavaScript\" (default),\n" +
 		"                            \"TypeScript\" or \"TypeDeclaration\"\n" +
+		"    --import, -I <file>   : The .d.ts file to import\n" +
 		"    --target, -t <targ>   : The target design: \"terminal\" (default) or\n" +
 		"                            \"window\"\n" +
 		"    --help, -h            : Print this message\n" +
@@ -108,8 +113,9 @@ public class CommandLineParser
 
 	private func parseOptions(arguments args: Array<CBArgument>) -> Config? {
 		var srcfile: String?		= nil
-		var format: Format		= .JavaScript
-		var target: KEApplicationType	= .terminal
+		var format:  Format		= .JavaScript
+		var imports: Array<String>	= []
+		var target:  KEApplicationType	= .terminal
 		let stream   			= CNArrayStream(source: args)
 		while let arg = stream.get() {
 			if let opt = arg as? CBOptionArgument {
@@ -121,6 +127,14 @@ public class CommandLineParser
 					case .Version:
 						printVersionMessage()
 						return nil
+					case .Import:
+						switch parseImport(values: opt.parameters) {
+						case .success(let files):
+							imports.append(contentsOf: files)
+						case .failure(let err):
+							mConsole.error(string: "[Error] \(err.toString())")
+							return nil
+						}
 					case .Format:
 						if let form = parseFormat(values: opt.parameters) {
 							format = form
@@ -150,7 +164,7 @@ public class CommandLineParser
 			}
 		}
 		if let file = srcfile {
-			return Config(scriptFile: file, outputFormat: format, target: target)
+			return Config(scriptFile: file, importFiles: imports, outputFormat: format, target: target)
 		} else {
 			mConsole.error(string: "[Error] The souce file name is required\n")
 			return nil
@@ -167,6 +181,10 @@ public class CommandLineParser
 				     shortName: nil, longName: "version",
 				     parameterNum: 0, parameterType: .voidType,
 				     helpInfo: "Print version information"),
+			CBOptionType(optionId: OptionId.Import.rawValue,
+				     shortName: "I", longName: "import",
+				     parameterNum: 1, parameterType: .stringType,
+				     helpInfo: "Import .d.ts file"),
 			CBOptionType(optionId: OptionId.Format.rawValue,
 				     shortName: "f", longName: "format",
 				     parameterNum: 1, parameterType: .stringType,
@@ -179,6 +197,21 @@ public class CommandLineParser
 		let config = CBParserConfig(hasSubCommand: false)
 		config.setDefaultOptions(optionTypes: opttypes)
 		return config
+	}
+
+	private func parseImport(values vals: Array<CBValue>) -> Result<Array<String>, NSError> {
+		var result: Array<String> = []
+		for val in vals {
+			switch val {
+			case .stringValue(let str):
+				result.append(str)
+			case .doubleValue(_), .intValue(_):
+				return .failure(NSError.parseError(message: "String parameter is required: \(val.description)"))
+			@unknown default:
+				return .failure(NSError.parseError(message: "Unexpected parameter is required: \(val.description)"))
+			}
+		}
+		return .success(result)
 	}
 
 	private func parseFormat(values vals: Array<CBValue>) -> Format? {

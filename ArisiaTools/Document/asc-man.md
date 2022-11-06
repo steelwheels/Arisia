@@ -15,6 +15,12 @@ The `asc` command is Arisia Script Compiler. It compile [ArisiaScript](https://g
 #### `-h`, `--help`
 Output help message and quit the command.
 
+#### `-I`, `--import` *file-of-*.d.ts*
+Add `.d.ts` file to import. If you give `-I types/A.d.ts` option, the output sript contains:
+````
+/// <reference path="types/A.d.ts" />
+````
+
 #### `--version`
 Output the version information and quit the command.
 
