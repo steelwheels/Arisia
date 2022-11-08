@@ -17,7 +17,6 @@ public enum ALValueIR
 	case array(Array<ALValueIR>)
 	case dictionary(Dictionary<String, ALValueIR>)
 	case enumValue(CNEnumType, String, Int)		// type, member, raw value
-	case record(CNRecord)
 	case initFunction(ALInitFunctionIR)
 	case eventFunction(ALEventFunctionIR)
 	case listnerFunction(ALListnerFunctionIR)
@@ -50,8 +49,6 @@ public enum ALValueIR
 			}
 		case .enumValue(let etype, _, _):
 			result = .enumType(etype)
-		case .record(let rec):
-			result = .recordType(rec.fieldTypes)
 		case .initFunction(let ifunc):
 			result = ifunc.toType(framePath: path)
 		case .eventFunction(let efunc):

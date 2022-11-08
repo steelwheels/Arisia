@@ -103,8 +103,8 @@ public class ALTypeDeclGenerator
 				let result = CNTextSection()
 				for ident in idents {
 					if let strg = res.loadStorage(identifier: ident) {
-						let path   = CNValuePath(identifier: nil, elements: [.member(ident)])
-						let subtxt = generateRecordDeclaration(path: path, rootValue: strg.toValue())
+						let path   = CNValuePath(identifier: nil, elements: [])
+						let subtxt = generateRecordDeclaration(storageName: ident, path: path, rootValue: strg.toValue())
 						if !subtxt.isEmpty() {
 							result.add(text: subtxt)
 						}
@@ -116,7 +116,7 @@ public class ALTypeDeclGenerator
 		return nil
 	}
 
-	private static func generateRecordDeclaration(path pth: CNValuePath, rootValue val: CNValue) -> CNTextSection {
+	private static func generateRecordDeclaration(storageName strg: String, path pth: CNValuePath, rootValue val: CNValue) -> CNTextSection {
 		let result = CNTextSection()
 		switch val {
 		case .boolValue(_), .numberValue(_), .stringValue(_), .enumValue(_), .objectValue(_):
@@ -125,37 +125,26 @@ public class ALTypeDeclGenerator
 		case .arrayValue(let elms):
 			for i in 0..<elms.count {
 				let newpath = CNValuePath(path: pth, subPath: [.index(i)])
-				let newtxt  = generateRecordDeclaration(path: newpath, rootValue: elms[i])
+				let newtxt  = generateRecordDeclaration(storageName: strg, path: newpath, rootValue: elms[i])
 				result.add(text: newtxt)
 			}
 		case .setValue(let elms):
 			for i in 0..<elms.count {
 				let newpath = CNValuePath(path: pth, subPath: [.index(i)])
-				let newtxt  = generateRecordDeclaration(path: newpath, rootValue: elms[i])
+				let newtxt  = generateRecordDeclaration(storageName: strg, path: newpath, rootValue: elms[i])
 				result.add(text: newtxt)
 			}
 		case .dictionaryValue(let dict):
 			if let fields = getDefaultFields(value: dict) {
-				if let subtxt = decodeFields(path: pth, fields: fields) {
+				if let subtxt = decodeFields(storageName: strg, path: pth, fields: fields) {
 					result.add(text: subtxt)
 				}
 			} else {
 				for (key, elm) in dict {
 					let newpath = CNValuePath(path: pth, subPath: [.member(key)])
-					let newtxt  = generateRecordDeclaration(path: newpath, rootValue: elm)
+					let newtxt  = generateRecordDeclaration(storageName: strg, path: newpath, rootValue: elm)
 					result.add(text: newtxt)
 				}
-			}
-		case .recordValue(let rec):
-			var fields: Dictionary<String, CNValue> = [:]
-			let fnames = rec.fieldNames
-			for fname in fnames {
-				if let val = rec.value(ofField: fname) {
-					fields[fname] = val
-				}
-			}
-			if let newtxt = decodeFields(path: pth, fields: fields) {
-				result.add(text: newtxt)
 			}
 		@unknown default:
 			CNLog(logLevel: .error, message: "Unknown value type", atFunction: #function, inFile: #file)
@@ -179,10 +168,10 @@ public class ALTypeDeclGenerator
 		return nil
 	}
 
-	private static func decodeFields(path pth: CNValuePath, fields flds: Dictionary<String, CNValue>) -> CNTextSection? {
-		let ifname = pathToRecordIF(path: pth)
+	private static func decodeFields(storageName strg: String, path pth: CNValuePath, fields flds: Dictionary<String, CNValue>) -> CNTextSection? {
+		let ifname = pathToRecordIF(storageName: strg, path: pth)
 		let ifdecl = CNTextSection()
-		ifdecl.header = "interface \(ifname) {"
+		ifdecl.header = "interface \(ifname) extends RecordIF {"
 		ifdecl.footer = "}"
 
 		for (key, val) in flds {
@@ -193,11 +182,10 @@ public class ALTypeDeclGenerator
 		return ifdecl
 	}
 
-	private static func pathToRecordIF(path pth: CNValuePath) -> String {
-		var result = ""
-		var is1st  = true
+	public static func pathToRecordIF(storageName strg: String, path pth: CNValuePath) -> String {
+		var result = strg
 		for elm in pth.elements {
-			if is1st { is1st = false } else { result += "_" }
+			result += "_"
 			switch elm {
 			case .index(let i):
 				result += "\(i)"

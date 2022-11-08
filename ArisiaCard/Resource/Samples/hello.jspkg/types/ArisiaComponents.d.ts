@@ -805,11 +805,12 @@ interface LabelIF {
 }
 declare function _alloc_Label(): LabelIF ;
 interface TableDataIF {
+  storage: string ;
+  path: string ;
+  index: number ;
   fieldName(): string ;
-  newRecord(): { c0:number;
-  c1:number;
-  c2:number;
-   } ;
+  newRecord: RecordIF ;
+  record: RecordIF | null ;
   frameName: string ;
   value(p0: string): any ;
   setValue(p0: string, p1: any): boolean ;

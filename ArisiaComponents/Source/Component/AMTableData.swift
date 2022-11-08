@@ -22,6 +22,7 @@ public class AMTableData: ALFrame
 	private static let PathItem		= "path"
 	private static let FieldNameItem	= "fieldName"
 	private static let FieldNamesItem	= "fieldNames"
+	private static let IndexItem		= "index"
 	private static let NewRecordItem	= "newRecord"
 	private static let SearchItem		= "search"
 	private static let RecordItem		= "record"
@@ -32,6 +33,7 @@ public class AMTableData: ALFrame
 	private var mFrameCore:		ALFrameCore
 	private var mPath:		ALFramePath
 	private var mTable: 		CNStorageTable?
+	private var mIndex:		Int
 
 	public var core: ALFrameCore { get { return mFrameCore }}
 	public var path: ALFramePath { get { return mPath 	}}
@@ -41,6 +43,7 @@ public class AMTableData: ALFrame
 		mFrameCore	= ALFrameCore(frameName: AMTableData.ClassName, context: ctxt)
 		mPath 		= ALFramePath()
 		mTable		= nil
+		mIndex		= 0
 
 		mFrameCore.owner = self
 	}
@@ -55,6 +58,7 @@ public class AMTableData: ALFrame
 		if let name = stringValue(name: AMTableData.StorageItem) {
 			storagename = name
 		} else {
+			setStringValue(name: AMTableData.StorageItem, value: "<no-storage-name>")
 			storagename = nil
 		}
 
@@ -64,6 +68,7 @@ public class AMTableData: ALFrame
 		if let name = stringValue(name: AMTableData.PathItem) {
 			pathname = name
 		} else {
+			setStringValue(name: AMTableData.PathItem, value: "<no-path-name>")
 			pathname = nil
 		}
 
@@ -75,6 +80,23 @@ public class AMTableData: ALFrame
 			/* Load failed, use dummy table */
 			table   = CNStorageTable.loadDummyTable()
 		}
+
+		/* index */
+		definePropertyType(propertyName: AMTableData.IndexItem, valueType: .numberType)
+		if let idxnum = numberValue(name: AMTableData.IndexItem) {
+			mIndex = idxnum.intValue
+		} else {
+			setNumberValue(name: AMTableData.IndexItem, value: NSNumber(integerLiteral: mIndex))
+		}
+		addObserver(propertyName: AMTableData.IndexItem, listnerFunction: {
+			(_ param: JSValue) -> Void in
+			if let num = param.toNumber() {
+				self.mIndex = num.intValue
+				self.updateRecordValue(table: table)
+			} else {
+				CNLog(logLevel: .error, message: "Invalid type for new index")
+			}
+		})
 
 		/* count (set and updated in updateTablePropeties()) */
 		definePropertyType(propertyName: AMTableData.CountItem, valueType: .numberType)
@@ -104,7 +126,8 @@ public class AMTableData: ALFrame
 		}
 
 		/* newRecord(): KLRecord */
-		definePropertyType(propertyName: AMTableData.NewRecordItem, valueType: .functionType(.recordType(table.defaultTypes), []))
+		let recif = recordIF(storageName: storagename, pathName: pathname)
+		definePropertyType(propertyName: AMTableData.NewRecordItem, valueType: .interfaceType(recif))
 		let newrecfunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
 			let nrec   = table.newRecord()
@@ -121,8 +144,12 @@ public class AMTableData: ALFrame
 			CNLog(logLevel: .error, message: "Failed to allocate function", atFunction: #function, inFile: #file)
 		}
 
+		/* record: KLRecord (read only) */
+		definePropertyType(propertyName: AMTableData.RecordItem, valueType: .interfaceType("\(recif) | null"))
+
 		/* Update read-only properties */
 		updateTablePropeties()
+		updateRecordValue(table: table)
 
 		/* default properties */
 		self.setupDefaultProperties()
@@ -148,8 +175,35 @@ public class AMTableData: ALFrame
 				return nil
 			}
 		} else {
-			CNLog(logLevel: .error, message: "Failed to load tabale for TableData component: \(AMTableData.StorageItem) = \(sname), \(AMTableData.PathItem) = \(pname)")
+			CNLog(logLevel: .error, message: "Failed to load table for TableData component: \(AMTableData.StorageItem) = \(sname), \(AMTableData.PathItem) = \(pname)")
 			return nil
+		}
+	}
+
+	private func recordIF(storageName snamep: String?, pathName pnamep: String?) -> String {
+		let UnknownIF = "RecordIF"
+		guard let sname = snamep, let pname = pnamep else {
+			return UnknownIF
+		}
+		switch CNValuePath.pathExpression(string: pname) {
+		case .success(let path):
+			return ALTypeDeclGenerator.pathToRecordIF(storageName: sname, path: path)
+		case .failure(let err):
+			CNLog(logLevel: .error, message: "\(err.toString())", atFunction: #function, inFile: #file)
+			return UnknownIF
+		}
+	}
+
+	private func updateRecordValue(table tbl: CNStorageTable) {
+		if let rec = tbl.record(at: mIndex) {
+			let recobj = KLRecord(record: rec, context: self.core.context)
+			if let val = KLRecord.allocate(record: recobj) {
+				setObjectValue(name: AMTableData.RecordItem, value: val)
+			} else {
+				setValue(name: AMTableData.RecordItem, value: JSValue(nullIn: self.core.context))
+			}
+		} else {
+			setValue(name: AMTableData.RecordItem, value: JSValue(nullIn: self.core.context))
 		}
 	}
 

@@ -237,13 +237,6 @@ public class ALScriptTranspiler
 			}
 		case .enumValue(let etype, let name, _):
 			result = "\(etype.typeName).\(name)"
-		case .record(let rec):
-			switch recordToScript(record: rec, language: lang) {
-			case .success(let text):
-				result = text
-			case .failure(let err):
-				return .failure(err)
-			}
 		case .initFunction(let ifunc):
 			result = ifunc.toScript(language: lang)
 		case .eventFunction(let efunc):
@@ -296,22 +289,6 @@ public class ALScriptTranspiler
 				case .failure(let err):
 					return .failure(err)
 				}
-			}
-		}
-		dstr += "}"
-		return .success(dstr)
-	}
-
-	private func recordToScript(record rec: CNRecord, language lang: ALLanguage) -> Result<String, NSError>  {
-		var dstr: String = "{"
-		dstr += "}"
-		let names = rec.fieldNames
-		var is1st = true
-		for name in names {
-			if let val = rec.value(ofField: name) {
-				if is1st { is1st = false } else { dstr += ", "}
-				let valtxt = val.toScript()
-				dstr += name + ":" + valtxt.toStrings().joined(separator: "\n")
 			}
 		}
 		dstr += "}"

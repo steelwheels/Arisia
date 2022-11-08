@@ -472,8 +472,6 @@ public class ALParser
 			}
 		case .setType(_):
 			return .failure(parseError(message: "You can not declare set type", stream: strm))
-		case .recordType(_):
-			return .failure(parseError(message: "You can not declare record type", stream: strm))
 		case .dictionaryType(let elmtype):
 			switch parseDictionaryValue(elementType: elmtype, stream: strm, sourceFile: srcfile) {
 			case .success(let elms):
@@ -488,7 +486,7 @@ public class ALParser
 			case .failure(let err):
 				return .failure(err)
 			}
-		case .functionType(_, _):
+		case .functionType(_, _), .interfaceType(_):
 			return .failure(parseError(message: "Unsupported type", stream: strm))
 		@unknown default:
 			return .failure(parseError(message: "Unsupported type", stream: strm))

@@ -1,5 +1,5 @@
 #
-#
+# Makefile
 #
 
 include ../../Makefile.inc
@@ -11,8 +11,8 @@ src_ts   = main.ts
 src_as	 = table.as
 
 dst_ts   = $(src_as:.as=.ts)
-dst_js   = $(src_ts:.ts=.js)
-dst_rec  = ./types/record.d.ts
+dst_js   = $(src_ts:.ts=.js) $(dst_ts:.ts=.js)
+dst_rec  = types/record.d.ts
 dst_base = ./types/ArisiaComponents.d.ts
 
 asc_opt += --import $(dst_rec)

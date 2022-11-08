@@ -19,5 +19,5 @@ asc_opt   =
 %.ts: %.as
 	$(asc_cmd) --target window -f TypeDeclaration $(asc_opt) $<
 	mv $(<:.as=-if.d.ts) types/
-	$(asc_cmd) --target window -f TypeScript $<
+	$(asc_cmd) --target window -f TypeScript $(asc_opt) $<
 
