@@ -40,12 +40,17 @@ public class AMLabel: KCTextEdit, ALFrame
 		fatalError("Not supported")
 	}
 
-	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
+	public func defineProperties(path pth: ALFramePath) {
 		/* Set path of this frame */
 		mPath = pth
-		
-		/* text */
+
 		definePropertyType(propertyName: AMLabel.TextItem, valueType: .stringType)
+		definePropertyType(propertyName: AMLabel.NumberItem, valueType: .numberType)
+		self.defineDefaultProperties()
+	}
+
+	public func connectProperties(resource res: KEResource, console cons: CNConsole) -> NSError? {
+		/* text */
 		if let str = stringValue(name: AMLabel.TextItem) {
 			self.text = str
 		} else {
@@ -61,7 +66,6 @@ public class AMLabel: KCTextEdit, ALFrame
 		})
 
 		/* number */
-		definePropertyType(propertyName: AMLabel.NumberItem, valueType: .numberType)
 		if let num = numberValue(name: AMLabel.NumberItem) {
 			self.number = num
 		} else {
@@ -78,7 +82,7 @@ public class AMLabel: KCTextEdit, ALFrame
 		})
 
 		/* default properties */
-		self.setupDefaultProperties()
+		self.connectDefaultProperties()
 		
 		return nil // noError
 	}

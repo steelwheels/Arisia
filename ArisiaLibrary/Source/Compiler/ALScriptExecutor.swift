@@ -50,7 +50,8 @@ public class ALScriptExecutor
 		}
 		/* setup the frame */
 		let newpath = ALFramePath(path: pth, instanceName: iname, frameName: frm.frameName)
-		if let err = frm.setup(path: newpath, resource: res, console: cons) {
+		frm.defineProperties(path: newpath)
+		if let err = frm.connectProperties(resource: res, console: cons) {
 			CNLog(logLevel: .error, message: err.toString())
 		}
 	}

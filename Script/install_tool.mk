@@ -4,7 +4,7 @@ BUNDLE_PATH	= $(HOME)/tools/bundles
 BIN_PATH	= $(HOME)/tools/bin
 
 all: dummy
-	echo "usage: make install_bundle or make install_tool"
+	echo "usage: make install_bundle or make install_tools"
 
 install_bundle: dummy
 	xcodebuild install \

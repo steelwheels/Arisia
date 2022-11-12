@@ -1,7 +1,7 @@
 {
   application: "main.js"
   subviews: {
-	table: "table.amb"
+	table: "table.js"
   }
   storages: {
     storage: "storage.json"

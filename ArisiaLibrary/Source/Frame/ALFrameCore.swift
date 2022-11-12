@@ -62,7 +62,6 @@ import Foundation
 
 	public var propertyNames: JSValue { get {
 		return JSValue(object: mPropertyNames, in: mContext)
-
 	}}
 
 	public func value(_ name: JSValue) -> JSValue {
@@ -115,14 +114,19 @@ import Foundation
 	public func definePropertyType(propertyName pname: String, typeCode tcode: String) {
 		switch CNValueType.decode(code: tcode) {
 		case .success(let vtype):
-			mPropertyTypes[pname] = vtype
+			definePropertyType(propertyName: pname, valueType: vtype)
 		case .failure(let err):
 			CNLog(logLevel: .error, message: err.toString())
 		}
 	}
 
-	public func definePropertyType(propertyName pname: String, valueType vtype: CNValueType) {
-		mPropertyTypes[pname] = vtype
+	public func definePropertyType(propertyName nm: String, valueType vtype: CNValueType) {
+		if let _ = mPropertyNames.firstIndex(where: { $0 == nm }) {
+			/* Already defined */
+		} else {
+			mPropertyNames.append(nm)
+		}
+		mPropertyTypes[nm] = vtype
 	}
 
 	public func propertyType(propertyName pname: String) -> CNValueType? {

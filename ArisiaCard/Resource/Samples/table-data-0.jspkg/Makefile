@@ -29,7 +29,9 @@ type_dir: dummy
 	mkdir -p types
 
 $(dst_rec): dummy
-	$(ares_cmd) ../table-data-0.jspkg > $(dst_rec)
+	if [ -x $(ares_cmd) ] ; then \
+	    $(ares_cmd) ../table-data-0.jspkg > $(dst_rec) ; \
+	fi
 
 $(dst_base): $(src_base)
 	cp $< $@

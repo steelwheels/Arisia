@@ -13,8 +13,9 @@ public protocol ALFrame
 {
 	var core: ALFrameCore { get }
 	var path: ALFramePath { get }
-	
-	func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError?
+
+	func defineProperties(path pth: ALFramePath)
+	func connectProperties(resource res: KEResource, console cons: CNConsole) -> NSError?
 }
 
 private let FrameNameItem	= "frameName"
@@ -178,13 +179,21 @@ public extension ALFrame
 		})
 	}
 
-	func setupDefaultProperties() {
-		/* frameName */
+	func defineDefaultProperties() {
 		definePropertyType(propertyName: FrameNameItem, valueType: .stringType)
+		definePropertyType(propertyName: ValueItem, valueType: .functionType(.anyType, [.stringType]))
+		definePropertyType(propertyName: SetValueItem, valueType: .functionType(.boolType, [.stringType, .anyType]))
+		definePropertyType(propertyName: PropertyNamesItem, valueType: .arrayType(.stringType))
+		definePropertyType(propertyName: DefinePropertyType, valueType: .functionType(.voidType, [.stringType, .stringType]))
+		let cbtype: CNValueType = .functionType(.voidType, [])
+		definePropertyType(propertyName: AddObserverItem, valueType: .functionType(.voidType, [.stringType, cbtype]))
+	}
+
+	func connectDefaultProperties() {
+		/* frameName */
 		setStringValue(name: FrameNameItem, value: self.frameName)
 
 		/* value(name: string) */
-		definePropertyType(propertyName: ValueItem, valueType: .functionType(.anyType, [.stringType]))
 		let valuefunc: @convention(block) (_ name: JSValue) -> JSValue = {
 			(_ name: JSValue) -> JSValue in
 			let retval = core.value(name)
@@ -197,7 +206,6 @@ public extension ALFrame
 		}
 
 		/* setValue(name: string, value: any) */
-		definePropertyType(propertyName: SetValueItem, valueType: .functionType(.boolType, [.stringType, .anyType]))
 		let setvaluefunc: @convention(block) (_ name: JSValue, _ srcval: JSValue) -> JSValue = {
 			(_ name: JSValue, _ srcval: JSValue) -> JSValue in
 			return core.setValue(name, srcval)
@@ -209,11 +217,9 @@ public extension ALFrame
 		}
 
 		/* Property names: string[] */
-		definePropertyType(propertyName: PropertyNamesItem, valueType: .arrayType(.stringType))
 		setArrayValue(name: PropertyNamesItem, value: propertyNames)
 
 		/* Property name: definePropertyType(propertyName pname: String, typeCode tcode: String) */
-		definePropertyType(propertyName: DefinePropertyType, valueType: .functionType(.voidType, [.stringType, .stringType]))
 		let defpropfunc: @convention(block) (_ name: JSValue, _ tcode: JSValue) -> JSValue = {
 			(_ name: JSValue, _ tcode: JSValue) -> JSValue in
 			core.definePropertyType(name, tcode)
@@ -226,8 +232,6 @@ public extension ALFrame
 		}
 
 		/* Property name: addObserver(property: string, cbfunc: ():void) */
-		let cbtype: CNValueType = .functionType(.voidType, [])
-		definePropertyType(propertyName: AddObserverItem, valueType: .functionType(.voidType, [.stringType, cbtype]))
 		let addobsfunc: @convention(block) (_ name: JSValue, _ cbfunc: JSValue) -> JSValue = {
 			(_ name: JSValue, _ cbfunc: JSValue) -> JSValue in
 			core.addObserver(name, cbfunc)
@@ -259,9 +263,13 @@ public extension ALFrame
 		mFrameCore.owner = self
 	}
 
-	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
+	public func defineProperties(path pth: ALFramePath) {
 		mPath = pth
-		self.setupDefaultProperties()
+		self.defineDefaultProperties()
+	}
+
+	public func connectProperties(resource res: KEResource, console cons: CNConsole) -> NSError? {
+		self.connectDefaultProperties()
 		return nil
 	}
 }

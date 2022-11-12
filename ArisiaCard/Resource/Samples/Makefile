@@ -4,7 +4,9 @@
 
 all:
 	(cd hello.jspkg && make)
+	(cd table-data-0.jspkg && make)
 
 clean:
 	(cd hello.jspkg && make clean)
+	(cd table-data-0.jspkg && make clean)
 

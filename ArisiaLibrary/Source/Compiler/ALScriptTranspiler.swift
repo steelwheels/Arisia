@@ -5,7 +5,9 @@
  *   Copyright (C) 2022 Steel Wheels Project
  */
 
+import KiwiEngine
 import CoconutData
+import JavaScriptCore
 import Foundation
 
 public class ALScriptTranspiler
@@ -124,15 +126,34 @@ public class ALScriptTranspiler
 		let line = CNTextLine(string: "let \(inst) = \(funcname)() \(asname) ;")
 		result.add(text: line)
 
+		/* HAMA */
+		let fpath   = ALFramePath(path: pth, instanceName: inst, frameName: frm.className)
+		let context = KEContext(virtualMachine: JSVirtualMachine())
+		guard let frmobj  = allocator.allocFuncBody(context) else {
+			return .failure(NSError.parseError(message: "Failed to allocate: \(frm.className)"))
+		}
+		frmobj.defineProperties(path: fpath)
+
+		/* Collect property types */
+		var ptypes: Dictionary<String, CNValueType> = [:]
+		for prop in frm.properties {
+			ptypes[prop.name] = prop.type
+		}
+		for pname in frmobj.propertyNames {
+			if let ptype = ptypes[pname] {
+				ptypes[pname] = ptype
+			}
+		}
+
 		/* Define type for all properties*/
-		let dttxt = definePropertyTypes(instanceName: inst, frame: frm)
+		let dttxt = definePropertyTypes(instanceName: inst, propertyTypes: ptypes)
 		if !dttxt.isEmpty() {
 			result.add(text: CNTextLine(string: "/* define type for all properties */"))
 			result.add(text: dttxt)
 		}
 
 		/* Define getter/setter for all properties */
-		let gstxt = definePropertyNames(instanceName: inst, frame: frm)
+		let gstxt = definePropertyNames(instanceName: inst, propertyTypes: ptypes)
 		if !gstxt.isEmpty() {
 			result.add(text: CNTextLine(string: "/* define getter/setter for all properties */"))
 			result.add(text: gstxt)
@@ -172,29 +193,28 @@ public class ALScriptTranspiler
 	/*
 	 * Call "definePropertyType" methods for each properties in the frame.
 	 */
-	private func definePropertyTypes(instanceName inst: String, frame frm: ALFrameIR) -> CNTextSection {
+	private func definePropertyTypes(instanceName inst: String, propertyTypes ptypes: Dictionary<String, CNValueType>) -> CNTextSection {
 		let result = CNTextSection()
-		for prop in frm.properties {
-			let ptype: CNValueType
-			switch prop.value {
-			case .listnerFunction(let lfunc):
-				/* Use return type instead of the listner function itself */
-				ptype = lfunc.returnType
-			default:
-				ptype = prop.type
+		for pname in ptypes.keys.sorted() {
+			if let ptype = ptypes[pname] {
+				/*
+				let type: CNValueType
+				switch ptype {
+				case .functionType(let rettype, _):
+					type = rettype
+				default:
+					type = ptype
+				}*/
+				let typestr = CNValueType.encode(valueType: ptype)
+				let line    = CNTextLine(string: "\(inst).definePropertyType(\"\(pname)\", \"\(typestr)\") ;")
+				result.add(text: line)
 			}
-			let typestr = CNValueType.encode(valueType: ptype)
-			let line    = CNTextLine(string: "\(inst).definePropertyType(\"\(prop.name)\", \"\(typestr)\") ;")
-			result.add(text: line)
 		}
 		return result
 	}
 
-	private func definePropertyNames(instanceName inst: String, frame frm: ALFrameIR) -> CNTextLine {
-		var usernames: Array<String> = []
-		for pname in frm.propertyNames {
-			usernames.append(pname)
-		}
+	private func definePropertyNames(instanceName inst: String, propertyTypes ptypes: Dictionary<String, CNValueType>) -> CNTextLine {
+		let usernames = ptypes.keys.sorted()
 		let propnames = usernames.map { "\"" + $0 + "\"" }
 		let userdecls = "[" + propnames.joined(separator: ",") + "]"
 		let line = CNTextLine(string: "_definePropertyIF(\(inst), \(userdecls)) ;")

@@ -44,12 +44,18 @@ public class AMButton: KCButton, ALFrame
 		fatalError("Not supported")
 	}
 
-	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
+	public func defineProperties(path pth: ALFramePath) {
 		/* Set path of this frame */
 		mPath = pth
 
-		/* "pressed" event */
 		definePropertyType(propertyName: AMButton.PressedItem, valueType: .functionType(.voidType, [ path.selfType ]))
+		definePropertyType(propertyName: AMButton.IsEnabledItem, valueType: .boolType)
+		definePropertyType(propertyName: AMButton.TitleItem, valueType: .stringType)
+		self.defineDefaultProperties()
+	}
+
+	public func connectProperties(resource res: KEResource, console cons: CNConsole) -> NSError? {
+		/* "pressed" event */
 		if self.value(name: AMButton.PressedItem) == nil {
 			self.setValue(name: AMButton.PressedItem, value: JSValue(nullIn: core.context))
 		}
@@ -65,7 +71,6 @@ public class AMButton: KCButton, ALFrame
 		}
 
 		/* isEnabled property */
-		definePropertyType(propertyName: AMButton.IsEnabledItem, valueType: .boolType)
 		if let enable = booleanValue(name: AMButton.IsEnabledItem) {
 			CNExecuteInMainThread(doSync: false, execute: {
 				self.isEnabled = enable
@@ -83,7 +88,6 @@ public class AMButton: KCButton, ALFrame
 		})
 
 		/* title property */
-		definePropertyType(propertyName: AMButton.TitleItem, valueType: .stringType)
 		if let str = stringValue(name: AMButton.TitleItem) {
 			CNExecuteInMainThread(doSync: false, execute: {
 				self.value = self.stringToValue(string: str)
@@ -102,7 +106,7 @@ public class AMButton: KCButton, ALFrame
 		})
 
 		/* default properties */
-		self.setupDefaultProperties()
+		self.connectDefaultProperties()
 		
 		return nil
 	}

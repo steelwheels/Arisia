@@ -2,13 +2,11 @@
   table: TableData {
     storage: string "storage"
     path:    string "root"
-//     l_rcoount: Listner(count: self.recordCount) %{
-//       console.log("recordCount: " + self.recordCount) ;
-//     %}
-//     l_fnames: Listner(fnames: self.fieldNames) %{
-//       console.log("field-names: " + self.fieldNames) ;
-//     %}
+    index:   number 0
   }
+  init0: init %{
+	console.print("index: " + root.table.index + "\n") ;
+  %}
   quit_button: Button {
     title: string "Quit"
     pressed: event() %{

@@ -61,6 +61,8 @@ public class ALTypeDeclGenerator
 					decl = pname + ": " + vtype.toTypeDeclaration() + " ;"
 				}
 				ifdecl.add(text: CNTextLine(string: decl))
+			} else {
+				CNLog(logLevel: .error, message: "The property \"\(pname)\" has no type")
 			}
 		}
 		return ifdecl

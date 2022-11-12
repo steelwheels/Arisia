@@ -45,10 +45,17 @@ public class AMBox: KCStackView, ALFrame
 		fatalError("Not supported")
 	}
 
-	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
+	public func defineProperties(path pth: ALFramePath) {
 		/* Set path of this frame */
 		mPath = pth
 
+		definePropertyType(propertyName: AMBox.AxisItem, enumTypeName: "Axis")
+		definePropertyType(propertyName: AMBox.AlignmentItem, enumTypeName: "Alignment")
+		definePropertyType(propertyName: AMBox.DistributionItem, enumTypeName: "Distribution")
+		self.defineDefaultProperties()
+	}
+
+	public func connectProperties(resource res: KEResource, console cons: CNConsole) -> NSError? {
 		/* Link with child frames */
 		for pname in self.propertyNames {
 			if let core = self.objectValue(name: pname) as? ALFrameCore {
@@ -59,7 +66,6 @@ public class AMBox: KCStackView, ALFrame
 		}
 
 		/* Axis */
-		definePropertyType(propertyName: AMBox.AxisItem, enumTypeName: "Axis")
 		if let num = numberValue(name: AMBox.AxisItem) {
 			if let newaxis = CNAxis(rawValue: num.intValue) {
 				CNExecuteInMainThread(doSync: false, execute: {
@@ -85,7 +91,6 @@ public class AMBox: KCStackView, ALFrame
 		})
 
 		/* Alignment */
-		definePropertyType(propertyName: AMBox.AlignmentItem, enumTypeName: "Alignment")
 		if let num = numberValue(name: AMBox.AlignmentItem) {
 			if let newalignment = CNAlignment(rawValue: num.intValue) {
 				CNExecuteInMainThread(doSync: false, execute: {
@@ -111,7 +116,6 @@ public class AMBox: KCStackView, ALFrame
 		})
 
 		/* Distribution */
-		definePropertyType(propertyName: AMBox.DistributionItem, enumTypeName: "Distribution")
 		if let num = numberValue(name: AMBox.DistributionItem) {
 			if let newdistribution = CNDistribution(rawValue: num.intValue) {
 				CNExecuteInMainThread(doSync: false, execute: {
@@ -137,7 +141,7 @@ public class AMBox: KCStackView, ALFrame
 		})
 
 		/* default properties */
-		self.setupDefaultProperties()
+		self.connectDefaultProperties()
 		
 		return nil
 	}

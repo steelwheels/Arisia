@@ -22,7 +22,8 @@ public func dump(className cname: String, context ctxt: KEContext, resource res:
 		return false
 	}
 	let path = ALFramePath(path: [], instanceName: "", frameName: frame.frameName)
-	if let err = frame.setup(path: path, resource: res, console: cons) {
+	frame.defineProperties(path: path)
+	if let err = frame.connectProperties(resource: res, console: cons) {
 		cons.error(string: err.toString() + "\n")
 		return false
 	}

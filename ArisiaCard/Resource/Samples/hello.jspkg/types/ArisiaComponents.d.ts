@@ -808,6 +808,8 @@ interface TableDataIF {
   storage: string ;
   path: string ;
   index: number ;
+  count: number ;
+  fieldNames: string[] ;
   fieldName(): string ;
   newRecord: RecordIF ;
   record: RecordIF | null ;

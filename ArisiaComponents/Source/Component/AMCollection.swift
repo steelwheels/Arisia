@@ -45,12 +45,19 @@ public class AMCollection: KCCollectionView, ALFrame
 		fatalError("Not supported")
 	}
 
-	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
+	public func defineProperties(path pth: ALFramePath) {
 		/* Set path of this frame */
 		mPath = pth
 
-		/* columnNumber */
 		definePropertyType(propertyName: AMCollection.ColumnNumberItem, valueType: .numberType)
+		definePropertyType(propertyName: AMCollection.TotalNumberItem, valueType: .functionType(.numberType, []))
+		definePropertyType(propertyName: AMCollection.CollectionItem, valueType: .arrayType(.stringType))
+		definePropertyType(propertyName: AMCollection.PressedItem, valueType: .functionType(.voidType, [ path.selfType, .numberType, .numberType ]))
+		self.defineDefaultProperties()
+	}
+
+	public func connectProperties(resource res: KEResource, console cons: CNConsole) -> NSError? {
+		/* columnNumber */
 		if let colnum = numberValue(name: AMCollection.ColumnNumberItem) {
 			CNExecuteInMainThread(doSync: false, execute: {
 				self.numberOfColumuns = colnum.intValue
@@ -69,7 +76,6 @@ public class AMCollection: KCCollectionView, ALFrame
 		})
 
 		/* totalNumber() */
-		definePropertyType(propertyName: AMCollection.TotalNumberItem, valueType: .functionType(.numberType, []))
 		let totalfunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
 			let num = self.numberOfItems(inSection: 0) ?? 0
@@ -82,7 +88,6 @@ public class AMCollection: KCCollectionView, ALFrame
 		}
 
 		/* collection */
-		definePropertyType(propertyName: AMCollection.CollectionItem, valueType: .arrayType(.stringType))
 		if let cols = arrayValue(name: AMCollection.CollectionItem) as? Array<String> {
 			setCollections(collections: cols, resource: res, console: cons)
 		} else {
@@ -99,7 +104,6 @@ public class AMCollection: KCCollectionView, ALFrame
 		})
 
 		/* pressed event */
-		definePropertyType(propertyName: AMCollection.PressedItem, valueType: .functionType(.voidType, [ path.selfType, .numberType, .numberType ]))
 		if self.value(name: AMCollection.PressedItem) == nil {
 			/* pressed event is not implemented */
 			self.setValue(name: AMCollection.PressedItem, value: JSValue(nullIn: self.mContext))
@@ -119,7 +123,7 @@ public class AMCollection: KCCollectionView, ALFrame
 		})
 
 		/* default properties */
-		self.setupDefaultProperties()
+		self.connectDefaultProperties()
 		
 		return nil
 	}

@@ -48,12 +48,24 @@ public class AMTableData: ALFrame
 		mFrameCore.owner = self
 	}
 
-	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
+	public func defineProperties(path pth: ALFramePath) {
+		let recif = "RecordIF"
+
 		/* Set path of this frame */
 		mPath = pth
-
-		/* storage */
 		definePropertyType(propertyName: AMTableData.StorageItem, valueType: .stringType)
+		definePropertyType(propertyName: AMTableData.PathItem, valueType: .stringType)
+		definePropertyType(propertyName: AMTableData.IndexItem, valueType: .numberType)
+		definePropertyType(propertyName: AMTableData.CountItem, valueType: .numberType)
+		definePropertyType(propertyName: AMTableData.FieldNamesItem, valueType: .arrayType(.stringType))
+		definePropertyType(propertyName: AMTableData.FieldNameItem, valueType: .functionType(.stringType, []))
+		definePropertyType(propertyName: AMTableData.NewRecordItem, valueType: .interfaceType(recif))
+		definePropertyType(propertyName: AMTableData.RecordItem, valueType: .interfaceType("\(recif) | null"))
+		self.defineDefaultProperties()
+	}
+
+	public func connectProperties(resource res: KEResource, console cons: CNConsole) -> NSError? {
+		/* storage */
 		let storagename: String?
 		if let name = stringValue(name: AMTableData.StorageItem) {
 			storagename = name
@@ -63,7 +75,6 @@ public class AMTableData: ALFrame
 		}
 
 		/* path */
-		definePropertyType(propertyName: AMTableData.PathItem, valueType: .stringType)
 		let pathname: String?
 		if let name = stringValue(name: AMTableData.PathItem) {
 			pathname = name
@@ -82,7 +93,6 @@ public class AMTableData: ALFrame
 		}
 
 		/* index */
-		definePropertyType(propertyName: AMTableData.IndexItem, valueType: .numberType)
 		if let idxnum = numberValue(name: AMTableData.IndexItem) {
 			mIndex = idxnum.intValue
 		} else {
@@ -98,14 +108,7 @@ public class AMTableData: ALFrame
 			}
 		})
 
-		/* count (set and updated in updateTablePropeties()) */
-		definePropertyType(propertyName: AMTableData.CountItem, valueType: .numberType)
-
-		/* fieldNames (set and updated in updateTablePropeties()) */
-		definePropertyType(propertyName: AMTableData.FieldNamesItem, valueType: .arrayType(.stringType))
-
 		/* fieldName(index: number): string */
-		definePropertyType(propertyName: AMTableData.FieldNameItem, valueType: .functionType(.stringType, []))
 		let fnamefunc: @convention(block) (_ idxval: JSValue) -> JSValue = {
 			(_ idxval: JSValue) -> JSValue in
 			if idxval.isNumber {
@@ -152,7 +155,7 @@ public class AMTableData: ALFrame
 		updateRecordValue(table: table)
 
 		/* default properties */
-		self.setupDefaultProperties()
+		self.connectDefaultProperties()
 		
 		return nil
 	}
