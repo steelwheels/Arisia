@@ -269,11 +269,9 @@
 		05B953B22913EEED00E6EC3C /* window.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = window.js; sourceTree = "<group>"; };
 		05B953B32913EEED00E6EC3C /* window.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = window.ts; sourceTree = "<group>"; };
 		05BB07F228E723BA00265AC9 /* Builtin.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Builtin.d.ts; sourceTree = "<group>"; };
-		05BB07F328E723BA00265AC9 /* Button.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Button.d.ts; sourceTree = "<group>"; };
 		05BB07F428E723BA00265AC9 /* Frame.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Frame.d.ts; sourceTree = "<group>"; };
 		05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ArisiaComponents.d.ts; sourceTree = "<group>"; };
 		05BB07F728E723BA00265AC9 /* ArisiaLibrary.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ArisiaLibrary.d.ts; sourceTree = "<group>"; };
-		05BB07F828E723BA00265AC9 /* Box.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Box.d.ts; sourceTree = "<group>"; };
 		05CAC86728DD8C6B001C9EF1 /* UnitTest_macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTest_macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05CAC86928DD8C6B001C9EF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05CAC86B28DD8C6B001C9EF1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -489,9 +487,7 @@
 				05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */,
 				05BB07F728E723BA00265AC9 /* ArisiaLibrary.d.ts */,
 				05BB07F228E723BA00265AC9 /* Builtin.d.ts */,
-				05BB07F328E723BA00265AC9 /* Button.d.ts */,
 				05BB07F428E723BA00265AC9 /* Frame.d.ts */,
-				05BB07F828E723BA00265AC9 /* Box.d.ts */,
 			);
 			path = types;
 			sourceTree = "<group>";

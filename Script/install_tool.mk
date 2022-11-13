@@ -60,5 +60,8 @@ install_ares: dummy
 	  DSTROOT=/ \
 	  ONLY_ACTIVE_ARCH=NO
 
+install_decls: dummy
+	(cd ../Resource && make)
+
 dummy:
 

@@ -1,34 +1,28 @@
-interface root_BoxIF {
-  label: root_label_LabelIF ;
-  ok_button: root_ok_button_ButtonIF ;
-  axis: Axis ;
-  alignment: Alignment ;
-  distribution: Distribution ;
-  frameName: string ;
-  value(p0: string): any ;
-  setValue(p0: string, p1: any): boolean ;
-  propertyNames: string[] ;
-  definePropertyType(p0: string, p1: string): void ;
+interface root_FrameIF {
   addObserver(p0: string, p1: () => void): void ;
+  frameName: string ;
+  label: labelIF ;
+  ok_button: ok_buttonIF ;
+  propertyNames: string[] ;
+  setValue(p0: string, p1: any): boolean ;
+  value(p0: string): any ;
 }
 interface root_label_LabelIF {
-  text: string ;
-  number: number ;
-  frameName: string ;
-  value(p0: string): any ;
-  setValue(p0: string, p1: any): boolean ;
-  propertyNames: string[] ;
-  definePropertyType(p0: string, p1: string): void ;
   addObserver(p0: string, p1: () => void): void ;
+  frameName: string ;
+  number: number ;
+  propertyNames: string[] ;
+  setValue(p0: string, p1: any): boolean ;
+  text: string ;
+  value(p0: string): any ;
 }
 interface root_ok_button_ButtonIF {
-  title: string ;
-  pressed(p0: root_ok_button_ButtonIF): void ;
-  isEnabled: boolean ;
-  frameName: string ;
-  value(p0: string): any ;
-  setValue(p0: string, p1: any): boolean ;
-  propertyNames: string[] ;
-  definePropertyType(p0: string, p1: string): void ;
   addObserver(p0: string, p1: () => void): void ;
+  frameName: string ;
+  isEnabled: boolean ;
+  pressed(p0: <i>_<f>IF): void ;
+  propertyNames: string[] ;
+  setValue(p0: string, p1: any): boolean ;
+  title: string ;
+  value(p0: string): any ;
 }

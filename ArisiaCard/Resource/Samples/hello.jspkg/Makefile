@@ -9,13 +9,13 @@ src_as		= hello.as
 src_type_dir	= ../../Library/types
 
 dsts = $(src_ts:.ts=.js) $(src_as:.as=.ts) $(src_as:.as=.js)
-dst_type	= ./types/ArisiaComponents.d.ts
+dst_type	= ./types/ArisiaPlatform.d.ts
 
 all: types $(dsts)
 
 types: $(dst_type)
 
-$(dst_type): $(src_type_dir)/ArisiaComponents.d.ts
+$(dst_type): $(src_type_dir)/ArisiaPlatform.d.ts
 	cp $< $@
 
 clean:

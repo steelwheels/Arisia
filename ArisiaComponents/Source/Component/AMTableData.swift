@@ -48,23 +48,28 @@ public class AMTableData: ALFrame
 		mFrameCore.owner = self
 	}
 
-	public func defineProperties(path pth: ALFramePath) {
+	static public var propertyTypes: Dictionary<String, CNValueType> { get {
 		let recif = "RecordIF"
+		let result: Dictionary<String, CNValueType> = [
+			AMTableData.StorageItem:	.stringType,
+			AMTableData.PathItem:		.stringType,
+			AMTableData.IndexItem:		.numberType,
+			AMTableData.CountItem:		.numberType,
+			AMTableData.FieldNamesItem:	.arrayType(.stringType),
+			AMTableData.FieldNameItem:	.functionType(.stringType, []),
+			AMTableData.NewRecordItem:	.interfaceType(recif),
+			AMTableData.RecordItem:		.interfaceType("\(recif) | null")
+		]
+		return result.merging(ALDefaultFrame.propertyTypes){ (a, b) in a }
+	}}
 
+	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
 		/* Set path of this frame */
 		mPath = pth
-		definePropertyType(propertyName: AMTableData.StorageItem, valueType: .stringType)
-		definePropertyType(propertyName: AMTableData.PathItem, valueType: .stringType)
-		definePropertyType(propertyName: AMTableData.IndexItem, valueType: .numberType)
-		definePropertyType(propertyName: AMTableData.CountItem, valueType: .numberType)
-		definePropertyType(propertyName: AMTableData.FieldNamesItem, valueType: .arrayType(.stringType))
-		definePropertyType(propertyName: AMTableData.FieldNameItem, valueType: .functionType(.stringType, []))
-		definePropertyType(propertyName: AMTableData.NewRecordItem, valueType: .interfaceType(recif))
-		definePropertyType(propertyName: AMTableData.RecordItem, valueType: .interfaceType("\(recif) | null"))
-		self.defineDefaultProperties()
-	}
 
-	public func connectProperties(resource res: KEResource, console cons: CNConsole) -> NSError? {
+		/* Set property types */
+		definePropertyTypes(propertyTypes: AMTableData.propertyTypes)
+
 		/* storage */
 		let storagename: String?
 		if let name = stringValue(name: AMTableData.StorageItem) {
@@ -155,7 +160,7 @@ public class AMTableData: ALFrame
 		updateRecordValue(table: table)
 
 		/* default properties */
-		self.connectDefaultProperties()
+		self.setupDefaultProperties()
 		
 		return nil
 	}

@@ -44,17 +44,22 @@ public class AMButton: KCButton, ALFrame
 		fatalError("Not supported")
 	}
 
-	public func defineProperties(path pth: ALFramePath) {
+	static public var propertyTypes: Dictionary<String, CNValueType> { get {
+		let result: Dictionary<String, CNValueType> = [
+			AMButton.PressedItem:	.functionType(.voidType, [ .interfaceType("ButtonIF") ]),
+			AMButton.IsEnabledItem:	.boolType,
+			AMButton.TitleItem:	.stringType
+		]
+		return result.merging(ALDefaultFrame.propertyTypes){ (a, b) in a }
+	}}
+
+	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
 		/* Set path of this frame */
 		mPath = pth
 
-		definePropertyType(propertyName: AMButton.PressedItem, valueType: .functionType(.voidType, [ path.selfType ]))
-		definePropertyType(propertyName: AMButton.IsEnabledItem, valueType: .boolType)
-		definePropertyType(propertyName: AMButton.TitleItem, valueType: .stringType)
-		self.defineDefaultProperties()
-	}
+		/* Set property types */
+		definePropertyTypes(propertyTypes: AMButton.propertyTypes)
 
-	public func connectProperties(resource res: KEResource, console cons: CNConsole) -> NSError? {
 		/* "pressed" event */
 		if self.value(name: AMButton.PressedItem) == nil {
 			self.setValue(name: AMButton.PressedItem, value: JSValue(nullIn: core.context))
@@ -106,7 +111,7 @@ public class AMButton: KCButton, ALFrame
 		})
 
 		/* default properties */
-		self.connectDefaultProperties()
+		self.setupDefaultProperties()
 		
 		return nil
 	}

@@ -45,17 +45,22 @@ public class AMBox: KCStackView, ALFrame
 		fatalError("Not supported")
 	}
 
-	public func defineProperties(path pth: ALFramePath) {
+	static public var propertyTypes: Dictionary<String, CNValueType> { get {
+		let result: Dictionary<String, CNValueType> = [
+			AMBox.AxisItem:		.enumType(CNEnumType(typeName: CNAxis.typeName)),
+			AMBox.AlignmentItem:	.enumType(CNEnumType(typeName: CNAlignment.typeName)),
+			AMBox.DistributionItem:	.enumType(CNEnumType(typeName: CNDistribution.typeName))
+		]
+		return result.merging(ALDefaultFrame.propertyTypes){ (a, b) in a }
+	}}
+
+	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
 		/* Set path of this frame */
 		mPath = pth
 
-		definePropertyType(propertyName: AMBox.AxisItem, enumTypeName: "Axis")
-		definePropertyType(propertyName: AMBox.AlignmentItem, enumTypeName: "Alignment")
-		definePropertyType(propertyName: AMBox.DistributionItem, enumTypeName: "Distribution")
-		self.defineDefaultProperties()
-	}
-
-	public func connectProperties(resource res: KEResource, console cons: CNConsole) -> NSError? {
+		/* Set property types */
+		definePropertyTypes(propertyTypes: AMBox.propertyTypes)
+		
 		/* Link with child frames */
 		for pname in self.propertyNames {
 			if let core = self.objectValue(name: pname) as? ALFrameCore {
@@ -141,7 +146,7 @@ public class AMBox: KCStackView, ALFrame
 		})
 
 		/* default properties */
-		self.connectDefaultProperties()
+		self.setupDefaultProperties()
 		
 		return nil
 	}

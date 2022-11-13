@@ -2,12 +2,13 @@
 # Makefile for Library
 #
 
-src_scrs	= Transpiler.ts
-bltin_decl	= Frame.d.ts
-dst_scrs	= $(src_scrs:.ts=.js)
-dst_decls	= $(src_scrs:.ts=.d.ts)
+src_decls	= types/KiwiLibrary.d.ts \
+		  types/Builtin.d.ts \
+		  types/Frame.d.ts
+dst_decl	= types/ArisiaLibrary.d.ts
 
-target		= types/ArisiaLibrary.d.ts
+src_scrs	= Transpiler.ts
+dst_scrs	= $(src_scrs:.ts=.js)
 
 tsc	= npx tsc
 tsc_opt	= -t ES2017 --lib "es2017" --declaration --declarationDir types \
@@ -17,26 +18,13 @@ tsc_opt	= -t ES2017 --lib "es2017" --declaration --declarationDir types \
 %.js: %.ts
 	$(tsc) $(tsc_opt) $<
 
-adecl_cmd = ~/tools/bin/adecl
-
-all: $(target)
+all: $(dst_decl) $(dst_scrs)
 
 clean:
-	rm -f $(target) $(dst_scrs)
-	(cd types && rm -f $(bltin_decl) $(dst_decls))
+	rm -f $(dst_decl) $(dst_scrs)
 
-$(target): bltin_decl decls types/Builtin.d.ts types/KiwiLibrary.d.ts
-	cat types/KiwiLibrary.d.ts 	>  $(target)
-	cat types/Builtin.d.ts     	>> $(target)
-	(cd types && cat $(bltin_decl))	>> $(target)
-	(cd types && cat $(dst_decls))	>> $(target)
+$(dst_decl): $(src_decls) types/Transpiler.d.ts
+	cat $(src_decls) types/Transpiler.d.ts > $@
 
-bltin_decl: dummy
-	if [ -x $(adecl_cmd) ] ; then \
-		(cd types && $(adecl_cmd) Frame) ; \
-	fi
-
-decls: $(dst_scrs)
-
-dummy:
+types/Transpiler.d.ts: $(dst_scrs)
 

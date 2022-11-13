@@ -45,18 +45,24 @@ public class AMCollection: KCCollectionView, ALFrame
 		fatalError("Not supported")
 	}
 
-	public func defineProperties(path pth: ALFramePath) {
+	static public var propertyTypes: Dictionary<String, CNValueType> { get {
+		let selfif: CNValueType = .interfaceType("CollectionIF")
+		let result: Dictionary<String, CNValueType> = [
+			AMCollection.ColumnNumberItem:	.numberType,
+			AMCollection.TotalNumberItem:	.functionType(.numberType, []),
+			AMCollection.CollectionItem:	.arrayType(.stringType),
+			AMCollection.PressedItem:	.functionType(.voidType, [ selfif, .numberType, .numberType ])
+		]
+		return result.merging(ALDefaultFrame.propertyTypes){ (a, b) in a }
+	}}
+
+	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
 		/* Set path of this frame */
 		mPath = pth
 
-		definePropertyType(propertyName: AMCollection.ColumnNumberItem, valueType: .numberType)
-		definePropertyType(propertyName: AMCollection.TotalNumberItem, valueType: .functionType(.numberType, []))
-		definePropertyType(propertyName: AMCollection.CollectionItem, valueType: .arrayType(.stringType))
-		definePropertyType(propertyName: AMCollection.PressedItem, valueType: .functionType(.voidType, [ path.selfType, .numberType, .numberType ]))
-		self.defineDefaultProperties()
-	}
+		/* Set property types */
+		definePropertyTypes(propertyTypes: AMCollection.propertyTypes)
 
-	public func connectProperties(resource res: KEResource, console cons: CNConsole) -> NSError? {
 		/* columnNumber */
 		if let colnum = numberValue(name: AMCollection.ColumnNumberItem) {
 			CNExecuteInMainThread(doSync: false, execute: {
@@ -123,7 +129,7 @@ public class AMCollection: KCCollectionView, ALFrame
 		})
 
 		/* default properties */
-		self.connectDefaultProperties()
+		self.setupDefaultProperties()
 		
 		return nil
 	}

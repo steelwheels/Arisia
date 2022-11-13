@@ -42,15 +42,21 @@ public class AMImage: KCImageView, ALFrame
 		fatalError("Not supported")
 	}
 
-	public func defineProperties(path pth: ALFramePath) {
+	static public var propertyTypes: Dictionary<String, CNValueType> { get {
+		let result: Dictionary<String, CNValueType> = [
+			AMImage.NameItem:	.stringType,
+			AMImage.ScaleItem:	.numberType
+		]
+		return result.merging(ALDefaultFrame.propertyTypes){ (a, b) in a }
+	}}
+
+	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
 		/* Set path of this frame */
 		mPath = pth
-		definePropertyType(propertyName: AMImage.NameItem, valueType: .stringType)
-		definePropertyType(propertyName: AMImage.ScaleItem, valueType: .numberType)
-		self.defineDefaultProperties()
-	}
 
-	public func connectProperties(resource res: KEResource, console cons: CNConsole) -> NSError? {
+		/* Set property types */
+		definePropertyTypes(propertyTypes: AMImage.propertyTypes)
+
 		/* name property */
 		if let name = stringValue(name: AMImage.NameItem) {
 			CNExecuteInMainThread(doSync: false, execute: {
@@ -88,7 +94,7 @@ public class AMImage: KCImageView, ALFrame
 		})
 
 		/* default properties */
-		self.connectDefaultProperties()
+		self.setupDefaultProperties()
 		
 		return nil
 	}

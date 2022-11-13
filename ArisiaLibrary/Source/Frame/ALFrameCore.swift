@@ -23,6 +23,7 @@ import Foundation
 	func addObserver(_ property: JSValue, _ cbfunc: JSValue)	// (property: string, cbfunc: ():void)
 }
 
+
 @objc public class ALFrameCore: NSObject, ALFrameCoreProtorol
 {
 	public typealias ListnerHolder = CNObserverDictionary.ListnerHolder
@@ -117,6 +118,12 @@ import Foundation
 			definePropertyType(propertyName: pname, valueType: vtype)
 		case .failure(let err):
 			CNLog(logLevel: .error, message: err.toString())
+		}
+	}
+
+	public func definePropertyTypes(propertyTypes ptypes: Dictionary<String, CNValueType>) {
+		for (name, type) in ptypes {
+			definePropertyType(propertyName: name, valueType: type)
 		}
 	}
 

@@ -126,23 +126,13 @@ public class ALScriptTranspiler
 		let line = CNTextLine(string: "let \(inst) = \(funcname)() \(asname) ;")
 		result.add(text: line)
 
-		/* HAMA */
-		let fpath   = ALFramePath(path: pth, instanceName: inst, frameName: frm.className)
-		let context = KEContext(virtualMachine: JSVirtualMachine())
-		guard let frmobj  = allocator.allocFuncBody(context) else {
-			return .failure(NSError.parseError(message: "Failed to allocate: \(frm.className)"))
-		}
-		frmobj.defineProperties(path: fpath)
-
 		/* Collect property types */
 		var ptypes: Dictionary<String, CNValueType> = [:]
 		for prop in frm.properties {
 			ptypes[prop.name] = prop.type
 		}
-		for pname in frmobj.propertyNames {
-			if let ptype = ptypes[pname] {
-				ptypes[pname] = ptype
-			}
+		for (name, type) in allocator.propertyTypes {
+			ptypes[name] = type
 		}
 
 		/* Define type for all properties*/
@@ -185,7 +175,6 @@ public class ALScriptTranspiler
 			result.add(text: CNTextLine(string: "/* assign user declared properties */"))
 			result.add(text: udtxt)
 		}
-
 		return .success(result)
 	}
 

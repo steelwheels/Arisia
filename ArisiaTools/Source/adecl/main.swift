@@ -6,7 +6,6 @@
  */
 
 import ArisiaLibrary
-import KiwiEngine
 import CoconutData
 import JavaScriptCore
 import Foundation
@@ -17,31 +16,58 @@ func main(arguments args: Array<String>) {
 	guard let (config, _) = cmdline.parseArguments(arguments: Array(args.dropFirst())) else {
 		return
 	}
-	guard let vm    = JSVirtualMachine() else {
-		console.error(string: "[Error] Failed to allocate VM")
-		return
-	}
-	let packdir  = URL(fileURLWithPath: "/bin", isDirectory: true)
-	let resource = KEResource(packageDirectory: packdir)
 
-	let ctxt     = KEContext(virtualMachine: vm)
-	let lconf    = ALConfig(applicationType: config.target, doStrict: true, logLevel: .defaultLevel)
-	guard compile(context: ctxt, resource: resource, config: lconf, console: console) else {
-		console.error(string: "[Error] Failed to compile")
-		return
-	}
+	/* Define built-in components */
+	defineBuiltinComponents()
 
+	/* Collect name of target frames to dump */
+	let allocator = ALFrameAllocator.shared
 	let clsnames: Array<String>
 	if config.frameNames.isEmpty {
-		let allocator = ALFrameAllocator.shared
 		clsnames = allocator.classNames
 	} else {
 		clsnames = config.frameNames
 	}
-	
+
+	/* dump declaration for each class */
 	for clsname in clsnames {
-		let _ = dump(className: clsname, context: ctxt, resource: resource, console: console)
+		if let alloc = allocator.search(byClassName: clsname) {
+			let ptypes = alloc.propertyTypes
+			let _ = dump(className: clsname, propertyTypes: ptypes, console: console)
+		}
 	}
+}
+
+private func dump(className cname: String, propertyTypes ptypes: Dictionary<String, CNValueType>, console cons: CNConsole) -> Bool
+{
+	/* Open the file to write */
+	let filename = cname + ".d.ts"
+	guard let file = CNFile.open(access: .writer, for: URL(fileURLWithPath: filename)) else {
+		cons.error(string: "[Error] Failed to write file: \(filename)\n")
+		return false
+	}
+
+	let result = CNTextSection()
+
+	/* Generate declaration */
+	switch ALTypeDeclGenerator.generateBaseDeclaration(frameName: cname) {
+	case .success(let txt):
+		result.add(text: txt)
+	case .failure(let err):
+		cons.error(string: "[Error] Failed to general declaration: \(err.toString())\n")
+		return false
+	}
+
+	/* Allocator function */
+	let ifname = ALFunctionInterface.defaultInterfaceName(frameName: cname)
+	let proto = CNTextLine(string: "declare function _alloc_\(cname)(): \(ifname) ;")
+	result.add(text: proto)
+
+	file.put(string: result.toStrings().joined(separator: "\n") + "\n")
+	
+	/* close the file*/
+	file.close()
+	return true
 }
 
 main(arguments: CommandLine.arguments)

@@ -26,6 +26,10 @@ public class ALFramePath
 		mFrameName	= "<f>"
 	}
 
+	public var path: Array<String> { get {
+		return mPath
+	}}
+
 	public var instanceName: String { get {
 		return mInstanceName
 	}}
@@ -47,5 +51,13 @@ public class ALFramePath
 	public var selfType: CNValueType { get {
 		return .objectType(self.interfaceName)
 	}}
+
+	public func childPath(childInstanceName ciname: String, childFrameName cfname: String) -> ALFramePath {
+		var newpath  = mPath ; newpath.append(mInstanceName)
+		let newiname = ciname
+		let newfname = cfname
+		return ALFramePath(path: newpath, instanceName: newiname, frameName: newfname)
+	}
+
 }
 

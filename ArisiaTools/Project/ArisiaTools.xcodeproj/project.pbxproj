@@ -7,22 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		053CA13529210C2100C5095D /* component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD8AA328D0C44B00A008C1 /* component.swift */; };
+		053CA13929210C2200C5095D /* component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD8AA328D0C44B00A008C1 /* component.swift */; };
 		05408D4A29172E0B00F12033 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05408D4929172E0B00F12033 /* main.swift */; };
 		05408D6B2917330900F12033 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05408D6A2917330900F12033 /* config.swift */; };
 		05512D3C28E31F4700B82172 /* KiwiControls.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05512D3B28E31F4700B82172 /* KiwiControls.xcframework */; };
 		05512D3D28E31F4700B82172 /* KiwiControls.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05512D3B28E31F4700B82172 /* KiwiControls.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		05512D4728E32B6A00B82172 /* dumper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05512D4628E32B6A00B82172 /* dumper.swift */; };
 		05A5DB9928CC0280005A6087 /* ArisiaLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A5DB9828CC0280005A6087 /* ArisiaLibrary.xcframework */; };
 		05A5DB9A28CC0280005A6087 /* ArisiaLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05A5DB9828CC0280005A6087 /* ArisiaLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		05A5DB9D28CC02E5005A6087 /* compile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A5DB9C28CC02E5005A6087 /* compile.swift */; };
-		05BD8AA428D0C44B00A008C1 /* executor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD8AA328D0C44B00A008C1 /* executor.swift */; };
+		05BD8AA428D0C44B00A008C1 /* component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BD8AA328D0C44B00A008C1 /* component.swift */; };
 		05BD8AAB28D0CC4800A008C1 /* KiwiShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05BD8AAA28D0CC4800A008C1 /* KiwiShell.xcframework */; };
 		05BD8AAC28D0CC4800A008C1 /* KiwiShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05BD8AAA28D0CC4800A008C1 /* KiwiShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05BD8AAF28D0CC8300A008C1 /* CoconutShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05BD8AAE28D0CC8300A008C1 /* CoconutShell.xcframework */; };
 		05BD8AB028D0CC8300A008C1 /* CoconutShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05BD8AAE28D0CC8300A008C1 /* CoconutShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05C2BF4328E2A7CA0059F938 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C2BF2E28E2A74A0059F938 /* main.swift */; };
 		05C2BF7128E2E2650059F938 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C2BF7028E2E2650059F938 /* config.swift */; };
-		05C2BF7728E3092E0059F938 /* compile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C2BF7628E3092E0059F938 /* compile.swift */; };
 		05C2BF7D28E317340059F938 /* ArisiaComponents.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2BF7C28E317340059F938 /* ArisiaComponents.xcframework */; };
 		05C2BF7E28E317340059F938 /* ArisiaComponents.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2BF7C28E317340059F938 /* ArisiaComponents.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05C9C36528C77B8C00E57C5D /* CoconutData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C9C36428C77B8C00E57C5D /* CoconutData.xcframework */; };
@@ -40,6 +39,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		050231792920A97B001CDAD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05E6E27628C7771C0073FDD8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05C9C39728C791AE00E57C5D;
+			remoteInfo = Install_Tools;
+		};
 		05408D5129172E2A00F12033 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05E6E27628C7771C0073FDD8 /* Project object */;
@@ -146,16 +152,13 @@
 		05408D4929172E0B00F12033 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		05408D6A2917330900F12033 /* config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		05512D3B28E31F4700B82172 /* KiwiControls.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiControls.xcframework; path = ../../../../Library/Frameworks/KiwiControls.xcframework; sourceTree = "<group>"; };
-		05512D4628E32B6A00B82172 /* dumper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dumper.swift; sourceTree = "<group>"; };
 		05A5DB9828CC0280005A6087 /* ArisiaLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ArisiaLibrary.xcframework; path = ../../../../Library/Frameworks/ArisiaLibrary.xcframework; sourceTree = "<group>"; };
-		05A5DB9C28CC02E5005A6087 /* compile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = compile.swift; sourceTree = "<group>"; };
-		05BD8AA328D0C44B00A008C1 /* executor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = executor.swift; sourceTree = "<group>"; };
+		05BD8AA328D0C44B00A008C1 /* component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = component.swift; sourceTree = "<group>"; };
 		05BD8AAA28D0CC4800A008C1 /* KiwiShell.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiShell.xcframework; path = ../../../../Library/Frameworks/KiwiShell.xcframework; sourceTree = "<group>"; };
 		05BD8AAE28D0CC8300A008C1 /* CoconutShell.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutShell.xcframework; path = ../../../../Library/Frameworks/CoconutShell.xcframework; sourceTree = "<group>"; };
 		05C2BF2C28E2A74A0059F938 /* adecl */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = adecl; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C2BF2E28E2A74A0059F938 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		05C2BF7028E2E2650059F938 /* config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
-		05C2BF7628E3092E0059F938 /* compile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = compile.swift; sourceTree = "<group>"; };
 		05C2BF7C28E317340059F938 /* ArisiaComponents.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ArisiaComponents.xcframework; path = ../../../../Library/Frameworks/ArisiaComponents.xcframework; sourceTree = "<group>"; };
 		05C9C34F28C779B500E57C5D /* ArisiaTools.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArisiaTools.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C9C35128C779B500E57C5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -224,9 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				05C2BF2E28E2A74A0059F938 /* main.swift */,
-				05C2BF7628E3092E0059F938 /* compile.swift */,
 				05C2BF7028E2E2650059F938 /* config.swift */,
-				05512D4628E32B6A00B82172 /* dumper.swift */,
 			);
 			path = adecl;
 			sourceTree = "<group>";
@@ -261,8 +262,7 @@
 			children = (
 				05E6E28128C7771C0073FDD8 /* main.swift */,
 				05C9C39328C7898500E57C5D /* config.swift */,
-				05A5DB9C28CC02E5005A6087 /* compile.swift */,
-				05BD8AA328D0C44B00A008C1 /* executor.swift */,
+				05BD8AA328D0C44B00A008C1 /* component.swift */,
 			);
 			path = asc;
 			sourceTree = "<group>";
@@ -302,6 +302,21 @@
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
+		0502316F2920A96F001CDAD9 /* Make_decls */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/install_tool.mk install_decls";
+			buildConfigurationList = 050231722920A96F001CDAD9 /* Build configuration list for PBXLegacyTarget "Make_decls" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				0502317A2920A97B001CDAD9 /* PBXTargetDependency */,
+			);
+			name = Make_decls;
+			passBuildSettingsInEnvironment = 1;
+			productName = Make_decls;
+		};
 		05C9C38228C7827B00E57C5D /* Install_Bundle */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "-f ../../Script/install_tool.mk install_bundle";
@@ -418,6 +433,9 @@
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					0502316F2920A96F001CDAD9 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					05408D4629172E0B00F12033 = {
 						CreatedOnToolsVersion = 12.4;
 					};
@@ -454,6 +472,7 @@
 				05C9C34E28C779B500E57C5D /* ArisiaToolsBundle */,
 				05C9C38228C7827B00E57C5D /* Install_Bundle */,
 				05C9C39728C791AE00E57C5D /* Install_Tools */,
+				0502316F2920A96F001CDAD9 /* Make_decls */,
 				05E6E27D28C7771C0073FDD8 /* asc */,
 				05C2BF2B28E2A74A0059F938 /* adecl */,
 				05408D4629172E0B00F12033 /* ares */,
@@ -477,6 +496,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05408D4A29172E0B00F12033 /* main.swift in Sources */,
+				053CA13929210C2200C5095D /* component.swift in Sources */,
 				05408D6B2917330900F12033 /* config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,10 +505,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05512D4728E32B6A00B82172 /* dumper.swift in Sources */,
 				05C2BF4328E2A7CA0059F938 /* main.swift in Sources */,
+				053CA13529210C2100C5095D /* component.swift in Sources */,
 				05C2BF7128E2E2650059F938 /* config.swift in Sources */,
-				05C2BF7728E3092E0059F938 /* compile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,16 +522,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05BD8AA428D0C44B00A008C1 /* executor.swift in Sources */,
+				05BD8AA428D0C44B00A008C1 /* component.swift in Sources */,
 				05E6E28228C7771C0073FDD8 /* main.swift in Sources */,
 				05C9C39428C7898500E57C5D /* config.swift in Sources */,
-				05A5DB9D28CC02E5005A6087 /* compile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		0502317A2920A97B001CDAD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05C9C39728C791AE00E57C5D /* Install_Tools */;
+			targetProxy = 050231792920A97B001CDAD9 /* PBXContainerItemProxy */;
+		};
 		05408D5229172E2A00F12033 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05408D4629172E0B00F12033 /* ares */;
@@ -551,6 +574,33 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		050231702920A96F001CDAD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		050231712920A96F001CDAD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		05408D4B29172E0B00F12033 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -853,6 +903,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		050231722920A96F001CDAD9 /* Build configuration list for PBXLegacyTarget "Make_decls" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				050231702920A96F001CDAD9 /* Debug */,
+				050231712920A96F001CDAD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		05408D4D29172E0B00F12033 /* Build configuration list for PBXNativeTarget "ares" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

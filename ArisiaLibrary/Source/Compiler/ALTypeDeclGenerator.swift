@@ -17,78 +17,78 @@ public class ALTypeDeclGenerator
 		mConfig = conf
 	}
 
-	public func generateTypeDeclaration(frame frm: ALFrame) -> CNTextSection {
+	public func generateTypeDeclaration(path pth: ALFramePath, frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
 		let result = CNTextSection()
 
 		/* Generate declaration for current frame */
-		let txt = generateOneTypeDeclaration(frame: frm)
-		result.add(text: txt)
+		switch generateOneTypeDeclaration(path: pth, frame: frm) {
+		case .success(let txt):
+			result.add(text: txt)
+		case .failure(let err):
+			return .failure(err)
+		}
 
 		/* Generate declaration for child frames */
-		for prop in frm.propertyNames {
-			if let child = frm.frameValue(name: prop) {
-				let txt = generateTypeDeclaration(frame: child)
-				result.add(text: txt)
-			}
-		}
-
-		return result
-	}
-
-	private func generateOneTypeDeclaration(frame frm: ALFrame) -> CNTextSection {
-		let ifname = frm.path.interfaceName
-
-		let ifdecl = CNTextSection()
-		ifdecl.header = "interface \(ifname) {"
-		ifdecl.footer = "}"
-
-		for pname in frm.propertyNames {
-			if let vtype = frm.propertyType(propertyName: pname) {
-				let decl: String
-				switch vtype {
-				case .functionType(_, _):
-					decl = pname + vtype.toTypeDeclaration() + " ;"
-				case .objectType(_):
-					let ifname: String
-					if let child = frm.frameValue(name: pname) {
-						ifname = child.path.interfaceName
-					} else {
-						CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
-						ifname = "<no-if>"
-					}
-					decl = pname + ": " + ifname + " ;"
-				default:
-					decl = pname + ": " + vtype.toTypeDeclaration() + " ;"
+		for prop in frm.properties {
+			switch prop.value {
+			case .frame(let child):
+				let cpath = pth.childPath(childInstanceName: prop.name, childFrameName: child.className)
+				switch generateTypeDeclaration(path: cpath, frame: child) {
+				case .success(let txt):
+					result.add(text: txt)
+				case .failure(let err):
+					return .failure(err)
 				}
-				ifdecl.add(text: CNTextLine(string: decl))
-			} else {
-				CNLog(logLevel: .error, message: "The property \"\(pname)\" has no type")
+			default:
+				break // nothing have to do
 			}
 		}
-		return ifdecl
+
+		return .success(result)
 	}
 
-	public static func generateBaseDeclaration(frame frm: ALFrame) -> CNTextSection {
-		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: frm.frameName)
+	private func generateOneTypeDeclaration(path pth: ALFramePath, frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
+		var ptypes: Dictionary<String, CNValueType>
+		switch ALTypeDeclGenerator.defaultPropertyTypes(frameName: frm.className) {
+		case .success(let typs):
+			ptypes = typs
+		case .failure(let err):
+			return .failure(err)
+		}
+		for prop in frm.properties {
+			ptypes[prop.name] = prop.type
+		}
+		let ifname = ALFunctionInterface.userInterfaceName(path: pth.path, instanceName: pth.instanceName, frameName: frm.className)
+		return .success(ALTypeDeclGenerator.generatePropertyDeclaration(interfaceName: ifname, frameName: frm.className, propertyTypes: ptypes))
+	}
 
+	public static func generateBaseDeclaration(frameName fname: String) -> Result<CNTextSection, NSError> {
+		/* Collect property types */
+		let ptypes: Dictionary<String, CNValueType>
+		switch defaultPropertyTypes(frameName: fname) {
+		case .success(let p):
+			ptypes = p
+		case .failure(let err):
+			return .failure(err)
+		}
+		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: fname)
+		return .success(generatePropertyDeclaration(interfaceName: ifname, frameName: fname, propertyTypes: ptypes))
+	}
+
+	public static func generatePropertyDeclaration(interfaceName ifname: String, frameName fname: String, propertyTypes ptypes: Dictionary<String, CNValueType>) -> CNTextSection {
 		let ifdecl = CNTextSection()
 		ifdecl.header = "interface \(ifname) {"
 		ifdecl.footer = "}"
 
-		for pname in frm.propertyNames {
-			if let vtype = frm.propertyType(propertyName: pname) {
+		for pname in ptypes.keys.sorted() {
+			if let vtype = ptypes[pname] {
 				let decl: String
 				switch vtype {
 				case .functionType(_, _):
 					decl = pname + vtype.toTypeDeclaration() + " ;"
-				case .objectType(_):
-					let ifname: String
-					if let child = frm.frameValue(name: pname) {
-						ifname = ALFunctionInterface.defaultInterfaceName(frameName: child.frameName)
-					} else {
-						CNLog(logLevel: .error, message: "Can not happen", atFunction: #function, inFile: #file)
-						ifname = "<no-if>"
-					}
+				case .objectType(let cname):
+					let clsname = cname ?? ALDefaultFrame.FrameName
+					let ifname  = ALFunctionInterface.defaultInterfaceName(frameName: clsname)
 					decl = pname + ": " + ifname + " ;"
 				default:
 					decl = pname + ": " + vtype.toTypeDeclaration() + " ;"
@@ -97,6 +97,17 @@ public class ALTypeDeclGenerator
 			}
 		}
 		return ifdecl
+	}
+
+	private static func defaultPropertyTypes(frameName fname: String) -> Result<Dictionary<String, CNValueType>, NSError> {
+		guard let allocator = ALFrameAllocator.shared.search(byClassName: fname) else {
+			return .failure(NSError.parseError(message: "Unknown class name: \(fname)"))
+		}
+		var ptypes: Dictionary<String, CNValueType> = [:]
+		for (name, type) in allocator.propertyTypes {
+			ptypes[name] = type
+		}
+		return .success(ptypes)
 	}
 
 	public static func generateRecordDeclaration(resource res: KEResource) -> CNTextSection? {

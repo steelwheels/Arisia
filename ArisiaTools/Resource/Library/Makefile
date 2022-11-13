@@ -1,0 +1,22 @@
+#
+# Makefile
+#
+
+dst_decl	= ./types/ArisiaPlatform.d.ts
+adecl_cmd	= $(HOME)/tools/bin/adecl
+
+all: $(dst_decl)
+
+$(dst_decl): dummy
+	(cd types && $(adecl_cmd))
+	cat types/ArisiaComponents.d.ts \
+	    types/Box.d.ts \
+	    types/Button.d.ts \
+	    types/Collection.d.ts \
+	    types/Image.d.ts \
+	    types/Label.d.ts \
+	    types/TableData.d.ts \
+	> $@
+
+dummy:
+

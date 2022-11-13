@@ -14,16 +14,17 @@ public protocol ALFrame
 	var core: ALFrameCore { get }
 	var path: ALFramePath { get }
 
-	func defineProperties(path pth: ALFramePath)
-	func connectProperties(resource res: KEResource, console cons: CNConsole) -> NSError?
+	static var propertyTypes: Dictionary<String, CNValueType> { get }
+	
+	func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError?
 }
 
-private let FrameNameItem	= "frameName"
-private let PropertyNamesItem	= "propertyNames"
-private let ValueItem		= "value"
-private let SetValueItem	= "setValue"
-private let DefinePropertyType	= "definePropertyType"
-private let AddObserverItem	= "addObserver"
+private let FrameNameItem		= "frameName"
+private let PropertyNamesItem		= "propertyNames"
+private let ValueItem			= "value"
+private let SetValueItem		= "setValue"
+private let DefinePropertyTypeItem	= "definePropertyType"
+private let AddObserverItem		= "addObserver"
 
 public extension ALFrame
 {
@@ -50,7 +51,26 @@ public extension ALFrame
 	func propertyType(propertyName pname: String) -> CNValueType? {
 		return core.propertyType(propertyName: pname)
 	}
-	
+
+	func definePropertyType(propertyName pname: String, valueType vtype: CNValueType) {
+		core.definePropertyType(propertyName: pname, valueType: vtype)
+	}
+
+	func definePropertyTypes(propertyTypes ptype: Dictionary<String, CNValueType>) {
+		for (name, type) in ptype {
+			definePropertyType(propertyName: name, valueType: type)
+		}
+	}
+
+	func definePropertyType(propertyName pname: String, enumTypeName ename: String) {
+		let etable = CNEnumTable.currentEnumTable()
+		if let etype = etable.search(byTypeName: ename) {
+			definePropertyType(propertyName: pname, valueType: .enumType(etype))
+		} else {
+			CNLog(logLevel: .error, message: "Enum type name \"\(ename)\" is NOT found.")
+		}
+	}
+
 	func value(name nm: String) -> JSValue? {
 		if let val = core.value(name: nm) {
 			return val
@@ -155,19 +175,6 @@ public extension ALFrame
 		}
 	}
 
-	func definePropertyType(propertyName pname: String, valueType vtype: CNValueType) {
-		core.definePropertyType(propertyName: pname, valueType: vtype)
-	}
-
-	func definePropertyType(propertyName pname: String, enumTypeName ename: String) {
-		let etable = CNEnumTable.currentEnumTable()
-		if let etype = etable.search(byTypeName: ename) {
-			definePropertyType(propertyName: pname, valueType: .enumType(etype))
-		} else {
-			CNLog(logLevel: .error, message: "Enum type name \"\(ename)\" is NOT found.")
-		}
-	}
-
 	func addObserver(propertyName pname: String, listnerFunction lfunc: @escaping ALFrame.ListenerFunction) {
 		core.addObserver(propertyName: pname, listnerFunction: {
 			(_ param: Any?) -> Void in
@@ -179,17 +186,7 @@ public extension ALFrame
 		})
 	}
 
-	func defineDefaultProperties() {
-		definePropertyType(propertyName: FrameNameItem, valueType: .stringType)
-		definePropertyType(propertyName: ValueItem, valueType: .functionType(.anyType, [.stringType]))
-		definePropertyType(propertyName: SetValueItem, valueType: .functionType(.boolType, [.stringType, .anyType]))
-		definePropertyType(propertyName: PropertyNamesItem, valueType: .arrayType(.stringType))
-		definePropertyType(propertyName: DefinePropertyType, valueType: .functionType(.voidType, [.stringType, .stringType]))
-		let cbtype: CNValueType = .functionType(.voidType, [])
-		definePropertyType(propertyName: AddObserverItem, valueType: .functionType(.voidType, [.stringType, cbtype]))
-	}
-
-	func connectDefaultProperties() {
+	func setupDefaultProperties() {
 		/* frameName */
 		setStringValue(name: FrameNameItem, value: self.frameName)
 
@@ -226,7 +223,7 @@ public extension ALFrame
 			return JSValue(bool: true, in: core.context)
 		}
 		if let funcval = JSValue(object: defpropfunc, in: core.context) {
-			setValue(name: DefinePropertyType, value: funcval)
+			setValue(name: DefinePropertyTypeItem, value: funcval)
 		} else {
 			CNLog(logLevel: .error, message: "Failed to allocate function", atFunction: #function, inFile: #file)
 		}
@@ -263,13 +260,22 @@ public extension ALFrame
 		mFrameCore.owner = self
 	}
 
-	public func defineProperties(path pth: ALFramePath) {
-		mPath = pth
-		self.defineDefaultProperties()
-	}
+	static public var propertyTypes: Dictionary<String, CNValueType> { get {
+		let cbtype: CNValueType = .functionType(.voidType, [])
+		let result: Dictionary<String, CNValueType> = [
+			FrameNameItem:		.stringType,
+			ValueItem:		.functionType(.anyType, [.stringType]),
+			SetValueItem:		.functionType(.boolType, [.stringType, .anyType]),
+			PropertyNamesItem:	.arrayType(.stringType),
+			DefinePropertyTypeItem:	.functionType(.voidType, [.stringType, .stringType]),
+			AddObserverItem:	.functionType(.voidType, [.stringType, cbtype])
+		]
+		return result
+	}}
 
-	public func connectProperties(resource res: KEResource, console cons: CNConsole) -> NSError? {
-		self.connectDefaultProperties()
+	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
+		mPath = pth
+		self.setupDefaultProperties()
 		return nil
 	}
 }

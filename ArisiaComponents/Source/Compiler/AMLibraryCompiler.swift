@@ -39,44 +39,67 @@ open class AMLibraryCompiler: ALLibraryCompiler
 		return true
 	}
 
+	public static var builtinComponentNames: Array<String> { get {
+		return [
+			AMButton.ClassName,
+			AMBox.ClassName,
+			AMCollection.ClassName,
+			AMImage.ClassName,
+			AMLabel.ClassName,
+			AMTableData.ClassName
+		]
+	}}
+
 	private func defineAllocators(context ctxt: KEContext) {
 		let allocator = ALFrameAllocator.shared
 
 		/* Button */
 		allocator.add(className: AMButton.ClassName,
-			      allocator: ALFrameAllocator.Allocator(frameName: AMButton.ClassName, allocFuncBody: {
+			allocator: ALFrameAllocator.Allocator(frameName: AMButton.ClassName, allocFuncBody: {
 				(_ ctxt: KEContext) -> ALFrame? in return AMButton(context: ctxt)
-		}))
+			},
+			propertyTypes: AMButton.propertyTypes
+		))
 
 		/* Box */
 		allocator.add(className: AMBox.ClassName,
-			      allocator: ALFrameAllocator.Allocator(frameName: AMBox.ClassName, allocFuncBody: {
+			allocator: ALFrameAllocator.Allocator(frameName: AMBox.ClassName, allocFuncBody: {
 				(_ ctxt: KEContext) -> ALFrame? in return AMBox(context: ctxt)
-		}))
+			},
+			propertyTypes: AMBox.propertyTypes
+		))
 
 		/* Collection */
 		allocator.add(className: AMCollection.ClassName,
-			      allocator: ALFrameAllocator.Allocator(frameName: AMCollection.ClassName, allocFuncBody: {
+			allocator: ALFrameAllocator.Allocator(frameName: AMCollection.ClassName, allocFuncBody: {
 				(_ ctxt: KEContext) -> ALFrame? in return AMCollection(context: ctxt)
-		}))
+			},
+			propertyTypes: AMCollection.propertyTypes
+		))
 
 		/* Image */
 		allocator.add(className: AMImage.ClassName,
-			      allocator: ALFrameAllocator.Allocator(frameName: AMImage.ClassName, allocFuncBody: {
+			allocator: ALFrameAllocator.Allocator(frameName: AMImage.ClassName, allocFuncBody: {
 				(_ ctxt: KEContext) -> ALFrame? in return AMImage(context: ctxt)
-		}))
+			},
+			propertyTypes: AMImage.propertyTypes
+		))
 
 		/* Label */
 		allocator.add(className: AMLabel.ClassName,
-			      allocator: ALFrameAllocator.Allocator(frameName: AMLabel.ClassName, allocFuncBody: {
+			allocator: ALFrameAllocator.Allocator(frameName: AMLabel.ClassName, allocFuncBody: {
 				(_ ctxt: KEContext) -> ALFrame? in return AMLabel(context: ctxt)
-		}))
+			},
+			propertyTypes: AMLabel.propertyTypes
+		))
 
 		/* TableData */
 		allocator.add(className: AMTableData.ClassName,
-			      allocator: ALFrameAllocator.Allocator(frameName: AMTableData.ClassName, allocFuncBody: {
+			allocator: ALFrameAllocator.Allocator(frameName: AMTableData.ClassName, allocFuncBody: {
 				(_ ctxt: KEContext) -> ALFrame? in return AMTableData(context: ctxt)
-		}))
+			},
+			propertyTypes: AMTableData.propertyTypes
+		))
 	}
 
 	private func defineComponentFuntion(context ctxt: KEContext, viewController vcont: AMComponentViewController, resource res: KEResource) {

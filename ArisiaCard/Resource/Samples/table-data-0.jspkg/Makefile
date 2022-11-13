@@ -5,7 +5,7 @@
 include ../../Makefile.inc
 
 lib_dir   = ../../Library/types/
-src_base  = $(lib_dir)/ArisiaComponents.d.ts
+src_base  = $(lib_dir)/ArisiaPlatform.d.ts
 
 src_ts   = main.ts
 src_as	 = table.as
@@ -13,7 +13,7 @@ src_as	 = table.as
 dst_ts   = $(src_as:.as=.ts)
 dst_js   = $(src_ts:.ts=.js) $(dst_ts:.ts=.js)
 dst_rec  = types/record.d.ts
-dst_base = ./types/ArisiaComponents.d.ts
+dst_base = ./types/ArisiaPlatform.d.ts
 
 asc_opt += --import $(dst_rec)
 

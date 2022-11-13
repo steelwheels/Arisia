@@ -749,3 +749,79 @@ declare function leaveView(param: any): void ;
 /// <reference path="Builtin.d.ts" />
 declare function alert(type: AlertType, message: string, labels: string[]): number;
 declare function enterView(path: string, arg: any): any;
+interface BoxIF {
+  addObserver(p0: string, p1: () => void): void ;
+  alignment: Alignment ;
+  axis: Axis ;
+  definePropertyType(p0: string, p1: string): void ;
+  distribution: Distribution ;
+  frameName: string ;
+  propertyNames: string[] ;
+  setValue(p0: string, p1: any): boolean ;
+  value(p0: string): any ;
+}
+declare function _alloc_Box(): BoxIF ;
+interface ButtonIF {
+  addObserver(p0: string, p1: () => void): void ;
+  definePropertyType(p0: string, p1: string): void ;
+  frameName: string ;
+  isEnabled: boolean ;
+  pressed(p0: ButtonIF): void ;
+  propertyNames: string[] ;
+  setValue(p0: string, p1: any): boolean ;
+  title: string ;
+  value(p0: string): any ;
+}
+declare function _alloc_Button(): ButtonIF ;
+interface CollectionIF {
+  addObserver(p0: string, p1: () => void): void ;
+  collection: string[] ;
+  columnNumber: number ;
+  definePropertyType(p0: string, p1: string): void ;
+  frameName: string ;
+  pressed(p0: CollectionIF, p1: number, p2: number): void ;
+  propertyNames: string[] ;
+  setValue(p0: string, p1: any): boolean ;
+  totalNumber(): number ;
+  value(p0: string): any ;
+}
+declare function _alloc_Collection(): CollectionIF ;
+interface ImageIF {
+  addObserver(p0: string, p1: () => void): void ;
+  definePropertyType(p0: string, p1: string): void ;
+  frameName: string ;
+  name: string ;
+  propertyNames: string[] ;
+  scale: number ;
+  setValue(p0: string, p1: any): boolean ;
+  value(p0: string): any ;
+}
+declare function _alloc_Image(): ImageIF ;
+interface LabelIF {
+  addObserver(p0: string, p1: () => void): void ;
+  definePropertyType(p0: string, p1: string): void ;
+  frameName: string ;
+  number: number ;
+  propertyNames: string[] ;
+  setValue(p0: string, p1: any): boolean ;
+  text: string ;
+  value(p0: string): any ;
+}
+declare function _alloc_Label(): LabelIF ;
+interface TableDataIF {
+  addObserver(p0: string, p1: () => void): void ;
+  count: number ;
+  definePropertyType(p0: string, p1: string): void ;
+  fieldName(): string ;
+  fieldNames: string[] ;
+  frameName: string ;
+  index: number ;
+  newRecord: RecordIF ;
+  path: string ;
+  propertyNames: string[] ;
+  record: RecordIF | null ;
+  setValue(p0: string, p1: any): boolean ;
+  storage: string ;
+  value(p0: string): any ;
+}
+declare function _alloc_TableData(): TableDataIF ;
