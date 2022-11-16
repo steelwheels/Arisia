@@ -1,36 +1,30 @@
 "use strict";
 /// <reference path="types/ArisiaPlatform.d.ts"/>
 /// <reference path="types/home-if.d.ts"/>
-/* allocate function for frame: Frame */
-let root = _alloc_Frame();
+/* allocate function for frame: Box */
+let root = _alloc_Box();
 /* define type for all properties */
-root.definePropertyType("addObserver", "f(v,[s,f(v,[])])");
-root.definePropertyType("alignment", "e(Alignment)");
-root.definePropertyType("definePropertyType", "f(v,[s,s])");
-root.definePropertyType("frameName", "s");
-root.definePropertyType("icons_table", "o(Collection)");
-root.definePropertyType("logo", "o(Image)");
-root.definePropertyType("propertyNames", "a(s)");
-root.definePropertyType("setValue", "f(b,[s,y])");
-root.definePropertyType("value", "f(y,[s])");
+root._definePropertyType("alignment", "e(Alignment)");
+root._definePropertyType("axis", "e(Axis)");
+root._definePropertyType("distribution", "e(Distribution)");
+root._definePropertyType("frameName", "s");
+root._definePropertyType("icons_table", "o(Collection)");
+root._definePropertyType("logo", "o(Image)");
+root._definePropertyType("propertyNames", "a(s)");
 /* define getter/setter for all properties */
-_definePropertyIF(root, ["addObserver", "alignment", "definePropertyType", "frameName", "icons_table", "logo", "propertyNames", "setValue", "value"]);
+_definePropertyIF(root, ["alignment", "axis", "distribution", "frameName", "icons_table", "logo", "propertyNames"]);
 /* assign user declared properties */
 root.alignment = Alignment.center;
 {
     /* allocate function for frame: Image */
     let logo = _alloc_Image();
     /* define type for all properties */
-    logo.definePropertyType("addObserver", "f(v,[s,f(v,[])])");
-    logo.definePropertyType("definePropertyType", "f(v,[s,s])");
-    logo.definePropertyType("frameName", "s");
-    logo.definePropertyType("name", "s");
-    logo.definePropertyType("propertyNames", "a(s)");
-    logo.definePropertyType("scale", "n");
-    logo.definePropertyType("setValue", "f(b,[s,y])");
-    logo.definePropertyType("value", "f(y,[s])");
+    logo._definePropertyType("frameName", "s");
+    logo._definePropertyType("name", "s");
+    logo._definePropertyType("propertyNames", "a(s)");
+    logo._definePropertyType("scale", "n");
     /* define getter/setter for all properties */
-    _definePropertyIF(logo, ["addObserver", "definePropertyType", "frameName", "name", "propertyNames", "scale", "setValue", "value"]);
+    _definePropertyIF(logo, ["frameName", "name", "propertyNames", "scale"]);
     /* assign user declared properties */
     logo.name = "arisia_icon";
     root.logo = logo;
@@ -39,18 +33,14 @@ root.alignment = Alignment.center;
     /* allocate function for frame: Collection */
     let icons_table = _alloc_Collection();
     /* define type for all properties */
-    icons_table.definePropertyType("addObserver", "f(v,[s,f(v,[])])");
-    icons_table.definePropertyType("collection", "a(s)");
-    icons_table.definePropertyType("columnNumber", "n");
-    icons_table.definePropertyType("definePropertyType", "f(v,[s,s])");
-    icons_table.definePropertyType("frameName", "s");
-    icons_table.definePropertyType("pressed", "f(v,[CollectionIF,n,n])");
-    icons_table.definePropertyType("propertyNames", "a(s)");
-    icons_table.definePropertyType("setValue", "f(b,[s,y])");
-    icons_table.definePropertyType("totalNumber", "f(n,[])");
-    icons_table.definePropertyType("value", "f(y,[s])");
+    icons_table._definePropertyType("collection", "a(s)");
+    icons_table._definePropertyType("columnNumber", "n");
+    icons_table._definePropertyType("frameName", "s");
+    icons_table._definePropertyType("pressed", "f(v,[CollectionIF,n,n])");
+    icons_table._definePropertyType("propertyNames", "a(s)");
+    icons_table._definePropertyType("totalNumber", "f(n,[])");
     /* define getter/setter for all properties */
-    _definePropertyIF(icons_table, ["addObserver", "collection", "columnNumber", "definePropertyType", "frameName", "pressed", "propertyNames", "setValue", "totalNumber", "value"]);
+    _definePropertyIF(icons_table, ["collection", "columnNumber", "frameName", "pressed", "propertyNames", "totalNumber"]);
     /* assign user declared properties */
     icons_table.collection = ["run_icon", "pref_icon"];
     icons_table.columnNumber = 3;

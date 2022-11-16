@@ -195,7 +195,7 @@ public class ALScriptTranspiler
 					type = ptype
 				}*/
 				let typestr = CNValueType.encode(valueType: ptype)
-				let line    = CNTextLine(string: "\(inst).definePropertyType(\"\(pname)\", \"\(typestr)\") ;")
+				let line    = CNTextLine(string: "\(inst)._definePropertyType(\"\(pname)\", \"\(typestr)\") ;")
 				result.add(text: line)
 			}
 		}

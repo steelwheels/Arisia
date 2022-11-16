@@ -719,22 +719,27 @@ declare function requestContactAccess(): boolean;
  * Builtin.d.ts: Declaration of type and functions of ArisiaLibrary
  */
 
-interface FrameIF {
-  frameName: string ;
-  value(p0: string): any ;
-  setValue(p0: string, p1: any): boolean ;
-  propertyNames: string[] ;
-  definePropertyType(p0: string, p1: string): void ;
-  addObserver(p0: string, p1: () => void): void ;
+interface FrameCoreIF {
+  _value(p0: string): any ;
+  _setValue(p0: string, p1: any): boolean ;
+  _definePropertyType(p0: string, p1: string): void ;
+  _addObserver(p0: string, p1: () => void): void ;
 }
+
+interface FrameIF extends FrameCoreIF {
+  frameName: string ;
+  propertyNames: string[] ;
+}
+
 declare function _alloc_Frame(): FrameIF ;
+
 /**
  * Transpiler.ts
  */
 /// <reference path="KiwiLibrary.d.ts" />
 /// <reference path="Builtin.d.ts" />
 /// <reference path="Frame.d.ts" />
-declare function _definePropertyIF(frame: FrameIF, usernames: string[]): void;
+declare function _definePropertyIF(frame: FrameIF, names: string[]): void;
 /**
  * Builtin.d.ts : Built-in objects in KiwiComponents
  */
@@ -749,69 +754,47 @@ declare function leaveView(param: any): void ;
 /// <reference path="Builtin.d.ts" />
 declare function alert(type: AlertType, message: string, labels: string[]): number;
 declare function enterView(path: string, arg: any): any;
-interface BoxIF {
-  addObserver(p0: string, p1: () => void): void ;
+interface BoxIF extends FrameCoreIF {
   alignment: Alignment ;
   axis: Axis ;
-  definePropertyType(p0: string, p1: string): void ;
   distribution: Distribution ;
   frameName: string ;
   propertyNames: string[] ;
-  setValue(p0: string, p1: any): boolean ;
-  value(p0: string): any ;
 }
 declare function _alloc_Box(): BoxIF ;
-interface ButtonIF {
-  addObserver(p0: string, p1: () => void): void ;
-  definePropertyType(p0: string, p1: string): void ;
+interface ButtonIF extends FrameCoreIF {
   frameName: string ;
   isEnabled: boolean ;
   pressed(p0: ButtonIF): void ;
   propertyNames: string[] ;
-  setValue(p0: string, p1: any): boolean ;
   title: string ;
-  value(p0: string): any ;
 }
 declare function _alloc_Button(): ButtonIF ;
-interface CollectionIF {
-  addObserver(p0: string, p1: () => void): void ;
+interface CollectionIF extends FrameCoreIF {
   collection: string[] ;
   columnNumber: number ;
-  definePropertyType(p0: string, p1: string): void ;
   frameName: string ;
   pressed(p0: CollectionIF, p1: number, p2: number): void ;
   propertyNames: string[] ;
-  setValue(p0: string, p1: any): boolean ;
   totalNumber(): number ;
-  value(p0: string): any ;
 }
 declare function _alloc_Collection(): CollectionIF ;
-interface ImageIF {
-  addObserver(p0: string, p1: () => void): void ;
-  definePropertyType(p0: string, p1: string): void ;
+interface ImageIF extends FrameCoreIF {
   frameName: string ;
   name: string ;
   propertyNames: string[] ;
   scale: number ;
-  setValue(p0: string, p1: any): boolean ;
-  value(p0: string): any ;
 }
 declare function _alloc_Image(): ImageIF ;
-interface LabelIF {
-  addObserver(p0: string, p1: () => void): void ;
-  definePropertyType(p0: string, p1: string): void ;
+interface LabelIF extends FrameCoreIF {
   frameName: string ;
   number: number ;
   propertyNames: string[] ;
-  setValue(p0: string, p1: any): boolean ;
   text: string ;
-  value(p0: string): any ;
 }
 declare function _alloc_Label(): LabelIF ;
-interface TableDataIF {
-  addObserver(p0: string, p1: () => void): void ;
+interface TableDataIF extends FrameCoreIF {
   count: number ;
-  definePropertyType(p0: string, p1: string): void ;
   fieldName(): string ;
   fieldNames: string[] ;
   frameName: string ;
@@ -820,8 +803,6 @@ interface TableDataIF {
   path: string ;
   propertyNames: string[] ;
   record: RecordIF | null ;
-  setValue(p0: string, p1: any): boolean ;
   storage: string ;
-  value(p0: string): any ;
 }
 declare function _alloc_TableData(): TableDataIF ;

@@ -39,6 +39,7 @@
 		054D7D6E28BE52430074FD01 /* ALFrameIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D7D6C28BE52430074FD01 /* ALFrameIR.swift */; };
 		0559BEA928D3721200816F13 /* ALTypeDeclGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0559BEA828D3721200816F13 /* ALTypeDeclGenerator.swift */; };
 		0559BEAA28D3721200816F13 /* ALTypeDeclGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0559BEA828D3721200816F13 /* ALTypeDeclGenerator.swift */; };
+		055F4C402923D80400720E1E /* Frame.d.ts in Resources */ = {isa = PBXBuildFile; fileRef = 055F4C3F2923D80400720E1E /* Frame.d.ts */; };
 		055F538A28DD1944006CB404 /* ALFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055F538928DD1944006CB404 /* ALFrame.swift */; };
 		055F538B28DD1944006CB404 /* ALFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055F538928DD1944006CB404 /* ALFrame.swift */; };
 		056BB7C028BD7FAE00EFB725 /* ArisiaLibrary.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 056BB7BE28BD7F3300EFB725 /* ArisiaLibrary.d.ts */; };
@@ -243,6 +244,7 @@
 		0526B6A128BBAE0A00E232C6 /* KiwiEngine.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiEngine.xcframework; path = ../../../../Library/Frameworks/KiwiEngine.xcframework; sourceTree = "<group>"; };
 		054D7D6C28BE52430074FD01 /* ALFrameIR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALFrameIR.swift; sourceTree = "<group>"; };
 		0559BEA828D3721200816F13 /* ALTypeDeclGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALTypeDeclGenerator.swift; sourceTree = "<group>"; };
+		055F4C3F2923D80400720E1E /* Frame.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Frame.d.ts; sourceTree = "<group>"; };
 		055F538928DD1944006CB404 /* ALFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALFrame.swift; sourceTree = "<group>"; };
 		056BB7BE28BD7F3300EFB725 /* ArisiaLibrary.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ArisiaLibrary.d.ts; sourceTree = "<group>"; };
 		058DC56928BD06C900BF9092 /* Builtin.d.ts */ = {isa = PBXFileReference; lastKnownFileType = text; path = Builtin.d.ts; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 		058DC56828BD066200BF9092 /* types */ = {
 			isa = PBXGroup;
 			children = (
+				055F4C3F2923D80400720E1E /* Frame.d.ts */,
 				056BB7BE28BD7F3300EFB725 /* ArisiaLibrary.d.ts */,
 				058DC56928BD06C900BF9092 /* Builtin.d.ts */,
 			);
@@ -691,6 +694,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05F1AC8E28BE343F00D8F1E1 /* Transpiler.ts in Resources */,
+				055F4C402923D80400720E1E /* Frame.d.ts in Resources */,
 				05F1AC9228BE348D00D8F1E1 /* Transpiler.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

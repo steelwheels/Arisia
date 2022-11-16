@@ -13,14 +13,10 @@ import Foundation
 
 @objc public protocol ALFrameCoreProtorol: JSExport
 {
-	var frameName: JSValue { get }
-	var propertyNames: JSValue { get }
-
-	func value(_ name: JSValue) -> JSValue
-	func setValue(_ name: JSValue, _ val: JSValue) -> JSValue 	// -> boolean
-
-	func definePropertyType(_ property: JSValue, _ type: JSValue)	// (property: sttring, type: string)
-	func addObserver(_ property: JSValue, _ cbfunc: JSValue)	// (property: string, cbfunc: ():void)
+	func _value(_ name: JSValue) -> JSValue
+	func _setValue(_ name: JSValue, _ val: JSValue) -> JSValue 	// -> boolean
+	func _definePropertyType(_ property: JSValue, _ type: JSValue)
+	func _addObserver(_ property: JSValue, _ cbfunc: JSValue)
 }
 
 
@@ -57,15 +53,19 @@ import Foundation
 		return mContext
 	}}
 
-	public var frameName: JSValue { get {
-		return JSValue(object: mFrameName, in: mContext)
+	public var frameName: String { get {
+		return mFrameName
 	}}
 
-	public var propertyNames: JSValue { get {
-		return JSValue(object: mPropertyNames, in: mContext)
+	public var propertyNames: Array<String> { get {
+		return mPropertyNames
 	}}
 
-	public func value(_ name: JSValue) -> JSValue {
+	public func propertyType(propertyName pname: String) -> CNValueType? {
+		return mPropertyTypes[pname]
+	}
+
+	public func _value(_ name: JSValue) -> JSValue {
 		if let namestr = name.toString() {
 			if let val = value(name: namestr) {
 				return val
@@ -74,15 +74,7 @@ import Foundation
 		return JSValue(nullIn: mContext)
 	}
 
-	public func value(name nm: String) -> JSValue? {
-		if let val = mPropertyValues.value(forKey: nm) as? JSValue {
-			return val
-		} else {
-			return nil
-		}
-	}
-
-	public func setValue(_ name: JSValue, _ val: JSValue) -> JSValue {
+	public func _setValue(_ name: JSValue, _ val: JSValue) -> JSValue {
 		let result: Bool
 		/* Add property name if it is not defined */
 		if let namestr = name.toString() {
@@ -94,21 +86,24 @@ import Foundation
 		return JSValue(bool: result, in: mContext)
 	}
 
-	public func setValue(name nm: String, value val: JSValue) {
-		if let _ = mPropertyNames.firstIndex(where: { $0 == nm }) {
-			/* Already defined */
+	public func value(name nm: String) -> JSValue? {
+		if let val = mPropertyValues.value(forKey: nm) as? JSValue {
+			return val
 		} else {
-			mPropertyNames.append(nm)
+			return nil
 		}
+	}
+
+	public func setValue(name nm: String, value val: JSValue) {
+		addPropertyName(name: nm)
 		mPropertyValues.setValue(val, forKey: nm)
 	}
 
-	public func definePropertyType(_ property: JSValue, _ type: JSValue) {
+	public func _definePropertyType(_ property: JSValue, _ type: JSValue) {
 		if let pname = property.toString(), let tcode = type.toString() {
 			definePropertyType(propertyName: pname, typeCode: tcode)
 		} else {
 			CNLog(logLevel: .error, message: "Invalid \"property\" or \"type\" parameter for define property method")
-			return
 		}
 	}
 
@@ -128,29 +123,29 @@ import Foundation
 	}
 
 	public func definePropertyType(propertyName nm: String, valueType vtype: CNValueType) {
+		addPropertyName(name: nm)
+		mPropertyTypes[nm] = vtype
+	}
+
+	private func addPropertyName(name nm: String) {
 		if let _ = mPropertyNames.firstIndex(where: { $0 == nm }) {
 			/* Already defined */
 		} else {
 			mPropertyNames.append(nm)
 		}
-		mPropertyTypes[nm] = vtype
 	}
 
-	public func propertyType(propertyName pname: String) -> CNValueType? {
-		return mPropertyTypes[pname]
-	}
-
-	public func addObserver(_ property: JSValue, _ cbfunc: JSValue) {
+	public func _addObserver(_ property: JSValue, _ cbfunc: JSValue) {
 		if let pname = property.toString() {
-			addObserver(propertyName: pname,  listnerFunction: {
+			addPropertyObserver(propertyName: pname,  listnerFunction: {
 				(_ param: Any?) -> Void in cbfunc.call(withArguments: [])
 			})
 		} else {
-			CNLog(logLevel: .error, message: "Invalid \"property\" parameter for addObserver method")
+			CNLog(logLevel: .error, message: "Invalid \"property\" parameter for _addObserver method")
 		}
 	}
 
-	public func addObserver(propertyName pname: String, listnerFunction lfunc: @escaping CNObserverDictionary.ListenerFunction) {
+	public func addPropertyObserver(propertyName pname: String, listnerFunction lfunc: @escaping CNObserverDictionary.ListenerFunction) {
 		mPropertyListners.append(
 			mPropertyValues.addObserver(forKey: pname, listnerFunction: lfunc)
 		)

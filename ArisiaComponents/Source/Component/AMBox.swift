@@ -60,7 +60,10 @@ public class AMBox: KCStackView, ALFrame
 
 		/* Set property types */
 		definePropertyTypes(propertyTypes: AMBox.propertyTypes)
-		
+
+		/* Set default properties */
+		self.setupDefaulrProperties()
+
 		/* Link with child frames */
 		for pname in self.propertyNames {
 			if let core = self.objectValue(name: pname) as? ALFrameCore {
@@ -144,9 +147,6 @@ public class AMBox: KCStackView, ALFrame
 				}
 			}
 		})
-
-		/* default properties */
-		self.setupDefaultProperties()
 		
 		return nil
 	}

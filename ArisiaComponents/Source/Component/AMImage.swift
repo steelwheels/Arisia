@@ -57,6 +57,9 @@ public class AMImage: KCImageView, ALFrame
 		/* Set property types */
 		definePropertyTypes(propertyTypes: AMImage.propertyTypes)
 
+		/* Set default properties */
+		self.setupDefaulrProperties()
+		
 		/* name property */
 		if let name = stringValue(name: AMImage.NameItem) {
 			CNExecuteInMainThread(doSync: false, execute: {
@@ -92,9 +95,6 @@ public class AMImage: KCImageView, ALFrame
 				cons.log(string: "[Error] Invalid data type of \(AMImage.ScaleItem) parameter for Image component")
 			}
 		})
-
-		/* default properties */
-		self.setupDefaultProperties()
 		
 		return nil
 	}

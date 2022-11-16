@@ -1,28 +1,22 @@
-interface root_FrameIF {
-  addObserver(p0: string, p1: () => void): void ;
+interface root_BoxIF extends FrameCoreIF {
+  alignment: Alignment ;
+  axis: Axis ;
+  distribution: Distribution ;
   frameName: string ;
-  label: labelIF ;
-  ok_button: ok_buttonIF ;
+  label: LabelIF ;
+  ok_button: ButtonIF ;
   propertyNames: string[] ;
-  setValue(p0: string, p1: any): boolean ;
-  value(p0: string): any ;
 }
-interface root_label_LabelIF {
-  addObserver(p0: string, p1: () => void): void ;
+interface root_label_LabelIF extends FrameCoreIF {
   frameName: string ;
   number: number ;
   propertyNames: string[] ;
-  setValue(p0: string, p1: any): boolean ;
   text: string ;
-  value(p0: string): any ;
 }
-interface root_ok_button_ButtonIF {
-  addObserver(p0: string, p1: () => void): void ;
+interface root_ok_button_ButtonIF extends FrameCoreIF {
   frameName: string ;
   isEnabled: boolean ;
-  pressed(p0: <i>_<f>IF): void ;
+  pressed(p0: root_ok_button_ButtonIF): void ;
   propertyNames: string[] ;
-  setValue(p0: string, p1: any): boolean ;
   title: string ;
-  value(p0: string): any ;
 }

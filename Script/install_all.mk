@@ -11,6 +11,12 @@ tools_res_dir =  ArisiaTools/Resource/Library/types
 
 all: card
 
+clean: dummy
+	(cd ArisiaLibrary/Resource && make clean)
+	(cd ArisiaComponents/Resource && make clean)
+	(cd ArisiaTools/Resource && make clean)
+	(cd ArisiaCard/Resource && make clean)
+
 card: tools $(card_res_dir)/ArisiaPlatform.d.ts
 	(pushd ArisiaCard/Project && make -f $(app_mk) && popd)
 
@@ -42,31 +48,3 @@ lib: dummy
 
 dummy:
 
-#################
-# 
-# all: lib doc components tools card
-# 
-# lib: dummy
-# 	(pushd ArisiaLibrary/Resource && make && popd)
-# 
-# doc: dummy
-# 	(pushd ArisiaLibrary/Resource && make && popd)
-# 	(pushd ArisiaComponents/Resource && make && popd)
-# 	(pushd ArisiaCard/Resource && make && popd)
-# 	(pushd ArisiaCard/Document && make && popd)
-# 	(pushd Document/Components && make && popd)
-# 
-# 
-# components: $(comp_res_dir)/ArisiaLibrary.d.ts dummy
-# 	(pushd ArisiaComponents/Resource/Library && make && popd)
-# 
-# $(comp_res_dir)/ArisiaLibrary.d.ts: $(lib_res_dir)/ArisiaLibrary.d.ts
-# 	cp $< $@
-# 
-# tools: $(card_res_dir)/ArisiaComponents.d.ts dummy
-# 
-# $(card_res_dir)/ArisiaComponents.d.ts: $(comp_res_dir)/ArisiaComponents.d.ts
-# 	cp $< $@
-# 
-# dummy:
-# 

@@ -1,18 +1,15 @@
-interface root_FrameIF {
-  addObserver(p0: string, p1: () => void): void ;
-  definePropertyType(p0: string, p1: string): void ;
+interface root_BoxIF extends FrameCoreIF {
+  alignment: Alignment ;
+  axis: Axis ;
+  distribution: Distribution ;
   frameName: string ;
-  init0(p0: root_FrameIF): void ;
+  init0(p0: root_BoxIF): void ;
   propertyNames: string[] ;
   quit_button: ButtonIF ;
-  setValue(p0: string, p1: any): boolean ;
   table: TableDataIF ;
-  value(p0: string): any ;
 }
-interface root_table_TableDataIF {
-  addObserver(p0: string, p1: () => void): void ;
+interface root_table_TableDataIF extends FrameCoreIF {
   count: number ;
-  definePropertyType(p0: string, p1: string): void ;
   fieldName(): string ;
   fieldNames: string[] ;
   frameName: string ;
@@ -21,18 +18,12 @@ interface root_table_TableDataIF {
   path: string ;
   propertyNames: string[] ;
   record: RecordIF | null ;
-  setValue(p0: string, p1: any): boolean ;
   storage: string ;
-  value(p0: string): any ;
 }
-interface root_quit_button_ButtonIF {
-  addObserver(p0: string, p1: () => void): void ;
-  definePropertyType(p0: string, p1: string): void ;
+interface root_quit_button_ButtonIF extends FrameCoreIF {
   frameName: string ;
   isEnabled: boolean ;
   pressed(p0: root_quit_button_ButtonIF): void ;
   propertyNames: string[] ;
-  setValue(p0: string, p1: any): boolean ;
   title: string ;
-  value(p0: string): any ;
 }

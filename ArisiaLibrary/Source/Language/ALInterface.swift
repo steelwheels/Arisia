@@ -9,6 +9,9 @@ import Foundation
 
 public class ALFunctionInterface
 {
+	public static let FrameInterface	= "FrameIF"
+	public static let FrameCoreInterface	= "FrameCoreIF"
+
 	public static func defaultInterfaceName(frameName name: String) -> String {
 		return name + "IF"
 	}

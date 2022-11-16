@@ -154,7 +154,7 @@ open class AMComponentViewController: KCSingleViewController
 
 		let jscode: String
 		if isarisia {
-			//NSLog("Compile ArisiaScript: src=\(String(describing: srcfile?.path))")
+			NSLog("Compile ArisiaScript: src=\(String(describing: srcfile?.path))")
 			if let txt = compileArisiaScript(script: script, sourceFile: srcfile, console: console, config: config) {
 				jscode = txt.toStrings().joined(separator: "\n")
 			} else {
@@ -162,7 +162,7 @@ open class AMComponentViewController: KCSingleViewController
 				return nil
 			}
 		} else {
-			//NSLog("Read JavaScript: src=\(String(describing: srcfile?.path))")
+			NSLog("Read JavaScript: src=\(String(describing: srcfile?.path))")
 			jscode = script // treat as JavaScript code
 		}
 

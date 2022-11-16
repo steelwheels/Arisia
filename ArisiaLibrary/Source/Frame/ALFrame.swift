@@ -21,32 +21,13 @@ public protocol ALFrame
 
 private let FrameNameItem		= "frameName"
 private let PropertyNamesItem		= "propertyNames"
-private let ValueItem			= "value"
-private let SetValueItem		= "setValue"
-private let DefinePropertyTypeItem	= "definePropertyType"
-private let AddObserverItem		= "addObserver"
 
 public extension ALFrame
 {
 	typealias ListenerFunction = (JSValue) -> Void	// new-value
 
-	var frameName: String { get {
-		if let str = core.frameName.toString() {
-			return str
-		} else {
-			CNLog(logLevel: .error, message: "No frame name", atFunction: #function, inFile: #file)
-			return ""
-		}
-	}}
-
-	var propertyNames: Array<String> { get {
-		if let arr = core.propertyNames.toArray() as? Array<String> {
-			return arr
-		} else {
-			CNLog(logLevel: .error, message: "No property names", atFunction: #function, inFile: #file)
-			return []
-		}
-	}}
+	var frameName:     String	 { get { return core.frameName }}
+	var propertyNames: Array<String> { get { return core.propertyNames }}
 
 	func propertyType(propertyName pname: String) -> CNValueType? {
 		return core.propertyType(propertyName: pname)
@@ -84,7 +65,7 @@ public extension ALFrame
 	}
 
 	func numberValue(name nm: String) -> NSNumber? {
-		if let val = core.value(name: nm) {
+		if let val = value(name: nm) {
 			return val.toNumber()
 		} else {
 			return nil
@@ -175,8 +156,16 @@ public extension ALFrame
 		}
 	}
 
+	func setupDefaulrProperties() {
+		/* FrameName: string */
+		setStringValue(name: FrameNameItem, value: self.frameName)
+
+		/* propertyNames: string[] */
+		setArrayValue(name: PropertyNamesItem, value: self.propertyNames)
+	}
+
 	func addObserver(propertyName pname: String, listnerFunction lfunc: @escaping ALFrame.ListenerFunction) {
-		core.addObserver(propertyName: pname, listnerFunction: {
+		core.addPropertyObserver(propertyName: pname, listnerFunction: {
 			(_ param: Any?) -> Void in
 			if let val = param as? JSValue {
 				lfunc(val)
@@ -184,61 +173,6 @@ public extension ALFrame
 				CNLog(logLevel: .error, message: "Unexpected type", atFunction: #function, inFile: #file)
 			}
 		})
-	}
-
-	func setupDefaultProperties() {
-		/* frameName */
-		setStringValue(name: FrameNameItem, value: self.frameName)
-
-		/* value(name: string) */
-		let valuefunc: @convention(block) (_ name: JSValue) -> JSValue = {
-			(_ name: JSValue) -> JSValue in
-			let retval = core.value(name)
-			return retval
-		}
-		if let funcval = JSValue(object: valuefunc, in: core.context) {
-			setValue(name: ValueItem, value: funcval)
-		} else {
-			CNLog(logLevel: .error, message: "Failed to allocate function", atFunction: #function, inFile: #file)
-		}
-
-		/* setValue(name: string, value: any) */
-		let setvaluefunc: @convention(block) (_ name: JSValue, _ srcval: JSValue) -> JSValue = {
-			(_ name: JSValue, _ srcval: JSValue) -> JSValue in
-			return core.setValue(name, srcval)
-		}
-		if let funcval = JSValue(object: setvaluefunc, in: core.context) {
-			setValue(name: SetValueItem, value: funcval)
-		} else {
-			CNLog(logLevel: .error, message: "Failed to allocate function", atFunction: #function, inFile: #file)
-		}
-
-		/* Property names: string[] */
-		setArrayValue(name: PropertyNamesItem, value: propertyNames)
-
-		/* Property name: definePropertyType(propertyName pname: String, typeCode tcode: String) */
-		let defpropfunc: @convention(block) (_ name: JSValue, _ tcode: JSValue) -> JSValue = {
-			(_ name: JSValue, _ tcode: JSValue) -> JSValue in
-			core.definePropertyType(name, tcode)
-			return JSValue(bool: true, in: core.context)
-		}
-		if let funcval = JSValue(object: defpropfunc, in: core.context) {
-			setValue(name: DefinePropertyTypeItem, value: funcval)
-		} else {
-			CNLog(logLevel: .error, message: "Failed to allocate function", atFunction: #function, inFile: #file)
-		}
-
-		/* Property name: addObserver(property: string, cbfunc: ():void) */
-		let addobsfunc: @convention(block) (_ name: JSValue, _ cbfunc: JSValue) -> JSValue = {
-			(_ name: JSValue, _ cbfunc: JSValue) -> JSValue in
-			core.addObserver(name, cbfunc)
-			return JSValue(bool: true, in: core.context)
-		}
-		if let funcval = JSValue(object: addobsfunc, in: core.context) {
-			setValue(name: AddObserverItem, value: funcval)
-		} else {
-			CNLog(logLevel: .error, message: "Failed to allocate function", atFunction: #function, inFile: #file)
-		}
 	}
 }
 
@@ -261,21 +195,16 @@ public extension ALFrame
 	}
 
 	static public var propertyTypes: Dictionary<String, CNValueType> { get {
-		let cbtype: CNValueType = .functionType(.voidType, [])
 		let result: Dictionary<String, CNValueType> = [
 			FrameNameItem:		.stringType,
-			ValueItem:		.functionType(.anyType, [.stringType]),
-			SetValueItem:		.functionType(.boolType, [.stringType, .anyType]),
-			PropertyNamesItem:	.arrayType(.stringType),
-			DefinePropertyTypeItem:	.functionType(.voidType, [.stringType, .stringType]),
-			AddObserverItem:	.functionType(.voidType, [.stringType, cbtype])
+			PropertyNamesItem:	.arrayType(.stringType)
 		]
 		return result
 	}}
 
 	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
 		mPath = pth
-		self.setupDefaultProperties()
+		self.setupDefaulrProperties()
 		return nil
 	}
 }

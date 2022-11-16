@@ -70,6 +70,9 @@ public class AMTableData: ALFrame
 		/* Set property types */
 		definePropertyTypes(propertyTypes: AMTableData.propertyTypes)
 
+		/* Set default properties */
+		self.setupDefaulrProperties()
+		
 		/* storage */
 		let storagename: String?
 		if let name = stringValue(name: AMTableData.StorageItem) {
@@ -158,9 +161,6 @@ public class AMTableData: ALFrame
 		/* Update read-only properties */
 		updateTablePropeties()
 		updateRecordValue(table: table)
-
-		/* default properties */
-		self.setupDefaultProperties()
 		
 		return nil
 	}

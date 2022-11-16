@@ -55,6 +55,9 @@ public class AMLabel: KCTextEdit, ALFrame
 		/* Set property types */
 		definePropertyTypes(propertyTypes: AMLabel.propertyTypes)
 
+		/* Set default properties */
+		self.setupDefaulrProperties()
+		
 		/* text */
 		if let str = stringValue(name: AMLabel.TextItem) {
 			self.text = str
@@ -85,9 +88,6 @@ public class AMLabel: KCTextEdit, ALFrame
 				})
 			}
 		})
-
-		/* default properties */
-		self.setupDefaultProperties()
 		
 		return nil // noError
 	}

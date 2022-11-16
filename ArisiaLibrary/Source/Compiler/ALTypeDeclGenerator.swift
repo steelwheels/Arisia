@@ -77,7 +77,7 @@ public class ALTypeDeclGenerator
 
 	public static func generatePropertyDeclaration(interfaceName ifname: String, frameName fname: String, propertyTypes ptypes: Dictionary<String, CNValueType>) -> CNTextSection {
 		let ifdecl = CNTextSection()
-		ifdecl.header = "interface \(ifname) {"
+		ifdecl.header = "interface \(ifname) extends \(ALFunctionInterface.FrameCoreInterface) {"
 		ifdecl.footer = "}"
 
 		for pname in ptypes.keys.sorted() {

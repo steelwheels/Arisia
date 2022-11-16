@@ -7,6 +7,9 @@ adecl_cmd	= $(HOME)/tools/bin/adecl
 
 all: $(dst_decl)
 
+clean:
+	rm -f $(dst_decl)
+
 $(dst_decl): dummy
 	(cd types && $(adecl_cmd))
 	cat types/ArisiaComponents.d.ts \

@@ -24,7 +24,7 @@ func main(arguments args: Array<String>) {
 
 	/* Load script */
 	let srcurl = URL(fileURLWithPath: config.scriptFile)
-	let lconf  = ALConfig(applicationType: .terminal, doStrict: true, logLevel: .defaultLevel)
+	let lconf  = ALConfig(applicationType: config.target, doStrict: true, logLevel: .defaultLevel)
 	guard let source = srcurl.loadContents() as String? else {
 		console.print(string: "[Error] Failed to load source from \(srcurl.path)")
 		return

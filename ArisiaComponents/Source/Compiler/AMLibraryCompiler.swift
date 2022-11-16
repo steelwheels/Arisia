@@ -56,7 +56,8 @@ open class AMLibraryCompiler: ALLibraryCompiler
 		/* Button */
 		allocator.add(className: AMButton.ClassName,
 			allocator: ALFrameAllocator.Allocator(frameName: AMButton.ClassName, allocFuncBody: {
-				(_ ctxt: KEContext) -> ALFrame? in return AMButton(context: ctxt)
+				(_ ctxt: KEContext) -> ALFrame? in
+				return AMButton(context: ctxt)
 			},
 			propertyTypes: AMButton.propertyTypes
 		))

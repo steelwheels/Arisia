@@ -105,15 +105,13 @@ open class ALFunctionIR
 	}
 
 	public func selfArgument() -> ALArgument {
-		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: "Frame")
-		return ALArgument(type: .objectType(ifname), name: "self")
+		return ALArgument(type: .objectType(ALFunctionInterface.FrameInterface), name: "self")
 	}
 
 	public func selfPathArgument() -> ALPathArgument {
 		let exp    = ALPathExpressionIR(elements: ["self"])
 		let arg    = ALPathArgument(name: "self", pathExpression: exp)
-		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: "Frame")
-		arg.type   = .objectType(ifname)
+		arg.type   = .objectType(ALFunctionInterface.FrameInterface)
 
 		return arg
 	}
