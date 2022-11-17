@@ -5,7 +5,7 @@
   ok_button: Button {
         title: string "OK"
         pressed: event() %{
-	    	leaveView(1) ;
+	    	leaveView(0) ;
         %}
   }
 }

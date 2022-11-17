@@ -5,12 +5,9 @@
 let root = _alloc_Box();
 /* define type for all properties */
 root._definePropertyType("alignment", "e(Alignment)");
-root._definePropertyType("axis", "e(Axis)");
-root._definePropertyType("distribution", "e(Distribution)");
-root._definePropertyType("frameName", "s");
-root._definePropertyType("icons_table", "o(Collection)");
 root._definePropertyType("logo", "o(Image)");
-root._definePropertyType("propertyNames", "a(s)");
+root._definePropertyType("icons_table", "o(Collection)");
+root._definePropertyType("alignment", "e(Alignment)");
 /* define getter/setter for all properties */
 _definePropertyIF(root, ["alignment", "axis", "distribution", "frameName", "icons_table", "logo", "propertyNames"]);
 /* assign user declared properties */
@@ -19,10 +16,8 @@ root.alignment = Alignment.center;
     /* allocate function for frame: Image */
     let logo = _alloc_Image();
     /* define type for all properties */
-    logo._definePropertyType("frameName", "s");
     logo._definePropertyType("name", "s");
-    logo._definePropertyType("propertyNames", "a(s)");
-    logo._definePropertyType("scale", "n");
+    logo._definePropertyType("name", "s");
     /* define getter/setter for all properties */
     _definePropertyIF(logo, ["frameName", "name", "propertyNames", "scale"]);
     /* assign user declared properties */
@@ -35,24 +30,22 @@ root.alignment = Alignment.center;
     /* define type for all properties */
     icons_table._definePropertyType("collection", "a(s)");
     icons_table._definePropertyType("columnNumber", "n");
-    icons_table._definePropertyType("frameName", "s");
-    icons_table._definePropertyType("pressed", "f(v,[CollectionIF,n,n])");
-    icons_table._definePropertyType("propertyNames", "a(s)");
-    icons_table._definePropertyType("totalNumber", "f(n,[])");
+    icons_table._definePropertyType("pressed", "f(v,[i(CollectionIF),n,n])");
+    icons_table._definePropertyType("columnNumber", "n");
+    icons_table._definePropertyType("pressed", "f(v,[i(CollectionIF),n,n])");
+    icons_table._definePropertyType("collection", "a(s)");
     /* define getter/setter for all properties */
     _definePropertyIF(icons_table, ["collection", "columnNumber", "frameName", "pressed", "propertyNames", "totalNumber"]);
     /* assign user declared properties */
     icons_table.collection = ["run_icon", "pref_icon"];
     icons_table.columnNumber = 3;
     icons_table.pressed = function (self, section, item) {
-        var _a;
         switch (item) {
             case 0:
                 /* run */
                 let url = openPanel("Select application", FileType.file, ["jspkg"]);
                 if (url != null) {
                     if (FileManager.isReadable(url)) {
-                        console.log("Readable path = " + ((_a = url.path) !== null && _a !== void 0 ? _a : "null"));
                         run(url, [], _stdin, _stdout, _stderr);
                     }
                     else {

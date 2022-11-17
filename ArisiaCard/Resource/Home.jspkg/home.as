@@ -14,7 +14,6 @@
 					FileType.file, ["jspkg"]) ;
           if(url != null){
 	    if(FileManager.isReadable(url)){
-              console.log("Readable path = " + (url.path ?? "null")) ;
 	      run(url, [], _stdin, _stdout, _stderr) ;
 	    } else {
               console.log("Not readable") ;

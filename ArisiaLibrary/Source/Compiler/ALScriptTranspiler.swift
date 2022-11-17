@@ -126,17 +126,29 @@ public class ALScriptTranspiler
 		let line = CNTextLine(string: "let \(inst) = \(funcname)() \(asname) ;")
 		result.add(text: line)
 
-		/* Collect property types */
+		/* Collect property types
+		 * The user defined property must be sorted by defined order
+		 * The built in property does not have the restriction.
+		 */
 		var ptypes: Dictionary<String, CNValueType> = [:]
+		var pnames: Array<String> = []
 		for prop in frm.properties {
 			ptypes[prop.name] = prop.type
+			if pnames.firstIndex(of: prop.name) == nil {
+				pnames.append(prop.name)
+			} else {
+				CNLog(logLevel: .error, message: "Duplicated property names: \(prop.name)", atFunction: #function, inFile: #file)
+			}
 		}
 		for (name, type) in allocator.propertyTypes {
 			ptypes[name] = type
+			if let _ = pnames.firstIndex(of: name) {
+				pnames.append(name)
+			}
 		}
 
 		/* Define type for all properties*/
-		let dttxt = definePropertyTypes(instanceName: inst, propertyTypes: ptypes)
+		let dttxt = definePropertyTypes(instanceName: inst, propertyNames: pnames, propertyTypes: ptypes)
 		if !dttxt.isEmpty() {
 			result.add(text: CNTextLine(string: "/* define type for all properties */"))
 			result.add(text: dttxt)
@@ -182,9 +194,9 @@ public class ALScriptTranspiler
 	/*
 	 * Call "definePropertyType" methods for each properties in the frame.
 	 */
-	private func definePropertyTypes(instanceName inst: String, propertyTypes ptypes: Dictionary<String, CNValueType>) -> CNTextSection {
+	private func definePropertyTypes(instanceName inst: String, propertyNames pnames: Array<String>, propertyTypes ptypes: Dictionary<String, CNValueType>) -> CNTextSection {
 		let result = CNTextSection()
-		for pname in ptypes.keys.sorted() {
+		for pname in pnames {
 			if let ptype = ptypes[pname] {
 				/*
 				let type: CNValueType

@@ -1,0 +1,10 @@
+{
+  application: "main.js"
+  subviews: {
+    preference: "preference.js"
+  }
+  images: {
+    arisia_icon: "images/arisia-icon.png"
+  }
+}
+
