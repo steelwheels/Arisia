@@ -25,8 +25,8 @@ _definePropertyIF(root, ["alignment","axis","distribution","frameName","label","
   /* define type for all properties */
   ok_button._definePropertyType("title", "s") ;
   ok_button._definePropertyType("pressed", "f(v,[i(ButtonIF)])") ;
-  ok_button._definePropertyType("pressed", "f(v,[i(ButtonIF)])") ;
   ok_button._definePropertyType("title", "s") ;
+  ok_button._definePropertyType("pressed", "f(v,[i(ButtonIF)])") ;
   /* define getter/setter for all properties */
   _definePropertyIF(ok_button, ["frameName","isEnabled","pressed","propertyNames","title"]) ;
   /* assign user declared properties */

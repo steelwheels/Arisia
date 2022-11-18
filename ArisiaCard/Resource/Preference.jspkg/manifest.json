@@ -4,7 +4,7 @@
     preference: "preference.js"
   }
   images: {
-    arisia_icon: "images/arisia-icon.png"
+    arisia_icon: "images/arisia-card-icon.png"
   }
 }
 

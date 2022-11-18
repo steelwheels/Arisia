@@ -64,15 +64,6 @@ public class AMBox: KCStackView, ALFrame
 		/* Set default properties */
 		self.setupDefaulrProperties()
 
-		/* Link with child frames */
-		for pname in self.propertyNames {
-			if let core = self.objectValue(name: pname) as? ALFrameCore {
-				if let view = core.owner as? KCView {
-					self.addArrangedSubView(subView: view)
-				}
-			}
-		}
-
 		/* Axis */
 		if let num = numberValue(name: AMBox.AxisItem) {
 			if let newaxis = CNAxis(rawValue: num.intValue) {
@@ -147,7 +138,16 @@ public class AMBox: KCStackView, ALFrame
 				}
 			}
 		})
-		
+
+		/* Link with child frames after other properties are set */
+		for pname in self.propertyNames {
+			if let core = self.objectValue(name: pname) as? ALFrameCore {
+				if let view = core.owner as? KCView {
+					self.addArrangedSubView(subView: view)
+				}
+			}
+		}
+
 		return nil
 	}
 }
