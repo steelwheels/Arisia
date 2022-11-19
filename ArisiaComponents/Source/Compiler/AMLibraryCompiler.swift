@@ -44,6 +44,7 @@ open class AMLibraryCompiler: ALLibraryCompiler
 			AMButton.ClassName,
 			AMBox.ClassName,
 			AMCollection.ClassName,
+			AMIcon.ClassName,
 			AMImage.ClassName,
 			AMLabel.ClassName,
 			AMTableData.ClassName
@@ -84,6 +85,14 @@ open class AMLibraryCompiler: ALLibraryCompiler
 				(_ ctxt: KEContext) -> ALFrame? in return AMImage(context: ctxt)
 			},
 			propertyTypes: AMImage.propertyTypes
+		))
+
+		/* Icon */
+		allocator.add(className: AMIcon.ClassName,
+			allocator: ALFrameAllocator.Allocator(frameName: AMIcon.ClassName, allocFuncBody: {
+				(_ ctxt: KEContext) -> ALFrame? in return AMIcon(context: ctxt)
+			},
+			propertyTypes: AMIcon.propertyTypes
 		))
 
 		/* Label */

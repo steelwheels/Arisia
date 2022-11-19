@@ -65,6 +65,8 @@
 		05946F3628FC17AF00AF2452 /* AMImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05946F3428FC17AF00AF2452 /* AMImage.swift */; };
 		05B322282915576700AAA84D /* AMLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B322272915576700AAA84D /* AMLabel.swift */; };
 		05B322292915576700AAA84D /* AMLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B322272915576700AAA84D /* AMLabel.swift */; };
+		05BAFD23292897EB009DB1ED /* AMIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BAFD22292897EB009DB1ED /* AMIcon.swift */; };
+		05BAFD24292897EB009DB1ED /* AMIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BAFD22292897EB009DB1ED /* AMIcon.swift */; };
 		05BB080228E7269700265AC9 /* ArisiaComponents.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */; };
 		05BB080628E726AB00265AC9 /* ArisiaComponents.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */; };
 		05CAC86A28DD8C6B001C9EF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CAC86928DD8C6B001C9EF1 /* AppDelegate.swift */; };
@@ -268,6 +270,7 @@
 		05B322272915576700AAA84D /* AMLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMLabel.swift; sourceTree = "<group>"; };
 		05B953B22913EEED00E6EC3C /* window.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = window.js; sourceTree = "<group>"; };
 		05B953B32913EEED00E6EC3C /* window.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = window.ts; sourceTree = "<group>"; };
+		05BAFD22292897EB009DB1ED /* AMIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMIcon.swift; sourceTree = "<group>"; };
 		05BB07F228E723BA00265AC9 /* Builtin.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Builtin.d.ts; sourceTree = "<group>"; };
 		05BB07F428E723BA00265AC9 /* Frame.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Frame.d.ts; sourceTree = "<group>"; };
 		05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ArisiaComponents.d.ts; sourceTree = "<group>"; };
@@ -428,6 +431,7 @@
 				055FE1EC28DD76380007B215 /* AMBox.swift */,
 				0587294528DE792500254084 /* AMButton.swift */,
 				053FF24728FD98D1005A888D /* AMCollection.swift */,
+				05BAFD22292897EB009DB1ED /* AMIcon.swift */,
 				05946F3428FC17AF00AF2452 /* AMImage.swift */,
 				05B322272915576700AAA84D /* AMLabel.swift */,
 				0556618628E090B200FC4CF2 /* AMTableData.swift */,
@@ -769,6 +773,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05BAFD23292897EB009DB1ED /* AMIcon.swift in Sources */,
 				055FE1ED28DD76380007B215 /* AMBox.swift in Sources */,
 				053FF24828FD98D1005A888D /* AMCollection.swift in Sources */,
 				0556618728E090B200FC4CF2 /* AMTableData.swift in Sources */,
@@ -788,6 +793,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05BAFD24292897EB009DB1ED /* AMIcon.swift in Sources */,
 				055FE1EE28DD76380007B215 /* AMBox.swift in Sources */,
 				053FF24928FD98D1005A888D /* AMCollection.swift in Sources */,
 				0556618828E090B200FC4CF2 /* AMTableData.swift in Sources */,

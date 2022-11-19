@@ -22,8 +22,8 @@ root.init0 = function (self) {
     table._definePropertyType("storage", "s");
     table._definePropertyType("path", "s");
     table._definePropertyType("index", "n");
-    table._definePropertyType("storage", "s");
     table._definePropertyType("index", "n");
+    table._definePropertyType("storage", "s");
     table._definePropertyType("path", "s");
     /* define getter/setter for all properties */
     _definePropertyIF(table, ["count", "fieldName", "fieldNames", "frameName", "index", "newRecord", "path", "propertyNames", "record", "storage"]);
