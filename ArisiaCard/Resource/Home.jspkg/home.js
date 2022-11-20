@@ -31,8 +31,8 @@ root.alignment = Alignment.center;
     icons_table._definePropertyType("collection", "a(s)");
     icons_table._definePropertyType("columnNumber", "n");
     icons_table._definePropertyType("pressed", "f(v,[i(CollectionIF),n,n])");
-    icons_table._definePropertyType("collection", "a(s)");
     icons_table._definePropertyType("columnNumber", "n");
+    icons_table._definePropertyType("collection", "a(s)");
     icons_table._definePropertyType("pressed", "f(v,[i(CollectionIF),n,n])");
     /* define getter/setter for all properties */
     _definePropertyIF(icons_table, ["collection", "columnNumber", "frameName", "pressed", "propertyNames", "totalNumber"]);

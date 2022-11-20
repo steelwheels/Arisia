@@ -1,76 +1,53 @@
+/* Enum declaration: AccessType */
 declare enum AccessType {
   append = 2,
   read = 0,
   write = 1
 }
-declare namespace AccessType {
-  function description(param: AccessType): string ;
-  const keys: string[] ;
-}
+/* Enum declaration: AlertType */
 declare enum AlertType {
   critical = 3,
   informational = 1,
   warning = 2
 }
-declare namespace AlertType {
-  function description(param: AlertType): string ;
-  const keys: string[] ;
-}
+/* Enum declaration: Alignment */
 declare enum Alignment {
   center = 3,
   fill = 2,
   leading = 0,
   trailing = 1
 }
-declare namespace Alignment {
-  function description(param: Alignment): string ;
-  const keys: string[] ;
-}
+/* Enum declaration: AnimationState */
 declare enum AnimationState {
   idle = 0,
   pause = 2,
   run = 1
 }
-declare namespace AnimationState {
-  function description(param: AnimationState): string ;
-  const keys: string[] ;
-}
+/* Enum declaration: Authorize */
 declare enum Authorize {
   authorized = 3,
   denied = 2,
   undetermined = 0
 }
-declare namespace Authorize {
-  function description(param: Authorize): string ;
-  const keys: string[] ;
-}
+/* Enum declaration: Axis */
 declare enum Axis {
   horizontal = 0,
   vertical = 1
 }
-declare namespace Axis {
-  function description(param: Axis): string ;
-  const keys: string[] ;
-}
+/* Enum declaration: ComparisonResult */
 declare enum ComparisonResult {
   ascending = -1,
   descending = 1,
   same = 0
 }
-declare namespace ComparisonResult {
-  function description(param: ComparisonResult): string ;
-  const keys: string[] ;
-}
+/* Enum declaration: Distribution */
 declare enum Distribution {
   equalSpacing = 3,
   fill = 0,
   fillEqually = 2,
   fillProportinally = 1
 }
-declare namespace Distribution {
-  function description(param: Distribution): string ;
-  const keys: string[] ;
-}
+/* Enum declaration: ExitCode */
 declare enum ExitCode {
   commaneLineError = 2,
   exception = 4,
@@ -78,28 +55,22 @@ declare enum ExitCode {
   noError = 0,
   syntaxError = 3
 }
-declare namespace ExitCode {
-  function description(param: ExitCode): string ;
-  const keys: string[] ;
-}
+/* Enum declaration: FileType */
 declare enum FileType {
   directory = 2,
   file = 1,
   notExist = 0
 }
-declare namespace FileType {
-  function description(param: FileType): string ;
-  const keys: string[] ;
-}
+/* Enum declaration: FontSize */
 declare enum FontSize {
-  large = 19,
-  regular = 13,
-  small = 11
+  large = 2,
+  regular = 1,
+  small = 0
 }
-declare namespace FontSize {
-  function description(param: FontSize): string ;
-  const keys: string[] ;
+/* Enum declaration: IconSize */
+declare enum IconSize {
 }
+/* Enum declaration: LogLevel */
 declare enum LogLevel {
   debug = 3,
   detail = 4,
@@ -107,29 +78,48 @@ declare enum LogLevel {
   nolog = 0,
   warning = 2
 }
-declare namespace LogLevel {
-  function description(param: LogLevel): string ;
-  const keys: string[] ;
-}
+/* Enum declaration: SortOrder */
 declare enum SortOrder {
   decreasing = 1,
   increasing = -1,
   none = 0
 }
-declare namespace SortOrder {
-  function description(param: SortOrder): string ;
-  const keys: string[] ;
+/* Enum declaration: SymbolType */
+declare enum SymbolType {
+  character_a = 0,
+  chevron_backward = 1,
+  chevron_down = 2,
+  chevron_forward = 3,
+  chevron_up = 4,
+  hand_point_up = 5,
+  hand_raised = 6,
+  line_16p = 11,
+  line_1p = 7,
+  line_2p = 8,
+  line_4p = 9,
+  line_8p = 10,
+  moon_stars = 12,
+  oval_filled = 14,
+  oval_line = 13,
+  paintbrush = 15,
+  pencil = 16,
+  pencil_circule = 17,
+  questionmark = 18,
+  rectangle_filled = 19,
+  rectangle_filled_rounded = 20,
+  rectangle_line = 21,
+  rectangle_line_rounded = 22,
+  sun_max = 23,
+  sun_min = 24,
+  sun_moon = 25
 }
+/* Enum declaration: TextAlign */
 declare enum TextAlign {
   center = 2,
   justfied = 3,
   left = 0,
   normal = 4,
   right = 1
-}
-declare namespace TextAlign {
-  function description(param: TextAlign): string ;
-  const keys: string[] ;
 }
 /**
  * Builtin.d.ts
@@ -195,7 +185,7 @@ interface ArrayIF {
 
 	value(index: number): any | null ;
 	contains(value: any): boolean ;
-	
+
 	set(value: any, index: number): void ;
 	append(value: any): void ;
 }
@@ -436,29 +426,29 @@ interface MappingTableIF extends TableIF {
 }
 
 interface SymbolsIF {
-	characterA:		URLIF ; 
-	chevronBackward:	URLIF ; 
-	chevronDown:		URLIF ; 
-	chevronForward:		URLIF ; 
-	chevronUp:		URLIF ; 
-	handRaised:		URLIF ; 
-	line1P:			URLIF ; 
-	line2P:			URLIF ; 
-	line4P:			URLIF ; 
-	line8P:			URLIF ; 
-	line16P:		URLIF ; 
-	moonStars:		URLIF ; 
-	paintbrush:		URLIF ; 
-	questionmark:		URLIF ; 
-	pencil:			URLIF ; 
-	pencilCircle:		URLIF ; 
-	rectangleFilled:	URLIF ; 
-	rectangleFilledRounded:	URLIF ; 
-	rectangleLine:		URLIF ; 
-	rectangleLineRounded:	URLIF ; 
-	sunMax:			URLIF ; 
-	sunMin:			URLIF ; 
-	sunMoon:		URLIF ; 
+	characterA:		URLIF ;
+	chevronBackward:	URLIF ;
+	chevronDown:		URLIF ;
+	chevronForward:		URLIF ;
+	chevronUp:		URLIF ;
+	handRaised:		URLIF ;
+	line1P:			URLIF ;
+	line2P:			URLIF ;
+	line4P:			URLIF ;
+	line8P:			URLIF ;
+	line16P:		URLIF ;
+	moonStars:		URLIF ;
+	paintbrush:		URLIF ;
+	questionmark:		URLIF ;
+	pencil:			URLIF ;
+	pencilCircle:		URLIF ;
+	rectangleFilled:	URLIF ;
+	rectangleFilledRounded:	URLIF ;
+	rectangleLine:		URLIF ;
+	rectangleLineRounded:	URLIF ;
+	sunMax:			URLIF ;
+	sunMin:			URLIF ;
+	sunMoon:		URLIF ;
 }
 
 interface ContactDatabaseIF {
