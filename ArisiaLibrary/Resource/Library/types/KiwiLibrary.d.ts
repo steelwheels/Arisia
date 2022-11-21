@@ -63,12 +63,15 @@ declare enum FileType {
 }
 /* Enum declaration: FontSize */
 declare enum FontSize {
-  large = 2,
-  regular = 1,
-  small = 0
+  large = 19,
+  regular = 13,
+  small = 11
 }
 /* Enum declaration: IconSize */
 declare enum IconSize {
+  large = 2,
+  regular = 1,
+  small = 0
 }
 /* Enum declaration: LogLevel */
 declare enum LogLevel {

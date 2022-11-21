@@ -19,15 +19,9 @@ public func defineBuiltinComponents()
 	let comps = AMLibraryCompiler.builtinComponentNames
 	for comp in comps {
 		let ptypes: Dictionary<String, CNValueType>
-		switch comp {
-		case AMButton.ClassName:	ptypes = AMButton.propertyTypes
-		case AMBox.ClassName:		ptypes = AMBox.propertyTypes
-		case AMCollection.ClassName:	ptypes = AMCollection.propertyTypes
-		case AMImage.ClassName:		ptypes = AMImage.propertyTypes
-		case AMLabel.ClassName:		ptypes = AMLabel.propertyTypes
-		case AMTableData.ClassName:	ptypes = AMTableData.propertyTypes
-		default:
-			CNLog(logLevel: .error, message: "Unknown component: \(comp)")
+		if let t = AMLibraryCompiler.propertyTypes(forComponent: comp) {
+			ptypes = t
+		} else {
 			ptypes = [:]
 		}
 		allocator.add(className: comp,

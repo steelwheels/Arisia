@@ -63,12 +63,15 @@ declare enum FileType {
 }
 /* Enum declaration: FontSize */
 declare enum FontSize {
-  large = 2,
-  regular = 1,
-  small = 0
+  large = 19,
+  regular = 13,
+  small = 11
 }
 /* Enum declaration: IconSize */
 declare enum IconSize {
+  large = 2,
+  regular = 1,
+  small = 0
 }
 /* Enum declaration: LogLevel */
 declare enum LogLevel {
@@ -784,6 +787,15 @@ interface ImageIF extends FrameCoreIF {
   scale: number ;
 }
 declare function _alloc_Image(): ImageIF ;
+interface IconIF extends FrameCoreIF {
+  frameName: string ;
+  image: string ;
+  propertyNames: string[] ;
+  size: IconSize ;
+  symbol: number ;
+  title: string ;
+}
+declare function _alloc_Icon(): IconIF ;
 interface LabelIF extends FrameCoreIF {
   frameName: string ;
   number: number ;

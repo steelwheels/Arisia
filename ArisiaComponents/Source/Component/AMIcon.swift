@@ -68,6 +68,9 @@ public class AMIcon: KCIconView, ALFrame
 		/* Set property types */
 		definePropertyTypes(propertyTypes: AMIcon.propertyTypes)
 
+		/* Set default properties */
+		self.setupDefaulrProperties()
+
 		/* New image */
 		var newimg: CNImage? = nil
 
@@ -93,13 +96,17 @@ public class AMIcon: KCIconView, ALFrame
 			}
 		}
 
+		/* Assign dummy image */
+		if newimg == nil {
+			CNLog(logLevel: .error, message: "Failed to load image or symbol")
+			newimg = CNSymbol.shared.loadImage(type: .questionmark)
+		}
+
 		/* Load image */
 		if let img = newimg {
 			CNExecuteInMainThread(doSync: false, execute: {
 				() -> Void in self.image = img
 			})
-		} else {
-			CNLog(logLevel: .error, message: "Failed to load image or symbol")
 		}
 
 		/* title property */

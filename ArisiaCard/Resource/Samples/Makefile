@@ -8,5 +8,6 @@ all:
 
 clean:
 	(cd hello.jspkg && make clean)
+	(cd icon.jspkg && make clean)
 	(cd table-data-0.jspkg && make clean)
 

@@ -21,9 +21,9 @@ root.init0 = function(self: FrameIF): void {
   table._definePropertyType("storage", "s") ;
   table._definePropertyType("path", "s") ;
   table._definePropertyType("index", "n") ;
-  table._definePropertyType("storage", "s") ;
-  table._definePropertyType("path", "s") ;
   table._definePropertyType("index", "n") ;
+  table._definePropertyType("path", "s") ;
+  table._definePropertyType("storage", "s") ;
   /* define getter/setter for all properties */
   _definePropertyIF(table, ["count","fieldName","fieldNames","frameName","index","newRecord","path","propertyNames","record","storage"]) ;
   /* assign user declared properties */
@@ -38,8 +38,8 @@ root.init0 = function(self: FrameIF): void {
   /* define type for all properties */
   quit_button._definePropertyType("title", "s") ;
   quit_button._definePropertyType("pressed", "f(v,[i(ButtonIF)])") ;
-  quit_button._definePropertyType("pressed", "f(v,[i(ButtonIF)])") ;
   quit_button._definePropertyType("title", "s") ;
+  quit_button._definePropertyType("pressed", "f(v,[i(ButtonIF)])") ;
   /* define getter/setter for all properties */
   _definePropertyIF(quit_button, ["frameName","isEnabled","pressed","propertyNames","title"]) ;
   /* assign user declared properties */

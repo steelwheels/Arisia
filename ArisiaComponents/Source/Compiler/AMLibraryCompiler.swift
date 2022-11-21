@@ -51,6 +51,23 @@ open class AMLibraryCompiler: ALLibraryCompiler
 		]
 	}}
 
+	public static func propertyTypes(forComponent comp: String) -> Dictionary<String, CNValueType>? {
+		let result: Dictionary<String, CNValueType>?
+		switch comp {
+		case AMButton.ClassName:	result = AMButton.propertyTypes
+		case AMBox.ClassName:		result = AMBox.propertyTypes
+		case AMCollection.ClassName:	result = AMCollection.propertyTypes
+		case AMIcon.ClassName:		result = AMIcon.propertyTypes
+		case AMImage.ClassName:		result = AMImage.propertyTypes
+		case AMLabel.ClassName:		result = AMLabel.propertyTypes
+		case AMTableData.ClassName:	result = AMTableData.propertyTypes
+		default:
+			CNLog(logLevel: .error, message: "Unknown component name: \(comp)", atFunction: #function, inFile: #file)
+			result = nil
+		}
+		return result
+	}
+
 	private func defineAllocators(context ctxt: KEContext) {
 		let allocator = ALFrameAllocator.shared
 
