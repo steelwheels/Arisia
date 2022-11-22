@@ -142,7 +142,7 @@ public class ALScriptTranspiler
 		}
 		for (name, type) in allocator.propertyTypes {
 			ptypes[name] = type
-			if let _ = pnames.firstIndex(of: name) {
+			if pnames.firstIndex(of: name) == nil {
 				pnames.append(name)
 			}
 		}
