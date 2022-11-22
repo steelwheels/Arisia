@@ -5,11 +5,11 @@ let root = _alloc_Box() as root_BoxIF ;
 /* define type for all properties */
 root._definePropertyType("icon0", "o(Icon)") ;
 root._definePropertyType("ok_button", "o(Button)") ;
-root._definePropertyType("distribution", "e(Distribution)") ;
+root._definePropertyType("propertyNames", "a(s)") ;
+root._definePropertyType("axis", "e(Axis)") ;
 root._definePropertyType("frameName", "s") ;
 root._definePropertyType("alignment", "e(Alignment)") ;
-root._definePropertyType("axis", "e(Axis)") ;
-root._definePropertyType("propertyNames", "a(s)") ;
+root._definePropertyType("distribution", "e(Distribution)") ;
 /* define getter/setter for all properties */
 _definePropertyIF(root, ["alignment","axis","distribution","frameName","icon0","ok_button","propertyNames"]) ;
 {
@@ -17,16 +17,17 @@ _definePropertyIF(root, ["alignment","axis","distribution","frameName","icon0","
   let icon0 = _alloc_Icon() as root_icon0_IconIF ;
   /* define type for all properties */
   icon0._definePropertyType("image", "s") ;
+  icon0._definePropertyType("title", "s") ;
   icon0._definePropertyType("size", "e(IconSize)") ;
+  icon0._definePropertyType("symbol", "n") ;
   icon0._definePropertyType("frameName", "s") ;
   icon0._definePropertyType("propertyNames", "a(s)") ;
-  icon0._definePropertyType("symbol", "n") ;
-  icon0._definePropertyType("title", "s") ;
   /* define getter/setter for all properties */
   _definePropertyIF(icon0, ["frameName","image","propertyNames","size","symbol","title"]) ;
   /* assign user declared properties */
   icon0.image = "card";
-  icon0.size = IconSize.regular;
+  icon0.title = "Hello";
+  icon0.size = IconSize.small;
   root.icon0 = icon0 ;
 }
 {

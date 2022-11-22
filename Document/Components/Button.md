@@ -7,16 +7,12 @@ A control that defines an area on the screen that a user clicks to trigger an ac
 
 This is the interface definition for TypeScript:
 <pre>
-interface ButtonIF {
-  pressed(p0: ButtonIF): void ;
-  isEnabled: boolean ;
-  title: string ;
+interface ButtonIF extends FrameCoreIF {
   frameName: string ;
-  value(p0: string): any ;
-  setValue(p0: string, p1: any): boolean ;
+  isEnabled: boolean ;
+  pressed(p0: ButtonIF): void ;
   propertyNames: string[] ;
-  definePropertyType(p0: string, p1: string): void ;
-  addObserver(p0: string, p1: () => void): void ;
+  title: string ;
 }
 declare function _alloc_Button(): ButtonIF ;
 

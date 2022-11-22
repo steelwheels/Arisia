@@ -114,7 +114,17 @@ public class AMIcon: KCIconView, ALFrame
 			CNExecuteInMainThread(doSync: false, execute: {
 				() -> Void in self.title = title
 			})
+		} else {
+			setStringValue(name: AMIcon.TitleItem, value: self.title)
 		}
+		addObserver(propertyName: AMIcon.TitleItem, listnerFunction: {
+			(_ param: JSValue) -> Void in
+			if let title = param.toString() {
+				CNExecuteInMainThread(doSync: false, execute: {
+					self.title = title
+				})
+			}
+		})
 
 		/* Size property */
 		if let num = numberValue(name: AMIcon.SizeItem) {
@@ -125,7 +135,22 @@ public class AMIcon: KCIconView, ALFrame
 			} else {
 				CNLog(logLevel: .error, message: "Icon size type is required but it is not.")
 			}
+		} else {
+			let num = NSNumber(integerLiteral: self.size.rawValue)
+			setNumberValue(name: AMIcon.SizeItem, value: num)
 		}
+		addObserver(propertyName: AMIcon.SizeItem, listnerFunction: {
+			(_ param: JSValue) -> Void in
+			if let num = param.toNumber() {
+				if let size = CNIconSize(rawValue: num.intValue) {
+					CNExecuteInMainThread(doSync: false, execute: {
+						self.size = size
+					})
+				} else {
+					CNLog(logLevel: .error, message: "\(AMIcon.SizeItem) property in \(AMIcon.ClassName) component must have IconSize type")
+				}
+			}
+		})
 
 		return nil
 	}

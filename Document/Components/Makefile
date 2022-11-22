@@ -7,6 +7,7 @@ include ../Makefile.inc
 srcs	= Button.md4 \
 	  Box.md4 \
 	  Collection.md4 \
+	  Icon.md4 \
 	  Image.md4 \
 	  Label.md4 \
 	  TableData.md4

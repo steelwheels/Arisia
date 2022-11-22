@@ -1,0 +1,18 @@
+# `Icon` component
+
+## Introduction
+Clickable Icon.
+
+This is sample view of Icon:
+<img src="./Images/icon-component.png" width="50%" height="50%" />
+(The "OK" button is NOT an icon component.)
+
+## Interface
+
+This is the interface definition for TypeScript:
+<pre>
+m4_include(`Icon.d.ts')
+</pre>
+
+m4_include(`footer.md')
+

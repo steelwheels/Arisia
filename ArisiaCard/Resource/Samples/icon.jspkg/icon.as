@@ -1,7 +1,8 @@
 {
   icon0: Icon {
     image: string "card"
-    size:  IconSize regular
+    title: string "Hello"
+    size:  IconSize small
   }
   ok_button: Button {
         title: string "OK"

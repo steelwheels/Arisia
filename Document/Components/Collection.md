@@ -7,17 +7,13 @@ Display multiple images. You cange callback by clicking the image.
 
 This is the interface definition for TypeScript:
 <pre>
-interface CollectionIF {
-  columnNumber: number ;
-  totalNumber(): number ;
+interface CollectionIF extends FrameCoreIF {
   collection: string[] ;
-  pressed(p0: CollectionIF, p1: number, p2: number): void ;
+  columnNumber: number ;
   frameName: string ;
-  value(p0: string): any ;
-  setValue(p0: string, p1: any): boolean ;
+  pressed(p0: CollectionIF, p1: number, p2: number): void ;
   propertyNames: string[] ;
-  definePropertyType(p0: string, p1: string): void ;
-  addObserver(p0: string, p1: () => void): void ;
+  totalNumber(): number ;
 }
 declare function _alloc_Collection(): CollectionIF ;
 

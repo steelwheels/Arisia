@@ -7,15 +7,11 @@ Display text/number field
 
 This is the interface definition for TypeScript:
 <pre>
-interface LabelIF {
-  text: string ;
-  number: number ;
+interface LabelIF extends FrameCoreIF {
   frameName: string ;
-  value(p0: string): any ;
-  setValue(p0: string, p1: any): boolean ;
+  number: number ;
   propertyNames: string[] ;
-  definePropertyType(p0: string, p1: string): void ;
-  addObserver(p0: string, p1: () => void): void ;
+  text: string ;
 }
 declare function _alloc_Label(): LabelIF ;
 
@@ -30,7 +26,7 @@ declare function _alloc_Label(): LabelIF ;
   ok_button: Button {
         title: string "OK"
         pressed: event() %{
-	    	leaveView(1) ;
+	    	leaveView(0) ;
         %}
   }
 }

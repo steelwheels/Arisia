@@ -8,16 +8,12 @@ They will be layouted holizontally or vertically.
 
 This is the interface definition for TypeScript:
 <pre>
-interface BoxIF {
-  axis: Axis ;
+interface BoxIF extends FrameCoreIF {
   alignment: Alignment ;
+  axis: Axis ;
   distribution: Distribution ;
   frameName: string ;
-  value(p0: string): any ;
-  setValue(p0: string, p1: any): boolean ;
   propertyNames: string[] ;
-  definePropertyType(p0: string, p1: string): void ;
-  addObserver(p0: string, p1: () => void): void ;
 }
 declare function _alloc_Box(): BoxIF ;
 

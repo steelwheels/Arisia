@@ -8,18 +8,17 @@ multiple data records.
 
 This is the interface definition for TypeScript:
 <pre>
-interface TableDataIF {
+interface TableDataIF extends FrameCoreIF {
+  count: number ;
   fieldName(): string ;
-  newRecord(): { c0:number;
-  c1:number;
-  c2:number;
-   } ;
+  fieldNames: string[] ;
   frameName: string ;
-  value(p0: string): any ;
-  setValue(p0: string, p1: any): boolean ;
+  index: number ;
+  newRecord: RecordIF ;
+  path: string ;
   propertyNames: string[] ;
-  definePropertyType(p0: string, p1: string): void ;
-  addObserver(p0: string, p1: () => void): void ;
+  record: RecordIF | null ;
+  storage: string ;
 }
 declare function _alloc_TableData(): TableDataIF ;
 

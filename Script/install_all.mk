@@ -9,16 +9,20 @@ comp_res_dir  =  ArisiaComponents/Resource/Library/types
 card_res_dir  =  ArisiaCard/Resource/Library/types
 tools_res_dir =  ArisiaTools/Resource/Library/types
 
-all: card
+all: card doc
 
 clean: dummy
 	(cd ArisiaLibrary/Resource && make clean)
 	(cd ArisiaComponents/Resource && make clean)
 	(cd ArisiaTools/Resource && make clean)
 	(cd ArisiaCard/Resource && make clean)
+	(cd Document && make clean)
 
 card: tools $(card_res_dir)/ArisiaPlatform.d.ts
 	(pushd ArisiaCard/Project && make -f $(app_mk) && popd)
+
+doc: dummy
+	(cd Document && make)
 
 $(card_res_dir)/ArisiaPlatform.d.ts: $(tools_res_dir)/ArisiaPlatform.d.ts
 	cp $< $@
