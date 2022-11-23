@@ -577,6 +577,7 @@ declare function TextTable(): TextTableIF ;
 
 declare function _openPanel(title: string, type: FileType, exts: string[], cbfunc: any): void ;
 declare function _savePanel(title: string, cbfunc: any): void ;
+declare function _openURL(title: URLIF | string, cbfunc: any): void ;
 declare function _allocateThread(path: URLIF | string, input: FileIF, output: FileIF, error: FileIF): ThreadIF | null ;
 
 /// <reference path="Builtin.d.ts" />
@@ -652,6 +653,7 @@ declare class CancelException extends Error {
 declare function _cancel(): void;
 declare function openPanel(title: string, type: FileType, exts: string[]): URLIF | null;
 declare function savePanel(title: string): URLIF | null;
+declare function openURL(url: URLIF | string): boolean;
 declare function allocateThread(path: URLIF | string | null, input: FileIF, output: FileIF, error: FileIF): ThreadIF | null;
 declare function run(path: URLIF | string | null, args: string[], input: FileIF, output: FileIF, error: FileIF): number;
 /// <reference path="Builtin.d.ts" />
