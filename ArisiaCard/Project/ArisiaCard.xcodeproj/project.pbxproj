@@ -60,6 +60,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		05002927292DBC1B00B0E60B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05BEE0A728FB03E40092E1C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05BEE0AE28FB03E40092E1C4;
+			remoteInfo = ArisiaCard;
+		};
+		05002929292DBC2100B0E60B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05BEE0A728FB03E40092E1C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0569BBDB28FB0542003BD24B;
+			remoteInfo = ArisiaCard_iOS;
+		};
 		0517391728FC0FB1000B9D99 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05BEE0A728FB03E40092E1C4 /* Project object */;
@@ -315,6 +329,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
+		05002923292DBC1100B0E60B /* install */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f ../../Script/install_app.mk macos";
+			buildConfigurationList = 05002926292DBC1100B0E60B /* Build configuration list for PBXLegacyTarget "install" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+				0500292A292DBC2100B0E60B /* PBXTargetDependency */,
+				05002928292DBC1B00B0E60B /* PBXTargetDependency */,
+			);
+			name = install;
+			passBuildSettingsInEnvironment = 1;
+			productName = install;
+		};
 		0517391328FC0F98000B9D99 /* make_resource */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "-f ../Resource/Makefile";
@@ -383,6 +413,9 @@
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					05002923292DBC1100B0E60B = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					0517391328FC0F98000B9D99 = {
 						CreatedOnToolsVersion = 12.4;
 					};
@@ -410,6 +443,7 @@
 				0517391328FC0F98000B9D99 /* make_resource */,
 				05BEE0AE28FB03E40092E1C4 /* ArisiaCard */,
 				0569BBDB28FB0542003BD24B /* ArisiaCard_iOS */,
+				05002923292DBC1100B0E60B /* install */,
 			);
 		};
 /* End PBXProject section */
@@ -459,6 +493,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		05002928292DBC1B00B0E60B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05BEE0AE28FB03E40092E1C4 /* ArisiaCard */;
+			targetProxy = 05002927292DBC1B00B0E60B /* PBXContainerItemProxy */;
+		};
+		0500292A292DBC2100B0E60B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0569BBDB28FB0542003BD24B /* ArisiaCard_iOS */;
+			targetProxy = 05002929292DBC2100B0E60B /* PBXContainerItemProxy */;
+		};
 		0517391828FC0FB1000B9D99 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0517391328FC0F98000B9D99 /* make_resource */;
@@ -499,6 +543,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		05002924292DBC1100B0E60B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Debug;
+		};
+		05002925292DBC1100B0E60B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TR2DNF3P93;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		0517391428FC0F98000B9D99 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -534,6 +606,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				INFOPLIST_FILE = ArisiaCard_iOS/Info.plist;
+				INSTALL_PATH = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -555,6 +628,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				INFOPLIST_FILE = ArisiaCard_iOS/Info.plist;
+				INSTALL_PATH = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -620,6 +694,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = /Applications;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -675,6 +750,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = /Applications;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -697,6 +773,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/Library/Frameworks";
 				INFOPLIST_FILE = ArisiaCard/Info.plist;
+				INSTALL_PATH = /Applications;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(HOME)/Library/Frameworks",
@@ -722,6 +799,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/Library/Frameworks";
 				INFOPLIST_FILE = ArisiaCard/Info.plist;
+				INSTALL_PATH = /Applications;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(HOME)/Library/Frameworks",
@@ -737,6 +815,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		05002926292DBC1100B0E60B /* Build configuration list for PBXLegacyTarget "install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05002924292DBC1100B0E60B /* Debug */,
+				05002925292DBC1100B0E60B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0517391628FC0F98000B9D99 /* Build configuration list for PBXLegacyTarget "make_resource" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -790,6 +790,7 @@ declare function _alloc_Image(): ImageIF ;
 interface IconIF extends FrameCoreIF {
   frameName: string ;
   image: string ;
+  pressed(p0: IconIF): void ;
   propertyNames: string[] ;
   size: IconSize ;
   symbol: number ;

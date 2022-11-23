@@ -1,8 +1,9 @@
 # install_all.mk
 
-build_mk = ../../Script/build.mk
-tool_mk  = ../../Script/build_tool.mk
-app_mk   = ../../Script/build_app.mk
+build_mk      = ../../Script/build.mk
+tool_mk       = ../../Script/build_tool.mk
+app_mk	      = ../../Script/build_app.mk
+install_mk    = ../../Script/install_app.mk
 
 lib_res_dir   =  ArisiaLibrary/Resource/Library/types
 comp_res_dir  =  ArisiaComponents/Resource/Library/types
@@ -19,7 +20,8 @@ clean: dummy
 	(cd Document && make clean)
 
 card: tools $(card_res_dir)/ArisiaPlatform.d.ts
-	(pushd ArisiaCard/Project && make -f $(app_mk) && popd)
+	(cd ArisiaCard/Project && make -f $(app_mk))
+	(cd ArisiaCard/Project && make -f $(install_mk) macos)
 
 doc: dummy
 	(cd Document && make)

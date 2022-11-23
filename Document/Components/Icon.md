@@ -4,8 +4,9 @@
 Clickable Icon.
 
 This is sample view of Icon:
-<img src="./Images/icon-component.png" width="50%" height="50%" />
 (The "OK" button is NOT an icon component.)
+
+![Sample Icon](./Images/icon-component.png)
 
 ## Interface
 

@@ -10,6 +10,7 @@ interface root_BoxIF extends FrameCoreIF {
 interface root_icon0_IconIF extends FrameCoreIF {
   frameName: string ;
   image: string ;
+  pressed(p0: root_icon0_IconIF): void ;
   propertyNames: string[] ;
   size: IconSize ;
   symbol: number ;

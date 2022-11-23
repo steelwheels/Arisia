@@ -20,6 +20,7 @@ public class AMIcon: KCIconView, ALFrame
 	public static let ClassName		= "Icon"
 
 	private static let ImageItem 		= "image"
+	private static let PressedItem		= "pressed"
 	private static let SizeItem		= "size"
 	private static let SymbolItem		= "symbol"
 	private static let TitleItem		= "title"
@@ -54,6 +55,7 @@ public class AMIcon: KCIconView, ALFrame
 		}
 		let result: Dictionary<String, CNValueType> = [
 			AMIcon.ImageItem:	.stringType,
+			AMIcon.PressedItem:	.functionType(.voidType, [ .interfaceType("IconIF") ]),
 			AMIcon.SymbolItem:	.numberType,
 			AMIcon.TitleItem:	.stringType,
 			AMIcon.SizeItem:	.enumType(sizetype)
@@ -151,6 +153,21 @@ public class AMIcon: KCIconView, ALFrame
 				}
 			}
 		})
+
+		/* "pressed" event */
+		if self.value(name: AMIcon.PressedItem) == nil {
+			self.setValue(name: AMIcon.PressedItem, value: JSValue(nullIn: core.context))
+		}
+		self.buttonPressedCallback = {
+			() -> Void in
+			if let evtval = self.value(name: AMIcon.PressedItem) {
+				if !evtval.isNull {
+					CNExecuteInUserThread(level: .event, execute: {
+						evtval.call(withArguments: [self.mFrameCore])	// insert self
+					})
+				}
+			}
+		}
 
 		return nil
 	}
