@@ -101,6 +101,8 @@
 		05D112352914071800EDAF71 /* window.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B953B32913EEED00E6EC3C /* window.ts */; };
 		05D112392914074E00EDAF71 /* window.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B953B22913EEED00E6EC3C /* window.js */; };
 		05D1123A2914074E00EDAF71 /* window.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B953B32913EEED00E6EC3C /* window.ts */; };
+		05D22134292FB84B003D1264 /* AMRadioButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D22133292FB84B003D1264 /* AMRadioButtons.swift */; };
+		05D22135292FB84B003D1264 /* AMRadioButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D22133292FB84B003D1264 /* AMRadioButtons.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -291,6 +293,7 @@
 		05CAC89528DD8EA5001C9EF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05CAC89728DD8EA5001C9EF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05CAC8A428DD9526001C9EF1 /* ArisiaComponents.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ArisiaComponents.xcframework; path = ../../../../Library/Frameworks/ArisiaComponents.xcframework; sourceTree = "<group>"; };
+		05D22133292FB84B003D1264 /* AMRadioButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMRadioButtons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -434,6 +437,7 @@
 				05BAFD22292897EB009DB1ED /* AMIcon.swift */,
 				05946F3428FC17AF00AF2452 /* AMImage.swift */,
 				05B322272915576700AAA84D /* AMLabel.swift */,
+				05D22133292FB84B003D1264 /* AMRadioButtons.swift */,
 				0556618628E090B200FC4CF2 /* AMTableData.swift */,
 			);
 			path = Component;
@@ -774,6 +778,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05BAFD23292897EB009DB1ED /* AMIcon.swift in Sources */,
+				05D22134292FB84B003D1264 /* AMRadioButtons.swift in Sources */,
 				055FE1ED28DD76380007B215 /* AMBox.swift in Sources */,
 				053FF24828FD98D1005A888D /* AMCollection.swift in Sources */,
 				0556618728E090B200FC4CF2 /* AMTableData.swift in Sources */,
@@ -794,6 +799,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05BAFD24292897EB009DB1ED /* AMIcon.swift in Sources */,
+				05D22135292FB84B003D1264 /* AMRadioButtons.swift in Sources */,
 				055FE1EE28DD76380007B215 /* AMBox.swift in Sources */,
 				053FF24928FD98D1005A888D /* AMCollection.swift in Sources */,
 				0556618828E090B200FC4CF2 /* AMTableData.swift in Sources */,

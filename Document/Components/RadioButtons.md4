@@ -1,0 +1,14 @@
+# `RadioButtons` component
+
+## Introduction
+Radio buttons which is used select one from multi items.
+
+## Interface
+
+This is the interface definition for TypeScript:
+<pre>
+m4_include(`RadioButtons.d.ts')
+</pre>
+
+m4_include(`footer.md')
+

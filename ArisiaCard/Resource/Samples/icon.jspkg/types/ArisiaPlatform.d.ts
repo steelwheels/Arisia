@@ -806,6 +806,15 @@ interface LabelIF extends FrameCoreIF {
   text: string ;
 }
 declare function _alloc_Label(): LabelIF ;
+interface RadioButtonsIF extends FrameCoreIF {
+  columnNum: number ;
+  currentIndex: number ;
+  frameName: string ;
+  labels: string[] ;
+  propertyNames: string[] ;
+  setEnable(p0: string, p1: boolean): void ;
+}
+declare function _alloc_RadioButtons(): RadioButtonsIF ;
 interface TableDataIF extends FrameCoreIF {
   count: number ;
   fieldName(): string ;

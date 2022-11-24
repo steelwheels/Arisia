@@ -10,6 +10,7 @@ srcs	= Button.md4 \
 	  Icon.md4 \
 	  Image.md4 \
 	  Label.md4 \
+	  RadioButtons.md4 \
 	  TableData.md4
 dsts	= $(srcs:.md4=.md)
 

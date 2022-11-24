@@ -19,6 +19,7 @@ $(dst_decl): dummy
 	    types/Image.d.ts \
 	    types/Icon.d.ts \
 	    types/Label.d.ts \
+	    types/RadioButtons.d.ts \
 	    types/TableData.d.ts \
 	> $@
 

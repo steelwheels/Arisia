@@ -7,6 +7,7 @@
 * [Icon](./Components/Icon.md): The clickable icon. 
 * [Image](./Components/Image.md): The image which is read from image file.
 * [Label](./Components/Label.md): The text/number field.
+* [RadioButtons](./Components/RadioButtons.md): The buttons to select one from multi items.
 
 ## Data components
 * [TableData](./Components/TableData.md): The database which contains multiple records.

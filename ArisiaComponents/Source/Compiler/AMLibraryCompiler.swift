@@ -47,6 +47,7 @@ open class AMLibraryCompiler: ALLibraryCompiler
 			AMIcon.ClassName,
 			AMImage.ClassName,
 			AMLabel.ClassName,
+			AMRadioButtons.ClassName,
 			AMTableData.ClassName
 		]
 	}}
@@ -60,6 +61,7 @@ open class AMLibraryCompiler: ALLibraryCompiler
 		case AMIcon.ClassName:		result = AMIcon.propertyTypes
 		case AMImage.ClassName:		result = AMImage.propertyTypes
 		case AMLabel.ClassName:		result = AMLabel.propertyTypes
+		case AMRadioButtons.ClassName:	result = AMRadioButtons.propertyTypes
 		case AMTableData.ClassName:	result = AMTableData.propertyTypes
 		default:
 			CNLog(logLevel: .error, message: "Unknown component name: \(comp)", atFunction: #function, inFile: #file)
@@ -118,6 +120,14 @@ open class AMLibraryCompiler: ALLibraryCompiler
 				(_ ctxt: KEContext) -> ALFrame? in return AMLabel(context: ctxt)
 			},
 			propertyTypes: AMLabel.propertyTypes
+		))
+
+		/* RadioButtons */
+		allocator.add(className: AMRadioButtons.ClassName,
+			allocator: ALFrameAllocator.Allocator(frameName: AMRadioButtons.ClassName, allocFuncBody: {
+				(_ ctxt: KEContext) -> ALFrame? in return AMRadioButtons(context: ctxt)
+			},
+			propertyTypes: AMRadioButtons.propertyTypes
 		))
 
 		/* TableData */
