@@ -1,0 +1,10 @@
+{
+	application: "main.js"
+	subviews: {
+		search: "google-search.js"
+	}
+	images: {
+		card: "images/card.png"
+	}
+}
+
