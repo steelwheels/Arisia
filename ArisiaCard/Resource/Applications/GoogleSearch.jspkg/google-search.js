@@ -6,11 +6,11 @@ let root = _alloc_Box();
 /* define type for all properties */
 root._definePropertyType("title_label", "o(Label)");
 root._definePropertyType("ok_button", "o(Button)");
-root._definePropertyType("frameName", "s");
-root._definePropertyType("propertyNames", "a(s)");
 root._definePropertyType("axis", "e(Axis)");
-root._definePropertyType("alignment", "e(Alignment)");
 root._definePropertyType("distribution", "e(Distribution)");
+root._definePropertyType("propertyNames", "a(s)");
+root._definePropertyType("frameName", "s");
+root._definePropertyType("alignment", "e(Alignment)");
 /* define getter/setter for all properties */
 _definePropertyIF(root, ["alignment", "axis", "distribution", "frameName", "ok_button", "propertyNames", "title_label"]);
 {
@@ -18,8 +18,8 @@ _definePropertyIF(root, ["alignment", "axis", "distribution", "frameName", "ok_b
     let title_label = _alloc_Label();
     /* define type for all properties */
     title_label._definePropertyType("text", "s");
-    title_label._definePropertyType("frameName", "s");
     title_label._definePropertyType("number", "n");
+    title_label._definePropertyType("frameName", "s");
     title_label._definePropertyType("propertyNames", "a(s)");
     /* define getter/setter for all properties */
     _definePropertyIF(title_label, ["frameName", "number", "propertyNames", "text"]);

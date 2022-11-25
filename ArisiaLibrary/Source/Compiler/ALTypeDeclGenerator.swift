@@ -59,20 +59,49 @@ public class ALTypeDeclGenerator
 			ptypes[prop.name] = prop.type
 		}
 		let ifname = ALFunctionInterface.userInterfaceName(path: pth.path, instanceName: pth.instanceName, frameName: frm.className)
-		return .success(ALTypeDeclGenerator.generatePropertyDeclaration(interfaceName: ifname, frameName: frm.className, propertyTypes: ptypes))
+		return .success(generatePropertyDeclaration(interfaceName: ifname, frame: frm, propertyTypes: ptypes))
 	}
 
-	public static func generateBaseDeclaration(frameName fname: String) -> Result<CNTextSection, NSError> {
-		/* Collect property types */
-		let ptypes: Dictionary<String, CNValueType>
-		switch defaultPropertyTypes(frameName: fname) {
-		case .success(let p):
-			ptypes = p
-		case .failure(let err):
-			return .failure(err)
+	public func generatePropertyDeclaration(interfaceName ifname: String, frame frm: ALFrameIR, propertyTypes ptypes: Dictionary<String, CNValueType>) -> CNTextSection {
+		let ifdecl = CNTextSection()
+		ifdecl.header = "interface \(ifname) extends \(ALFunctionInterface.FrameCoreInterface) {"
+		ifdecl.footer = "}"
+
+		for pname in ptypes.keys.sorted() {
+			if let vtype = ptypes[pname] {
+				let decl: String
+				switch vtype {
+				case .functionType(_, _):
+					if let lfunc = getListnerFunction(frame: frm, propertyName: pname) {
+						/* return type of listner function */
+						decl = pname + ": " + lfunc.returnType.toTypeDeclaration() + " ;"
+					} else {
+						/* normal function */
+						decl = pname + vtype.toTypeDeclaration() + " ;"
+					}
+				case .objectType(let cname):
+					let clsname = cname ?? ALDefaultFrame.FrameName
+					let ifname  = ALFunctionInterface.defaultInterfaceName(frameName: clsname)
+					decl = pname + ": " + ifname + " ;"
+				default:
+					decl = pname + ": " + vtype.toTypeDeclaration() + " ;"
+				}
+				ifdecl.add(text: CNTextLine(string: decl))
+			}
 		}
-		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: fname)
-		return .success(generatePropertyDeclaration(interfaceName: ifname, frameName: fname, propertyTypes: ptypes))
+		return ifdecl
+	}
+
+	private func getListnerFunction(frame frm: ALFrameIR, propertyName pname: String) -> ALListnerFunctionIR? {
+		if let prop = frm.property(name: pname) {
+			switch prop.value {
+			case .listnerFunction(let lfunc):
+				return lfunc
+			default:
+				break
+			}
+		}
+		return nil
 	}
 
 	public static func generatePropertyDeclaration(interfaceName ifname: String, frameName fname: String, propertyTypes ptypes: Dictionary<String, CNValueType>) -> CNTextSection {
@@ -97,6 +126,19 @@ public class ALTypeDeclGenerator
 			}
 		}
 		return ifdecl
+	}
+
+	public static func generateBaseDeclaration(frameName fname: String) -> Result<CNTextSection, NSError> {
+		/* Collect property types */
+		let ptypes: Dictionary<String, CNValueType>
+		switch defaultPropertyTypes(frameName: fname) {
+		case .success(let p):
+			ptypes = p
+		case .failure(let err):
+			return .failure(err)
+		}
+		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: fname)
+		return .success(generatePropertyDeclaration(interfaceName: ifname, frameName: fname, propertyTypes: ptypes))
 	}
 
 	private static func defaultPropertyTypes(frameName fname: String) -> Result<Dictionary<String, CNValueType>, NSError> {

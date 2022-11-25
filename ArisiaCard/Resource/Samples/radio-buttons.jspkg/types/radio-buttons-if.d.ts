@@ -1,13 +1,14 @@
 interface root_BoxIF extends FrameCoreIF {
   alignment: Alignment ;
   axis: Axis ;
+  buttons: RadioButtonsIF ;
   distribution: Distribution ;
   frameName: string ;
+  index_listner: number ;
   ok_button: ButtonIF ;
   propertyNames: string[] ;
-  rad: RadioButtonsIF ;
 }
-interface root_rad_RadioButtonsIF extends FrameCoreIF {
+interface root_buttons_RadioButtonsIF extends FrameCoreIF {
   columnNum: number ;
   currentIndex: number ;
   frameName: string ;

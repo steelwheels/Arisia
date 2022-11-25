@@ -216,7 +216,7 @@ public class ALListnerFunctionIR: ALFunctionIR
 		ptypes.append(contentsOf: mArguments.map {
 			if let type = $0.type { return type } else { return .anyType}
 		})
-		return .functionType(.voidType, ptypes)
+		return .functionType(mReturnType, ptypes)
 	}
 
 	public static func makeFullPathFuncName(path pth: Array<String>, propertyName pname: String) -> String {
@@ -250,7 +250,7 @@ public class ALProceduralFunctionIR: ALFunctionIR
 
 	public override func toType(framePath path: ALFramePath) -> CNValueType {
 		let ptypes = mArguments.map { return $0.type }
-		return .functionType(.voidType, ptypes)
+		return .functionType(mReturnType, ptypes)
 	}
 }
 

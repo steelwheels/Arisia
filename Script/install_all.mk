@@ -18,6 +18,7 @@ clean: dummy
 	(cd ArisiaTools/Resource && make clean)
 	(cd ArisiaCard/Resource && make clean)
 	(cd Document && make clean)
+	(cd $(HOME)/tools/bundles && rm -rf ArisiaTools.bundle)
 
 card: tools $(card_res_dir)/ArisiaPlatform.d.ts
 	(cd ArisiaCard/Project && make -f $(app_mk))
