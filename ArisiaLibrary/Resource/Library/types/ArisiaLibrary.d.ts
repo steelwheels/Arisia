@@ -34,6 +34,13 @@ declare enum Axis {
   horizontal = 0,
   vertical = 1
 }
+/* Enum declaration: ButtonState */
+declare enum ButtonState {
+  disable = 1,
+  hidden = 0,
+  off = 2,
+  on = 3
+}
 /* Enum declaration: ComparisonResult */
 declare enum ComparisonResult {
   ascending = -1,
