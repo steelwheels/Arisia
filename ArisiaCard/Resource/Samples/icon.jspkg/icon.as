@@ -1,8 +1,8 @@
 {
   icon0: Icon {
-    image: string "card"
-    title: string "Hello"
-    size:  SymbolSize small
+    symbol: string     "moon.stars"
+    title:  string     "Hello"
+    size:   SymbolSize regular
     pressed: event() %{
       console.log("icon pressed") ;
     %}

@@ -94,36 +94,6 @@ declare enum SymbolSize {
   regular = 1,
   small = 0
 }
-/* Enum declaration: SymbolType */
-declare enum SymbolType {
-  character = 0,
-  chevronBackward = 1,
-  chevronDown = 2,
-  chevronForward = 3,
-  chevronUp = 4,
-  gearshape = 5,
-  handPointUp = 6,
-  handRaised = 7,
-  line16p = 13,
-  line1p = 9,
-  line2p = 10,
-  line4p = 11,
-  line8p = 12,
-  lineDiagonal = 8,
-  moonStars = 14,
-  oval = 15,
-  ovalFill = 16,
-  paintbrush = 17,
-  pencil = 18,
-  pencilCircle = 19,
-  pencilCircleFill = 20,
-  play = 21,
-  questionmark = 22,
-  rectangle = 23,
-  rectangleFill = 24,
-  sunMax = 25,
-  sunMin = 26
-}
 /* Enum declaration: TextAlign */
 declare enum TextAlign {
   center = 2,
