@@ -17,9 +17,9 @@ _definePropertyIF(root, ["alignment","axis","distribution","frameName","label","
   let label = _alloc_Label() as root_label_LabelIF ;
   /* define type for all properties */
   label._definePropertyType("text", "s") ;
-  label._definePropertyType("propertyNames", "a(s)") ;
-  label._definePropertyType("frameName", "s") ;
   label._definePropertyType("number", "n") ;
+  label._definePropertyType("frameName", "s") ;
+  label._definePropertyType("propertyNames", "a(s)") ;
   /* define getter/setter for all properties */
   _definePropertyIF(label, ["frameName","number","propertyNames","text"]) ;
   /* assign user declared properties */
@@ -32,8 +32,8 @@ _definePropertyIF(root, ["alignment","axis","distribution","frameName","label","
   /* define type for all properties */
   ok_button._definePropertyType("title", "s") ;
   ok_button._definePropertyType("pressed", "f(v,[i(ButtonIF)])") ;
-  ok_button._definePropertyType("frameName", "s") ;
   ok_button._definePropertyType("propertyNames", "a(s)") ;
+  ok_button._definePropertyType("frameName", "s") ;
   ok_button._definePropertyType("isEnabled", "b") ;
   /* define getter/setter for all properties */
   _definePropertyIF(ok_button, ["frameName","isEnabled","pressed","propertyNames","title"]) ;

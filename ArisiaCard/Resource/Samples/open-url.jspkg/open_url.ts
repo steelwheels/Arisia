@@ -4,11 +4,11 @@
 let root = _alloc_Box() as root_BoxIF ;
 /* define type for all properties */
 root._definePropertyType("ok_button", "o(Button)") ;
-root._definePropertyType("distribution", "e(Distribution)") ;
 root._definePropertyType("propertyNames", "a(s)") ;
-root._definePropertyType("alignment", "e(Alignment)") ;
-root._definePropertyType("axis", "e(Axis)") ;
 root._definePropertyType("frameName", "s") ;
+root._definePropertyType("distribution", "e(Distribution)") ;
+root._definePropertyType("axis", "e(Axis)") ;
+root._definePropertyType("alignment", "e(Alignment)") ;
 /* define getter/setter for all properties */
 _definePropertyIF(root, ["alignment","axis","distribution","frameName","ok_button","propertyNames"]) ;
 {

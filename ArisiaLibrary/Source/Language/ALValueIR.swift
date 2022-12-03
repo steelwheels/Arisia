@@ -16,7 +16,7 @@ public enum ALValueIR
 	case frame(ALFrameIR)
 	case array(Array<ALValueIR>)
 	case dictionary(Dictionary<String, ALValueIR>)
-	case enumValue(CNEnumType, String, Int)		// type, member, raw value
+	case enumValue(CNEnumType, String, CNEnumType.Value)		// type, member, raw value
 	case initFunction(ALInitFunctionIR)
 	case eventFunction(ALEventFunctionIR)
 	case listnerFunction(ALListnerFunctionIR)
