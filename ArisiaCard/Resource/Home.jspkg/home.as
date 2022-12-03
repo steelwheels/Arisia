@@ -4,7 +4,7 @@
     name:  string  "arisia_icon"
   }
   icons_table: Collection {
-    collection:   string[] ["run_icon", "pref_icon"]
+    collection:   string[] ["play", "gearshape"]
     columnNumber: number   3
     pressed: event(section: number, item: number) %{
       switch(item){

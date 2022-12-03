@@ -97,16 +97,16 @@ public class AMCollection: KCCollectionView, ALFrame
 		}
 
 		/* collection */
-		if let cols = arrayValue(name: AMCollection.CollectionItem) as? Array<String> {
-			setCollections(collections: cols, resource: res, console: cons)
+		if let names = arrayValue(name: AMCollection.CollectionItem) as? Array<String> {
+			setCollections(symbolNames: names, resource: res, console: cons)
 		} else {
 			setArrayValue(name: AMCollection.CollectionItem, value: [])
 		}
 		addObserver(propertyName: AMCollection.CollectionItem, listnerFunction: {
 			(_ param: JSValue) -> Void in
 			if param.isArray {
-				if let cols = param.toArray() as? Array<String> {
-					self.setCollections(collections: cols, resource: res, console: cons)
+				if let names = param.toArray() as? Array<String> {
+					self.setCollections(symbolNames: names, resource: res, console: cons)
 				}
 			}
 			cons.error(string: "Invalid data type for \(AMCollection.CollectionItem) in Collection component")
@@ -134,19 +134,20 @@ public class AMCollection: KCCollectionView, ALFrame
 		return nil
 	}
 
-	private func setCollections(collections cols: Array<String>, resource res: KEResource, console cons: CNConsole) {
-		var items: Array<CNCollection.Item> = []
-		for cname in cols {
-			if let u = res.URLOfImage(identifier: cname) {
-				items.append(CNCollection.Item.image(u))
+	private func setCollections(symbolNames snames: Array<String>, resource res: KEResource, console cons: CNConsole) {
+		var symbols: Array<CNSymbol> = []
+		for sname in snames {
+			if let sym = CNSymbol.decode(fromName: sname) {
+				symbols.append(sym)
 			} else {
-				cons.print(string: "[Error] No image item named \"\(cname)\" for collection component")
+				cons.print(string: "[Error] Unknown symbol name: \"\(sname)\" for collection component")
+
 			}
 		}
-		if items.count > 0 {
+		if symbols.count > 0 {
 			CNExecuteInMainThread(doSync: false, execute: {
 				let collection = CNCollection()
-				collection.add(header: "", footer: "", items: items)
+				collection.add(header: "", footer: "", items: symbols)
 				super.store(data: collection)
 			})
 		} else {

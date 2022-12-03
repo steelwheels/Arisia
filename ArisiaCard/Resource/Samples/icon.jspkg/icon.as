@@ -2,7 +2,7 @@
   icon0: Icon {
     image: string "card"
     title: string "Hello"
-    size:  IconSize small
+    size:  SymbolSize small
     pressed: event() %{
       console.log("icon pressed") ;
     %}

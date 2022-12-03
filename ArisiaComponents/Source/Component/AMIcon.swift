@@ -19,7 +19,6 @@ public class AMIcon: KCIconView, ALFrame
 {
 	public static let ClassName		= "Icon"
 
-	private static let ImageItem 		= "image"
 	private static let PressedItem		= "pressed"
 	private static let SizeItem		= "size"
 	private static let SymbolItem		= "symbol"
@@ -47,16 +46,15 @@ public class AMIcon: KCIconView, ALFrame
 
 	static public var propertyTypes: Dictionary<String, CNValueType> { get {
 		let sizetype: CNEnumType
-		if let etype = CNEnumTable.currentEnumTable().search(byTypeName: "IconSize") {
+		if let etype = CNEnumTable.currentEnumTable().search(byTypeName: "SymbolSize") {
 			sizetype = etype
 		} else {
-			CNLog(logLevel: .error, message: "No enum type: \"IconSize\"", atFunction: #function, inFile: #file)
-			sizetype = CNEnumType(typeName: "IconSize")
+			CNLog(logLevel: .error, message: "No enum type: \"SymbolSize\"", atFunction: #function, inFile: #file)
+			sizetype = CNEnumType(typeName: "SymbolSize")
 		}
 		let result: Dictionary<String, CNValueType> = [
-			AMIcon.ImageItem:	.stringType,
 			AMIcon.PressedItem:	.functionType(.voidType, [ .interfaceType("IconIF") ]),
-			AMIcon.SymbolItem:	.numberType,
+			AMIcon.SymbolItem:	.stringType,
 			AMIcon.TitleItem:	.stringType,
 			AMIcon.SizeItem:	.enumType(sizetype)
 		]
@@ -74,40 +72,27 @@ public class AMIcon: KCIconView, ALFrame
 		self.setupDefaulrProperties()
 
 		/* New image */
-		var newimg: CNImage? = nil
-
-		/* image property */
-		if let ident = stringValue(name: AMIcon.ImageItem) {
-			if let img = res.loadImage(identifier: ident) {
-				newimg = img
-			} else {
-				CNLog(logLevel: .error, message: "Failed to load image: \(ident)")
-			}
-		}
+		var newsym: CNSymbol? = nil
 
 		/* symbol property */
-		if let num = numberValue(name: AMIcon.SymbolItem) {
-			if newimg == nil {
-				if let stype = CNSymbol.SymbolType(rawValue: num.intValue) {
-					newimg = CNSymbol.shared.loadImage(type: stype)
-				} else {
-					CNLog(logLevel: .error, message: "Invalid raw value for CNSymbol.SymbolType: \(num.description)")
-				}
+		if let str = stringValue(name: AMIcon.SymbolItem) {
+			if let sym = CNSymbol.decode(fromName: str) {
+				newsym = sym
 			} else {
-				CNLog(logLevel: .error, message: "Do not set image property and symbol property. Set one of them.")
+				CNLog(logLevel: .error, message: "[Error] Unknown symbol name: \(str)")
 			}
 		}
 
 		/* Assign dummy image */
-		if newimg == nil {
-			CNLog(logLevel: .error, message: "Failed to load image or symbol")
-			newimg = CNSymbol.shared.loadImage(type: .questionmark)
+		if newsym == nil {
+			CNLog(logLevel: .error, message: "[Error] No symbol definition")
+			newsym = .questionmark
 		}
 
 		/* Load image */
-		if let img = newimg {
+		if let sym = newsym {
 			CNExecuteInMainThread(doSync: false, execute: {
-				() -> Void in self.image = img
+				() -> Void in self.symbol = sym
 			})
 		}
 
@@ -130,7 +115,7 @@ public class AMIcon: KCIconView, ALFrame
 
 		/* Size property */
 		if let num = numberValue(name: AMIcon.SizeItem) {
-			if let size = CNIconSize(rawValue: num.intValue) {
+			if let size = CNSymbolSize(rawValue: num.intValue) {
 				CNExecuteInMainThread(doSync: false, execute: {
 					() -> Void in self.size = size
 				})
@@ -144,12 +129,12 @@ public class AMIcon: KCIconView, ALFrame
 		addObserver(propertyName: AMIcon.SizeItem, listnerFunction: {
 			(_ param: JSValue) -> Void in
 			if let num = param.toNumber() {
-				if let size = CNIconSize(rawValue: num.intValue) {
+				if let size = CNSymbolSize(rawValue: num.intValue) {
 					CNExecuteInMainThread(doSync: false, execute: {
 						self.size = size
 					})
 				} else {
-					CNLog(logLevel: .error, message: "\(AMIcon.SizeItem) property in \(AMIcon.ClassName) component must have IconSize type")
+					CNLog(logLevel: .error, message: "\(AMIcon.SizeItem) property in \(AMIcon.ClassName) component must have SymbolSize type")
 				}
 			}
 		})

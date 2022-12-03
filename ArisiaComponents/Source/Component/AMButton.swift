@@ -119,8 +119,8 @@ public class AMButton: KCButton, ALFrame
 	private func stringToValue(string str: String) -> KCButtonValue {
 		let result: KCButtonValue
 		switch str {
-		case "<-":	result = .symbol(.leftArrow)
-		case "->":	result = .symbol(.rightArrow)
+		case "<-":	result = .symbol(.chevronBackward)
+		case "->":	result = .symbol(.chevronForward)
 		default:	result = .text(str)
 		}
 		return result
@@ -132,9 +132,9 @@ public class AMButton: KCButton, ALFrame
 		case .text(let txt):		result = txt
 		case .symbol(let sym):
 			switch sym {
-			case .leftArrow:	result = "<-"
-			case .rightArrow:	result = "->"
-			@unknown default:	result = "?"
+			case .chevronBackward:	result = "<-"
+			case .chevronForward:	result = "->"
+			default:		result = "?"
 			}
 		@unknown default:
 			result = "?"
