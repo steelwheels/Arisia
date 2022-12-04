@@ -5,11 +5,11 @@ let root = _alloc_Box() as root_BoxIF ;
 /* define type for all properties */
 root._definePropertyType("icon0", "o(Icon)") ;
 root._definePropertyType("ok_button", "o(Button)") ;
-root._definePropertyType("axis", "e(Axis)") ;
-root._definePropertyType("alignment", "e(Alignment)") ;
 root._definePropertyType("distribution", "e(Distribution)") ;
 root._definePropertyType("frameName", "s") ;
+root._definePropertyType("axis", "e(Axis)") ;
 root._definePropertyType("propertyNames", "a(s)") ;
+root._definePropertyType("alignment", "e(Alignment)") ;
 /* define getter/setter for all properties */
 _definePropertyIF(root, ["alignment","axis","distribution","frameName","icon0","ok_button","propertyNames"]) ;
 {
@@ -20,8 +20,8 @@ _definePropertyIF(root, ["alignment","axis","distribution","frameName","icon0","
   icon0._definePropertyType("title", "s") ;
   icon0._definePropertyType("size", "e(SymbolSize)") ;
   icon0._definePropertyType("pressed", "f(v,[i(IconIF)])") ;
-  icon0._definePropertyType("propertyNames", "a(s)") ;
   icon0._definePropertyType("frameName", "s") ;
+  icon0._definePropertyType("propertyNames", "a(s)") ;
   /* define getter/setter for all properties */
   _definePropertyIF(icon0, ["frameName","pressed","propertyNames","size","symbol","title"]) ;
   /* assign user declared properties */
@@ -39,8 +39,8 @@ _definePropertyIF(root, ["alignment","axis","distribution","frameName","icon0","
   /* define type for all properties */
   ok_button._definePropertyType("title", "s") ;
   ok_button._definePropertyType("pressed", "f(v,[i(ButtonIF)])") ;
-  ok_button._definePropertyType("isEnabled", "b") ;
   ok_button._definePropertyType("propertyNames", "a(s)") ;
+  ok_button._definePropertyType("isEnabled", "b") ;
   ok_button._definePropertyType("frameName", "s") ;
   /* define getter/setter for all properties */
   _definePropertyIF(ok_button, ["frameName","isEnabled","pressed","propertyNames","title"]) ;

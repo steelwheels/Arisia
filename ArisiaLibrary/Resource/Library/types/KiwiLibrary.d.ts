@@ -94,6 +94,36 @@ declare enum SymbolSize {
   regular = 1,
   small = 0
 }
+/* Enum declaration: Symbols */
+declare enum Symbols {
+  character = "character",
+  chevronBackward = "chevron.backward",
+  chevronDown = "chevron.down",
+  chevronForward = "chevron.forward",
+  chevronUp = "chevron.up",
+  gearshape = "gearshape",
+  handPointUp = "hand.point.up",
+  handRaised = "hand.raised",
+  line16p = "line.16p",
+  line1p = "line.1p",
+  line2p = "line.2p",
+  line4p = "line.4p",
+  line8p = "line.8p",
+  lineDiagonal = "line.diagonal",
+  moonStars = "moon.stars",
+  oval = "oval",
+  ovalFill = "oval.fill",
+  paintbrush = "paintbrush",
+  pencil = "pencil",
+  pencilCircle = "pencil.circle",
+  pencilCircleFill = "pencil.circle.fill",
+  play = "play",
+  questionmark = "questionmark",
+  rectangle = "rectangle",
+  rectangleFill = "rectangle.fill",
+  sunMax = "sun.max",
+  sunMin = "sun.min"
+}
 /* Enum declaration: TextAlign */
 declare enum TextAlign {
   center = 2,
