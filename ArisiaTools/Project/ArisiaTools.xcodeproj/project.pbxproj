@@ -610,7 +610,9 @@
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INSTALL_PATH = "$(HOME)/tools/bin";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -626,7 +628,9 @@
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INSTALL_PATH = "$(HOME)/tools/bin";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -643,7 +647,9 @@
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INSTALL_PATH = "$(HOME)/tools/bin";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -661,7 +667,9 @@
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INSTALL_PATH = "$(HOME)/tools/bin";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -677,6 +685,8 @@
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				INFOPLIST_FILE = ArisiaToolsBundle/Info.plist;
 				INSTALL_PATH = "$(HOME)/ltools/bundles";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.ArisiaToolsBundle;
 				PRODUCT_NAME = ArisiaTools;
 				SKIP_INSTALL = NO;
@@ -692,6 +702,8 @@
 				DEVELOPMENT_TEAM = TR2DNF3P93;
 				INFOPLIST_FILE = ArisiaToolsBundle/Info.plist;
 				INSTALL_PATH = "$(HOME)/ltools/bundles";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = github.com.steelwheels.ArisiaToolsBundle;
 				PRODUCT_NAME = ArisiaTools;
 				SKIP_INSTALL = NO;
@@ -877,7 +889,9 @@
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INSTALL_PATH = "$(HOME)/tools/bin";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -893,7 +907,9 @@
 				FRAMEWORK_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
 				GCC_OPTIMIZATION_LEVEL = 2;
 				INSTALL_PATH = "$(HOME)/tools/bin";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(HOME)/tools/bundles/ArisiaTools.bundle/Contents/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
