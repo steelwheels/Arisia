@@ -146,7 +146,8 @@ open class AMLibraryCompiler: ALLibraryCompiler
 			CNExecuteInMainThread(doSync: false, execute: {
 				() -> Void in
 				if let src = self.enterParameter(parameter: paramval, resource: res) {
-					let arg = argval.toNativeValue()
+					let conv = KLScriptValueToNativeValue()
+					let arg  = conv.convert(scriptValue: argval)
 					self.enterView(viewController: vcont, context: ctxt, source: src, argument: arg, callback: cbfunc)
 				}
 			})
@@ -156,7 +157,8 @@ open class AMLibraryCompiler: ALLibraryCompiler
 		/* leaveView function */
 		let leavefunc: @convention(block) (_ retval: JSValue) -> Void = {
 			(_ retval: JSValue) -> Void in
-			let nval = retval.toNativeValue()
+			let conv = KLScriptValueToNativeValue()
+			let nval = conv.convert(scriptValue: retval)
 			self.leaveView(viewController: vcont, returnValue: nval)
 		}
 		ctxt.set(name: "leaveView", function: leavefunc)
@@ -194,7 +196,9 @@ open class AMLibraryCompiler: ALLibraryCompiler
 			let vcallback: AMMultiComponentViewController.ViewSwitchCallback = {
 				(_ val: CNValue) -> Void in
 				CNExecuteInUserThread(level: .event, execute: {
-					cbfunc.call(withArguments: [val.toJSValue(context: ctxt)])
+					let conv = KLNativeValueToScriptValue(context: ctxt)
+					let sval = conv.convert(value: val)
+					cbfunc.call(withArguments: [sval])
 				})
 			}
 			parent.pushViewController(source: src, argument: arg, callback: vcallback)

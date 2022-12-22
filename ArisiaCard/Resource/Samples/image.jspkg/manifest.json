@@ -1,0 +1,10 @@
+{
+	application: "main.js"
+	subviews: {
+		hello: "image.js"
+	}
+	images: {
+		card: "images/card.png"
+	}
+}
+

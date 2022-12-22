@@ -134,7 +134,8 @@ open class AMComponentViewController: KCSingleViewController
 		}
 
 		/* Define global variable: Argument */
-		let obj = mArgument.toJSValue(context: self.context)
+		let conv = KLNativeValueToScriptValue(context: self.context)
+		let obj  = conv.convert(value: mArgument)
 		self.context.set(name: "Argument", value: obj)
 
 		guard self.compileLibrary(viewController: self, context: self.context, resource: resource, processManager: procmgr, terminalInfo: terminfo, environment: self.environment, console: console, config: config) else {
