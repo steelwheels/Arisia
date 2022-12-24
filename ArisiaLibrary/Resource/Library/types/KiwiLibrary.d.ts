@@ -90,9 +90,9 @@ declare enum SortOrder {
 }
 /* Enum declaration: SymbolSize */
 declare enum SymbolSize {
-  large = 2,
-  regular = 1,
-  small = 0
+  large = 384,
+  regular = 256,
+  small = 128
 }
 /* Enum declaration: Symbols */
 declare enum Symbols {
