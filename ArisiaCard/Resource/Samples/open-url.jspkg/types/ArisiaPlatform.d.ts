@@ -556,8 +556,6 @@ declare function TextSection(): TextSectionIF ;
 declare function TextRecord(): TextRecordIF ;
 declare function TextTable(): TextTableIF ;
 
-declare function _openPanel(title: string, type: FileType, exts: string[], cbfunc: any): void ;
-declare function _savePanel(title: string, cbfunc: any): void ;
 declare function _openURL(title: URLIF | string, cbfunc: any): void ;
 declare function _allocateThread(path: URLIF | string, input: FileIF, output: FileIF, error: FileIF): ThreadIF | null ;
 
@@ -632,11 +630,8 @@ declare class CancelException extends Error {
     constructor(code: number);
 }
 declare function _cancel(): void;
-declare function openPanel(title: string, type: FileType, exts: string[]): URLIF | null;
-declare function savePanel(title: string): URLIF | null;
 declare function openURL(url: URLIF | string): boolean;
-declare function allocateThread(path: URLIF | string | null, input: FileIF, output: FileIF, error: FileIF): ThreadIF | null;
-declare function run(path: URLIF | string | null, args: string[], input: FileIF, output: FileIF, error: FileIF): number;
+declare function run(path: URLIF | string, args: string[], input: FileIF, output: FileIF, error: FileIF): number;
 /// <reference path="Builtin.d.ts" />
 /// <reference path="Enum.d.ts" />
 declare function maxLengthOfStrings(strs: string[]): number;
@@ -730,10 +725,16 @@ declare function _definePropertyIF(frame: FrameIF, names: string[]): void;
 
 declare function _enterView(path: string, arg: any, cbfunc: (retval: any) => void): void ;
 declare function _alert(type: AlertType, message: string, labels: string[], cbfunc: (retval: number) => void): void ;
-
 declare function leaveView(param: any): void ;
 
+declare function _openPanel(title: string, type: FileType, exts: string[], cbfunc: any): void ;
+declare function _savePanel(title: string, cbfunc: any): void ;
 
+
+/// <reference path="ArisiaLibrary.d.ts" />
+/// <reference path="Builtin.d.ts" />
+declare function openPanel(title: string, type: FileType, exts: string[]): URLIF | null;
+declare function savePanel(title: string): URLIF | null;
 /// <reference path="ArisiaLibrary.d.ts" />
 /// <reference path="Builtin.d.ts" />
 declare function alert(type: AlertType, message: string, labels: string[]): number;

@@ -2,11 +2,13 @@
 # Makefile
 #
 
-src_scr 	= window.ts
+src_scr 	= panel.ts \
+		  window.ts
 dst_scrs	= $(src_scr:.ts=.js)
 
 src_decls	= types/ArisiaLibrary.d.ts \
 		  types/Builtin.d.ts \
+		  types/panel.d.ts \
 		  types/window.d.ts
 dst_decl	= types/ArisiaComponents.d.ts 
 

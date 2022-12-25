@@ -169,7 +169,108 @@ open class AMLibraryCompiler: ALLibraryCompiler
 			self.defineAlertFunction(type: type, message: msg, labels: labels, callback: cbfunc, viewController: vcont, context: ctxt)
 		}
 		ctxt.set(name: "_alert", function: alertfunc)
+
+		/* _openPanel */
+		let openPanelFunc: @convention(block) (_ titleval: JSValue, _ typeval: JSValue, _ extsval: JSValue, _ cbfunc: JSValue) -> Void = {
+			(_ titleval: JSValue, _ typeval: JSValue, _ extsval: JSValue, _ cbfunc: JSValue) -> Void in
+			self.openPanel(context: ctxt, titleValue: titleval, typeValue: typeval, extsValue: extsval, callbackValue: cbfunc)
+		}
+		ctxt.set(name: "_openPanel", function: openPanelFunc)
+
+		/* _savePanel */
+		let savePanelFunc: @convention(block) (_ titleval: JSValue, _ cbfunc: JSValue) -> Void = {
+			(_ titleval: JSValue, _ cbfunc: JSValue) -> Void in
+			self.savePanel(context: ctxt, titleValue: titleval, callbackValue: cbfunc)
+		}
+		ctxt.set(name: "_savePanel", function: savePanelFunc)
 	}
+
+	private func openPanel(context ctxt: KEContext, titleValue titleval: JSValue, typeValue typeval: JSValue, extsValue extsval: JSValue, callbackValue cbfunc: JSValue) {
+		if let title = valueToString(value: titleval),
+		   let type  = valueToFileType(type: typeval),
+		   let exts  = valueToExtensions(extensions: extsval) {
+			CNExecuteInMainThread(doSync: false, execute: {
+				() -> Void in self.openPanel(context: ctxt, title: title, fileType: type, extensions: exts, callback: cbfunc)
+			})
+		} else {
+			if let param = JSValue(nullIn: ctxt) {
+				cbfunc.call(withArguments: [param])
+			} else {
+				CNLog(logLevel: .error, message: "Failed to allocate return value", atFunction: #function, inFile: #file)
+			}
+		}
+	}
+
+	#if os(OSX)
+	private func openPanel(context ctxt: KEContext, title ttl: String, fileType type: CNFileType, extensions exts: Array<String>, callback cbfunc: JSValue) {
+		URL.openPanel(title: ttl, type: type, extensions: exts, callback: {
+			(_ urlp: URL?) -> Void in
+			let param: JSValue
+			if let url = urlp {
+				param = JSValue(URL: url, in: ctxt)
+			} else {
+				param = JSValue(nullIn: ctxt)
+			}
+			CNExecuteInUserThread(level: .event, execute: {
+				cbfunc.call(withArguments: [param])
+			})
+		})
+	}
+	#else
+	private func openPanel(context ctxt: KEContext, title ttl: String, fileType type: CNFileType, extensions exts: Array<String>, callback cbfunc: JSValue) {
+		guard let vcont = mViewController else {
+			CNLog(logLevel: .error, message: "No view controller for openPanel", atFunction: #function, inFile: #file)
+			return
+		}
+		// Parent controller
+		let pcont  = vcont.parentController
+		// Open document picker
+		let picker = KCDocumentPickerViewController(parentViewController: pcont)
+		let url    = URL(fileURLWithPath: NSHomeDirectory())
+		picker.openPicker(URL: url)
+
+		if let param = JSValue(nullIn: ctxt) {
+			cbfunc.call(withArguments: [param])
+		} else {
+			CNLog(logLevel: .error, message: "Failed to allocate return value", atFunction: #function, inFile: #file)
+		}
+	}
+	#endif
+
+	private func savePanel(context ctxt: KEContext, titleValue titleval: JSValue, callbackValue cbfunc: JSValue) {
+		if let title = valueToString(value: titleval) {
+			savePanel(context: ctxt, title: title, callback: cbfunc)
+		} else {
+			if let param = JSValue(nullIn: ctxt) {
+				cbfunc.call(withArguments: [param])
+			} else {
+				CNLog(logLevel: .error, message: "Failed to allocate return value", atFunction: #function, inFile: #file)
+			}
+		}
+	}
+
+	#if os(OSX)
+	private func savePanel(context ctxt: KEContext, title ttl: String, callback cbfunc: JSValue) {
+		URL.savePanel(title: ttl, outputDirectory: nil, callback: {
+			(_ urlp: URL?) -> Void in
+			let param: JSValue
+			if let url = urlp {
+				param = JSValue(URL: url, in: ctxt)
+			} else {
+				param = JSValue(nullIn: ctxt)
+			}
+			cbfunc.call(withArguments: [param])
+		})
+	}
+	#else
+	private func savePanel(context ctxt: KEContext, title ttl: String, callback cbfunc: JSValue) {
+		if let param = JSValue(nullIn: ctxt) {
+			cbfunc.call(withArguments: [param])
+		} else {
+			CNLog(logLevel: .error, message: "Failed to allocate return value", atFunction: #function, inFile: #file)
+		}
+	}
+	#endif
 
 	private func defineBuiltinFuntion(context ctxt: KEContext, viewController vcont: AMComponentViewController, resource res: KEResource, processManager procmgr: CNProcessManager, terminalInfo terminfo: CNTerminalInfo, environment env: CNEnvironment, config conf: KEConfig) {
 		/* Redefine _allocateThread method */
@@ -228,7 +329,7 @@ open class AMLibraryCompiler: ALLibraryCompiler
 
 	private func importBuiltinLibrary(context ctxt: KEContext, console cons: CNFileConsole, config conf: KEConfig)
 	{
-		let libnames = ["window"]
+		let libnames = ["window", "panel"]
 		do {
 			for libname in libnames {
 				if let url = CNFilePath.URLForResourceFile(fileName: libname, fileExtension: "js", subdirectory: "Library", forClass: AMLibraryCompiler.self) {
@@ -241,6 +342,40 @@ open class AMLibraryCompiler: ALLibraryCompiler
 		} catch {
 			cons.error(string: "Failed to read built-in script in KiwiComponents")
 		}
+	}
+
+	private func valueToString(value val: JSValue) -> String? {
+		if val.isString {
+			return val.toString()
+		} else {
+			return nil
+		}
+	}
+
+	private func valueToFileType(type tval: JSValue) -> CNFileType? {
+		if let num = tval.toNumber() {
+			if let sel = CNFileType(rawValue: num.intValue) {
+				return sel
+			}
+		}
+		return nil
+	}
+
+	private func valueToExtensions(extensions tval: JSValue) -> Array<String>? {
+		if tval.isArray {
+			var types: Array<String> = []
+			if let vals = tval.toArray() {
+				for elm in vals {
+					if let str = elm as? String {
+						types.append(str)
+					} else {
+						return nil
+					}
+				}
+			}
+			return types
+		}
+		return nil
 	}
 }
 

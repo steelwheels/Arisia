@@ -37,6 +37,10 @@
 		051405CC28D9E63200C3E2BD /* KiwiLibrary.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AC28D9E61B00C3E2BD /* KiwiLibrary.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		051405CD28D9E63200C3E2BD /* KiwiShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AF28D9E61C00C3E2BD /* KiwiShell.xcframework */; };
 		051405CE28D9E63200C3E2BD /* KiwiShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 051405AF28D9E61C00C3E2BD /* KiwiShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0515435C29583FF80042D041 /* panel.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0515435A29583DC20042D041 /* panel.ts */; };
+		0515435D29583FF80042D041 /* panel.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0515435B29583FE50042D041 /* panel.js */; };
+		0515435E295840030042D041 /* panel.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0515435A29583DC20042D041 /* panel.ts */; };
+		0515435F295840030042D041 /* panel.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0515435B29583FE50042D041 /* panel.js */; };
 		053FF24828FD98D1005A888D /* AMCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053FF24728FD98D1005A888D /* AMCollection.swift */; };
 		053FF24928FD98D1005A888D /* AMCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053FF24728FD98D1005A888D /* AMCollection.swift */; };
 		0556618728E090B200FC4CF2 /* AMTableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0556618628E090B200FC4CF2 /* AMTableData.swift */; };
@@ -226,6 +230,8 @@
 			dstPath = Library;
 			dstSubfolderSpec = 7;
 			files = (
+				0515435C29583FF80042D041 /* panel.ts in CopyFiles */,
+				0515435D29583FF80042D041 /* panel.js in CopyFiles */,
 				05D112342914071800EDAF71 /* window.js in CopyFiles */,
 				05D112352914071800EDAF71 /* window.ts in CopyFiles */,
 			);
@@ -237,6 +243,8 @@
 			dstPath = Library;
 			dstSubfolderSpec = 7;
 			files = (
+				0515435E295840030042D041 /* panel.ts in CopyFiles */,
+				0515435F295840030042D041 /* panel.js in CopyFiles */,
 				05D112392914074E00EDAF71 /* window.js in CopyFiles */,
 				05D1123A2914074E00EDAF71 /* window.ts in CopyFiles */,
 			);
@@ -253,6 +261,8 @@
 		051405AE28D9E61B00C3E2BD /* CoconutShell.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutShell.xcframework; path = ../../../../Library/Frameworks/CoconutShell.xcframework; sourceTree = "<group>"; };
 		051405AF28D9E61C00C3E2BD /* KiwiShell.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiShell.xcframework; path = ../../../../Library/Frameworks/KiwiShell.xcframework; sourceTree = "<group>"; };
 		051405B028D9E61C00C3E2BD /* KiwiEngine.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiEngine.xcframework; path = ../../../../Library/Frameworks/KiwiEngine.xcframework; sourceTree = "<group>"; };
+		0515435A29583DC20042D041 /* panel.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = panel.ts; sourceTree = "<group>"; };
+		0515435B29583FE50042D041 /* panel.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = panel.js; sourceTree = "<group>"; };
 		0524E42228D9D49400C5DA2D /* ArisiaComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ArisiaComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0524E42628D9D49400C5DA2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		053FF24728FD98D1005A888D /* AMCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMCollection.swift; sourceTree = "<group>"; };
@@ -483,6 +493,8 @@
 			isa = PBXGroup;
 			children = (
 				05BB07F128E7239000265AC9 /* types */,
+				0515435A29583DC20042D041 /* panel.ts */,
+				0515435B29583FE50042D041 /* panel.js */,
 				05B953B22913EEED00E6EC3C /* window.js */,
 				05B953B32913EEED00E6EC3C /* window.ts */,
 			);

@@ -2,7 +2,8 @@
 # Makefile
 #
 
-src_scr 	= window.ts
+src_scr 	= window.ts \
+		  panel.ts
 bltin_decl	= Button.d.ts \
 		  Box.d.ts \
 		  Collection.d.ts \
