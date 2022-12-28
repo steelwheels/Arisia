@@ -226,8 +226,7 @@ open class AMLibraryCompiler: ALLibraryCompiler
 		let pcont  = vcont.parentController
 		// Open document picker
 		let picker = KCDocumentPickerViewController(parentViewController: pcont)
-		let url    = URL(fileURLWithPath: NSHomeDirectory())
-		picker.openPicker(URL: url)
+		picker.openPicker(URL: CNPreference.shared.userPreference.documentDirectory)
 
 		if let param = JSValue(nullIn: ctxt) {
 			cbfunc.call(withArguments: [param])
