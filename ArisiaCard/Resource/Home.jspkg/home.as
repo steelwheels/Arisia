@@ -22,6 +22,7 @@
         break ;
         case 1:
 	  /* preference */
+	  enterView("preference", null) ;
         break ;
       }
     %}

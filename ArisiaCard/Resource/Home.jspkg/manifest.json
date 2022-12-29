@@ -1,5 +1,8 @@
 {
 	view: "home.js"
+	subviews: {
+		preference:  "pref.js"
+	}
 	images: {
 		arisia_icon: "images/arisia-icon.png"
 		run_icon:    "images/run-icon.png"
