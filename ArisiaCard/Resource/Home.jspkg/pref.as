@@ -1,6 +1,9 @@
 {
   title: Label {
-    text:  string  "Preference"
+    text: string  "Preference"
+  }
+  doc: Label {
+    text: string  %{ return FileManager.documentDirectory.path ; %}
   }
   buttons: Box {
     axis: Axis horizontal

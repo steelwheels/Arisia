@@ -3,11 +3,18 @@ interface root_BoxIF extends FrameCoreIF {
   axis: Axis ;
   buttons: BoxIF ;
   distribution: Distribution ;
+  doc: LabelIF ;
   frameName: string ;
   propertyNames: string[] ;
   title: LabelIF ;
 }
 interface root_title_LabelIF extends FrameCoreIF {
+  frameName: string ;
+  number: number ;
+  propertyNames: string[] ;
+  text: string ;
+}
+interface root_doc_LabelIF extends FrameCoreIF {
   frameName: string ;
   number: number ;
   propertyNames: string[] ;

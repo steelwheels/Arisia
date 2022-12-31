@@ -13,7 +13,7 @@ import CoconutData
 import JavaScriptCore
 import Foundation
 
-public class AMLabel: KCTextEdit, ALFrame
+public class AMLabel: KCLabelView, ALFrame
 {
 	public static let ClassName	= "Label"
 

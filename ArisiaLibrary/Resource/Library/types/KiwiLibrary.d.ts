@@ -263,23 +263,6 @@ interface PipeIF {
         writing:        FileIF ;
 }
 
-interface FileManagerIF {
-	open(path: URLIF | string, access: string): FileIF ;
-
-	isReadable(file: URLIF | string): boolean ;
-	isWritable(file: URLIF | string): boolean ;
-	isExecutable(file: URLIF | string): boolean ;
-	isAccessible(file: URLIF | string): boolean ;
-
-	fullPath(path: string, base: URLIF): URLIF | null ;
-
-	documentDirectory(): URLIF ;
-	libraryDirectory(): URLIF ;
-	currentDirectory(): URLIF ;
-	temporaryDirectory(): URLIF ;
-
-}
-
 interface PointIF {
 	x : number ;
 	y : number ;
@@ -379,10 +362,26 @@ interface ProcessIF {
 
 interface URLIF {
 	isNull:			boolean ;
-	absoluteString:		string | null ;
-	path:			string | null ;
+	absoluteString:		string ;
+	path:			string ;
 	appendingPathComponent(comp: string): URLIF | null ;
 	loadText():		string | null ;
+}
+
+interface FileManagerIF {
+	open(path: URLIF | string, access: string): FileIF ;
+
+	isReadable(file: URLIF | string): boolean ;
+	isWritable(file: URLIF | string): boolean ;
+	isExecutable(file: URLIF | string): boolean ;
+	isAccessible(file: URLIF | string): boolean ;
+
+	fullPath(path: string, base: URLIF): URLIF | null ;
+
+	documentDirectory:	URLIF ;
+	libraryDirectory:	URLIF ;
+	temporaryDirectory:	URLIF ;
+	currentDirectory: 	URLIF ;
 }
 
 interface StorageIF {
