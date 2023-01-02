@@ -225,14 +225,19 @@ open class AMLibraryCompiler: ALLibraryCompiler
 		// Parent controller
 		let pcont  = vcont.parentController
 		// Open document picker
-		let picker = KCDocumentPickerViewController(parentViewController: pcont)
+		let picker = pcont.documentPickerViewController(callback: {
+			(_ urlp: URL?) -> Void in
+			let param: JSValue
+			if let url = urlp {
+				param = JSValue(URL: url, in: ctxt)
+			} else {
+				param = JSValue(nullIn: ctxt)
+			}
+			CNExecuteInUserThread(level: .event, execute: {
+				cbfunc.call(withArguments: [param])
+			})
+		})
 		picker.openPicker(URL: CNPreference.shared.userPreference.documentDirectory)
-
-		if let param = JSValue(nullIn: ctxt) {
-			cbfunc.call(withArguments: [param])
-		} else {
-			CNLog(logLevel: .error, message: "Failed to allocate return value", atFunction: #function, inFile: #file)
-		}
 	}
 	#endif
 

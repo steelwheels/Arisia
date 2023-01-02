@@ -364,7 +364,7 @@ interface URLIF {
 	isNull:			boolean ;
 	absoluteString:		string ;
 	path:			string ;
-	appendingPathComponent(comp: string): URLIF | null ;
+	appending(comp: string): URLIF | null ;
 	loadText():		string | null ;
 }
 
@@ -380,8 +380,11 @@ interface FileManagerIF {
 
 	documentDirectory:	URLIF ;
 	libraryDirectory:	URLIF ;
+	resourceDirectory:	URLIF | null ;
 	temporaryDirectory:	URLIF ;
 	currentDirectory: 	URLIF ;
+
+	copy(from: URLIF, to: URLIF): boolean ;
 }
 
 interface StorageIF {

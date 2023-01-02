@@ -14,10 +14,10 @@ public class Config
 {
 	private var mFrameNames: 	Array<String>
 	private var mTarget:   KEApplicationType
-	
+
 	public var frameNames: Array<String>	{ get { return mFrameNames	}}
 	public var target: KEApplicationType 	{ get { return mTarget		}}
-	
+
 	public init(target targ: KEApplicationType, frameNames names: Array<String>){
 		mTarget		= targ
 		mFrameNames	= names

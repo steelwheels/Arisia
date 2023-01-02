@@ -5,23 +5,24 @@
 let root = _alloc_Box();
 /* define type for all properties */
 root._definePropertyType("title", "o(Label)");
-root._definePropertyType("doc", "o(Label)");
+root._definePropertyType("install", "o(Label)");
+root._definePropertyType("install_button", "o(Button)");
 root._definePropertyType("buttons", "o(Box)");
-root._definePropertyType("frameName", "s");
-root._definePropertyType("alignment", "e(Alignment)");
-root._definePropertyType("propertyNames", "a(s)");
 root._definePropertyType("axis", "e(Axis)");
+root._definePropertyType("frameName", "s");
+root._definePropertyType("propertyNames", "a(s)");
 root._definePropertyType("distribution", "e(Distribution)");
+root._definePropertyType("alignment", "e(Alignment)");
 /* define getter/setter for all properties */
-_definePropertyIF(root, ["alignment", "axis", "buttons", "distribution", "doc", "frameName", "propertyNames", "title"]);
+_definePropertyIF(root, ["alignment", "axis", "buttons", "distribution", "frameName", "install", "install_button", "propertyNames", "title"]);
 {
     /* allocate function for frame: Label */
     let title = _alloc_Label();
     /* define type for all properties */
     title._definePropertyType("text", "s");
-    title._definePropertyType("number", "n");
     title._definePropertyType("propertyNames", "a(s)");
     title._definePropertyType("frameName", "s");
+    title._definePropertyType("number", "n");
     /* define getter/setter for all properties */
     _definePropertyIF(title, ["frameName", "number", "propertyNames", "text"]);
     /* assign user declared properties */
@@ -30,19 +31,50 @@ _definePropertyIF(root, ["alignment", "axis", "buttons", "distribution", "doc", 
 }
 {
     /* allocate function for frame: Label */
-    let doc = _alloc_Label();
+    let install = _alloc_Label();
     /* define type for all properties */
-    doc._definePropertyType("text", "s");
-    doc._definePropertyType("number", "n");
-    doc._definePropertyType("propertyNames", "a(s)");
-    doc._definePropertyType("frameName", "s");
+    install._definePropertyType("text", "s");
+    install._definePropertyType("propertyNames", "a(s)");
+    install._definePropertyType("frameName", "s");
+    install._definePropertyType("number", "n");
     /* define getter/setter for all properties */
-    _definePropertyIF(doc, ["frameName", "number", "propertyNames", "text"]);
+    _definePropertyIF(install, ["frameName", "number", "propertyNames", "text"]);
     /* assign user declared properties */
-    doc.text = (function () {
-        return FileManager.documentDirectory.path;
-    })();
-    root.doc = doc;
+    install.text = "Install";
+    root.install = install;
+}
+{
+    /* allocate function for frame: Button */
+    let install_button = _alloc_Button();
+    /* define type for all properties */
+    install_button._definePropertyType("title", "s");
+    install_button._definePropertyType("pressed", "f(v,[i(ButtonIF)])");
+    install_button._definePropertyType("isEnabled", "b");
+    install_button._definePropertyType("propertyNames", "a(s)");
+    install_button._definePropertyType("frameName", "s");
+    /* define getter/setter for all properties */
+    _definePropertyIF(install_button, ["frameName", "isEnabled", "pressed", "propertyNames", "title"]);
+    /* assign user declared properties */
+    install_button.title = "Install sample scripts";
+    install_button.pressed = function (self) {
+        let resdir = FileManager.resourceDirectory;
+        if (resdir != null) {
+            let srcdir = resdir.appending("Samples");
+            let docdir = FileManager.documentDirectory;
+            let dstdir = docdir.appending("Samples");
+            if (srcdir != null && dstdir != null) {
+                if (!FileManager.copy(srcdir, dstdir)) {
+                    console.log("srcdir: " + srcdir.path);
+                    console.log("dstdir: " + dstdir.path);
+                    console.error("Failed to copy sample directory\n");
+                }
+            }
+        }
+        else {
+            console.log("no resource directory");
+        }
+    };
+    root.install_button = install_button;
 }
 {
     /* allocate function for frame: Box */
@@ -52,9 +84,9 @@ _definePropertyIF(root, ["alignment", "axis", "buttons", "distribution", "doc", 
     buttons._definePropertyType("ok_button", "o(Button)");
     buttons._definePropertyType("cancel_button", "o(Button)");
     buttons._definePropertyType("frameName", "s");
-    buttons._definePropertyType("alignment", "e(Alignment)");
     buttons._definePropertyType("propertyNames", "a(s)");
     buttons._definePropertyType("distribution", "e(Distribution)");
+    buttons._definePropertyType("alignment", "e(Alignment)");
     /* define getter/setter for all properties */
     _definePropertyIF(buttons, ["alignment", "axis", "cancel_button", "distribution", "frameName", "ok_button", "propertyNames"]);
     /* assign user declared properties */
@@ -66,8 +98,8 @@ _definePropertyIF(root, ["alignment", "axis", "buttons", "distribution", "doc", 
         ok_button._definePropertyType("title", "s");
         ok_button._definePropertyType("pressed", "f(v,[i(ButtonIF)])");
         ok_button._definePropertyType("isEnabled", "b");
-        ok_button._definePropertyType("frameName", "s");
         ok_button._definePropertyType("propertyNames", "a(s)");
+        ok_button._definePropertyType("frameName", "s");
         /* define getter/setter for all properties */
         _definePropertyIF(ok_button, ["frameName", "isEnabled", "pressed", "propertyNames", "title"]);
         /* assign user declared properties */
@@ -84,8 +116,8 @@ _definePropertyIF(root, ["alignment", "axis", "buttons", "distribution", "doc", 
         cancel_button._definePropertyType("title", "s");
         cancel_button._definePropertyType("pressed", "f(v,[i(ButtonIF)])");
         cancel_button._definePropertyType("isEnabled", "b");
-        cancel_button._definePropertyType("frameName", "s");
         cancel_button._definePropertyType("propertyNames", "a(s)");
+        cancel_button._definePropertyType("frameName", "s");
         /* define getter/setter for all properties */
         _definePropertyIF(cancel_button, ["frameName", "isEnabled", "pressed", "propertyNames", "title"]);
         /* assign user declared properties */

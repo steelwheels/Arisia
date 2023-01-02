@@ -65,7 +65,7 @@ public class AMCollection: KCCollectionView, ALFrame
 
 		/* Set default properties */
 		self.setupDefaulrProperties()
-		
+
 		/* columnNumber */
 		if let colnum = numberValue(name: AMCollection.ColumnNumberItem) {
 			CNExecuteInMainThread(doSync: false, execute: {
@@ -130,7 +130,7 @@ public class AMCollection: KCCollectionView, ALFrame
 				}
 			}
 		})
-		
+
 		return nil
 	}
 

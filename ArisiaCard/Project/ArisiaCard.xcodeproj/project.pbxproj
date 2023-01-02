@@ -14,6 +14,9 @@
 		0569BBE628FB0542003BD24B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0569BBE428FB0542003BD24B /* Main.storyboard */; };
 		0569BBE828FB054C003BD24B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0569BBE728FB054C003BD24B /* Assets.xcassets */; };
 		0569BBEB28FB054C003BD24B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0569BBE928FB054C003BD24B /* LaunchScreen.storyboard */; };
+		05908CB429606B5800D6D818 /* Samples in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05908CB029606AFC00D6D818 /* Samples */; };
+		05908CB529606B7200D6D818 /* types in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B953AB2913CC2600E6EC3C /* types */; };
+		05908CB629606B7E00D6D818 /* Samples in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05908CB029606AFC00D6D818 /* Samples */; };
 		0597DCA728FB0739003F3233 /* ArisiaComponents.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0597DC8228FB063A003F3233 /* ArisiaComponents.xcframework */; };
 		0597DCA828FB0739003F3233 /* ArisiaComponents.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0597DC8228FB063A003F3233 /* ArisiaComponents.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0597DCAC28FB073D003F3233 /* ArisiaLibrary.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0597DC8128FB063A003F3233 /* ArisiaLibrary.xcframework */; };
@@ -51,7 +54,6 @@
 		0597DCDA28FB0760003F3233 /* KiwiShell.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0597DC8428FB063A003F3233 /* KiwiShell.xcframework */; };
 		0597DCDB28FB0760003F3233 /* KiwiShell.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0597DC8428FB063A003F3233 /* KiwiShell.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05AEC01328FB706D00EE675C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEE0B428FB03E40092E1C4 /* ViewController.swift */; };
-		05B953AD2913CC4500E6EC3C /* types in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B953AB2913CC2600E6EC3C /* types */; };
 		05B953AF2913CC5600E6EC3C /* types in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05B953AB2913CC2600E6EC3C /* types */; };
 		05BEE0B328FB03E40092E1C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEE0B228FB03E40092E1C4 /* AppDelegate.swift */; };
 		05BEE0B528FB03E40092E1C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BEE0B428FB03E40092E1C4 /* ViewController.swift */; };
@@ -135,6 +137,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				05908CB629606B7E00D6D818 /* Samples in CopyFiles */,
 				05177EB628FC031200152D23 /* Home.jspkg in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,6 +148,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				05908CB429606B5800D6D818 /* Samples in CopyFiles */,
 				05177EB528FC030600152D23 /* Home.jspkg in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,7 +159,7 @@
 			dstPath = Library;
 			dstSubfolderSpec = 7;
 			files = (
-				05B953AD2913CC4500E6EC3C /* types in CopyFiles */,
+				05908CB529606B7200D6D818 /* types in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +183,7 @@
 		0569BBE728FB054C003BD24B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0569BBEA28FB054C003BD24B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0569BBEC28FB054C003BD24B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05908CB029606AFC00D6D818 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		0597DC7F28FB0639003F3233 /* KiwiEngine.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiEngine.xcframework; path = ../../../../Library/Frameworks/KiwiEngine.xcframework; sourceTree = "<group>"; };
 		0597DC8028FB063A003F3233 /* CoconutShell.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutShell.xcframework; path = ../../../../Library/Frameworks/CoconutShell.xcframework; sourceTree = "<group>"; };
 		0597DC8128FB063A003F3233 /* ArisiaLibrary.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = ArisiaLibrary.xcframework; path = ../../../../Library/Frameworks/ArisiaLibrary.xcframework; sourceTree = "<group>"; };
@@ -190,7 +195,7 @@
 		0597DC8728FB063A003F3233 /* KiwiControls.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = KiwiControls.xcframework; path = ../../../../Library/Frameworks/KiwiControls.xcframework; sourceTree = "<group>"; };
 		0597DC8828FB063A003F3233 /* CoconutData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoconutData.xcframework; path = ../../../../Library/Frameworks/CoconutData.xcframework; sourceTree = "<group>"; };
 		05AEC01528FB7EAB00EE675C /* Home.jspkg */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Home.jspkg; sourceTree = "<group>"; };
-		05B953AB2913CC2600E6EC3C /* types */ = {isa = PBXFileReference; lastKnownFileType = folder; name = types; path = Library/types; sourceTree = "<group>"; };
+		05B953AB2913CC2600E6EC3C /* types */ = {isa = PBXFileReference; lastKnownFileType = folder; path = types; sourceTree = "<group>"; };
 		05BEE0AF28FB03E40092E1C4 /* ArisiaCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArisiaCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05BEE0B228FB03E40092E1C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05BEE0B428FB03E40092E1C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -278,6 +283,7 @@
 		05AEC01428FB70E200EE675C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				05908CB029606AFC00D6D818 /* Samples */,
 				05B953AA2913CC0200E6EC3C /* Library */,
 				05AEC01528FB7EAB00EE675C /* Home.jspkg */,
 			);
@@ -290,7 +296,7 @@
 			children = (
 				05B953AB2913CC2600E6EC3C /* types */,
 			);
-			name = Library;
+			path = Library;
 			sourceTree = "<group>";
 		};
 		05BEE0A628FB03E40092E1C4 = {

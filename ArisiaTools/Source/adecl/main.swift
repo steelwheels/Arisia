@@ -64,7 +64,7 @@ private func dump(className cname: String, propertyTypes ptypes: Dictionary<Stri
 	result.add(text: proto)
 
 	file.put(string: result.toStrings().joined(separator: "\n") + "\n")
-	
+
 	/* close the file*/
 	file.close()
 	return true

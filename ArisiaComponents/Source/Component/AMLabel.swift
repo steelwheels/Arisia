@@ -57,7 +57,7 @@ public class AMLabel: KCLabelView, ALFrame
 
 		/* Set default properties */
 		self.setupDefaulrProperties()
-		
+
 		/* text */
 		if let str = stringValue(name: AMLabel.TextItem) {
 			self.text = str
@@ -88,7 +88,7 @@ public class AMLabel: KCLabelView, ALFrame
 				})
 			}
 		})
-		
+
 		return nil // noError
 	}
 }

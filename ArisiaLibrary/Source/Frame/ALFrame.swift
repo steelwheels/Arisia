@@ -15,7 +15,7 @@ public protocol ALFrame
 	var path: ALFramePath { get }
 
 	static var propertyTypes: Dictionary<String, CNValueType> { get }
-	
+
 	func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError?
 }
 

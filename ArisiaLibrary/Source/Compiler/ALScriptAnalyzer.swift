@@ -13,7 +13,7 @@ public class ALScriptAnalyzer: ALScriptLinkerBase
 	public override init(config conf: ALConfig){
 		super.init(config: conf)
 	}
-	
+
 	public func anayze(frame frm: ALFrameIR) -> NSError? {
 		let pstack: CNStack<String> = CNStack()
 		return decideParameterTypes(identifier: self.config.rootInstanceName, frame: frm, pathStack: pstack, rootFrame: frm)

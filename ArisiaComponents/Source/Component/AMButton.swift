@@ -62,7 +62,7 @@ public class AMButton: KCButton, ALFrame
 
 		/* Set default properties */
 		self.setupDefaulrProperties()
-		
+
 		/* "pressed" event */
 		if self.value(name: AMButton.PressedItem) == nil {
 			self.setValue(name: AMButton.PressedItem, value: JSValue(nullIn: core.context))
@@ -112,7 +112,7 @@ public class AMButton: KCButton, ALFrame
 				})
 			}
 		})
-		
+
 		return nil
 	}
 

@@ -3,8 +3,9 @@ interface root_BoxIF extends FrameCoreIF {
   axis: Axis ;
   buttons: BoxIF ;
   distribution: Distribution ;
-  doc: LabelIF ;
   frameName: string ;
+  install: LabelIF ;
+  install_button: ButtonIF ;
   propertyNames: string[] ;
   title: LabelIF ;
 }
@@ -14,11 +15,18 @@ interface root_title_LabelIF extends FrameCoreIF {
   propertyNames: string[] ;
   text: string ;
 }
-interface root_doc_LabelIF extends FrameCoreIF {
+interface root_install_LabelIF extends FrameCoreIF {
   frameName: string ;
   number: number ;
   propertyNames: string[] ;
   text: string ;
+}
+interface root_install_button_ButtonIF extends FrameCoreIF {
+  frameName: string ;
+  isEnabled: boolean ;
+  pressed(p0: root_install_button_ButtonIF): void ;
+  propertyNames: string[] ;
+  title: string ;
 }
 interface root_buttons_BoxIF extends FrameCoreIF {
   alignment: Alignment ;
