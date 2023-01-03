@@ -47,6 +47,14 @@ declare enum ComparisonResult {
   descending = 1,
   same = 0
 }
+/* Enum declaration: Device */
+declare enum Device {
+  carPlay = 4,
+  ipad = 2,
+  mac = 0,
+  phone = 1,
+  tv = 3
+}
 /* Enum declaration: Distribution */
 declare enum Distribution {
   equalSpacing = 3,
@@ -467,6 +475,7 @@ interface CollectionDataIF {
 }
 
 interface SystemPreferenceIF {
+	device:			Device ;
 	version:		string ;
 	logLevel:		number ;
 }
