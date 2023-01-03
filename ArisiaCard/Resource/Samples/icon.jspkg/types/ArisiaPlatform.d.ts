@@ -97,6 +97,7 @@ declare enum SymbolSize {
 /* Enum declaration: Symbols */
 declare enum Symbols {
   character = "character",
+  checkmarkSquare = "checkmark.square",
   chevronBackward = "chevron.backward",
   chevronDown = "chevron.down",
   chevronForward = "chevron.forward",
@@ -121,6 +122,7 @@ declare enum Symbols {
   questionmark = "questionmark",
   rectangle = "rectangle",
   rectangleFill = "rectangle.fill",
+  square = "square",
   sunMax = "sun.max",
   sunMin = "sun.min"
 }
