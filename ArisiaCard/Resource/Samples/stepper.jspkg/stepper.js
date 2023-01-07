@@ -1,38 +1,40 @@
 "use strict";
 /// <reference path="types/ArisiaPlatform.d.ts"/>
-/// <reference path="types/icon-if.d.ts"/>
+/// <reference path="types/stepper-if.d.ts"/>
 /* allocate function for frame: Box */
 let root = _alloc_Box();
 /* define type for all properties */
-root._definePropertyType("icon0", "o(Icon)");
+root._definePropertyType("stepper", "o(Stepper)");
 root._definePropertyType("ok_button", "o(Button)");
 root._definePropertyType("axis", "e(Axis)");
-root._definePropertyType("frameName", "s");
 root._definePropertyType("propertyNames", "a(s)");
 root._definePropertyType("alignment", "e(Alignment)");
 root._definePropertyType("distribution", "e(Distribution)");
+root._definePropertyType("frameName", "s");
 /* define getter/setter for all properties */
-_definePropertyIF(root, ["alignment", "axis", "distribution", "frameName", "icon0", "ok_button", "propertyNames"]);
+_definePropertyIF(root, ["alignment", "axis", "distribution", "frameName", "ok_button", "propertyNames", "stepper"]);
 {
-    /* allocate function for frame: Icon */
-    let icon0 = _alloc_Icon();
+    /* allocate function for frame: Stepper */
+    let stepper = _alloc_Stepper();
     /* define type for all properties */
-    icon0._definePropertyType("symbol", "s");
-    icon0._definePropertyType("title", "s");
-    icon0._definePropertyType("size", "e(SymbolSize)");
-    icon0._definePropertyType("pressed", "f(v,[i(IconIF)])");
-    icon0._definePropertyType("propertyNames", "a(s)");
-    icon0._definePropertyType("frameName", "s");
+    stepper._definePropertyType("minValue", "n");
+    stepper._definePropertyType("maxValue", "n");
+    stepper._definePropertyType("stepValue", "n");
+    stepper._definePropertyType("initValue", "n");
+    stepper._definePropertyType("updated", "f(v,[i(StepperIF),n])");
+    stepper._definePropertyType("frameName", "s");
+    stepper._definePropertyType("propertyNames", "a(s)");
     /* define getter/setter for all properties */
-    _definePropertyIF(icon0, ["frameName", "pressed", "propertyNames", "size", "symbol", "title"]);
+    _definePropertyIF(stepper, ["frameName", "initValue", "maxValue", "minValue", "propertyNames", "stepValue", "updated"]);
     /* assign user declared properties */
-    icon0.symbol = "moon.stars";
-    icon0.title = "Hello";
-    icon0.size = SymbolSize.regular;
-    icon0.pressed = function (self) {
-        console.log("icon pressed");
+    stepper.minValue = -10;
+    stepper.maxValue = 10;
+    stepper.stepValue = 1;
+    stepper.initValue = 0;
+    stepper.updated = function (self, val) {
+        console.log("current value: " + val);
     };
-    root.icon0 = icon0;
+    root.stepper = stepper;
 }
 {
     /* allocate function for frame: Button */
@@ -41,8 +43,8 @@ _definePropertyIF(root, ["alignment", "axis", "distribution", "frameName", "icon
     ok_button._definePropertyType("title", "s");
     ok_button._definePropertyType("pressed", "f(v,[i(ButtonIF)])");
     ok_button._definePropertyType("isEnabled", "b");
-    ok_button._definePropertyType("frameName", "s");
     ok_button._definePropertyType("propertyNames", "a(s)");
+    ok_button._definePropertyType("frameName", "s");
     /* define getter/setter for all properties */
     _definePropertyIF(ok_button, ["frameName", "isEnabled", "pressed", "propertyNames", "title"]);
     /* assign user declared properties */

@@ -381,6 +381,8 @@ interface URLIF {
 interface FileManagerIF {
 	open(path: URLIF | string, access: string): FileIF ;
 
+	fileExists(file: URLIF | string): boolean ;
+
 	isReadable(file: URLIF | string): boolean ;
 	isWritable(file: URLIF | string): boolean ;
 	isExecutable(file: URLIF | string): boolean ;
@@ -395,6 +397,7 @@ interface FileManagerIF {
 	currentDirectory: 	URLIF ;
 
 	copy(from: URLIF, to: URLIF): boolean ;
+	remove(file: URLIF | string): boolean ;
 }
 
 interface StorageIF {
@@ -810,6 +813,16 @@ interface RadioButtonsIF extends FrameCoreIF {
   setEnable(p0: string, p1: boolean): void ;
 }
 declare function _alloc_RadioButtons(): RadioButtonsIF ;
+interface StepperIF extends FrameCoreIF {
+  frameName: string ;
+  initValue: number ;
+  maxValue: number ;
+  minValue: number ;
+  propertyNames: string[] ;
+  stepValue: number ;
+  updated(p0: StepperIF, p1: number): void ;
+}
+declare function _alloc_Stepper(): StepperIF ;
 interface TableDataIF extends FrameCoreIF {
   count: number ;
   fieldName(): string ;

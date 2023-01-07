@@ -381,6 +381,8 @@ interface URLIF {
 interface FileManagerIF {
 	open(path: URLIF | string, access: string): FileIF ;
 
+	fileExists(file: URLIF | string): boolean ;
+
 	isReadable(file: URLIF | string): boolean ;
 	isWritable(file: URLIF | string): boolean ;
 	isExecutable(file: URLIF | string): boolean ;
@@ -395,6 +397,7 @@ interface FileManagerIF {
 	currentDirectory: 	URLIF ;
 
 	copy(from: URLIF, to: URLIF): boolean ;
+	remove(file: URLIF | string): boolean ;
 }
 
 interface StorageIF {

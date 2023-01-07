@@ -66,7 +66,7 @@ func main(arguments args: Array<String>) {
 		case .success(let txt):
 			text.add(text: txt)
 		case .failure(let err):
-			console.print(string: "[Error] Failed to generate TypeScript: \(err.toString())")
+			console.print(string: "[Error] Failed to generate TypeScript: \(err.toString())\n")
 			return
 		}
 		output = text
@@ -77,7 +77,7 @@ func main(arguments args: Array<String>) {
 		case .success(let txt):
 			output = txt
 		case .failure(let err):
-			console.print(string: "[Error] Failed to generate declaration: \(err.toString())")
+			console.print(string: "[Error] Failed to generate declaration: \(err.toString())\n")
 			return
 		}
 	}

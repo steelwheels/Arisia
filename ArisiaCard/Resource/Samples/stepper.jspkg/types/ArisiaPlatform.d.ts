@@ -381,8 +381,6 @@ interface URLIF {
 interface FileManagerIF {
 	open(path: URLIF | string, access: string): FileIF ;
 
-	fileExists(file: URLIF | string): boolean ;
-
 	isReadable(file: URLIF | string): boolean ;
 	isWritable(file: URLIF | string): boolean ;
 	isExecutable(file: URLIF | string): boolean ;
@@ -397,7 +395,6 @@ interface FileManagerIF {
 	currentDirectory: 	URLIF ;
 
 	copy(from: URLIF, to: URLIF): boolean ;
-	remove(file: URLIF | string): boolean ;
 }
 
 interface StorageIF {
@@ -711,3 +708,128 @@ declare class Turtle {
 /// <reference path="Process.d.ts" />
 /// <reference path="Enum.d.ts" />
 declare function requestContactAccess(): boolean;
+/*
+ * Builtin.d.ts: Declaration of type and functions of ArisiaLibrary
+ */
+
+interface FrameCoreIF {
+  _value(p0: string): any ;
+  _setValue(p0: string, p1: any): boolean ;
+  _definePropertyType(p0: string, p1: string): void ;
+  _addObserver(p0: string, p1: () => void): void ;
+}
+
+interface FrameIF extends FrameCoreIF {
+  frameName: string ;
+  propertyNames: string[] ;
+}
+
+declare function _alloc_Frame(): FrameIF ;
+
+/**
+ * Transpiler.ts
+ */
+/// <reference path="KiwiLibrary.d.ts" />
+/// <reference path="Builtin.d.ts" />
+/// <reference path="Frame.d.ts" />
+declare function _definePropertyIF(frame: FrameIF, names: string[]): void;
+/**
+ * Builtin.d.ts : Built-in objects in KiwiComponents
+ */
+
+declare function _enterView(path: string, arg: any, cbfunc: (retval: any) => void): void ;
+declare function _alert(type: AlertType, message: string, labels: string[], cbfunc: (retval: number) => void): void ;
+declare function leaveView(param: any): void ;
+
+declare function _openPanel(title: string, type: FileType, exts: string[], cbfunc: any): void ;
+declare function _savePanel(title: string, cbfunc: any): void ;
+
+
+/// <reference path="ArisiaLibrary.d.ts" />
+/// <reference path="Builtin.d.ts" />
+declare function openPanel(title: string, type: FileType, exts: string[]): URLIF | null;
+declare function savePanel(title: string): URLIF | null;
+/// <reference path="ArisiaLibrary.d.ts" />
+/// <reference path="Builtin.d.ts" />
+declare function alert(type: AlertType, message: string, labels: string[]): number;
+declare function enterView(path: string, arg: any): any;
+interface BoxIF extends FrameCoreIF {
+  alignment: Alignment ;
+  axis: Axis ;
+  distribution: Distribution ;
+  frameName: string ;
+  propertyNames: string[] ;
+}
+declare function _alloc_Box(): BoxIF ;
+interface ButtonIF extends FrameCoreIF {
+  frameName: string ;
+  isEnabled: boolean ;
+  pressed(p0: ButtonIF): void ;
+  propertyNames: string[] ;
+  title: string ;
+}
+declare function _alloc_Button(): ButtonIF ;
+interface CollectionIF extends FrameCoreIF {
+  collection: string[] ;
+  columnNumber: number ;
+  frameName: string ;
+  pressed(p0: CollectionIF, p1: number, p2: number): void ;
+  propertyNames: string[] ;
+  totalNumber(): number ;
+}
+declare function _alloc_Collection(): CollectionIF ;
+interface ImageIF extends FrameCoreIF {
+  frameName: string ;
+  name: string ;
+  propertyNames: string[] ;
+  scale: number ;
+}
+declare function _alloc_Image(): ImageIF ;
+interface IconIF extends FrameCoreIF {
+  frameName: string ;
+  pressed(p0: IconIF): void ;
+  propertyNames: string[] ;
+  size: SymbolSize ;
+  symbol: string ;
+  title: string ;
+}
+declare function _alloc_Icon(): IconIF ;
+interface LabelIF extends FrameCoreIF {
+  frameName: string ;
+  number: number ;
+  propertyNames: string[] ;
+  text: string ;
+}
+declare function _alloc_Label(): LabelIF ;
+interface RadioButtonsIF extends FrameCoreIF {
+  columnNum: number ;
+  currentIndex: number ;
+  frameName: string ;
+  labels: string[] ;
+  propertyNames: string[] ;
+  setEnable(p0: string, p1: boolean): void ;
+}
+declare function _alloc_RadioButtons(): RadioButtonsIF ;
+interface StepperIF extends FrameCoreIF {
+  frameName: string ;
+  initValue: number ;
+  maxValue: number ;
+  minValue: number ;
+  propertyNames: string[] ;
+  stepValue: number ;
+  updated(p0: StepperIF, p1: number): void ;
+}
+declare function _alloc_Stepper(): StepperIF ;
+interface TableDataIF extends FrameCoreIF {
+  count: number ;
+  fieldName(): string ;
+  fieldNames: string[] ;
+  frameName: string ;
+  index: number ;
+  newRecord: RecordIF ;
+  path: string ;
+  propertyNames: string[] ;
+  record: RecordIF | null ;
+  storage: string ;
+}
+declare function _alloc_TableData(): TableDataIF ;

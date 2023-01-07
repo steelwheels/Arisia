@@ -73,6 +73,8 @@
 		05BAFD24292897EB009DB1ED /* AMIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BAFD22292897EB009DB1ED /* AMIcon.swift */; };
 		05BB080228E7269700265AC9 /* ArisiaComponents.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */; };
 		05BB080628E726AB00265AC9 /* ArisiaComponents.d.ts in CopyFiles */ = {isa = PBXBuildFile; fileRef = 05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */; };
+		05C58CAB296420BE00615311 /* AMStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C58CAA296420BE00615311 /* AMStepper.swift */; };
+		05C58CAC296420BE00615311 /* AMStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C58CAA296420BE00615311 /* AMStepper.swift */; };
 		05CAC86A28DD8C6B001C9EF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CAC86928DD8C6B001C9EF1 /* AppDelegate.swift */; };
 		05CAC86C28DD8C6B001C9EF1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CAC86B28DD8C6B001C9EF1 /* ViewController.swift */; };
 		05CAC86E28DD8C75001C9EF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05CAC86D28DD8C75001C9EF1 /* Assets.xcassets */; };
@@ -287,6 +289,7 @@
 		05BB07F428E723BA00265AC9 /* Frame.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Frame.d.ts; sourceTree = "<group>"; };
 		05BB07F528E723BA00265AC9 /* ArisiaComponents.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ArisiaComponents.d.ts; sourceTree = "<group>"; };
 		05BB07F728E723BA00265AC9 /* ArisiaLibrary.d.ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ArisiaLibrary.d.ts; sourceTree = "<group>"; };
+		05C58CAA296420BE00615311 /* AMStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AMStepper.swift; sourceTree = "<group>"; };
 		05CAC86728DD8C6B001C9EF1 /* UnitTest_macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTest_macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05CAC86928DD8C6B001C9EF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05CAC86B28DD8C6B001C9EF1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -448,6 +451,7 @@
 				05946F3428FC17AF00AF2452 /* AMImage.swift */,
 				05B322272915576700AAA84D /* AMLabel.swift */,
 				05D22133292FB84B003D1264 /* AMRadioButtons.swift */,
+				05C58CAA296420BE00615311 /* AMStepper.swift */,
 				0556618628E090B200FC4CF2 /* AMTableData.swift */,
 			);
 			path = Component;
@@ -789,6 +793,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05C58CAB296420BE00615311 /* AMStepper.swift in Sources */,
 				05BAFD23292897EB009DB1ED /* AMIcon.swift in Sources */,
 				05D22134292FB84B003D1264 /* AMRadioButtons.swift in Sources */,
 				055FE1ED28DD76380007B215 /* AMBox.swift in Sources */,
@@ -810,6 +815,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05C58CAC296420BE00615311 /* AMStepper.swift in Sources */,
 				05BAFD24292897EB009DB1ED /* AMIcon.swift in Sources */,
 				05D22135292FB84B003D1264 /* AMRadioButtons.swift in Sources */,
 				055FE1EE28DD76380007B215 /* AMBox.swift in Sources */,

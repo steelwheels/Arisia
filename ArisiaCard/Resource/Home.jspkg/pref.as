@@ -17,9 +17,14 @@
         let docdir = FileManager.documentDirectory ;
 	let dstdir = docdir.appending("Samples") ;
         if(srcdir != null && dstdir != null){
+          console.log("check: " + dstdir.path) ;
+          if(FileManager.fileExists(dstdir)){
+            console.log("remove: " + dstdir.path) ;
+            FileManager.remove(dstdir) ;
+          }
+	  console.log("srcdir: " + srcdir.path) ;
+	  console.log("dstdir: " + dstdir.path) ;
           if(!FileManager.copy(srcdir, dstdir)){
-	    console.log("srcdir: " + srcdir.path) ;
-	    console.log("dstdir: " + dstdir.path) ;
             console.error("Failed to copy sample directory\n") ;
 	  }
         }

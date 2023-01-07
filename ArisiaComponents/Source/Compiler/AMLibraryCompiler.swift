@@ -48,6 +48,7 @@ open class AMLibraryCompiler: ALLibraryCompiler
 			AMImage.ClassName,
 			AMLabel.ClassName,
 			AMRadioButtons.ClassName,
+			AMStepper.ClassName,
 			AMTableData.ClassName
 		]
 	}}
@@ -62,6 +63,7 @@ open class AMLibraryCompiler: ALLibraryCompiler
 		case AMImage.ClassName:		result = AMImage.propertyTypes
 		case AMLabel.ClassName:		result = AMLabel.propertyTypes
 		case AMRadioButtons.ClassName:	result = AMRadioButtons.propertyTypes
+		case AMStepper.ClassName:	result = AMStepper.propertyTypes
 		case AMTableData.ClassName:	result = AMTableData.propertyTypes
 		default:
 			CNLog(logLevel: .error, message: "Unknown component name: \(comp)", atFunction: #function, inFile: #file)
@@ -128,6 +130,14 @@ open class AMLibraryCompiler: ALLibraryCompiler
 				(_ ctxt: KEContext) -> ALFrame? in return AMRadioButtons(context: ctxt)
 			},
 			propertyTypes: AMRadioButtons.propertyTypes
+		))
+		
+		/* Stepper */
+		allocator.add(className: AMStepper.ClassName,
+			allocator: ALFrameAllocator.Allocator(frameName: AMStepper.ClassName, allocFuncBody: {
+				(_ ctxt: KEContext) -> ALFrame? in return AMStepper(context: ctxt)
+			},
+			propertyTypes: AMStepper.propertyTypes
 		))
 
 		/* TableData */
@@ -237,7 +247,9 @@ open class AMLibraryCompiler: ALLibraryCompiler
 				cbfunc.call(withArguments: [param])
 			})
 		})
-		picker.openPicker(URL: CNPreference.shared.userPreference.documentDirectory)
+		let docdir = FileManager.default.documentDirectory
+		NSLog("open-picker: \(docdir.path)")
+		picker.openPicker(URL: docdir)
 	}
 	#endif
 
