@@ -248,7 +248,7 @@ open class AMLibraryCompiler: ALLibraryCompiler
 			})
 		})
 		let docdir = FileManager.default.documentDirectory
-		NSLog("open-picker: \(docdir.path)")
+		CNLog(logLevel: .detail, message: "open-picker: \(docdir.path)", atFunction: #function, inFile: #file)
 		picker.openPicker(URL: docdir)
 	}
 	#endif
