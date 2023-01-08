@@ -1,8 +1,6 @@
-interface ButtonIF extends FrameCoreIF {
-  frameName: string ;
+interface ButtonIF extends FrameIF {
   isEnabled: boolean ;
   pressed(p0: ButtonIF): void ;
-  propertyNames: string[] ;
   title: string ;
 }
 declare function _alloc_Button(): ButtonIF ;

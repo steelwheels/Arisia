@@ -53,18 +53,18 @@ open class AMLibraryCompiler: ALLibraryCompiler
 		]
 	}}
 
-	public static func propertyTypes(forComponent comp: String) -> Dictionary<String, CNValueType>? {
-		let result: Dictionary<String, CNValueType>?
+	public static func interfaceType(forComponent comp: String) -> CNInterfaceType? {
+		let result: CNInterfaceType?
 		switch comp {
-		case AMButton.ClassName:	result = AMButton.propertyTypes
-		case AMBox.ClassName:		result = AMBox.propertyTypes
-		case AMCollection.ClassName:	result = AMCollection.propertyTypes
-		case AMIcon.ClassName:		result = AMIcon.propertyTypes
-		case AMImage.ClassName:		result = AMImage.propertyTypes
-		case AMLabel.ClassName:		result = AMLabel.propertyTypes
-		case AMRadioButtons.ClassName:	result = AMRadioButtons.propertyTypes
-		case AMStepper.ClassName:	result = AMStepper.propertyTypes
-		case AMTableData.ClassName:	result = AMTableData.propertyTypes
+		case AMButton.ClassName:	result = AMButton.interfaceType
+		case AMBox.ClassName:		result = AMBox.interfaceType
+		case AMCollection.ClassName:	result = AMCollection.interfaceType
+		case AMIcon.ClassName:		result = AMIcon.interfaceType
+		case AMImage.ClassName:		result = AMImage.interfaceType
+		case AMLabel.ClassName:		result = AMLabel.interfaceType
+		case AMRadioButtons.ClassName:	result = AMRadioButtons.interfaceType
+		case AMStepper.ClassName:	result = AMStepper.interfaceType
+		case AMTableData.ClassName:	result = AMTableData.interfaceType
 		default:
 			CNLog(logLevel: .error, message: "Unknown component name: \(comp)", atFunction: #function, inFile: #file)
 			result = nil
@@ -81,7 +81,7 @@ open class AMLibraryCompiler: ALLibraryCompiler
 				(_ ctxt: KEContext) -> ALFrame? in
 				return AMButton(context: ctxt)
 			},
-			propertyTypes: AMButton.propertyTypes
+			interfaceType: AMButton.interfaceType
 		))
 
 		/* Box */
@@ -89,7 +89,7 @@ open class AMLibraryCompiler: ALLibraryCompiler
 			allocator: ALFrameAllocator.Allocator(frameName: AMBox.ClassName, allocFuncBody: {
 				(_ ctxt: KEContext) -> ALFrame? in return AMBox(context: ctxt)
 			},
-			propertyTypes: AMBox.propertyTypes
+			interfaceType: AMBox.interfaceType
 		))
 
 		/* Collection */
@@ -97,7 +97,7 @@ open class AMLibraryCompiler: ALLibraryCompiler
 			allocator: ALFrameAllocator.Allocator(frameName: AMCollection.ClassName, allocFuncBody: {
 				(_ ctxt: KEContext) -> ALFrame? in return AMCollection(context: ctxt)
 			},
-			propertyTypes: AMCollection.propertyTypes
+			interfaceType: AMCollection.interfaceType
 		))
 
 		/* Image */
@@ -105,7 +105,7 @@ open class AMLibraryCompiler: ALLibraryCompiler
 			allocator: ALFrameAllocator.Allocator(frameName: AMImage.ClassName, allocFuncBody: {
 				(_ ctxt: KEContext) -> ALFrame? in return AMImage(context: ctxt)
 			},
-			propertyTypes: AMImage.propertyTypes
+			interfaceType: AMImage.interfaceType
 		))
 
 		/* Icon */
@@ -113,7 +113,7 @@ open class AMLibraryCompiler: ALLibraryCompiler
 			allocator: ALFrameAllocator.Allocator(frameName: AMIcon.ClassName, allocFuncBody: {
 				(_ ctxt: KEContext) -> ALFrame? in return AMIcon(context: ctxt)
 			},
-			propertyTypes: AMIcon.propertyTypes
+			interfaceType: AMIcon.interfaceType
 		))
 
 		/* Label */
@@ -121,7 +121,7 @@ open class AMLibraryCompiler: ALLibraryCompiler
 			allocator: ALFrameAllocator.Allocator(frameName: AMLabel.ClassName, allocFuncBody: {
 				(_ ctxt: KEContext) -> ALFrame? in return AMLabel(context: ctxt)
 			},
-			propertyTypes: AMLabel.propertyTypes
+			interfaceType: AMLabel.interfaceType
 		))
 
 		/* RadioButtons */
@@ -129,7 +129,7 @@ open class AMLibraryCompiler: ALLibraryCompiler
 			allocator: ALFrameAllocator.Allocator(frameName: AMRadioButtons.ClassName, allocFuncBody: {
 				(_ ctxt: KEContext) -> ALFrame? in return AMRadioButtons(context: ctxt)
 			},
-			propertyTypes: AMRadioButtons.propertyTypes
+			interfaceType: AMRadioButtons.interfaceType
 		))
 		
 		/* Stepper */
@@ -137,7 +137,7 @@ open class AMLibraryCompiler: ALLibraryCompiler
 			allocator: ALFrameAllocator.Allocator(frameName: AMStepper.ClassName, allocFuncBody: {
 				(_ ctxt: KEContext) -> ALFrame? in return AMStepper(context: ctxt)
 			},
-			propertyTypes: AMStepper.propertyTypes
+			interfaceType: AMStepper.interfaceType
 		))
 
 		/* TableData */
@@ -145,7 +145,7 @@ open class AMLibraryCompiler: ALLibraryCompiler
 			allocator: ALFrameAllocator.Allocator(frameName: AMTableData.ClassName, allocFuncBody: {
 				(_ ctxt: KEContext) -> ALFrame? in return AMTableData(context: ctxt)
 			},
-			propertyTypes: AMTableData.propertyTypes
+			interfaceType: AMTableData.interfaceType
 		))
 	}
 

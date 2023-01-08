@@ -1,7 +1,5 @@
-interface ImageIF extends FrameCoreIF {
-  frameName: string ;
+interface ImageIF extends FrameIF {
   name: string ;
-  propertyNames: string[] ;
   scale: number ;
 }
 declare function _alloc_Image(): ImageIF ;

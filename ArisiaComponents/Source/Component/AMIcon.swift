@@ -44,21 +44,29 @@ public class AMIcon: KCIconView, ALFrame
 		fatalError("Not supported")
 	}
 
-	static public var propertyTypes: Dictionary<String, CNValueType> { get {
-		let sizetype: CNEnumType
-		if let etype = CNEnumTable.currentEnumTable().search(byTypeName: "SymbolSize") {
-			sizetype = etype
+	static public var interfaceType: CNInterfaceType { get {
+		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: AMIcon.ClassName)
+		if let iftype = CNInterfaceTable.currentInterfaceTable().search(byTypeName: ifname) {
+			return iftype
 		} else {
-			CNLog(logLevel: .error, message: "No enum type: \"SymbolSize\"", atFunction: #function, inFile: #file)
-			sizetype = CNEnumType(typeName: "SymbolSize")
+			let sizetype: CNEnumType
+			if let etype = CNEnumTable.currentEnumTable().search(byTypeName: "SymbolSize") {
+				sizetype = etype
+			} else {
+				CNLog(logLevel: .error, message: "No enum type: \"SymbolSize\"", atFunction: #function, inFile: #file)
+				sizetype = CNEnumType(typeName: "SymbolSize")
+			}
+			let baseif = ALDefaultFrame.interfaceType
+			let ptypes: Dictionary<String, CNValueType> = [
+				AMIcon.PressedItem:	.functionType(.voidType, [ .interfaceType(baseif) ]),
+				AMIcon.SymbolItem:	.stringType,
+				AMIcon.TitleItem:	.stringType,
+				AMIcon.SizeItem:	.enumType(sizetype)
+			]
+			let newif = CNInterfaceType(name: ifname, base: baseif, types: ptypes)
+			CNInterfaceTable.currentInterfaceTable().add(interfaceType: newif)
+			return newif
 		}
-		let result: Dictionary<String, CNValueType> = [
-			AMIcon.PressedItem:	.functionType(.voidType, [ .interfaceType("IconIF") ]),
-			AMIcon.SymbolItem:	.stringType,
-			AMIcon.TitleItem:	.stringType,
-			AMIcon.SizeItem:	.enumType(sizetype)
-		]
-		return result.merging(ALDefaultFrame.propertyTypes){ (a, b) in a }
 	}}
 
 	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
@@ -66,7 +74,7 @@ public class AMIcon: KCIconView, ALFrame
 		mPath = pth
 
 		/* Set property types */
-		definePropertyTypes(propertyTypes: AMIcon.propertyTypes)
+		defineInterfaceType(interfaceType: AMIcon.interfaceType)
 
 		/* Set default properties */
 		self.setupDefaulrProperties()

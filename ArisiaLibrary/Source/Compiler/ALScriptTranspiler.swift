@@ -140,7 +140,7 @@ public class ALScriptTranspiler
 				CNLog(logLevel: .error, message: "Duplicated property names: \(prop.name)", atFunction: #function, inFile: #file)
 			}
 		}
-		for (name, type) in allocator.propertyTypes {
+		for (name, type) in allocator.interfaceType.allTypes {
 			ptypes[name] = type
 			if pnames.firstIndex(of: name) == nil {
 				pnames.append(name)
@@ -148,7 +148,7 @@ public class ALScriptTranspiler
 		}
 
 		/* Define type for all properties*/
-		let dttxt = definePropertyTypes(instanceName: inst, propertyNames: pnames, propertyTypes: ptypes)
+		let dttxt = definePropertyTypes(instanceName: inst, propertyNames: pnames.sorted(), propertyTypes: ptypes)
 		if !dttxt.isEmpty() {
 			result.add(text: CNTextLine(string: "/* define type for all properties */"))
 			result.add(text: dttxt)

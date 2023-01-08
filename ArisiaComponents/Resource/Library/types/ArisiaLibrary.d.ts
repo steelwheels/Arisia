@@ -675,7 +675,7 @@ declare class CFrame {
 }
 /// <reference path="Builtin.d.ts" />
 /// <reference path="Enum.d.ts" />
-declare type TurtleStatus = {
+type TurtleStatus = {
     x: number;
     y: number;
     angle: number;

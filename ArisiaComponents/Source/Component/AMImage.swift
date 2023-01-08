@@ -42,12 +42,20 @@ public class AMImage: KCImageView, ALFrame
 		fatalError("Not supported")
 	}
 
-	static public var propertyTypes: Dictionary<String, CNValueType> { get {
-		let result: Dictionary<String, CNValueType> = [
-			AMImage.NameItem:	.stringType,
-			AMImage.ScaleItem:	.numberType
-		]
-		return result.merging(ALDefaultFrame.propertyTypes){ (a, b) in a }
+	static public var interfaceType: CNInterfaceType { get {
+		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: AMImage.ClassName)
+		if let iftype = CNInterfaceTable.currentInterfaceTable().search(byTypeName: ifname) {
+			return iftype
+		} else {
+			let baseif = ALDefaultFrame.interfaceType
+			let ptypes: Dictionary<String, CNValueType> = [
+				AMImage.NameItem:	.stringType,
+				AMImage.ScaleItem:	.numberType
+			]
+			let newif = CNInterfaceType(name: ifname, base: baseif, types: ptypes)
+			CNInterfaceTable.currentInterfaceTable().add(interfaceType: newif)
+			return newif
+		}
 	}}
 
 	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
@@ -55,7 +63,7 @@ public class AMImage: KCImageView, ALFrame
 		mPath = pth
 
 		/* Set property types */
-		definePropertyTypes(propertyTypes: AMImage.propertyTypes)
+		defineInterfaceType(interfaceType: AMImage.interfaceType)
 
 		/* Set default properties */
 		self.setupDefaulrProperties()

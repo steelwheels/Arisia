@@ -44,14 +44,22 @@ public class AMRadioButtons: KCRadioButtons, ALFrame
 		fatalError("Not supported")
 	}
 
-	static public var propertyTypes: Dictionary<String, CNValueType> { get {
-		let result: Dictionary<String, CNValueType> = [
-			AMRadioButtons.CurrentIndexItem:	.numberType,
-			AMRadioButtons.ColumnNumItem:		.numberType,
-			AMRadioButtons.LabelsItem:		.arrayType(.stringType),
-			AMRadioButtons.SetEnableItem:		.functionType(.voidType, [.stringType, .boolType])
-		]
-		return result.merging(ALDefaultFrame.propertyTypes){ (a, b) in a }
+	static public var interfaceType: CNInterfaceType { get {
+		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: AMRadioButtons.ClassName)
+		if let iftype = CNInterfaceTable.currentInterfaceTable().search(byTypeName: ifname) {
+			return iftype
+		} else {
+			let baseif = ALDefaultFrame.interfaceType
+			let ptypes: Dictionary<String, CNValueType> = [
+				AMRadioButtons.CurrentIndexItem:	.numberType,
+				AMRadioButtons.ColumnNumItem:		.numberType,
+				AMRadioButtons.LabelsItem:		.arrayType(.stringType),
+				AMRadioButtons.SetEnableItem:		.functionType(.voidType, [.stringType, .boolType])
+			]
+			let newif = CNInterfaceType(name: ifname, base: baseif, types: ptypes)
+			CNInterfaceTable.currentInterfaceTable().add(interfaceType: newif)
+			return newif
+		}
 	}}
 
 	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
@@ -59,7 +67,7 @@ public class AMRadioButtons: KCRadioButtons, ALFrame
 		mPath = pth
 
 		/* Set property types */
-		definePropertyTypes(propertyTypes: AMRadioButtons.propertyTypes)
+		defineInterfaceType(interfaceType: AMRadioButtons.interfaceType)
 
 		/* Set default properties */
 		self.setupDefaulrProperties()

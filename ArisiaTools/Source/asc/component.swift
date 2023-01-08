@@ -18,17 +18,15 @@ public func defineBuiltinComponents()
 	let allocator = ALFrameAllocator.shared
 	let comps = AMLibraryCompiler.builtinComponentNames
 	for comp in comps {
-		let ptypes: Dictionary<String, CNValueType>
-		if let t = AMLibraryCompiler.propertyTypes(forComponent: comp) {
-			ptypes = t
+		if let iftype = AMLibraryCompiler.interfaceType(forComponent: comp) {
+			allocator.add(className: comp,
+				allocator: ALFrameAllocator.Allocator(frameName: comp, allocFuncBody: {
+					(_ ctxt: KEContext) -> ALFrame? in return nil
+				},
+				interfaceType: iftype
+			))
 		} else {
-			ptypes = [:]
+			CNLog(logLevel: .error, message: "Can not register the allocator" + "for \(comp)", atFunction: #function, inFile: #file)
 		}
-		allocator.add(className: comp,
-			allocator: ALFrameAllocator.Allocator(frameName: comp, allocFuncBody: {
-				(_ ctxt: KEContext) -> ALFrame? in return nil
-			},
-			propertyTypes: ptypes
-		))
 	}
 }

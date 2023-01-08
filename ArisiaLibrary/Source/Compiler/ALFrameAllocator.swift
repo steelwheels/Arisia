@@ -14,12 +14,12 @@ public class ALFrameAllocator
 	public struct Allocator {
 		public var frameName:		String
 		public var allocFuncBody:	(_ ctxt: KEContext) -> ALFrame?
-		public var propertyTypes:	Dictionary<String, CNValueType>
+		public var interfaceType:	CNInterfaceType
 
-		public init(frameName name: String, allocFuncBody body: @escaping (_ ctxt: KEContext) -> ALFrame?, propertyTypes ptypes: Dictionary<String, CNValueType>){
+		public init(frameName name: String, allocFuncBody body: @escaping (_ ctxt: KEContext) -> ALFrame?, interfaceType iftype: CNInterfaceType){
 			frameName	= name
 			allocFuncBody	= body
-			propertyTypes	= ptypes
+			interfaceType	= iftype
 		}
 
 		public func allocFunctionName() -> String {
@@ -46,7 +46,7 @@ public class ALFrameAllocator
 		let defalloc = Allocator(frameName: defname, allocFuncBody: {
 			(_ ctxt: KEContext) -> ALFrame? in
 			return ALDefaultFrame(frameName: defname, context: ctxt)
-		}, propertyTypes: ALDefaultFrame.propertyTypes)
+		}, interfaceType: ALDefaultFrame.interfaceType)
 		mAllocators = [defname: defalloc]
 	}
 

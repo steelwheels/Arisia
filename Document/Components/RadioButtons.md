@@ -7,12 +7,10 @@ Radio buttons which is used select one from multi items.
 
 This is the interface definition for TypeScript:
 <pre>
-interface RadioButtonsIF extends FrameCoreIF {
+interface RadioButtonsIF extends FrameIF {
   columnNum: number ;
   currentIndex: number ;
-  frameName: string ;
   labels: string[] ;
-  propertyNames: string[] ;
   setEnable(p0: string, p1: boolean): void ;
 }
 declare function _alloc_RadioButtons(): RadioButtonsIF ;

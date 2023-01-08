@@ -14,7 +14,7 @@ public protocol ALFrame
 	var core: ALFrameCore { get }
 	var path: ALFramePath { get }
 
-	static var propertyTypes: Dictionary<String, CNValueType> { get }
+	static var interfaceType: CNInterfaceType { get }
 
 	func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError?
 }
@@ -35,6 +35,15 @@ public extension ALFrame
 
 	func definePropertyType(propertyName pname: String, valueType vtype: CNValueType) {
 		core.definePropertyType(propertyName: pname, valueType: vtype)
+	}
+
+	func defineInterfaceType(interfaceType iftype: CNInterfaceType) {
+		if let base = iftype.base {
+			defineInterfaceType(interfaceType: base)
+		}
+		for (name, type) in iftype.types {
+			definePropertyType(propertyName: name, valueType: type)
+		}
 	}
 
 	func definePropertyTypes(propertyTypes ptype: Dictionary<String, CNValueType>) {
@@ -194,12 +203,19 @@ public extension ALFrame
 		mFrameCore.owner = self
 	}
 
-	static public var propertyTypes: Dictionary<String, CNValueType> { get {
-		let result: Dictionary<String, CNValueType> = [
-			FrameNameItem:		.stringType,
-			PropertyNamesItem:	.arrayType(.stringType)
-		]
-		return result
+	static public var interfaceType: CNInterfaceType { get {
+		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: ALDefaultFrame.FrameName)
+		if let iftype = CNInterfaceTable.currentInterfaceTable().search(byTypeName: ifname) {
+			return iftype
+		} else {
+			let ptypes: Dictionary<String, CNValueType> = [
+				FrameNameItem:		.stringType,
+				PropertyNamesItem:	.arrayType(.stringType)
+			]
+			let iftype = CNInterfaceType(name: ifname, base: nil, types: ptypes)
+			CNInterfaceTable.currentInterfaceTable().add(interfaceType: iftype)
+			return iftype
+		}
 	}}
 
 	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {

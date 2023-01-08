@@ -1,9 +1,7 @@
-interface StepperIF extends FrameCoreIF {
-  frameName: string ;
+interface StepperIF extends FrameIF {
   initValue: number ;
   maxValue: number ;
   minValue: number ;
-  propertyNames: string[] ;
   stepValue: number ;
   updated(p0: StepperIF, p1: number): void ;
 }

@@ -7,10 +7,8 @@ Display text/number field
 
 This is the interface definition for TypeScript:
 <pre>
-interface LabelIF extends FrameCoreIF {
-  frameName: string ;
+interface LabelIF extends FrameIF {
   number: number ;
-  propertyNames: string[] ;
   text: string ;
 }
 declare function _alloc_Label(): LabelIF ;

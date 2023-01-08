@@ -44,13 +44,22 @@ public class AMButton: KCButton, ALFrame
 		fatalError("Not supported")
 	}
 
-	static public var propertyTypes: Dictionary<String, CNValueType> { get {
-		let result: Dictionary<String, CNValueType> = [
-			AMButton.PressedItem:	.functionType(.voidType, [ .interfaceType("ButtonIF") ]),
-			AMButton.IsEnabledItem:	.boolType,
-			AMButton.TitleItem:	.stringType
-		]
-		return result.merging(ALDefaultFrame.propertyTypes){ (a, b) in a }
+	static public var interfaceType: CNInterfaceType { get {
+		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: AMButton.ClassName)
+		if let iftype = CNInterfaceTable.currentInterfaceTable().search(byTypeName: ifname) {
+			return iftype
+		} else {
+			let baseif = ALDefaultFrame.interfaceType
+			let selfif = CNInterfaceType(name: ifname, base: nil, types: [:])
+			let ptypes: Dictionary<String, CNValueType> = [
+				AMButton.PressedItem:	.functionType(.voidType, [ .interfaceType(selfif) ]),
+				AMButton.IsEnabledItem:	.boolType,
+				AMButton.TitleItem:	.stringType
+			]
+			let newif = CNInterfaceType(name: ifname, base: baseif, types: ptypes)
+			CNInterfaceTable.currentInterfaceTable().add(interfaceType: newif)
+			return newif
+		}
 	}}
 
 	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
@@ -58,7 +67,7 @@ public class AMButton: KCButton, ALFrame
 		mPath = pth
 
 		/* Set property types */
-		definePropertyTypes(propertyTypes: AMButton.propertyTypes)
+		defineInterfaceType(interfaceType: AMButton.interfaceType)
 
 		/* Set default properties */
 		self.setupDefaulrProperties()

@@ -675,7 +675,7 @@ declare class CFrame {
 }
 /// <reference path="Builtin.d.ts" />
 /// <reference path="Enum.d.ts" />
-declare type TurtleStatus = {
+type TurtleStatus = {
     x: number;
     y: number;
     angle: number;
@@ -756,83 +756,65 @@ declare function savePanel(title: string): URLIF | null;
 /// <reference path="Builtin.d.ts" />
 declare function alert(type: AlertType, message: string, labels: string[]): number;
 declare function enterView(path: string, arg: any): any;
-interface BoxIF extends FrameCoreIF {
+interface BoxIF extends FrameIF {
   alignment: Alignment ;
   axis: Axis ;
   distribution: Distribution ;
-  frameName: string ;
-  propertyNames: string[] ;
 }
 declare function _alloc_Box(): BoxIF ;
-interface ButtonIF extends FrameCoreIF {
-  frameName: string ;
+interface ButtonIF extends FrameIF {
   isEnabled: boolean ;
   pressed(p0: ButtonIF): void ;
-  propertyNames: string[] ;
   title: string ;
 }
 declare function _alloc_Button(): ButtonIF ;
-interface CollectionIF extends FrameCoreIF {
+interface CollectionIF extends FrameIF {
   collection: string[] ;
   columnNumber: number ;
-  frameName: string ;
   pressed(p0: CollectionIF, p1: number, p2: number): void ;
-  propertyNames: string[] ;
   totalNumber(): number ;
 }
 declare function _alloc_Collection(): CollectionIF ;
-interface ImageIF extends FrameCoreIF {
-  frameName: string ;
+interface ImageIF extends FrameIF {
   name: string ;
-  propertyNames: string[] ;
   scale: number ;
 }
 declare function _alloc_Image(): ImageIF ;
-interface IconIF extends FrameCoreIF {
-  frameName: string ;
-  pressed(p0: IconIF): void ;
-  propertyNames: string[] ;
+interface IconIF extends FrameIF {
+  pressed(p0: FrameIF): void ;
   size: SymbolSize ;
   symbol: string ;
   title: string ;
 }
 declare function _alloc_Icon(): IconIF ;
-interface LabelIF extends FrameCoreIF {
-  frameName: string ;
+interface LabelIF extends FrameIF {
   number: number ;
-  propertyNames: string[] ;
   text: string ;
 }
 declare function _alloc_Label(): LabelIF ;
-interface RadioButtonsIF extends FrameCoreIF {
+interface RadioButtonsIF extends FrameIF {
   columnNum: number ;
   currentIndex: number ;
-  frameName: string ;
   labels: string[] ;
-  propertyNames: string[] ;
   setEnable(p0: string, p1: boolean): void ;
 }
 declare function _alloc_RadioButtons(): RadioButtonsIF ;
-interface StepperIF extends FrameCoreIF {
-  frameName: string ;
+interface StepperIF extends FrameIF {
   initValue: number ;
   maxValue: number ;
   minValue: number ;
-  propertyNames: string[] ;
   stepValue: number ;
   updated(p0: StepperIF, p1: number): void ;
 }
 declare function _alloc_Stepper(): StepperIF ;
-interface TableDataIF extends FrameCoreIF {
+interface TableDataIF extends FrameIF {
   count: number ;
   fieldName(): string ;
   fieldNames: string[] ;
-  frameName: string ;
   index: number ;
   newRecord: RecordIF ;
   path: string ;
-  propertyNames: string[] ;
-  record: RecordIF | null ;
+  record: RecordIF ;
   storage: string ;
 }
 declare function _alloc_TableData(): TableDataIF ;

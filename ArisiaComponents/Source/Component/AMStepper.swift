@@ -43,15 +43,25 @@ public class AMStepper: KCStepper, ALFrame
 		fatalError("Not supported")
 	}
 	
-	static public var propertyTypes: Dictionary<String, CNValueType> { get {
-		let result: Dictionary<String, CNValueType> = [
-			AMStepper.InitValueItem:	.numberType,
-			AMStepper.MaxValueItem:		.numberType,
-			AMStepper.MinValueItem:		.numberType,
-			AMStepper.StepValueItem:	.numberType,
-			AMStepper.UpdatedItem:		.functionType(.voidType, [.interfaceType("StepperIF"), .numberType])
-		]
-		return result.merging(ALDefaultFrame.propertyTypes){ (a, b) in a }
+	static public var interfaceType: CNInterfaceType { get {
+		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: AMStepper.ClassName)
+		if let iftype = CNInterfaceTable.currentInterfaceTable().search(byTypeName: ifname) {
+			return iftype
+		} else {
+			let baseif = ALDefaultFrame.interfaceType
+			let selfif = CNInterfaceType(name: ifname, base: nil, types: [:])
+			let ptypes: Dictionary<String, CNValueType> = [
+				AMStepper.InitValueItem:	.numberType,
+				AMStepper.MaxValueItem:		.numberType,
+				AMStepper.MinValueItem:		.numberType,
+				AMStepper.StepValueItem:	.numberType,
+				AMStepper.UpdatedItem:		.functionType(.voidType,
+									      [.interfaceType(selfif), .numberType])
+			]
+			let newif = CNInterfaceType(name: ifname, base: baseif, types: ptypes)
+			CNInterfaceTable.currentInterfaceTable().add(interfaceType: newif)
+			return newif
+		}
 	}}
 	
 	public func setup(path pth: ArisiaLibrary.ALFramePath, resource res: KiwiEngine.KEResource, console cons: CoconutData.CNConsole) -> NSError? {
@@ -59,7 +69,7 @@ public class AMStepper: KCStepper, ALFrame
 		mPath = pth
 
 		/* Set property types */
-		definePropertyTypes(propertyTypes: AMRadioButtons.propertyTypes)
+		defineInterfaceType(interfaceType: AMRadioButtons.interfaceType)
 
 		/* Set default properties */
 		self.setupDefaulrProperties()

@@ -7,10 +7,8 @@ Display image which is written in image file such as *.png.
 
 This is the interface definition for TypeScript:
 <pre>
-interface ImageIF extends FrameCoreIF {
-  frameName: string ;
+interface ImageIF extends FrameIF {
   name: string ;
-  propertyNames: string[] ;
   scale: number ;
 }
 declare function _alloc_Image(): ImageIF ;

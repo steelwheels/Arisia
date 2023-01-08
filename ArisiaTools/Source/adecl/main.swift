@@ -32,13 +32,13 @@ func main(arguments args: Array<String>) {
 	/* dump declaration for each class */
 	for clsname in clsnames {
 		if let alloc = allocator.search(byClassName: clsname) {
-			let ptypes = alloc.propertyTypes
-			let _ = dump(className: clsname, propertyTypes: ptypes, console: console)
+			let iftype = alloc.interfaceType
+			let _ = dump(className: clsname, interfaceType: iftype, console: console)
 		}
 	}
 }
 
-private func dump(className cname: String, propertyTypes ptypes: Dictionary<String, CNValueType>, console cons: CNConsole) -> Bool
+private func dump(className cname: String, interfaceType iftype: CNInterfaceType, console cons: CNConsole) -> Bool
 {
 	/* Open the file to write */
 	let filename = cname + ".d.ts"

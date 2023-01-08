@@ -45,15 +45,24 @@ public class AMCollection: KCCollectionView, ALFrame
 		fatalError("Not supported")
 	}
 
-	static public var propertyTypes: Dictionary<String, CNValueType> { get {
-		let selfif: CNValueType = .interfaceType("CollectionIF")
-		let result: Dictionary<String, CNValueType> = [
-			AMCollection.ColumnNumberItem:	.numberType,
-			AMCollection.TotalNumberItem:	.functionType(.numberType, []),
-			AMCollection.CollectionItem:	.arrayType(.stringType),
-			AMCollection.PressedItem:	.functionType(.voidType, [ selfif, .numberType, .numberType ])
-		]
-		return result.merging(ALDefaultFrame.propertyTypes){ (a, b) in a }
+	static public var interfaceType: CNInterfaceType { get {
+		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: AMCollection.ClassName)
+		if let iftype = CNInterfaceTable.currentInterfaceTable().search(byTypeName: ifname) {
+			return iftype
+		} else {
+			let baseif = ALDefaultFrame.interfaceType
+			let selfif = CNInterfaceType(name: ifname, base: nil, types: [:])
+			let ptypes: Dictionary<String, CNValueType> = [
+				AMCollection.ColumnNumberItem:	.numberType,
+				AMCollection.TotalNumberItem:	.functionType(.numberType, []),
+				AMCollection.CollectionItem:	.arrayType(.stringType),
+				AMCollection.PressedItem:	.functionType(.voidType,
+					[.interfaceType(selfif), .numberType, .numberType ])
+			]
+			let newif = CNInterfaceType(name: ifname, base: baseif, types: ptypes)
+			CNInterfaceTable.currentInterfaceTable().add(interfaceType: newif)
+			return newif
+		}
 	}}
 
 	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
@@ -61,7 +70,7 @@ public class AMCollection: KCCollectionView, ALFrame
 		mPath = pth
 
 		/* Set property types */
-		definePropertyTypes(propertyTypes: AMCollection.propertyTypes)
+		defineInterfaceType(interfaceType: AMCollection.interfaceType)
 
 		/* Set default properties */
 		self.setupDefaulrProperties()

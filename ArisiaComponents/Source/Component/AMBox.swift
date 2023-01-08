@@ -45,13 +45,21 @@ public class AMBox: KCStackView, ALFrame
 		fatalError("Not supported")
 	}
 
-	static public var propertyTypes: Dictionary<String, CNValueType> { get {
-		let result: Dictionary<String, CNValueType> = [
-			AMBox.AxisItem:		.enumType(CNEnumType(typeName: CNAxis.typeName)),
-			AMBox.AlignmentItem:	.enumType(CNEnumType(typeName: CNAlignment.typeName)),
-			AMBox.DistributionItem:	.enumType(CNEnumType(typeName: CNDistribution.typeName))
-		]
-		return result.merging(ALDefaultFrame.propertyTypes){ (a, b) in a }
+	static public var interfaceType: CNInterfaceType { get {
+		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: AMBox.ClassName)
+		if let iftype = CNInterfaceTable.currentInterfaceTable().search(byTypeName: ifname) {
+			return iftype
+		} else {
+			let baseif = ALDefaultFrame.interfaceType
+			let ptypes: Dictionary<String, CNValueType> = [
+				AMBox.AxisItem:		.enumType(CNEnumType(typeName: CNAxis.typeName)),
+				AMBox.AlignmentItem:	.enumType(CNEnumType(typeName: CNAlignment.typeName)),
+				AMBox.DistributionItem:	.enumType(CNEnumType(typeName: CNDistribution.typeName))
+			]
+			let newif = CNInterfaceType(name: ifname, base: baseif, types: ptypes)
+			CNInterfaceTable.currentInterfaceTable().add(interfaceType: newif)
+			return newif
+		}
 	}}
 
 	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
@@ -59,7 +67,7 @@ public class AMBox: KCStackView, ALFrame
 		mPath = pth
 
 		/* Set property types */
-		definePropertyTypes(propertyTypes: AMBox.propertyTypes)
+		defineInterfaceType(interfaceType: AMBox.interfaceType)
 
 		/* Set default properties */
 		self.setupDefaulrProperties()

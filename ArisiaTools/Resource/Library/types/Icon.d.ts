@@ -1,7 +1,5 @@
-interface IconIF extends FrameCoreIF {
-  frameName: string ;
-  pressed(p0: IconIF): void ;
-  propertyNames: string[] ;
+interface IconIF extends FrameIF {
+  pressed(p0: FrameIF): void ;
   size: SymbolSize ;
   symbol: string ;
   title: string ;

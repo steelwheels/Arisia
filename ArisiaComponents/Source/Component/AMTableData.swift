@@ -48,19 +48,28 @@ public class AMTableData: ALFrame
 		mFrameCore.owner = self
 	}
 
-	static public var propertyTypes: Dictionary<String, CNValueType> { get {
-		let recif = "RecordIF"
-		let result: Dictionary<String, CNValueType> = [
-			AMTableData.StorageItem:	.stringType,
-			AMTableData.PathItem:		.stringType,
-			AMTableData.IndexItem:		.numberType,
-			AMTableData.CountItem:		.numberType,
-			AMTableData.FieldNamesItem:	.arrayType(.stringType),
-			AMTableData.FieldNameItem:	.functionType(.stringType, []),
-			AMTableData.NewRecordItem:	.interfaceType(recif),
-			AMTableData.RecordItem:		.interfaceType("\(recif) | null")
-		]
-		return result.merging(ALDefaultFrame.propertyTypes){ (a, b) in a }
+	static public var interfaceType: CNInterfaceType { get {
+		let ifname = ALFunctionInterface.defaultInterfaceName(frameName: AMTableData.ClassName)
+		if let iftype = CNInterfaceTable.currentInterfaceTable().search(byTypeName: ifname) {
+			return iftype
+		} else {
+			let baseif = ALDefaultFrame.interfaceType
+			let recif  = CNInterfaceType(name: "RecordIF", base: nil, types: [:])
+			let ptypes: Dictionary<String, CNValueType> = [
+				AMTableData.StorageItem:	.stringType,
+				AMTableData.PathItem:		.stringType,
+				AMTableData.IndexItem:		.numberType,
+				AMTableData.CountItem:		.numberType,
+				AMTableData.FieldNamesItem:	.arrayType(.stringType),
+				AMTableData.FieldNameItem:	.functionType(.stringType, []),
+				AMTableData.NewRecordItem:	.interfaceType(recif),
+				AMTableData.RecordItem:		.interfaceType(recif)
+			]
+			let newif = CNInterfaceType(name: ifname, base: baseif, types: ptypes)
+			CNInterfaceTable.currentInterfaceTable().add(interfaceType: newif)
+			return newif
+		}
+
 	}}
 
 	public func setup(path pth: ALFramePath, resource res: KEResource, console cons: CNConsole) -> NSError? {
@@ -68,7 +77,7 @@ public class AMTableData: ALFrame
 		mPath = pth
 
 		/* Set property types */
-		definePropertyTypes(propertyTypes: AMTableData.propertyTypes)
+		defineInterfaceType(interfaceType: AMTableData.interfaceType)
 
 		/* Set default properties */
 		self.setupDefaulrProperties()
@@ -137,7 +146,8 @@ public class AMTableData: ALFrame
 		}
 
 		/* newRecord(): KLRecord */
-		let recif = recordIF(storageName: storagename, pathName: pathname)
+		let recname = recordIF(storageName: storagename, pathName: pathname)
+		let recif   = CNInterfaceType(name: recname, base: nil, types: [:])
 		definePropertyType(propertyName: AMTableData.NewRecordItem, valueType: .interfaceType(recif))
 		let newrecfunc: @convention(block) () -> JSValue = {
 			() -> JSValue in
@@ -156,7 +166,7 @@ public class AMTableData: ALFrame
 		}
 
 		/* record: KLRecord (read only) */
-		definePropertyType(propertyName: AMTableData.RecordItem, valueType: .interfaceType("\(recif) | null"))
+		definePropertyType(propertyName: AMTableData.RecordItem, valueType: .interfaceType(recif))
 
 		/* Update read-only properties */
 		updateTablePropeties()

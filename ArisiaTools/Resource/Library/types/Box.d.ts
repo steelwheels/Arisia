@@ -1,8 +1,6 @@
-interface BoxIF extends FrameCoreIF {
+interface BoxIF extends FrameIF {
   alignment: Alignment ;
   axis: Axis ;
   distribution: Distribution ;
-  frameName: string ;
-  propertyNames: string[] ;
 }
 declare function _alloc_Box(): BoxIF ;
