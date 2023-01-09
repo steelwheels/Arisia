@@ -577,15 +577,12 @@ declare function _openURL(title: URLIF | string, cbfunc: any): void ;
 declare function _allocateThread(path: URLIF | string, input: FileIF, output: FileIF, error: FileIF): ThreadIF | null ;
 
 /// <reference path="Builtin.d.ts" />
-/// <reference path="Enum.d.ts" />
 declare function isEmptyString(str: string): boolean;
 declare function isEmptyObject(obj: object): boolean;
 /// <reference path="Builtin.d.ts" />
 /// <reference path="Process.d.ts" />
-/// <reference path="Enum.d.ts" />
 declare function first<T>(arr: T[] | null): T | null;
 /// <reference path="Builtin.d.ts" />
-/// <reference path="Enum.d.ts" />
 declare class File {
     mCore: FileIF;
     constructor(core: FileIF);
@@ -609,8 +606,9 @@ declare class JSONFile {
     read(file: File): object | null;
     write(file: File, src: object): boolean;
 }
-/// <reference path="Builtin.d.ts" />
 /// <reference path="Enum.d.ts" />
+/// <reference path="Intf.d.ts" />
+/// <reference path="Builtin.d.ts" />
 interface Math {
     randomInt(min: number, max: number): number;
     clamp(src: number, min: number, max: number): number;
@@ -621,8 +619,9 @@ declare function compareStrings(s0: string, s1: string): ComparisonResult;
 /**
  * Debug.ts
  */
-/// <reference path="Builtin.d.ts" />
 /// <reference path="Enum.d.ts" />
+/// <reference path="Intf.d.ts" />
+/// <reference path="Builtin.d.ts" />
 declare function checkVariables(place: string, ...vars: any[]): boolean;
 /// <reference path="Builtin.d.ts" />
 /// <reference path="Math.d.ts" />
@@ -630,8 +629,9 @@ declare function checkVariables(place: string, ...vars: any[]): boolean;
 declare function addPoint(p0: PointIF, p1: PointIF): PointIF;
 declare function isSamePoints(p0: PointIF, p1: PointIF): boolean;
 declare function clampPoint(src: PointIF, x: number, y: number, width: number, height: number): PointIF;
-/// <reference path="Builtin.d.ts" />
 /// <reference path="Enum.d.ts" />
+/// <reference path="Intf.d.ts" />
+/// <reference path="Builtin.d.ts" />
 declare function _waitUntilExitOne(process: ProcessIF): number;
 declare function _waitUntilExitAll(processes: ProcessIF[]): number;
 declare class Semaphore {
@@ -649,14 +649,16 @@ declare class CancelException extends Error {
 declare function _cancel(): void;
 declare function openURL(url: URLIF | string): boolean;
 declare function run(path: URLIF | string, args: string[], input: FileIF, output: FileIF, error: FileIF): number;
-/// <reference path="Builtin.d.ts" />
 /// <reference path="Enum.d.ts" />
+/// <reference path="Intf.d.ts" />
+/// <reference path="Builtin.d.ts" />
 declare function maxLengthOfStrings(strs: string[]): number;
 declare function adjustLengthOfStrings(strs: string[]): string[];
 declare function pasteStrings(src0: string[], src1: string[], space: string): string[];
 declare function isEqualTrimmedStrings(str0: string, str1: string): boolean;
-/// <reference path="Builtin.d.ts" />
 /// <reference path="Enum.d.ts" />
+/// <reference path="Intf.d.ts" />
+/// <reference path="Builtin.d.ts" />
 declare class CFrame {
     mFrame: RectIF;
     mCursorX: number;
@@ -673,8 +675,9 @@ declare class CFrame {
     moveTo(x: number, y: number): boolean;
     put(str: string): void;
 }
-/// <reference path="Builtin.d.ts" />
 /// <reference path="Enum.d.ts" />
+/// <reference path="Intf.d.ts" />
+/// <reference path="Builtin.d.ts" />
 type TurtleStatus = {
     x: number;
     y: number;
