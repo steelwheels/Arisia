@@ -142,6 +142,11 @@ declare enum TextAlign {
   normal = 4,
   right = 2
 }
+/* Interface declaration: PointIF */
+interface PointIF {
+	x: number ;
+	y: number ;
+}
 /**
  * Builtin.d.ts
  */
@@ -271,11 +276,6 @@ interface FileIF {
 interface PipeIF {
         reading:        FileIF ;
         writing:        FileIF ;
-}
-
-interface PointIF {
-	x : number ;
-	y : number ;
 }
 
 interface RectIF {
