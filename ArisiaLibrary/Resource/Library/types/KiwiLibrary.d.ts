@@ -147,6 +147,11 @@ interface PointIF {
 	x: number ;
 	y: number ;
 }
+/* Interface declaration: SizeIF */
+interface SizeIF {
+	height: number ;
+	width: number ;
+}
 /**
  * Builtin.d.ts
  */
@@ -281,11 +286,6 @@ interface PipeIF {
 interface RectIF {
 	x:		number ;
 	y: 		number ;
-	width:		number ;
-	height:		number ;
-}
-
-interface SizeIF {
 	width:		number ;
 	height:		number ;
 }
