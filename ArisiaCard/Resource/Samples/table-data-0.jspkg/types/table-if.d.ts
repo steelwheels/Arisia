@@ -4,6 +4,9 @@ interface root_BoxIF extends BoxIF {
   table: TableDataIF ;
 }
 interface root_table_TableDataIF extends TableDataIF {
+  index: number ;
+  path: string ;
+  storage: string ;
 }
 interface root_quit_button_ButtonIF extends ButtonIF {
 }

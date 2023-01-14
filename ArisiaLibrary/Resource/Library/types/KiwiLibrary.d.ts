@@ -142,6 +142,18 @@ declare enum TextAlign {
   normal = 4,
   right = 2
 }
+interface FrameCoreIF {
+  _value(p0: string): any ;
+  _setValue(p0: string, p1: any): boolean ;
+  _definePropertyType(p0: string, p1: string): void ;
+  _addObserver(p0: string, p1: () => void): void ;
+}
+
+interface FrameIF extends FrameCoreIF {
+  frameName: string ;
+  propertyNames: string[] ;
+}
+
 /* Interface declaration: PointIF */
 interface PointIF {
 	x: number ;
@@ -151,6 +163,13 @@ interface PointIF {
 interface SizeIF {
 	height: number ;
 	width: number ;
+}
+/* Interface declaration: RecordIF */
+interface RecordIF {
+	fieldCount: number ;
+	fieldNames: string[] ;
+	setValue(p0: any, p1: string): void ;
+	value(p0: string): any ;
 }
 /* Interface declaration: RectIF */
 interface RectIF {
@@ -163,6 +182,15 @@ interface RectIF {
 interface RangeIF {
 	length: number ;
 	location: number ;
+}
+/* Interface declaration: TableDataIF */
+interface TableDataIF extends FrameIF{
+	defaultFields: string[] ;
+	newRecord(): RecordIF ;
+	record(p0: number): RecordIF ;
+	recordCount: number ;
+	save(): boolean ;
+	toString(): string ;
 }
 /**
  * Builtin.d.ts
@@ -381,39 +409,11 @@ interface StorageIF {
 	toString(): string ;
 }
 
-interface RecordIF {
-	fieldNames:		string[] ;
-
-	value(name: string):			any ;
-	setValue(value: any, name: string):	void ;
-
-	toString(): 		string ;
-}
-
 interface PointerValueIF {
 	path:			string ;
 }
 
-interface TableIF {
-	recordCount:		number ;
-
-	readonly defaultFields:	{[name:string]: any} ;
-
-	newRecord():				RecordIF ;
-	record(row: number):			RecordIF | null ;
-	pointer(value: any, key: string):	PointerValueIF | null ;
-
-	search(value: any, name: string):	RecordIF[] | null ;
-	append(record: RecordIF): 		void ;
-	appendPointer(pointer: PointerValueIF):	void ;
-
-	remove(index: number):			boolean ;
-	save():					boolean ;
-
-	toString(): 		string
-}
-
-interface MappingTableIF extends TableIF {
+interface MappingTableIF extends TableDataIF {
 
 	setFilterFunction(filter: (rec: RecordIF) => boolean): void ;
 	addVirtualField(field: string, callback: (rec: RecordIF) => any): void
@@ -495,7 +495,7 @@ declare function CollectionData(): CollectionDataIF ;
 declare function URL(path: string): URLIF | null ;
 
 declare function Storage(path: string): StorageIF | null ;
-declare function TableStorage(storage: string, path: string): TableIF | null ;
+declare function TableStorage(storage: string, path: string): TableDataIF | null ;
 declare function MappingTableStorage(storage: string, path: string): MappingTableIF | null ;
 
 declare function isArray(value: any): boolean ;

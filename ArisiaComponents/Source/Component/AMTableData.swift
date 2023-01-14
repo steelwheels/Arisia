@@ -54,7 +54,13 @@ public class AMTableData: ALFrame
 			return iftype
 		} else {
 			let baseif = ALDefaultFrame.interfaceType
-			let recif  = CNInterfaceType(name: "RecordIF", base: nil, types: [:])
+			let recif: CNInterfaceType
+			if let ifval = CNInterfaceTable.currentInterfaceTable().search(byTypeName: "RecordIF") {
+				recif = ifval
+			} else {
+				CNLog(logLevel: .error, message: "InterfaceType RecordIF is not found")
+				recif = CNInterfaceType(name: "RecordIF", base: nil, types: [:])
+			}
 			let ptypes: Dictionary<String, CNValueType> = [
 				AMTableData.StorageItem:	.stringType,
 				AMTableData.PathItem:		.stringType,
@@ -108,6 +114,7 @@ public class AMTableData: ALFrame
 			/* Load failed, use dummy table */
 			table   = CNStorageTable.loadDummyTable()
 		}
+		mTable = table
 
 		/* index */
 		if let idxnum = numberValue(name: AMTableData.IndexItem) {
@@ -169,7 +176,7 @@ public class AMTableData: ALFrame
 		definePropertyType(propertyName: AMTableData.RecordItem, valueType: .interfaceType(recif))
 
 		/* Update read-only properties */
-		updateTablePropeties()
+		updateTablePropeties(table: table)
 		updateRecordValue(table: table)
 
 		return nil
@@ -225,16 +232,12 @@ public class AMTableData: ALFrame
 		}
 	}
 
-	private func updateTablePropeties() {
-		guard let table = mTable else {
-			return
-		}
-
+	private func updateTablePropeties(table tbl: CNStorageTable) {
 		/* count */
-		setNumberValue(name: AMTableData.CountItem, value: NSNumber(value: table.recordCount))
+		setNumberValue(name: AMTableData.CountItem, value: NSNumber(value: tbl.recordCount))
 
 		/* fieldNames */
-		if let fnames = JSValue(object: table.fieldNames, in: core.context) {
+		if let fnames = JSValue(object: tbl.fieldNames, in: core.context) {
 			setValue(name: AMTableData.FieldNamesItem, value: fnames)
 		} else {
 			CNLog(logLevel: .error, message: "Failed to allocate array", atFunction: #function, inFile: #file)

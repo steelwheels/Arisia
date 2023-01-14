@@ -17,7 +17,7 @@ root._definePropertyType("table", "o(TableData)");
 _definePropertyIF(root, ["alignment", "axis", "distribution", "frameName", "init0", "propertyNames", "quit_button", "table"]);
 /* assign user declared properties */
 root.init0 = function (self) {
-    console.print("index: " + root.table.index + "\n");
+    console.print("index: " + root.table.count + "\n");
     //console.print("c0:    " + root.table.record.c0 + "\n") ;
 };
 {
@@ -25,17 +25,17 @@ root.init0 = function (self) {
     let table = _alloc_TableData();
     /* define type for all properties */
     table._definePropertyType("count", "n");
-    table._definePropertyType("fieldName", "f(s,[])");
+    table._definePropertyType("fieldName", "f(s,[s])");
     table._definePropertyType("fieldNames", "a(s)");
-    table._definePropertyType("frameName", "s");
     table._definePropertyType("index", "n");
-    table._definePropertyType("newRecord", "i(RecordIF)");
+    table._definePropertyType("newRecord", "f(i(RecordIF),[])");
     table._definePropertyType("path", "s");
-    table._definePropertyType("propertyNames", "a(s)");
-    table._definePropertyType("record", "i(RecordIF)");
+    table._definePropertyType("record", "f(i(RecordIF),[n])");
+    table._definePropertyType("save", "f(b,[])");
     table._definePropertyType("storage", "s");
+    table._definePropertyType("toString", "f(s,[])");
     /* define getter/setter for all properties */
-    _definePropertyIF(table, ["count", "fieldName", "fieldNames", "frameName", "index", "newRecord", "path", "propertyNames", "record", "storage"]);
+    _definePropertyIF(table, ["count", "fieldName", "fieldNames", "index", "newRecord", "path", "record", "save", "storage", "toString"]);
     /* assign user declared properties */
     table.storage = "storage";
     table.path = "root";

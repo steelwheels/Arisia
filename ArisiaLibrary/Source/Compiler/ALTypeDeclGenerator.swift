@@ -253,7 +253,13 @@ public class ALTypeDeclGenerator
 		ifdecl.footer = "}"
 
 		for (key, val) in flds {
-			let txt = CNTextLine(string: "\(key): \(val.valueType.toTypeDeclaration()) ;")
+			let txt: CNTextLine
+			switch val.valueType {
+			case .functionType(_, _):
+				txt = CNTextLine(string: "\(key)\(val.valueType.toTypeDeclaration()) ;")
+			default:
+				txt = CNTextLine(string: "\(key): \(val.valueType.toTypeDeclaration()) ;")
+			}
 			ifdecl.add(text: txt)
 		}
 
