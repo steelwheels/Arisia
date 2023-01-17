@@ -174,6 +174,27 @@ public class AMTableData: ALFrame
 
 		/* record: KLRecord (read only) */
 		definePropertyType(propertyName: AMTableData.RecordItem, valueType: .interfaceType(recif))
+		let recfunc: @convention(block) (_ idxval: JSValue) -> JSValue = {
+			(_ idxval: JSValue) -> JSValue in
+			if let idxnum = idxval.toNumber() {
+				let idx = idxnum.intValue
+				if let rec = table.record(at: idx) {
+					let recobj = KLRecord(record: rec, context: self.core.context)
+					if let val = KLRecord.allocate(record: recobj) {
+						return val
+					} else {
+						return JSValue(nullIn: self.core.context)
+					}
+				}
+			}
+			CNLog(logLevel: .error, message: "Invalid parameter for record method", atFunction: #function, inFile: #file)
+			return JSValue(nullIn: self.core.context)
+		}
+		if let funcval = JSValue(object: recfunc, in: core.context) {
+			setValue(name: AMTableData.RecordItem, value: funcval)
+		} else {
+			CNLog(logLevel: .error, message: "Failed to allocate function", atFunction: #function, inFile: #file)
+		}
 
 		/* Update read-only properties */
 		updateTablePropeties(table: table)

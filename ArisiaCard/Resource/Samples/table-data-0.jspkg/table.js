@@ -9,17 +9,11 @@ root._definePropertyType("alignment", "e(Alignment)");
 root._definePropertyType("axis", "e(Axis)");
 root._definePropertyType("distribution", "e(Distribution)");
 root._definePropertyType("frameName", "s");
-root._definePropertyType("init0", "f(v,[o(root_BoxIF)])");
 root._definePropertyType("propertyNames", "a(s)");
 root._definePropertyType("quit_button", "o(Button)");
 root._definePropertyType("table", "o(TableData)");
 /* define getter/setter for all properties */
-_definePropertyIF(root, ["alignment", "axis", "distribution", "frameName", "init0", "propertyNames", "quit_button", "table"]);
-/* assign user declared properties */
-root.init0 = function (self) {
-    console.print("index: " + root.table.count + "\n");
-    //console.print("c0:    " + root.table.record.c0 + "\n") ;
-};
+_definePropertyIF(root, ["alignment", "axis", "distribution", "frameName", "propertyNames", "quit_button", "table"]);
 {
     /* allocate function for frame: TableData */
     let table = _alloc_TableData();
@@ -56,12 +50,12 @@ root.init0 = function (self) {
     /* assign user declared properties */
     quit_button.title = "Quit";
     quit_button.pressed = function (self) {
+        console.print("count: " + root.table.count + "\n");
+        //console.print("c0:    " + root.table.record(0).c0 + "\n") ;
         leaveView(1);
     };
     root.quit_button = quit_button;
 }
 /* Define listner functions */
-/* execute initializer methods for frame root */
-root.init0(root);
 /* This value will be return value of evaluateScript() */
 root;

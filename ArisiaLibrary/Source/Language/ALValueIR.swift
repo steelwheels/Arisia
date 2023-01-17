@@ -23,6 +23,13 @@ public enum ALValueIR
 	case proceduralFunction(ALProceduralFunctionIR)
 	case invokedFunction(ALImmediatelyInvokedFunctionIR)
 
+	public func toString() -> String? {
+		switch self {
+		case .string(let str):	return str
+		default:		return nil
+		}
+	}
+
 	public func toType(framePath path: ALFramePath) -> CNValueType {
 		let result: CNValueType
 		switch self {

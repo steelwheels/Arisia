@@ -49,24 +49,31 @@ public class ALTypeDeclGenerator
 
 	private func generateOneTypeDeclaration(path pth: ALFramePath, frame frm: ALFrameIR) -> Result<CNTextSection, NSError> {
 
+		var iftype: CNInterfaceType
 		switch ALTypeDeclGenerator.defaultInterfaceType(frameName: frm.className) {
-		case .success(let iftype):
-			var ptypes: Dictionary<String, CNValueType> = [:]
-			for prop in frm.properties {
-				if iftype.types[prop.name] == nil {
-					ptypes[prop.name] = prop.type
-				}
-			}
-			let ifname = ALFunctionInterface.userInterfaceName(path: pth.path, instanceName: pth.instanceName, frameName: frm.className)
-			let newif = CNInterfaceType(name: ifname, base: iftype, types: ptypes)
-			CNInterfaceTable.currentInterfaceTable().add(interfaceType: newif)
-			return .success(generatePropertyDeclaration(interfaceType: newif, frame: frm))
+		case .success(let typ):
+			iftype = typ
 		case .failure(let err):
 			return .failure(err)
 		}
+
+		var ptypes: Dictionary<String, CNValueType> = [:]
+		for prop in frm.properties {
+			if iftype.types[prop.name] == nil {
+				ptypes[prop.name] = prop.type
+			}
+		}
+
+		for (key, type) in ALTypeDeclGenerator.additionalPropertyTypes(path: pth, frame: frm) {
+			ptypes[key] = type
+		}
+
+		let ifname = ALFunctionInterface.userInterfaceName(path: pth.path, instanceName: pth.instanceName, frameName: frm.className)
+		let newif = CNInterfaceType(name: ifname, base: iftype, types: ptypes)
+		return .success(generatePropertyDeclaration(path: pth, interfaceType: newif, frame: frm))
 	}
 
-	public func generatePropertyDeclaration(interfaceType iftype: CNInterfaceType, frame frm: ALFrameIR) -> CNTextSection {
+	public func generatePropertyDeclaration(path pth: ALFramePath, interfaceType iftype: CNInterfaceType, frame frm: ALFrameIR) -> CNTextSection {
 		let basename: String
 		if let base = iftype.base {
 			basename = base.name
@@ -93,7 +100,8 @@ public class ALTypeDeclGenerator
 					}
 				case .objectType(let cname):
 					let clsname = cname ?? ALDefaultFrame.FrameName
-					let ifname  = ALFunctionInterface.defaultInterfaceName(frameName: clsname)
+					let cpath = pth.childPath(childInstanceName: pname, childFrameName: clsname)
+					let ifname  = ALFunctionInterface.userInterfaceName(path: cpath.path, instanceName: cpath.instanceName, frameName: clsname)
 					decl = pname + ": " + ifname + " ;"
 				default:
 					decl = pname + ": " + vtype.toTypeDeclaration() + " ;"
@@ -171,6 +179,19 @@ public class ALTypeDeclGenerator
 		}
 	}
 
+	private static func additionalPropertyTypes(path pth: ALFramePath, frame frm: ALFrameIR) -> Dictionary<String, CNValueType> {
+		var ptypes: Dictionary<String, CNValueType> = [:]
+		if let storageval = frm.value(name: "storage"), let pathval = frm.value(name: "path") {
+			if let storage = storageval.toString(), let path = pathval.toString() {
+				let recifname = pathToRecordIF(storageName: storage, pathString: path)
+				let recif: CNValueType = .interfaceType(CNInterfaceType(name: recifname, base: nil, types: [:]))
+				ptypes["record"]    = .functionType(recif, [.numberType])
+				ptypes["newRecord"] = .functionType(recif, [])
+			}
+		}
+		return ptypes
+	}
+	
 	public static func generateRecordDeclaration(resource res: KEResource) -> CNTextSection? {
 		if let idents = res.identifiersOfStorage() {
 			if idents.count > 0 {
@@ -214,10 +235,12 @@ public class ALTypeDeclGenerator
 					result.add(text: subtxt)
 				}
 			} else {
-				for (key, elm) in dict {
-					let newpath = CNValuePath(path: pth, subPath: [.member(key)])
-					let newtxt  = generateRecordDeclaration(storageName: strg, path: newpath, rootValue: elm)
-					result.add(text: newtxt)
+				for key in dict.keys.sorted() {
+					if let elm = dict[key] {
+						let newpath = CNValuePath(path: pth, subPath: [.member(key)])
+						let newtxt  = generateRecordDeclaration(storageName: strg, path: newpath, rootValue: elm)
+						result.add(text: newtxt)
+					}
 				}
 			}
 		case .interfaceValue(let ifval):
@@ -252,15 +275,17 @@ public class ALTypeDeclGenerator
 		ifdecl.header = "interface \(ifname) extends RecordIF {"
 		ifdecl.footer = "}"
 
-		for (key, val) in flds {
-			let txt: CNTextLine
-			switch val.valueType {
-			case .functionType(_, _):
-				txt = CNTextLine(string: "\(key)\(val.valueType.toTypeDeclaration()) ;")
-			default:
-				txt = CNTextLine(string: "\(key): \(val.valueType.toTypeDeclaration()) ;")
+		for key in flds.keys.sorted() {
+			if let val = flds[key] {
+				let txt: CNTextLine
+				switch val.valueType {
+				case .functionType(_, _):
+					txt = CNTextLine(string: "\(key)\(val.valueType.toTypeDeclaration()) ;")
+				default:
+					txt = CNTextLine(string: "\(key): \(val.valueType.toTypeDeclaration()) ;")
+				}
+				ifdecl.add(text: txt)
 			}
-			ifdecl.add(text: txt)
 		}
 
 		return ifdecl
@@ -282,6 +307,11 @@ public class ALTypeDeclGenerator
 			}
 		}
 		return result + "_RecordIF"
+	}
+
+	public static func pathToRecordIF(storageName strg: String, pathString path: String) -> String {
+		let newpath = path.replacingOccurrences(of: ".", with: "_")
+		return strg + "_" + newpath + "_RecordIF"
 	}
 
 }

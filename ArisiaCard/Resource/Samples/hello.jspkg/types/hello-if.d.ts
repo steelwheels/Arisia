@@ -1,6 +1,6 @@
 interface root_BoxIF extends BoxIF {
-  label: LabelIF ;
-  ok_button: ButtonIF ;
+  label: root_label_LabelIF ;
+  ok_button: root_ok_button_ButtonIF ;
 }
 interface root_label_LabelIF extends LabelIF {
 }

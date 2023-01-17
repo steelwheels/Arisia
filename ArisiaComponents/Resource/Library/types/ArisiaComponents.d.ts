@@ -185,10 +185,11 @@ interface RangeIF {
 }
 /* Interface declaration: TableDataIF */
 interface TableDataIF extends FrameIF{
-	defaultFields: string[] ;
+	count: number ;
+	fieldName(p0: string): string ;
+	fieldNames: string[] ;
 	newRecord(): RecordIF ;
 	record(p0: number): RecordIF ;
-	recordCount: number ;
 	save(): boolean ;
 	toString(): string ;
 }

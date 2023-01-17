@@ -10,13 +10,12 @@ This is the interface definition for TypeScript:
 <pre>
 interface TableDataIF extends FrameIF {
   count: number ;
-  fieldName(): string ;
+  fieldName(p0: string): string ;
   fieldNames: string[] ;
-  index: number ;
-  newRecord: RecordIF ;
-  path: string ;
-  record: RecordIF ;
-  storage: string ;
+  newRecord(): RecordIF ;
+  record(p0: number): RecordIF ;
+  save(): boolean ;
+  toString(): string ;
 }
 declare function _alloc_TableData(): TableDataIF ;
 
